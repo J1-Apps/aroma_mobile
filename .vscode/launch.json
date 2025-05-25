@@ -1,0 +1,65 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "aroma_prod (debug mode)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart"
+      },
+      {
+        "name": "aroma_prod (profile mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "profile",
+        "program": "lib/main.dart"
+      },
+      {
+        "name": "aroma_prod (release mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "release",
+        "program": "lib/main.dart"
+      },
+      {
+        "name": "aroma_test (debug mode)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/test.dart"
+      },
+      {
+        "name": "aroma_test (profile mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "profile",
+        "program": "lib/test.dart"
+      },
+      {
+        "name": "aroma_test (release mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "release",
+        "program": "lib/test.dart"
+      },
+      {
+        "name": "aroma_local (debug mode)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/local.dart"
+      },
+      {
+        "name": "aroma_local (profile mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "profile",
+        "program": "lib/local.dart"
+      },
+      {
+        "name": "aroma_local (release mode)",
+        "request": "launch",
+        "type": "dart",
+        "flutterMode": "release",
+        "program": "lib/local.dart"
+      }
+    ]
+  }

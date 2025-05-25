@@ -1,1 +1,4 @@
 include: package:j1_lints/j1_lints.yaml
+
+formatter:
+  page_width: 120
