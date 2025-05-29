@@ -5,7 +5,8 @@ import "package:aroma_mobile/presentation/util/environment/aroma_environment.dar
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
-class LocalEnvironment extends AromaEnvironment {
+// TODO: Update this class to use the test environment
+class TestEnvironment extends AromaEnvironment {
   @override
   FirebaseOptions? get firebaseOptions => null;
 

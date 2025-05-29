@@ -3,7 +3,7 @@ import "package:aroma_mobile/data/repository/theme_repository.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:j1_environment/j1_environment.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
 import "../../test_util/testing_values.dart";

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:j1_theme/j1_theme.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 const _header = "Crimson Text";
 const _body = "Poppins";

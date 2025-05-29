@@ -13,40 +13,16 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  j1_ui:
+  j1_core_base:
     git:
       url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_ui
+      path: packages/j1_core_base
       ref: v1.0.0
 
-  j1_environment:
+  j1_core_firebase:
     git:
       url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_environment
-      ref: v1.0.0
-
-  j1_theme:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_theme
-      ref: v1.0.0
-
-  j1_logger:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_logger
-      ref: v1.0.0
-
-  j1_crash_handler:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_crash_handler
-      ref: v1.0.0
-
-  j1_router:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_router
+      path: packages/j1_core_firebase
       ref: v1.0.0
 
   get_it: ^8.0.3
@@ -64,12 +40,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  j1_lints:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_lints
-      ref: v1.0.0
       
   build_runner: ^2.4.15
   dart_mappable_builder: ^4.5.0
@@ -89,7 +59,7 @@ flutter:
   fonts:
     - family: JamIcons
       fonts:
-        - asset: packages/j1_ui/fonts/JamIcons.ttf
+        - asset: packages/j1_core_base/j1_ui/fonts/JamIcons.ttf
 
     - family: Crimson Text
       fonts:

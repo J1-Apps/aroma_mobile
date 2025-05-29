@@ -1,5 +1,5 @@
 import "package:aroma_mobile/presentation/home/home_screen.dart";
-import "package:j1_router/j1_router.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 // This is a configuration file that doesn't need to be tested.
 // coverage:ignore-file

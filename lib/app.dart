@@ -4,8 +4,7 @@ import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:j1_theme/bloc/j1_theme_bloc.dart";
-import "package:j1_theme/ui/ui.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 final _router = routeGraph.buildConfig();
 

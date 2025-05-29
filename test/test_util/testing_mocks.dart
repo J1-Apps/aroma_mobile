@@ -6,7 +6,7 @@ import "package:shared_preferences/shared_preferences.dart";
 // Custom Matchers
 
 class HasErrorCode extends CustomMatcher {
-  HasErrorCode(matcher) : super("AromaError with code that is", "code", matcher);
+  HasErrorCode(ErrorCode matcher) : super("AromaError with code that is", "code", matcher);
 
   @override
   Object? featureValueOf(actual) => (actual as AromaError).code;

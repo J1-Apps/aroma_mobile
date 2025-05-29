@@ -1,7 +1,6 @@
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
-import "package:j1_environment/j1_environment.dart";
-import "package:j1_theme/j1_theme.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:rxdart/subjects.dart";
 
 class ThemeRepository extends J1ThemeRepository {
