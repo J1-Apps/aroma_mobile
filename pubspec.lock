@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.4.5"
-  ansicolor:
-    dependency: transitive
-    description:
-      name: ansicolor
-      sha256: "50e982d500bc863e1d703448afdbf9e5a72eb48840a4f766fa361ffd6877055f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   app_links:
     dependency: transitive
     description:
@@ -266,18 +258,10 @@ packages:
     source: hosted
     version: "3.0.6"
   dart_mappable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dart_mappable
       sha256: "2255b2c00e328a65fef5a8df2dabfc0dc9c2e518c33a50051a4519b1c7a28c48"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.5.0"
-  dart_mappable_builder:
-    dependency: "direct dev"
-    description:
-      name: dart_mappable_builder
-      sha256: adea8c55aac73c8254aa14a8272b788eb0f72799dd8e4810a9b664ec9b4e353c
       url: "https://pub.dev"
     source: hosted
     version: "4.5.0"
@@ -290,7 +274,7 @@ packages:
     source: hosted
     version: "3.1.0"
   equatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: equatable
       sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
@@ -493,6 +477,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.1.2"
+  google_identity_services_web:
+    dependency: transitive
+    description:
+      name: google_identity_services_web
+      sha256: "5d187c46dc59e02646e10fe82665fc3884a9b71bc1c90c2b8b749316d33ee454"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3+1"
+  google_sign_in:
+    dependency: "direct main"
+    description:
+      name: google_sign_in
+      sha256: d0a2c3bcb06e607bb11e4daca48bd4b6120f0bbc4015ccebbe757d24ea60ed2a
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.0"
+  google_sign_in_android:
+    dependency: transitive
+    description:
+      name: google_sign_in_android
+      sha256: d5e23c56a4b84b6427552f1cf3f98f716db3b1d1a647f16b96dbb5b93afa2805
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.2.1"
+  google_sign_in_ios:
+    dependency: transitive
+    description:
+      name: google_sign_in_ios
+      sha256: "102005f498ce18442e7158f6791033bbc15ad2dcc0afa4cf4752e2722a516c96"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.9.0"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      sha256: "5f6f79cf139c197261adb6ac024577518ae48fdff8e53205c5373b5f6430a8aa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      sha256: "460547beb4962b7623ac0fb8122d6b8268c951cf0b646dd150d60498430e4ded"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.12.4+4"
   gotrue:
     dependency: transitive
     description:
@@ -570,7 +602,7 @@ packages:
     description:
       path: "packages/j1_core_base"
       ref: "v1.0.0"
-      resolved-ref: "6d66b32989a7f574ecf1fc92b7ae07b28f67f61e"
+      resolved-ref: a71629465d770fc2b8cbf2540e96dedcf50ed0c5
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -579,7 +611,7 @@ packages:
     description:
       path: "packages/j1_core_firebase"
       ref: "v1.0.0"
-      resolved-ref: "6d66b32989a7f574ecf1fc92b7ae07b28f67f61e"
+      resolved-ref: a71629465d770fc2b8cbf2540e96dedcf50ed0c5
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -980,14 +1012,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  source_gen:
-    dependency: transitive
-    description:
-      name: source_gen
-      sha256: "35c8150ece9e8c8d263337a265153c3329667640850b9304861faea59fc98f6b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   source_span:
     dependency: transitive
     description:
@@ -1334,4 +1358,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=3.8.0 <4.0.0"
-  flutter: ">=3.27.1"
+  flutter: ">=3.32.0"

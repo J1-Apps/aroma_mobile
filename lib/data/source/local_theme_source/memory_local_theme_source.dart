@@ -1,4 +1,4 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/util/memory_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";

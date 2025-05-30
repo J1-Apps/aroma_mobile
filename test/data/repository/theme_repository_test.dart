@@ -1,4 +1,4 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/repository/theme_repository.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
@@ -30,7 +30,7 @@ void main() {
     });
 
     test("gets and updates color scheme, handling errors", () async {
-      when(localSource.getColorScheme).thenThrow(const AromaError(ErrorCode.source_local_theme_colorReadError));
+      when(localSource.getColorScheme).thenThrow(const ErrorModel(ErrorCode.source_local_theme_colorReadError));
 
       final repository = ThemeRepository();
 
@@ -38,7 +38,7 @@ void main() {
 
       when(
         () => localSource.updateColorScheme(any()),
-      ).thenThrow(const AromaError(ErrorCode.source_local_theme_colorWriteError));
+      ).thenThrow(const ErrorModel(ErrorCode.source_local_theme_colorWriteError));
       await repository.setColorScheme(colorScheme0);
 
       when(() => localSource.updateColorScheme(any())).thenAnswer((_) => Future.value());
@@ -48,7 +48,7 @@ void main() {
     });
 
     test("gets and updates text theme, handling errors", () async {
-      when(localSource.getTextTheme).thenThrow(const AromaError(ErrorCode.source_local_theme_textReadError));
+      when(localSource.getTextTheme).thenThrow(const ErrorModel(ErrorCode.source_local_theme_textReadError));
 
       final repository = ThemeRepository();
 
@@ -56,7 +56,7 @@ void main() {
 
       when(
         () => localSource.updateTextTheme(any()),
-      ).thenThrow(const AromaError(ErrorCode.source_local_theme_textWriteError));
+      ).thenThrow(const ErrorModel(ErrorCode.source_local_theme_textWriteError));
       await repository.setTextTheme(textTheme0);
 
       when(() => localSource.updateTextTheme(any())).thenAnswer((_) => Future.value());
@@ -66,7 +66,7 @@ void main() {
     });
 
     test("gets and updates page transition, handling errors", () async {
-      when(localSource.getPageTransition).thenThrow(const AromaError(ErrorCode.source_local_theme_transitionReadError));
+      when(localSource.getPageTransition).thenThrow(const ErrorModel(ErrorCode.source_local_theme_transitionReadError));
 
       final repository = ThemeRepository();
 
@@ -77,7 +77,7 @@ void main() {
 
       when(
         () => localSource.updatePageTransition(any()),
-      ).thenThrow(const AromaError(ErrorCode.source_local_theme_transitionWriteError));
+      ).thenThrow(const ErrorModel(ErrorCode.source_local_theme_transitionWriteError));
       await repository.setPageTransition(pageTransition0);
 
       when(() => localSource.updatePageTransition(any())).thenAnswer((_) => Future.value());

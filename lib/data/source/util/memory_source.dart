@@ -1,4 +1,4 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 
 abstract class MemorySource {
   static const memoryNetworkDelayMs = 500;
@@ -19,7 +19,7 @@ abstract class MemorySource {
     await Future.delayed(Duration(milliseconds: msDelay));
 
     if (shouldThrow) {
-      throw AromaError(code);
+      throw ErrorModel(code);
     }
 
     return request;

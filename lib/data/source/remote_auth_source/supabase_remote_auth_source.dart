@@ -1,0 +1,109 @@
+import "package:aroma_mobile/data/model/error_model.dart";
+import "package:google_sign_in/google_sign_in.dart";
+import "package:aroma_mobile/data/model/session_model.dart";
+import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+
+class SupabaseRemoteAuthSource implements RemoteAuthSource {
+  final SupabaseClient _supabase;
+
+  SupabaseRemoteAuthSource({
+    SupabaseClient? supabase,
+  }) : _supabase = supabase ?? Supabase.instance.client;
+
+  @override
+  Stream<SessionModel> get sessionStream => _supabase.auth.onAuthStateChange.map(
+    (event) {
+      final session = event.session;
+
+      if (session == null) {
+        return SignedOutSessionModel();
+      }
+
+      return SignedInSessionModel(userId: session.user.id);
+    },
+  );
+
+  @override
+  Future<void> createUserWithEmailAndPassword(String email, String password) async {
+    final response = await _supabase.auth.signUp(
+      email: email,
+      password: password,
+    );
+
+    if (response.session == null) {
+      throw ErrorModel(
+        ErrorCode.source_remote_auth_emailSignUpFailed,
+        message: "Supabase email sign up failed",
+      );
+    }
+  }
+
+  @override
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    final response = await _supabase.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+
+    if (response.session == null) {
+      throw ErrorModel(
+        ErrorCode.source_remote_auth_emailSignInFailed,
+        message: "Supabase email sign in failed",
+      );
+    }
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
+    // TODO: Add iOS and web client IDs
+    final googleSignIn = GoogleSignIn();
+    final googleUser = await googleSignIn.signIn();
+    final googleAuth = await googleUser?.authentication;
+
+    final accessToken = googleAuth?.accessToken;
+    final idToken = googleAuth?.idToken;
+
+    if (accessToken == null || idToken == null) {
+      throw ErrorModel(
+        ErrorCode.source_remote_auth_googleSignInFailed,
+        message: "Google sign in failed",
+      );
+    }
+
+    final response = await _supabase.auth.signInWithIdToken(
+      provider: OAuthProvider.google,
+      accessToken: accessToken,
+      idToken: idToken,
+    );
+
+    if (response.session == null) {
+      throw ErrorModel(
+        ErrorCode.source_remote_auth_googleSignInFailed,
+        message: "Supabase Google sign in failed",
+      );
+    }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _supabase.auth.signOut();
+  }
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    await _supabase.auth.resetPasswordForEmail(email);
+  }
+
+  @override
+  Future<void> changePassword(String password) async {
+    await _supabase.auth.updateUser(
+      UserAttributes(password: password),
+    );
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    // TODO: Implement delete account
+  }
+}

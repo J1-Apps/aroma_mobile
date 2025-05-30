@@ -1,4 +1,4 @@
-import "package:aroma_mobile/presentation/home/home_screen.dart";
+import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
 import "package:flutter_test/flutter_test.dart";
 
 import "../../test_util/test_wrapper.dart";
