@@ -17,7 +17,7 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
       final session = event.session;
 
       if (session == null) {
-        return SignedOutSessionModel();
+        return const SignedOutSessionModel();
       }
 
       return SignedInSessionModel(userId: session.user.id);

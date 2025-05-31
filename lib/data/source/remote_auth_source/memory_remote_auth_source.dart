@@ -5,7 +5,7 @@ import "package:aroma_mobile/data/source/util/memory_source.dart";
 import "package:rxdart/rxdart.dart";
 
 class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
-  final _stream = BehaviorSubject<SessionModel>();
+  final _stream = BehaviorSubject<SessionModel>.seeded(SignedOutSessionModel());
 
   MemoryRemoteAuthSource({
     super.initialShouldThrow,
@@ -18,7 +18,7 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   @override
   Future<void> createUserWithEmailAndPassword(String email, String password) async {
     await wrapRequest(
-      Future.sync(() => _stream.add(SignedInSessionModel(userId: "1"))),
+      Future.sync(() => _stream.add(const SignedInSessionModel(userId: "1"))),
       ErrorCode.source_remote_auth_emailSignUpFailed,
     );
   }
@@ -26,7 +26,7 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   @override
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     await wrapRequest(
-      Future.sync(() => _stream.add(SignedInSessionModel(userId: "1"))),
+      Future.sync(() => _stream.add(const SignedInSessionModel(userId: "1"))),
       ErrorCode.source_remote_auth_emailSignInFailed,
     );
   }
@@ -34,7 +34,7 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   @override
   Future<void> signInWithGoogle() async {
     await wrapRequest(
-      Future.sync(() => _stream.add(SignedInSessionModel(userId: "2"))),
+      Future.sync(() => _stream.add(const SignedInSessionModel(userId: "2"))),
       ErrorCode.source_remote_auth_googleSignInFailed,
     );
   }
@@ -42,7 +42,7 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   @override
   Future<void> signOut() async {
     await wrapRequest(
-      Future.sync(() => _stream.add(SignedOutSessionModel())),
+      Future.sync(() => _stream.add(const SignedOutSessionModel())),
       ErrorCode.source_remote_auth_signOutFailed,
     );
   }
@@ -66,7 +66,7 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   @override
   Future<void> deleteAccount() async {
     await wrapRequest(
-      Future.sync(() => _stream.add(SignedOutSessionModel())),
+      Future.sync(() => _stream.add(const SignedOutSessionModel())),
       ErrorCode.source_remote_auth_deleteAccountFailed,
     );
   }
