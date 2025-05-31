@@ -1,6 +1,7 @@
 import "package:aroma_mobile/data/model/session_model.dart";
+import "package:equatable/equatable.dart";
 
-sealed class AuthEntity {
+sealed class AuthEntity extends Equatable {
   const AuthEntity();
 
   factory AuthEntity.fromModel(SessionModel session) {
@@ -16,7 +17,15 @@ sealed class AuthEntity {
 class AuthEntitySignedIn extends AuthEntity {
   final String userId;
 
-  AuthEntitySignedIn({required this.userId});
+  const AuthEntitySignedIn({required this.userId});
+
+  @override
+  List<Object?> get props => [userId];
 }
 
-class AuthEntitySignedOut extends AuthEntity {}
+class AuthEntitySignedOut extends AuthEntity {
+  const AuthEntitySignedOut();
+
+  @override
+  List<Object?> get props => [];
+}
