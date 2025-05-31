@@ -6,10 +6,15 @@ import "package:supabase_flutter/supabase_flutter.dart";
 
 class SupabaseRemoteAuthSource implements RemoteAuthSource {
   final SupabaseClient _supabase;
+  final GoogleSignIn _googleSignIn;
 
+  // coverage:ignore-start
   SupabaseRemoteAuthSource({
     SupabaseClient? supabase,
-  }) : _supabase = supabase ?? Supabase.instance.client;
+    GoogleSignIn? googleSignIn,
+  }) : _supabase = supabase ?? Supabase.instance.client,
+       _googleSignIn = googleSignIn ?? GoogleSignIn();
+  // coverage:ignore-end
 
   @override
   Stream<SessionModel> get sessionStream => _supabase.auth.onAuthStateChange.map(
@@ -57,8 +62,7 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
   @override
   Future<void> signInWithGoogle() async {
     // TODO: Add iOS and web client IDs
-    final googleSignIn = GoogleSignIn();
-    final googleUser = await googleSignIn.signIn();
+    final googleUser = await _googleSignIn.signIn();
     final googleAuth = await googleUser?.authentication;
 
     final accessToken = googleAuth?.accessToken;
