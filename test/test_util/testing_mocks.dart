@@ -2,6 +2,7 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
+import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:mocktail/mocktail.dart";
 import "package:shared_preferences/shared_preferences.dart";
@@ -26,3 +27,7 @@ class MockLocalThemeSource extends Mock implements LocalThemeSource {}
 // Mock Repositories
 
 class MockAuthRepository extends Mock implements AuthRepository {}
+
+// Mock Usecases
+
+class MockAuthUsecase extends Mock implements AuthUsecase {}
