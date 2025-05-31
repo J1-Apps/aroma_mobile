@@ -56,7 +56,7 @@ void main() {
       final session = await source.sessionStream.first;
 
       verify(() => auth.signUp(email: "test@email.com", password: "password123")).called(1);
-      expect((session as SignedInSessionModel).userId, "1");
+      expect((session as SessionModelSignedIn).userId, "1");
 
       authStream.close();
     });
@@ -86,7 +86,7 @@ void main() {
       final session = await source.sessionStream.first;
 
       verify(() => auth.signInWithPassword(email: "test@email.com", password: "password123")).called(1);
-      expect((session as SignedInSessionModel).userId, "1");
+      expect((session as SessionModelSignedIn).userId, "1");
 
       authStream.close();
     });
@@ -135,7 +135,7 @@ void main() {
           idToken: "google_id_token",
         ),
       ).called(1);
-      expect((session as SignedInSessionModel).userId, "1");
+      expect((session as SessionModelSignedIn).userId, "1");
 
       authStream.close();
     });

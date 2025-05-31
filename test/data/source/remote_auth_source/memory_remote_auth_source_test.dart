@@ -9,55 +9,55 @@ void main() {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.createUserWithEmailAndPassword("test@email.com", "password123");
-      expect(await source.sessionStream.first, isA<SignedInSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedIn>());
     });
 
     test("signs in user with email and password", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.signInWithEmailAndPassword("test@email.com", "password123");
-      expect(await source.sessionStream.first, isA<SignedInSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedIn>());
     });
 
     test("signs in user with google", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.signInWithGoogle();
-      expect(await source.sessionStream.first, isA<SignedInSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedIn>());
     });
 
     test("signs out user", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.createUserWithEmailAndPassword("test@email.com", "password123");
-      expect(await source.sessionStream.first, isA<SignedInSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedIn>());
 
       await source.signOut();
-      expect(await source.sessionStream.first, isA<SignedOutSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedOut>());
     });
 
     test("sends password reset email", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.sendPasswordResetEmail("test@email.com");
-      expect(await source.sessionStream.first, isA<SignedOutSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedOut>());
     });
 
     test("changes password", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.changePassword("password123");
-      expect(await source.sessionStream.first, isA<SignedOutSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedOut>());
     });
 
     test("deletes account", () async {
       final source = MemoryRemoteAuthSource(initialMsDelay: 1);
 
       await source.createUserWithEmailAndPassword("test@email.com", "password123");
-      expect(await source.sessionStream.first, isA<SignedInSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedIn>());
 
       await source.deleteAccount();
-      expect(await source.sessionStream.first, isA<SignedOutSessionModel>());
+      expect(await source.sessionStream.first, isA<SessionModelSignedOut>());
     });
 
     test("resets", () async {

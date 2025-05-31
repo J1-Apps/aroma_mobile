@@ -1,5 +1,5 @@
 import "package:aroma_mobile/data/model/error_model.dart";
-import "package:aroma_mobile/data/repository/theme_repository.dart";
+import "package:aroma_mobile/domain/repository/theme_repository.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
 import "package:flutter_test/flutter_test.dart";

@@ -4,17 +4,17 @@ sealed class SessionModel extends Equatable {
   const SessionModel();
 }
 
-class SignedInSessionModel extends SessionModel {
+class SessionModelSignedIn extends SessionModel {
   final String userId;
 
-  const SignedInSessionModel({required this.userId});
+  const SessionModelSignedIn({required this.userId});
 
   @override
   List<Object?> get props => [userId];
 }
 
-class SignedOutSessionModel extends SessionModel {
-  const SignedOutSessionModel();
+class SessionModelSignedOut extends SessionModel {
+  const SessionModelSignedOut();
 
   @override
   List<Object?> get props => [];

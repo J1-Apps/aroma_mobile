@@ -1,4 +1,5 @@
-import "package:aroma_mobile/data/repository/theme_repository.dart";
+import "package:aroma_mobile/domain/repository/auth_repository.dart";
+import "package:aroma_mobile/domain/repository/theme_repository.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/memory_local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/memory_remote_auth_source.dart";
@@ -28,4 +29,7 @@ class LocalEnvironment extends AromaEnvironment {
 
   @override
   J1ThemeRepository get themeRepository => ThemeRepository();
+
+  @override
+  AuthRepository get authRepository => AuthRepositoryImpl();
 }

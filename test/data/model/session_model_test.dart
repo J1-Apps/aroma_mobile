@@ -4,11 +4,11 @@ import "package:flutter_test/flutter_test.dart";
 void main() {
   group("Session Model", () {
     test("can be compared", () {
-      final signedInSession1 = SignedInSessionModel(userId: "1");
-      final signedInSession2 = SignedInSessionModel(userId: "1");
-      final signedInSession3 = SignedInSessionModel(userId: "2");
-      final signedOutSession1 = SignedOutSessionModel();
-      final signedOutSession2 = SignedOutSessionModel();
+      final signedInSession1 = SessionModelSignedIn(userId: "1");
+      final signedInSession2 = SessionModelSignedIn(userId: "1");
+      final signedInSession3 = SessionModelSignedIn(userId: "2");
+      final signedOutSession1 = SessionModelSignedOut();
+      final signedOutSession2 = SessionModelSignedOut();
 
       expect(signedInSession1, equals(signedInSession2));
       expect(signedInSession1, isNot(signedInSession3));

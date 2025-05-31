@@ -1,5 +1,6 @@
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:j1_core_firebase/j1_core_firebase.dart";
 
@@ -12,6 +13,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   // Repository
 
   J1ThemeRepository get themeRepository;
+  AuthRepository get authRepository;
 
   @override
   Future<void> configure() async {
@@ -24,5 +26,10 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
 
     // Repository
     locator.registerSingleton<J1ThemeRepository>(themeRepository);
+    locator.registerSingleton<AuthRepository>(authRepository);
+
+    // Initialize repositories
+
+    await authRepository.init();
   }
 }
