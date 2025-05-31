@@ -1,6 +1,5 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/model/session_model.dart";
-import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -9,8 +8,6 @@ import "package:rxdart/rxdart.dart";
 
 import "../../test_util/testing_mocks.dart";
 import "../../test_util/testing_utils.dart";
-
-class MockRemoteAuthSource extends Mock implements RemoteAuthSource {}
 
 void main() {
   final remoteSource = MockRemoteAuthSource();

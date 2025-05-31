@@ -6,9 +6,8 @@ import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
+import "../../test_util/testing_mocks.dart";
 import "../../test_util/testing_values.dart";
-
-class MockLocalThemeSource extends Mock implements LocalThemeSource {}
 
 void main() {
   group("Theme Repository", () {
