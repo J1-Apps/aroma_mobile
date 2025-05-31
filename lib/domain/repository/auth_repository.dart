@@ -4,7 +4,7 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/model/session_model.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
-import "package:j1_core_base/j1_environment/j1_environment.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:rxdart/subjects.dart";
 
 abstract class AuthRepository {

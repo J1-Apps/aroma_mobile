@@ -1,5 +1,3 @@
-import "package:aroma_mobile/domain/repository/auth_repository.dart";
-import "package:aroma_mobile/domain/repository/theme_repository.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/preferences_local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
@@ -23,17 +21,13 @@ class TestEnvironment extends AromaEnvironment {
   @override
   J1Router get router => GoRouter();
 
+  // Source
+
   @override
   LocalThemeSource get localThemeSource => PreferencesLocalThemeSource();
 
   @override
   RemoteAuthSource get remoteAuthSource => SupabaseRemoteAuthSource();
-
-  @override
-  J1ThemeRepository get themeRepository => ThemeRepository();
-
-  @override
-  AuthRepository get authRepository => AuthRepositoryImpl();
 
   @override
   Future<void> configure() async {
