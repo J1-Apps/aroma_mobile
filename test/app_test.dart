@@ -1,7 +1,7 @@
 import "package:aroma_mobile/app.dart";
 import "package:aroma_mobile/data/source/util/memory_source.dart";
 import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
-import "package:aroma_mobile/presentation/util/environment/local_environment.dart";
+import "package:aroma_mobile/environment/local_environment.dart";
 import "package:flutter_test/flutter_test.dart";
 
 void main() {

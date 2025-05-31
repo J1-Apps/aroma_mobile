@@ -14,6 +14,8 @@ import "package:j1_core_base/j1_core_base.dart";
 import "package:j1_core_firebase/j1_core_firebase.dart";
 
 abstract class AromaEnvironment extends J1EnvironmentFirebase {
+  // coverage:ignore-start
+
   // Source
 
   LocalThemeSource get localThemeSource;
@@ -34,6 +36,8 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   ResetPasswordUsecase get resetPasswordUsecase => ResetPasswordUsecaseImpl();
   ChangePasswordUsecase get changePasswordUsecase => ChangePasswordUsecaseImpl();
   DeleteAccountUsecase get deleteAccountUsecase => DeleteAccountUsecaseImpl();
+
+  // coverage:ignore-end
 
   @override
   Future<void> configure() async {
