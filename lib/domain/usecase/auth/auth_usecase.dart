@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -12,5 +14,5 @@ class AuthUsecaseImpl implements AuthUsecase {
   AuthUsecaseImpl({AuthRepository? authRepository}) : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Stream<AuthEntity> call() => _authRepository.sessions;
+  Stream<AuthEntity> call() => _authRepository.authStream;
 }

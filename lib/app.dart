@@ -1,4 +1,5 @@
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/router/router_event.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
 import "package:aroma_mobile/presentation/router.dart";
@@ -23,7 +24,7 @@ class AromaApp extends StatelessWidget {
           ),
         ),
         BlocProvider<RouterBloc>(
-          create: (_) => RouterBloc(),
+          create: (_) => RouterBloc()..add(const RouterEventInit()),
         ),
       ],
       child: J1ThemeBuilder(

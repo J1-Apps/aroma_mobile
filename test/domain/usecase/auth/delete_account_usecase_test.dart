@@ -28,7 +28,7 @@ void main() {
     });
 
     test("deletes account successfully", () async {
-      when(authRepository.deleteAccount).thenAnswer((_) => Future.value());
+      when(authRepository.deleteAccount).thenAnswer((_) => Future.value(const Success("")));
       await deleteAccountUsecase.call();
       verify(authRepository.deleteAccount).called(1);
     });

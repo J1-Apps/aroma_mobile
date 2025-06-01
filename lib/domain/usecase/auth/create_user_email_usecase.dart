@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class CreateUserEmailUsecase {
-  Future<void> call(String email, String password);
+  Future<Result<void>> call(String email, String password);
 }
 
 class CreateUserEmailUsecaseImpl implements CreateUserEmailUsecase {
@@ -12,5 +12,6 @@ class CreateUserEmailUsecaseImpl implements CreateUserEmailUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call(String email, String password) => _authRepository.createUserWithEmailAndPassword(email, password);
+  Future<Result<void>> call(String email, String password) =>
+      _authRepository.createUserWithEmailAndPassword(email, password);
 }

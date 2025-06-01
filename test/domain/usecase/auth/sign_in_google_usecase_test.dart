@@ -28,7 +28,7 @@ void main() {
     });
 
     test("signs in with Google successfully", () async {
-      when(authRepository.signInWithGoogle).thenAnswer((_) => Future.value());
+      when(authRepository.signInWithGoogle).thenAnswer((_) => Future.value(const Success("")));
       await signInGoogleUsecase.call();
       verify(authRepository.signInWithGoogle).called(1);
     });

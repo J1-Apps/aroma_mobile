@@ -28,9 +28,23 @@ void main() {
       await locator.reset();
     });
 
-    test("returns a stream of auth entities", () {
-      when(() => authRepository.sessions).thenAnswer((_) => Stream.value(const AuthEntitySignedIn(userId: "123")));
-      expect(authUsecase.call(), emits(const AuthEntitySignedIn(userId: "123")));
+    test("returns a stream of multiple auth entities", () {
+      when(() => authRepository.authStream).thenAnswer(
+        (_) => Stream.fromIterable([
+          const AuthEntitySignedOut(),
+          const AuthEntitySignedIn(userId: "123"),
+          const AuthEntitySignedOut(),
+        ]),
+      );
+
+      expect(
+        authUsecase.call(),
+        emitsInOrder([
+          const AuthEntitySignedOut(),
+          const AuthEntitySignedIn(userId: "123"),
+          const AuthEntitySignedOut(),
+        ]),
+      );
     });
   });
 }

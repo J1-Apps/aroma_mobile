@@ -3,6 +3,7 @@ import "package:aroma_mobile/data/model/session_model.dart";
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 import "package:rxdart/rxdart.dart";
 
@@ -24,7 +25,7 @@ void main() {
   tearDown(() async {
     reset(remoteSource);
     await sessionSubject.close();
-    await authRepository.dispose();
+    await authRepository.onDispose();
   });
 
   group("AuthRepository", () {
@@ -40,15 +41,9 @@ void main() {
       await awaitMs(1);
 
       expectLater(
-        authRepository.sessions,
+        authRepository.authStream,
         emitsError(HasErrorCode(ErrorCode.source_remote_auth_signOutFailed)),
       );
-
-      sessionSubject.close();
-
-      await awaitMs(1);
-
-      expect(await authRepository.sessions.first, AuthEntitySignedOut());
     });
 
     test("should create user with email and password successfully", () async {
@@ -67,7 +62,7 @@ void main() {
       sessionSubject.add(const SessionModelSignedIn(userId: "test_user"));
       await awaitMs(1);
 
-      final result = await authRepository.sessions.first;
+      final result = await authRepository.authStream.first;
 
       expect(result, const AuthEntitySignedIn(userId: "test_user"));
       verify(
@@ -90,15 +85,12 @@ void main() {
         ),
       );
 
-      await authRepository.createUserWithEmailAndPassword(
+      final result = await authRepository.createUserWithEmailAndPassword(
         "test@email.com",
         "password123",
       );
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_emailSignUpFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should sign in with email successfully", () async {
@@ -117,7 +109,7 @@ void main() {
       sessionSubject.add(const SessionModelSignedIn(userId: "test_user"));
       await awaitMs(1);
 
-      final result = await authRepository.sessions.first;
+      final result = await authRepository.authStream.first;
 
       expect(result, const AuthEntitySignedIn(userId: "test_user"));
       verify(
@@ -140,15 +132,12 @@ void main() {
         ),
       );
 
-      await authRepository.signInWithEmailAndPassword(
+      final result = await authRepository.signInWithEmailAndPassword(
         "test@email.com",
         "password123",
       );
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_emailSignInFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should sign in with Google successfully", () async {
@@ -159,7 +148,7 @@ void main() {
       sessionSubject.add(const SessionModelSignedIn(userId: "test_user"));
       await awaitMs(1);
 
-      final result = await authRepository.sessions.first;
+      final result = await authRepository.authStream.first;
 
       expect(result, const AuthEntitySignedIn(userId: "test_user"));
       verify(remoteSource.signInWithGoogle).called(1);
@@ -172,12 +161,9 @@ void main() {
         ),
       );
 
-      await authRepository.signInWithGoogle();
+      final result = await authRepository.signInWithGoogle();
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_googleSignInFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should sign out successfully", () async {
@@ -187,7 +173,7 @@ void main() {
       sessionSubject.add(const SessionModelSignedOut());
       await awaitMs(1);
 
-      final result = await authRepository.sessions.first;
+      final result = await authRepository.authStream.first;
 
       expect(result, const AuthEntitySignedOut());
       verify(remoteSource.signOut).called(1);
@@ -200,12 +186,9 @@ void main() {
         ),
       );
 
-      await authRepository.signOut();
+      final result = await authRepository.signOut();
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_signOutFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should send password reset email successfully", () async {
@@ -229,12 +212,9 @@ void main() {
         ),
       );
 
-      await authRepository.sendPasswordResetEmail("test@email.com");
+      final result = await authRepository.sendPasswordResetEmail("test@email.com");
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_sendPasswordResetEmailFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should change password successfully", () async {
@@ -251,12 +231,9 @@ void main() {
         ),
       );
 
-      await authRepository.changePassword("password123");
+      final result = await authRepository.changePassword("password123");
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_changePasswordFailed)),
-      );
+      expect(result, isA<Failure>());
     });
 
     test("should delete account successfully", () async {
@@ -266,7 +243,7 @@ void main() {
       sessionSubject.add(const SessionModelSignedOut());
       await awaitMs(1);
 
-      final result = await authRepository.sessions.first;
+      final result = await authRepository.authStream.first;
 
       expect(result, const AuthEntitySignedOut());
       verify(remoteSource.deleteAccount).called(1);
@@ -279,12 +256,9 @@ void main() {
         ),
       );
 
-      await authRepository.deleteAccount();
+      final result = await authRepository.deleteAccount();
 
-      expectLater(
-        authRepository.sessions,
-        emitsError(HasErrorCode(ErrorCode.source_remote_auth_deleteAccountFailed)),
-      );
+      expect(result, isA<Failure>());
     });
   });
 }

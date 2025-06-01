@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class ChangePasswordUsecase {
-  Future<void> call(String password);
+  Future<Result<void>> call(String password);
 }
 
 class ChangePasswordUsecaseImpl implements ChangePasswordUsecase {
@@ -12,5 +12,5 @@ class ChangePasswordUsecaseImpl implements ChangePasswordUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call(String password) => _authRepository.changePassword(password);
+  Future<Result<void>> call(String password) => _authRepository.changePassword(password);
 }

@@ -72,8 +72,8 @@ class MemoryRemoteAuthSource extends MemorySource implements RemoteAuthSource {
   }
 
   @override
-  void reset() {
-    _stream.close();
+  void onDispose() {
+    _stream.add(const SessionModelSignedOut());
     super.reset();
   }
 }

@@ -1,8 +1,8 @@
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
-import "package:j1_core_base/j1_environment/j1_environment.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 abstract class SignInEmailUsecase {
-  Future<void> call(String email, String password);
+  Future<Result<void>> call(String email, String password);
 }
 
 class SignInEmailUsecaseImpl implements SignInEmailUsecase {
@@ -12,5 +12,6 @@ class SignInEmailUsecaseImpl implements SignInEmailUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call(String email, String password) => _authRepository.signInWithEmailAndPassword(email, password);
+  Future<Result<void>> call(String email, String password) =>
+      _authRepository.signInWithEmailAndPassword(email, password);
 }

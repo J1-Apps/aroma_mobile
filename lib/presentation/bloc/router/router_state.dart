@@ -1,11 +1,11 @@
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
-import "package:equatable/equatable.dart";
+import "package:dart_mappable/dart_mappable.dart";
 
-class RouterState extends Equatable {
+part "router_state.mapper.dart";
+
+@MappableClass()
+class RouterState with RouterStateMappable {
   final AuthEntity auth;
 
   const RouterState({required this.auth});
-
-  @override
-  List<Object?> get props => [auth];
 }

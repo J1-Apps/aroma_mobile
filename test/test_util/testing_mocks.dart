@@ -3,6 +3,7 @@ import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.d
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
+import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:mocktail/mocktail.dart";
 import "package:shared_preferences/shared_preferences.dart";
@@ -31,3 +32,5 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 // Mock Usecases
 
 class MockAuthUsecase extends Mock implements AuthUsecase {}
+
+class MockSignInGoogleUsecase extends Mock implements SignInGoogleUsecase {}

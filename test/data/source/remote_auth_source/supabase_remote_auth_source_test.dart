@@ -36,6 +36,7 @@ void main() {
   });
 
   tearDown(() {
+    source.onDispose();
     reset(supabase);
     reset(googleSignIn);
     reset(auth);

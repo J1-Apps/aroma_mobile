@@ -10,4 +10,28 @@ class StringsEn extends Strings {
 
   @override
   String get app_title => 'Aroma';
+
+  @override
+  String get login_login_loginButton => 'Log In';
+
+  @override
+  String get login_login_registerButton => 'Register';
+
+  @override
+  String get login_login_loginWith => 'Log in with';
+
+  @override
+  String get login_login_disclaimers => 'By signing in, you agree to Aroma\'s ';
+
+  @override
+  String get login_login_termsOfUse => 'terms of use';
+
+  @override
+  String get login_login_and => ' and ';
+
+  @override
+  String get login_login_privacyPolicy => 'privacy policy';
+
+  @override
+  String get login_login_googleSignInFailed => 'Failed to sign in with google, please try again.';
 }

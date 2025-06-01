@@ -28,7 +28,7 @@ void main() {
     });
 
     test("changes password successfully", () async {
-      when(() => authRepository.changePassword("newPassword123")).thenAnswer((_) => Future.value());
+      when(() => authRepository.changePassword("newPassword123")).thenAnswer((_) => Future.value(const Success("")));
       await changePasswordUsecase.call("newPassword123");
       verify(() => authRepository.changePassword("newPassword123")).called(1);
     });

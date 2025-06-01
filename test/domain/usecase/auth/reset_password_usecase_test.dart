@@ -28,7 +28,9 @@ void main() {
     });
 
     test("sends password reset email successfully", () async {
-      when(() => authRepository.sendPasswordResetEmail("test@email.com")).thenAnswer((_) => Future.value());
+      when(
+        () => authRepository.sendPasswordResetEmail("test@email.com"),
+      ).thenAnswer((_) => Future.value(const Success("")));
       await resetPasswordUsecase.call("test@email.com");
       verify(() => authRepository.sendPasswordResetEmail("test@email.com")).called(1);
     });

@@ -1,7 +1,11 @@
-// ignore_for_file: constant_identifier_names
-import "package:equatable/equatable.dart";
+import "package:dart_mappable/dart_mappable.dart";
 
-class ErrorModel extends Equatable implements Exception {
+part "error_model.mapper.dart";
+
+// ignore_for_file: constant_identifier_names
+
+@MappableClass()
+class ErrorModel with ErrorModelMappable implements Exception {
   final ErrorCode code;
   final String message;
 
@@ -14,14 +18,9 @@ class ErrorModel extends Equatable implements Exception {
 
     return ErrorModel(ErrorCode.common_unknown, message: e.toString());
   }
-
-  @override
-  List<Object?> get props => [code, message];
-
-  @override
-  bool? get stringify => true;
 }
 
+@MappableEnum()
 enum ErrorCode {
   // Common error codes.
   common_unknown,
@@ -43,4 +42,8 @@ enum ErrorCode {
   source_local_theme_textWriteError,
   source_local_theme_transitionReadError,
   source_local_theme_transitionWriteError,
+}
+
+extension ExceptionExtension on Exception {
+  ErrorCode get errorCode => ErrorModel.fromObject(this).code;
 }

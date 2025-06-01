@@ -1,5 +1,23 @@
 {
     "@@locale": "en",
 
-    "app_title": "Aroma"
+    "app_title": "Aroma",
+    "@app_title": {},
+
+    "login_login_loginButton": "Log In",
+    "@login_login_loginButton": {},
+    "login_login_registerButton": "Register",
+    "@login_login_registerButton": {},
+    "login_login_loginWith": "Log in with",
+    "@login_login_loginWith": {},
+    "login_login_disclaimers": "By signing in, you agree to Aroma's ",
+    "@login_login_disclaimers": {},
+    "login_login_termsOfUse": "terms of use",
+    "@login_login_termsOfUse": {},
+    "login_login_and": " and ",
+    "@login_login_and": {},
+    "login_login_privacyPolicy": "privacy policy",
+    "@login_login_privacyPolicy": {},
+    "login_login_googleSignInFailed": "Failed to sign in with google, please try again.",
+    "@login_login_googleSignInFailed": {}
 }

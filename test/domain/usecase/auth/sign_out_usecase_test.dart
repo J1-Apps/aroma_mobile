@@ -28,7 +28,7 @@ void main() {
     });
 
     test("signs out successfully", () async {
-      when(authRepository.signOut).thenAnswer((_) => Future.value());
+      when(authRepository.signOut).thenAnswer((_) => Future.value(const Success("")));
       await signOutUsecase.call();
       verify(authRepository.signOut).called(1);
     });

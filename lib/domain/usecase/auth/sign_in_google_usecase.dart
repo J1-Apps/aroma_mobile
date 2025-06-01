@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class SignInGoogleUsecase {
-  Future<void> call();
+  Future<Result<void>> call();
 }
 
 class SignInGoogleUsecaseImpl implements SignInGoogleUsecase {
@@ -12,5 +12,5 @@ class SignInGoogleUsecaseImpl implements SignInGoogleUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call() => _authRepository.signInWithGoogle();
+  Future<Result<void>> call() => _authRepository.signInWithGoogle();
 }

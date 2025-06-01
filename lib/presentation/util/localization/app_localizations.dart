@@ -96,6 +96,54 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Aroma'**
   String get app_title;
+
+  /// No description provided for @login_login_loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log In'**
+  String get login_login_loginButton;
+
+  /// No description provided for @login_login_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get login_login_registerButton;
+
+  /// No description provided for @login_login_loginWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in with'**
+  String get login_login_loginWith;
+
+  /// No description provided for @login_login_disclaimers.
+  ///
+  /// In en, this message translates to:
+  /// **'By signing in, you agree to Aroma\'s '**
+  String get login_login_disclaimers;
+
+  /// No description provided for @login_login_termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'terms of use'**
+  String get login_login_termsOfUse;
+
+  /// No description provided for @login_login_and.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get login_login_and;
+
+  /// No description provided for @login_login_privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'privacy policy'**
+  String get login_login_privacyPolicy;
+
+  /// No description provided for @login_login_googleSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign in with google, please try again.'**
+  String get login_login_googleSignInFailed;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

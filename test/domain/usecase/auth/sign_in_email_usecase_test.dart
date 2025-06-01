@@ -30,7 +30,7 @@ void main() {
     test("signs in with email and password successfully", () async {
       when(
         () => authRepository.signInWithEmailAndPassword("test@email.com", "password123"),
-      ).thenAnswer((_) => Future.value());
+      ).thenAnswer((_) => Future.value(const Success("")));
       await signInEmailUsecase.call("test@email.com", "password123");
       verify(() => authRepository.signInWithEmailAndPassword("test@email.com", "password123")).called(1);
     });

@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class DeleteAccountUsecase {
-  Future<void> call();
+  Future<Result<void>> call();
 }
 
 class DeleteAccountUsecaseImpl implements DeleteAccountUsecase {
@@ -12,5 +12,5 @@ class DeleteAccountUsecaseImpl implements DeleteAccountUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call() => _authRepository.deleteAccount();
+  Future<Result<void>> call() => _authRepository.deleteAccount();
 }

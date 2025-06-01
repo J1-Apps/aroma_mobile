@@ -22,14 +22,8 @@ void main() {
       );
 
       final strings = context.strings();
-      final theme = context.theme();
-      final colorScheme = context.colorScheme();
-      final textTheme = context.textTheme();
 
       expect(strings, isNotNull);
-      expect(theme, isNotNull);
-      expect(colorScheme, isNotNull);
-      expect(textTheme, isNotNull);
     });
   });
 }

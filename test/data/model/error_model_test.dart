@@ -20,8 +20,26 @@ void main() {
       const unknownError = ErrorModel(ErrorCode.common_unknown, message: "test unknown message");
       const httpError = ErrorModel(ErrorCode.source_local_theme_colorReadError, message: "test color message");
 
-      expect(unknownError.toString(), "ErrorModel(ErrorCode.common_unknown, test unknown message)");
-      expect(httpError.toString(), "ErrorModel(ErrorCode.source_local_theme_colorReadError, test color message)");
+      expect(
+        unknownError.toString(),
+        "ErrorModel(code: ErrorCode.common_unknown, message: test unknown message)",
+      );
+      expect(
+        httpError.toString(),
+        "ErrorModel(code: ErrorCode.source_local_theme_colorReadError, message: test color message)",
+      );
+    });
+
+    test("is converted to error code", () {
+      final error = ErrorModel.fromObject(
+        const ErrorModel(ErrorCode.source_local_theme_colorReadError, message: "test aroma message"),
+      );
+
+      expect(error.errorCode, ErrorCode.source_local_theme_colorReadError);
+
+      final unknownError = ErrorModel.fromObject(ArgumentError("testArgumentMessage"));
+
+      expect(unknownError.errorCode, ErrorCode.common_unknown);
     });
   });
 }

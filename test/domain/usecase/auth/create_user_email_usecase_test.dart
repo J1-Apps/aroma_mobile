@@ -30,7 +30,7 @@ void main() {
     test("creates user with email and password successfully", () async {
       when(
         () => authRepository.createUserWithEmailAndPassword("test@email.com", "password123"),
-      ).thenAnswer((_) => Future.value());
+      ).thenAnswer((_) => Future.value(const Success("")));
       await createUserEmailUsecase.call("test@email.com", "password123");
       verify(() => authRepository.createUserWithEmailAndPassword("test@email.com", "password123")).called(1);
     });

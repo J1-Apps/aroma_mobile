@@ -1,31 +1,28 @@
 import "package:aroma_mobile/data/model/session_model.dart";
-import "package:equatable/equatable.dart";
+import "package:dart_mappable/dart_mappable.dart";
 
-sealed class AuthEntity extends Equatable {
+part "auth_entity.mapper.dart";
+
+@MappableClass(discriminatorKey: "status")
+sealed class AuthEntity with AuthEntityMappable {
   const AuthEntity();
 
   factory AuthEntity.fromModel(SessionModel session) {
-    switch (session) {
-      case SessionModelSignedIn():
-        return AuthEntitySignedIn(userId: session.userId);
-      case SessionModelSignedOut():
-        return AuthEntitySignedOut();
-    }
+    return switch (session) {
+      SessionModelSignedIn() => AuthEntitySignedIn(userId: session.userId),
+      SessionModelSignedOut() => AuthEntitySignedOut(),
+    };
   }
 }
 
-class AuthEntitySignedIn extends AuthEntity {
+@MappableClass(discriminatorValue: "signed_in")
+class AuthEntitySignedIn extends AuthEntity with AuthEntitySignedInMappable {
   final String userId;
 
   const AuthEntitySignedIn({required this.userId});
-
-  @override
-  List<Object?> get props => [userId];
 }
 
-class AuthEntitySignedOut extends AuthEntity {
+@MappableClass(discriminatorValue: "signed_out")
+class AuthEntitySignedOut extends AuthEntity with AuthEntitySignedOutMappable {
   const AuthEntitySignedOut();
-
-  @override
-  List<Object?> get props => [];
 }

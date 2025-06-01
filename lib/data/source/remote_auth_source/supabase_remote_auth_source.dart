@@ -110,4 +110,7 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
   Future<void> deleteAccount() async {
     // TODO: Implement delete account
   }
+
+  @override
+  Future<void> onDispose() async {}
 }

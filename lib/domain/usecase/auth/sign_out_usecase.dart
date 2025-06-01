@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class SignOutUsecase {
-  Future<void> call();
+  Future<Result<void>> call();
 }
 
 class SignOutUsecaseImpl implements SignOutUsecase {
@@ -12,5 +12,5 @@ class SignOutUsecaseImpl implements SignOutUsecase {
     : _authRepository = authRepository ?? locator.get<AuthRepository>();
 
   @override
-  Future<void> call() => _authRepository.signOut();
+  Future<Result<void>> call() => _authRepository.signOut();
 }

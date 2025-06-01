@@ -20,10 +20,10 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
   }
 
   Future<void> _onInit(RouterEventInit event, Emitter<RouterState> emit) async {
-    _authSubscription?.cancel();
-    _authSubscription = _authUsecase().listen((auth) {
-      add(RouterEventAuthChanged(auth));
-    });
+    await _authSubscription?.cancel();
+    _authSubscription = _authUsecase().listen(
+      (auth) => add(RouterEventAuthChanged(auth)),
+    );
   }
 
   Future<void> _onAuthChanged(RouterEventAuthChanged event, Emitter<RouterState> emit) async {

@@ -1,21 +1,20 @@
-import "package:equatable/equatable.dart";
+import "package:dart_mappable/dart_mappable.dart";
 
-sealed class SessionModel extends Equatable {
+part "session_model.mapper.dart";
+
+@MappableClass(discriminatorKey: "status")
+sealed class SessionModel with SessionModelMappable {
   const SessionModel();
 }
 
-class SessionModelSignedIn extends SessionModel {
+@MappableClass(discriminatorValue: "signed_in")
+class SessionModelSignedIn extends SessionModel with SessionModelSignedInMappable {
   final String userId;
 
   const SessionModelSignedIn({required this.userId});
-
-  @override
-  List<Object?> get props => [userId];
 }
 
-class SessionModelSignedOut extends SessionModel {
+@MappableClass(discriminatorValue: "signed_out")
+class SessionModelSignedOut extends SessionModel with SessionModelSignedOutMappable {
   const SessionModelSignedOut();
-
-  @override
-  List<Object?> get props => [];
 }
