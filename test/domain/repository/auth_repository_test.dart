@@ -19,13 +19,11 @@ void main() {
     sessionSubject = BehaviorSubject<SessionModel>.seeded(const SessionModelSignedOut());
     when(() => remoteSource.sessionStream).thenAnswer((_) => sessionSubject.stream);
     authRepository = AuthRepositoryImpl(remoteAuthSource: remoteSource);
-    await authRepository.init();
   });
 
   tearDown(() async {
     reset(remoteSource);
     await sessionSubject.close();
-    await authRepository.onDispose();
   });
 
   group("AuthRepository", () {

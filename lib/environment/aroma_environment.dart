@@ -63,9 +63,5 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerFactory<ResetPasswordUsecase>(() => resetPasswordUsecase);
     locator.registerFactory<ChangePasswordUsecase>(() => changePasswordUsecase);
     locator.registerFactory<DeleteAccountUsecase>(() => deleteAccountUsecase);
-
-    // Initialize repositories
-
-    await authRepository.init();
   }
 }
