@@ -6,7 +6,7 @@ import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
 import "package:aroma_mobile/presentation/screen/login/login_screen.dart";
 import "package:aroma_mobile/presentation/screen/login/register_screen.dart";
 import "package:aroma_mobile/presentation/screen/login/reset_password_screen.dart";
-import "package:aroma_mobile/presentation/screen/login/signin_screen.dart";
+import "package:aroma_mobile/presentation/screen/login/sign_in_screen.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 

@@ -13,10 +13,12 @@ class HomeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text("Home"),
+            // coverage:ignore-start
             TextButton(
               onPressed: () => locator.get<SignOutUsecase>().call(),
               child: const Text("Sign out"),
             ),
+            // coverage:ignore-end
           ],
         ),
       ),

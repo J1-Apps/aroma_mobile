@@ -18,6 +18,7 @@ void main() {
     });
 
     tearDown(() {
+      reset(authUsecase);
       bloc.close();
     });
 
