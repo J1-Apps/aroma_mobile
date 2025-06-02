@@ -2,7 +2,9 @@ import "dart:async";
 
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_event.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_state.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/screen/login/login_loading.dart";
 import "package:aroma_mobile/presentation/screen/login/sign_in_screen.dart";
 import "package:flutter/material.dart";
@@ -18,7 +20,12 @@ void main() {
     final router = MockRouter();
     final SignInBloc bloc = MockSignInBloc();
     final BuildContext context = FakeBuildContext();
+    final SignInEvent fallback = SignInEventSignInWithEmail(email: "", password: "");
     late StreamController<SignInState> stream;
+
+    setUpAll(() {
+      registerFallbackValue(fallback);
+    });
 
     setUp(() {
       stream = StreamController<SignInState>.broadcast();
@@ -85,6 +92,148 @@ void main() {
       expect(find.byType(SnackBar), findsOneWidget);
 
       stream.close();
+    });
+
+    testWidgets("handles login with email", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const SignInScreen(),
+        ),
+      );
+      stream.add(const SignInState());
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byType(JTextField).at(0), "test@test.com");
+      await tester.enterText(find.byType(JTextField).at(1), "password");
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(JTextButton).at(0));
+      await tester.pumpAndSettle();
+
+      verify(
+        () => bloc.add(
+          any(
+            that: isA<SignInEventSignInWithEmail>()
+                .having(
+                  (e) => e.email,
+                  "email",
+                  "test@test.com",
+                )
+                .having(
+                  (e) => e.password,
+                  "password",
+                  "password",
+                ),
+          ),
+        ),
+      ).called(1);
+    });
+
+    testWidgets("navigates to register screen", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const SignInScreen(),
+        ),
+      );
+      stream.add(const SignInState());
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byType(JTextField).at(0), "test@test.com");
+      await tester.enterText(find.byType(JTextField).at(1), "password");
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(JTextButton).at(1));
+      await tester.pumpAndSettle();
+
+      verify(
+        () => router.navigate(
+          any(),
+          AromaRoute.signUp.build(
+            EmailPasswordRouteConfig(
+              email: "test@test.com",
+              password: "password",
+            ),
+          ),
+        ),
+      ).called(1);
+    });
+
+    testWidgets("navigates to reset password screen", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const SignInScreen(),
+        ),
+      );
+      stream.add(const SignInState());
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byType(JTextField).at(0), "test@test.com");
+      await tester.enterText(find.byType(JTextField).at(1), "password");
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byType(JTextButton).at(2));
+      await tester.pumpAndSettle();
+
+      verify(
+        () => router.navigate(
+          any(),
+          AromaRoute.resetPassword.build(
+            EmailRouteConfig(
+              email: "test@test.com",
+            ),
+          ),
+        ),
+      ).called(1);
+    });
+
+    testWidgets("hides password entry", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const SignInScreen(),
+        ),
+      );
+      stream.add(const SignInState());
+      await tester.pumpAndSettle();
+
+      final hideFinder = find.byIcon(JamIcons.eye);
+      final showFinder = find.byIcon(JamIcons.eyeclosed);
+
+      expect(hideFinder, findsOneWidget);
+      expect(showFinder, findsNothing);
+
+      await tester.tap(hideFinder);
+      await tester.pumpAndSettle();
+
+      expect(hideFinder, findsNothing);
+      expect(showFinder, findsOneWidget);
     });
   });
 }
