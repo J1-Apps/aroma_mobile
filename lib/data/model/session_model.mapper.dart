@@ -26,7 +26,7 @@ class SessionModelMapper extends ClassMapperBase<SessionModel> {
   final MappableFields<SessionModel> fields = const {};
 
   static SessionModel _instantiate(DecodingData data) {
-    throw MapperException.missingConstructor('SessionModel');
+    throw MapperException.missingSubclass('SessionModel', 'status', '${data.value['status']}');
   }
 
   @override
@@ -76,7 +76,7 @@ class SessionModelSignedInMapper extends SubClassMapperBase<SessionModelSignedIn
   };
 
   @override
-  final String discriminatorKey = 'type';
+  final String discriminatorKey = 'status';
   @override
   final dynamic discriminatorValue = "signed_in";
   @override
@@ -178,7 +178,7 @@ class SessionModelSignedOutMapper extends SubClassMapperBase<SessionModelSignedO
   final MappableFields<SessionModelSignedOut> fields = const {};
 
   @override
-  final String discriminatorKey = 'type';
+  final String discriminatorKey = 'status';
   @override
   final dynamic discriminatorValue = "signed_out";
   @override

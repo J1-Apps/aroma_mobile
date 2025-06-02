@@ -1,5 +1,6 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
+import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_event.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_state.dart";
@@ -16,10 +17,12 @@ void main() {
     late LoginBloc bloc;
 
     setUp(() {
-      bloc = LoginBloc(signInGoogleUsecase: signInGoogleUsecase);
+      locator.registerSingleton<SignInGoogleUsecase>(signInGoogleUsecase);
+      bloc = LoginBloc();
     });
 
     tearDown(() {
+      locator.unregister<SignInGoogleUsecase>();
       reset(signInGoogleUsecase);
       bloc.close();
     });
