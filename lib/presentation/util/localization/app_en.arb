@@ -34,5 +34,22 @@
     "signIn_resetPasswordCta": "Reset it here",
     "@signIn_resetPasswordCta": {},
     "signIn_emailSignInFailed": "Failed to sign in with email, please try again.",
-    "@signIn_emailSignInFailed": {}
+    "@signIn_emailSignInFailed": {},
+
+    "register_emailLabel": "Email",
+    "@register_emailLabel": {},
+    "register_passwordLabel": "Password",
+    "@register_passwordLabel": {},
+    "register_confirmPasswordLabel": "Confirm password",
+    "@register_confirmPasswordLabel": {},
+    "register_registerButton": "Register",
+    "@register_registerButton": {},
+    "register_passwordMismatch": "Passwords do not match",
+    "@register_passwordMismatch": {},
+    "register_emailSignUpFailed": "Failed to sign up, please try again.",
+    "@register_emailSignUpFailed": {},
+    "register_signInPrompt": "Already have an account?",
+    "@register_signInPrompt": {},
+    "register_signInCta": "Sign in",
+    "@register_signInCta": {}
 }

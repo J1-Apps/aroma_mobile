@@ -152,6 +152,13 @@ class _SignInFormState extends State<_SignInForm> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 }
 
 class _EmailField extends StatelessWidget {

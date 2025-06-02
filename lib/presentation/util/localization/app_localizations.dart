@@ -186,6 +186,54 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to sign in with email, please try again.'**
   String get signIn_emailSignInFailed;
+
+  /// No description provided for @register_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get register_emailLabel;
+
+  /// No description provided for @register_passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get register_passwordLabel;
+
+  /// No description provided for @register_confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get register_confirmPasswordLabel;
+
+  /// No description provided for @register_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register_registerButton;
+
+  /// No description provided for @register_passwordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get register_passwordMismatch;
+
+  /// No description provided for @register_emailSignUpFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign up, please try again.'**
+  String get register_emailSignUpFailed;
+
+  /// No description provided for @register_signInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get register_signInPrompt;
+
+  /// No description provided for @register_signInCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get register_signInCta;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

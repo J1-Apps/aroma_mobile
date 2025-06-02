@@ -55,4 +55,28 @@ class StringsEn extends Strings {
 
   @override
   String get signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
+
+  @override
+  String get register_emailLabel => 'Email';
+
+  @override
+  String get register_passwordLabel => 'Password';
+
+  @override
+  String get register_confirmPasswordLabel => 'Confirm password';
+
+  @override
+  String get register_registerButton => 'Register';
+
+  @override
+  String get register_passwordMismatch => 'Passwords do not match';
+
+  @override
+  String get register_emailSignUpFailed => 'Failed to sign up, please try again.';
+
+  @override
+  String get register_signInPrompt => 'Already have an account?';
+
+  @override
+  String get register_signInCta => 'Sign in';
 }
