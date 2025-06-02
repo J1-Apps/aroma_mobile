@@ -144,6 +144,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to sign in with google, please try again.'**
   String get login_login_googleSignInFailed;
+
+  /// No description provided for @login_signIn_emailSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign in with email, please try again.'**
+  String get login_signIn_emailSignInFailed;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

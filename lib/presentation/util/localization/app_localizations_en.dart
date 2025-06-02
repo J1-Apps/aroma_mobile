@@ -34,4 +34,7 @@ class StringsEn extends Strings {
 
   @override
   String get login_login_googleSignInFailed => 'Failed to sign in with google, please try again.';
+
+  @override
+  String get login_signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
 }

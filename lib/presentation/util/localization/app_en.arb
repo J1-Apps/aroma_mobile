@@ -19,5 +19,7 @@
     "login_login_privacyPolicy": "privacy policy",
     "@login_login_privacyPolicy": {},
     "login_login_googleSignInFailed": "Failed to sign in with google, please try again.",
-    "@login_login_googleSignInFailed": {}
+    "@login_login_googleSignInFailed": {},
+    "login_signIn_emailSignInFailed": "Failed to sign in with email, please try again.",
+    "@login_signIn_emailSignInFailed": {}
 }

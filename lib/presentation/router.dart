@@ -1,5 +1,6 @@
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
 import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
 import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
@@ -35,7 +36,10 @@ final routeGraph = GoRouteGraph(
           routes: [
             J1RouteNode(
               route: AromaRoute.signIn,
-              builder: (_, _) => const SignInScreen(),
+              builder: (_, _) => BlocProvider(
+                create: (_) => SignInBloc(),
+                child: const SignInScreen(),
+              ),
             ),
             J1RouteNode(
               route: AromaRoute.signUp,
