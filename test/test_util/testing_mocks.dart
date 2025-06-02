@@ -4,7 +4,10 @@ import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.d
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
+import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
+import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
@@ -16,6 +19,10 @@ class HasErrorCode extends CustomMatcher {
   @override
   Object? featureValueOf(actual) => (actual as ErrorModel).code;
 }
+
+class FakeBuildContext extends Fake implements BuildContext {}
+
+class MockRouter extends Mock implements J1Router {}
 
 // Mock Data Sources
 
@@ -34,3 +41,7 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 class MockAuthUsecase extends Mock implements AuthUsecase {}
 
 class MockSignInGoogleUsecase extends Mock implements SignInGoogleUsecase {}
+
+// Mock Blocs
+
+class MockRouterBloc extends Mock implements RouterBloc {}
