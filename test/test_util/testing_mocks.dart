@@ -6,6 +6,7 @@ import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_email_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -51,3 +52,5 @@ class MockSignInEmailUsecase extends Mock implements SignInEmailUsecase {}
 class MockRouterBloc extends Mock implements RouterBloc {}
 
 class MockLoginBloc extends Mock implements LoginBloc {}
+
+class MockSignInBloc extends Mock implements SignInBloc {}

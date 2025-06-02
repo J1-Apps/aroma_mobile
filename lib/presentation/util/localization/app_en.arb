@@ -20,6 +20,15 @@
     "@login_login_privacyPolicy": {},
     "login_login_googleSignInFailed": "Failed to sign in with google, please try again.",
     "@login_login_googleSignInFailed": {},
+
+    "login_signIn_loginButton": "Log In",
+    "@login_signIn_loginButton": {},
+    "login_signIn_registerButton": "Register",
+    "@login_signIn_registerButton": {},
+    "login_signIn_resetPasswordPrompt": "Forgot your password?",
+    "@login_signIn_resetPasswordPrompt": {},
+    "login_signIn_resetPasswordCta": "Reset it here",
+    "@login_signIn_resetPasswordCta": {},
     "login_signIn_emailSignInFailed": "Failed to sign in with email, please try again.",
     "@login_signIn_emailSignInFailed": {}
 }

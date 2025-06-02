@@ -1,6 +1,8 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_event.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_state.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/screen/login/login_loading.dart";
 import "package:aroma_mobile/presentation/screen/login/login_scaffold.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
@@ -49,6 +51,76 @@ class _SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Sign In"));
+    return const Padding(
+      padding: EdgeInsets.all(JDimens.spacing_m),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _LoginButton(),
+          SizedBox(height: JDimens.spacing_s),
+          _RegisterButton(),
+          SizedBox(height: JDimens.spacing_m),
+          _ResetPassword(),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return JTextButton(
+      text: context.strings().login_signIn_loginButton,
+      onPressed: () => context.read<SignInBloc>().add(
+        // TODO: Get email and password from form
+        const SignInEventSignInWithEmail(
+          email: "test@test.com",
+          password: "password",
+        ),
+      ),
+    );
+  }
+}
+
+class _RegisterButton extends StatelessWidget {
+  const _RegisterButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return JTextButton(
+      text: context.strings().login_signIn_registerButton,
+      color: JWidgetColor.secondary,
+      // TODO: Get email and password from form
+      onPressed: () => context.navigate(AromaRoute.signUp.build(const EmptyRouteConfig())),
+    );
+  }
+}
+
+class _ResetPassword extends StatelessWidget {
+  const _ResetPassword();
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = context.strings();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          strings.login_signIn_resetPasswordPrompt,
+          style: context.textTheme().bodyMedium,
+        ),
+        JTextButton(
+          text: strings.login_signIn_resetPasswordCta,
+          forceCaps: false,
+          size: JWidgetSize.small,
+          type: JButtonType.flat,
+          onPressed: () => context.navigate(AromaRoute.resetPassword.build(const EmptyRouteConfig())),
+        ),
+      ],
+    );
   }
 }

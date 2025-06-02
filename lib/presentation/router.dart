@@ -40,14 +40,16 @@ final routeGraph = GoRouteGraph(
                 create: (_) => SignInBloc(),
                 child: const SignInScreen(),
               ),
+              routes: [
+                J1RouteNode(
+                  route: AromaRoute.resetPassword,
+                  builder: (_, _) => const ResetPasswordScreen(),
+                ),
+              ],
             ),
             J1RouteNode(
               route: AromaRoute.signUp,
               builder: (_, _) => const RegisterScreen(),
-            ),
-            J1RouteNode(
-              route: AromaRoute.resetPassword,
-              builder: (_, _) => const ResetPasswordScreen(),
             ),
           ],
         ),
@@ -84,7 +86,7 @@ abstract class AromaRoute {
   );
 
   static final resetPassword = J1Route<EmptyRouteConfig>(
-    parts: [PathSegment(_loginPath), PathSegment(_resetPasswordPath)],
+    parts: [PathSegment(_loginPath), PathSegment(_signInPath), PathSegment(_resetPasswordPath)],
     configParser: EmptyRouteConfig.parser,
   );
 

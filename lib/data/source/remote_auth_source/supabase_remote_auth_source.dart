@@ -15,6 +15,7 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
     SupabaseClient? supabase,
     GoogleSignIn? googleSignIn,
   }) : _supabase = supabase ?? Supabase.instance.client,
+       // TODO: Add iOS and web client IDs
        _googleSignIn = googleSignIn ?? GoogleSignIn(serverClientId: _googleClientId);
   // coverage:ignore-end
 
@@ -63,7 +64,6 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
 
   @override
   Future<void> signInWithGoogle() async {
-    // TODO: Add iOS and web client IDs
     final googleUser = await _googleSignIn.signIn();
     final googleAuth = await googleUser?.authentication;
 

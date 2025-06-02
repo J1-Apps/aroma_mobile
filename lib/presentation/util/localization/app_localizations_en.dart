@@ -36,5 +36,17 @@ class StringsEn extends Strings {
   String get login_login_googleSignInFailed => 'Failed to sign in with google, please try again.';
 
   @override
+  String get login_signIn_loginButton => 'Log In';
+
+  @override
+  String get login_signIn_registerButton => 'Register';
+
+  @override
+  String get login_signIn_resetPasswordPrompt => 'Forgot your password?';
+
+  @override
+  String get login_signIn_resetPasswordCta => 'Reset it here';
+
+  @override
   String get login_signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
 }

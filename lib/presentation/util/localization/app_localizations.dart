@@ -145,6 +145,30 @@ abstract class Strings {
   /// **'Failed to sign in with google, please try again.'**
   String get login_login_googleSignInFailed;
 
+  /// No description provided for @login_signIn_loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log In'**
+  String get login_signIn_loginButton;
+
+  /// No description provided for @login_signIn_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get login_signIn_registerButton;
+
+  /// No description provided for @login_signIn_resetPasswordPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get login_signIn_resetPasswordPrompt;
+
+  /// No description provided for @login_signIn_resetPasswordCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset it here'**
+  String get login_signIn_resetPasswordCta;
+
   /// No description provided for @login_signIn_emailSignInFailed.
   ///
   /// In en, this message translates to:
