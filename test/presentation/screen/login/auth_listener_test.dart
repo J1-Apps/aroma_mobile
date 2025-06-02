@@ -44,8 +44,6 @@ void main() {
           child: const LoginListener(child: Center(child: Text("hello"))),
         ),
       );
-      await tester.pumpAndSettle();
-
       stream.add(const RouterState(auth: AuthEntitySignedOut()));
       await tester.pumpAndSettle();
 

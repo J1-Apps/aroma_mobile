@@ -14,7 +14,7 @@ class TestWrapper<T extends Bloc> extends StatelessWidget {
       locale: const Locale("en", "US"),
       localizationsDelegates: Strings.localizationsDelegates,
       supportedLocales: Strings.supportedLocales,
-      home: Material(child: child),
+      home: Scaffold(body: child),
     );
 
     final bloc = globalBloc;

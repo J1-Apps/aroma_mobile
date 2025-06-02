@@ -4,6 +4,7 @@ import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.d
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
+import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -45,3 +46,5 @@ class MockSignInGoogleUsecase extends Mock implements SignInGoogleUsecase {}
 // Mock Blocs
 
 class MockRouterBloc extends Mock implements RouterBloc {}
+
+class MockLoginBloc extends Mock implements LoginBloc {}
