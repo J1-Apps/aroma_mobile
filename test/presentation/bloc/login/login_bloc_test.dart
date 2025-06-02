@@ -37,9 +37,9 @@ void main() {
     });
 
     test("handles google sign in failure", () async {
-      when(
-        signInGoogleUsecase.call,
-      ).thenAnswer((_) => Future.value(const Failure(ErrorModel(ErrorCode.common_unknown))));
+      when(signInGoogleUsecase.call).thenAnswer(
+        (_) => Future.value(const Failure(ErrorModel(ErrorCode.common_unknown))),
+      );
 
       bloc.add(const LoginEventSignInWithGoogle());
 
