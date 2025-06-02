@@ -90,7 +90,7 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(0));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.signIn.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.navigate(any(), AromaRoute.signIn.build(const EmailPasswordRouteConfig()))).called(1);
     });
 
     testWidgets("navigates to register screen", (tester) async {
@@ -106,7 +106,7 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(1));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.signUp.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.navigate(any(), AromaRoute.signUp.build(const EmailPasswordRouteConfig()))).called(1);
     });
 
     testWidgets("handles google sign in", (tester) async {

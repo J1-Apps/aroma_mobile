@@ -34,22 +34,30 @@ final routeGraph = GoRouteGraph(
             child: const LoginScreen(),
           ),
           routes: [
-            J1RouteNode(
+            J1RouteNode<EmailPasswordRouteConfig>(
               route: AromaRoute.signIn,
-              builder: (_, _) => BlocProvider(
+              builder: (_, config) => BlocProvider(
                 create: (_) => SignInBloc(),
-                child: const SignInScreen(),
+                child: SignInScreen(
+                  initialEmail: config.email,
+                  initialPassword: config.password,
+                ),
               ),
               routes: [
-                J1RouteNode(
+                J1RouteNode<EmailRouteConfig>(
                   route: AromaRoute.resetPassword,
-                  builder: (_, _) => const ResetPasswordScreen(),
+                  builder: (_, config) => ResetPasswordScreen(
+                    initialEmail: config.email,
+                  ),
                 ),
               ],
             ),
-            J1RouteNode(
+            J1RouteNode<EmailPasswordRouteConfig>(
               route: AromaRoute.signUp,
-              builder: (_, _) => const RegisterScreen(),
+              builder: (_, config) => RegisterScreen(
+                initialEmail: config.email,
+                initialPassword: config.password,
+              ),
             ),
           ],
         ),
@@ -75,23 +83,65 @@ abstract class AromaRoute {
     configParser: EmptyRouteConfig.parser,
   );
 
-  static final signIn = J1Route<EmptyRouteConfig>(
+  static final signIn = J1Route<EmailPasswordRouteConfig>(
     parts: [PathSegment(_loginPath), PathSegment(_signInPath)],
-    configParser: EmptyRouteConfig.parser,
+    configParser: EmailPasswordRouteConfig.parser,
   );
 
-  static final signUp = J1Route<EmptyRouteConfig>(
+  static final signUp = J1Route<EmailPasswordRouteConfig>(
     parts: [PathSegment(_loginPath), PathSegment(_signUpPath)],
-    configParser: EmptyRouteConfig.parser,
+    configParser: EmailPasswordRouteConfig.parser,
   );
 
-  static final resetPassword = J1Route<EmptyRouteConfig>(
+  static final resetPassword = J1Route<EmailRouteConfig>(
     parts: [PathSegment(_loginPath), PathSegment(_signInPath), PathSegment(_resetPasswordPath)],
-    configParser: EmptyRouteConfig.parser,
+    configParser: EmailRouteConfig.parser,
   );
 
   static final home = J1Route<EmptyRouteConfig>(
     parts: [PathSegment(_homePath)],
     configParser: EmptyRouteConfig.parser,
   );
+}
+
+class EmailPasswordRouteConfig extends RouteConfig {
+  final String email;
+  final String password;
+
+  @override
+  Map<String, Object> get pathParams => const {};
+
+  @override
+  Map<String, Object?> get queryParams => {"email": email, "password": password};
+
+  const EmailPasswordRouteConfig({this.email = "", this.password = ""});
+
+  static EmailPasswordRouteConfig parser({
+    required Map<String, String> pathParams,
+    required Map<String, String> queryParams,
+  }) {
+    return EmailPasswordRouteConfig(
+      email: queryParams["email"] ?? "",
+      password: queryParams["password"] ?? "",
+    );
+  }
+}
+
+class EmailRouteConfig extends RouteConfig {
+  final String email;
+
+  @override
+  Map<String, Object> get pathParams => const {};
+
+  @override
+  Map<String, Object?> get queryParams => {"email": email};
+
+  const EmailRouteConfig({this.email = ""});
+
+  static EmailRouteConfig parser({
+    required Map<String, String> pathParams,
+    required Map<String, String> queryParams,
+  }) {
+    return EmailRouteConfig(email: queryParams["email"] ?? "");
+  }
 }

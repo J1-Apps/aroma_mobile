@@ -12,41 +12,47 @@ class StringsEn extends Strings {
   String get app_title => 'Aroma';
 
   @override
-  String get login_login_loginButton => 'Log In';
+  String get login_loginButton => 'Log In';
 
   @override
-  String get login_login_registerButton => 'Register';
+  String get login_registerButton => 'Register';
 
   @override
-  String get login_login_loginWith => 'Log in with';
+  String get login_loginWith => 'Log in with';
 
   @override
-  String get login_login_disclaimers => 'By signing in, you agree to Aroma\'s ';
+  String get login_disclaimers => 'By signing in, you agree to Aroma\'s ';
 
   @override
-  String get login_login_termsOfUse => 'terms of use';
+  String get login_termsOfUse => 'terms of use';
 
   @override
-  String get login_login_and => ' and ';
+  String get login_and => ' and ';
 
   @override
-  String get login_login_privacyPolicy => 'privacy policy';
+  String get login_privacyPolicy => 'privacy policy';
 
   @override
-  String get login_login_googleSignInFailed => 'Failed to sign in with google, please try again.';
+  String get login_googleSignInFailed => 'Failed to sign in with google, please try again.';
 
   @override
-  String get login_signIn_loginButton => 'Log In';
+  String get signIn_loginButton => 'Log In';
 
   @override
-  String get login_signIn_registerButton => 'Register';
+  String get signIn_registerButton => 'Register';
 
   @override
-  String get login_signIn_resetPasswordPrompt => 'Forgot your password?';
+  String get signIn_emailLabel => 'Email';
 
   @override
-  String get login_signIn_resetPasswordCta => 'Reset it here';
+  String get signIn_passwordLabel => 'Password';
 
   @override
-  String get login_signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
+  String get signIn_resetPasswordPrompt => 'Forgot your password?';
+
+  @override
+  String get signIn_resetPasswordCta => 'Reset it here';
+
+  @override
+  String get signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
 }

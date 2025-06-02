@@ -33,7 +33,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.createUserWithEmailAndPassword(email, password);
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_emailSignUpFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -43,7 +48,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.signInWithEmailAndPassword(email, password);
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_emailSignInFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -53,7 +63,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.signInWithGoogle();
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_googleSignInFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -63,7 +78,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.signOut();
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_signOutFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -73,7 +93,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.sendPasswordResetEmail(email);
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_sendPasswordResetEmailFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -83,7 +108,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.changePassword(password);
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_changePasswordFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -93,7 +123,12 @@ class AuthRepositoryImpl implements AuthRepository {
       await _remoteAuthSource.deleteAccount();
       return const Success("");
     } catch (e) {
-      return Failure(ErrorModel.fromObject(e));
+      return Failure(
+        ErrorModel(
+          ErrorCode.source_remote_auth_deleteAccountFailed,
+          message: e.toString(),
+        ),
+      );
     }
   }
 }

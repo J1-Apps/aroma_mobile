@@ -97,83 +97,95 @@ abstract class Strings {
   /// **'Aroma'**
   String get app_title;
 
-  /// No description provided for @login_login_loginButton.
+  /// No description provided for @login_loginButton.
   ///
   /// In en, this message translates to:
   /// **'Log In'**
-  String get login_login_loginButton;
+  String get login_loginButton;
 
-  /// No description provided for @login_login_registerButton.
+  /// No description provided for @login_registerButton.
   ///
   /// In en, this message translates to:
   /// **'Register'**
-  String get login_login_registerButton;
+  String get login_registerButton;
 
-  /// No description provided for @login_login_loginWith.
+  /// No description provided for @login_loginWith.
   ///
   /// In en, this message translates to:
   /// **'Log in with'**
-  String get login_login_loginWith;
+  String get login_loginWith;
 
-  /// No description provided for @login_login_disclaimers.
+  /// No description provided for @login_disclaimers.
   ///
   /// In en, this message translates to:
   /// **'By signing in, you agree to Aroma\'s '**
-  String get login_login_disclaimers;
+  String get login_disclaimers;
 
-  /// No description provided for @login_login_termsOfUse.
+  /// No description provided for @login_termsOfUse.
   ///
   /// In en, this message translates to:
   /// **'terms of use'**
-  String get login_login_termsOfUse;
+  String get login_termsOfUse;
 
-  /// No description provided for @login_login_and.
+  /// No description provided for @login_and.
   ///
   /// In en, this message translates to:
   /// **' and '**
-  String get login_login_and;
+  String get login_and;
 
-  /// No description provided for @login_login_privacyPolicy.
+  /// No description provided for @login_privacyPolicy.
   ///
   /// In en, this message translates to:
   /// **'privacy policy'**
-  String get login_login_privacyPolicy;
+  String get login_privacyPolicy;
 
-  /// No description provided for @login_login_googleSignInFailed.
+  /// No description provided for @login_googleSignInFailed.
   ///
   /// In en, this message translates to:
   /// **'Failed to sign in with google, please try again.'**
-  String get login_login_googleSignInFailed;
+  String get login_googleSignInFailed;
 
-  /// No description provided for @login_signIn_loginButton.
+  /// No description provided for @signIn_loginButton.
   ///
   /// In en, this message translates to:
   /// **'Log In'**
-  String get login_signIn_loginButton;
+  String get signIn_loginButton;
 
-  /// No description provided for @login_signIn_registerButton.
+  /// No description provided for @signIn_registerButton.
   ///
   /// In en, this message translates to:
   /// **'Register'**
-  String get login_signIn_registerButton;
+  String get signIn_registerButton;
 
-  /// No description provided for @login_signIn_resetPasswordPrompt.
+  /// No description provided for @signIn_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get signIn_emailLabel;
+
+  /// No description provided for @signIn_passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get signIn_passwordLabel;
+
+  /// No description provided for @signIn_resetPasswordPrompt.
   ///
   /// In en, this message translates to:
   /// **'Forgot your password?'**
-  String get login_signIn_resetPasswordPrompt;
+  String get signIn_resetPasswordPrompt;
 
-  /// No description provided for @login_signIn_resetPasswordCta.
+  /// No description provided for @signIn_resetPasswordCta.
   ///
   /// In en, this message translates to:
   /// **'Reset it here'**
-  String get login_signIn_resetPasswordCta;
+  String get signIn_resetPasswordCta;
 
-  /// No description provided for @login_signIn_emailSignInFailed.
+  /// No description provided for @signIn_emailSignInFailed.
   ///
   /// In en, this message translates to:
   /// **'Failed to sign in with email, please try again.'**
-  String get login_signIn_emailSignInFailed;
+  String get signIn_emailSignInFailed;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

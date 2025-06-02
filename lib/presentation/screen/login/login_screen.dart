@@ -38,7 +38,7 @@ void _showErrorToast(BuildContext context, ErrorCode? error) {
   final strings = context.strings();
 
   final message = switch (error) {
-    ErrorCode.source_remote_auth_googleSignInFailed => strings.login_login_googleSignInFailed,
+    ErrorCode.source_remote_auth_googleSignInFailed => strings.login_googleSignInFailed,
     _ => null,
   };
 
@@ -53,7 +53,7 @@ class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(JDimens.spacing_m),
+      padding: EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -78,8 +78,8 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JTextButton(
-      text: context.strings().login_login_loginButton,
-      onPressed: () => context.navigate(AromaRoute.signIn.build(const EmptyRouteConfig())),
+      text: context.strings().login_loginButton,
+      onPressed: () => context.navigate(AromaRoute.signIn.build(const EmailPasswordRouteConfig())),
     );
   }
 }
@@ -90,8 +90,8 @@ class _RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JTextButton(
-      text: context.strings().login_login_registerButton,
-      onPressed: () => context.navigate(AromaRoute.signUp.build(const EmptyRouteConfig())),
+      text: context.strings().login_registerButton,
+      onPressed: () => context.navigate(AromaRoute.signUp.build(const EmailPasswordRouteConfig())),
       color: JWidgetColor.secondary,
     );
   }
@@ -108,7 +108,7 @@ class _LoginDivider extends StatelessWidget {
         const SizedBox(width: JDimens.spacing_xs),
         const Expanded(child: Divider()),
         const SizedBox(width: JDimens.spacing_xs),
-        Text(context.strings().login_login_loginWith, style: context.textTheme().bodySmall),
+        Text(context.strings().login_loginWith, style: context.textTheme().bodySmall),
         const SizedBox(width: JDimens.spacing_xs),
         const Expanded(child: Divider()),
         const SizedBox(width: JDimens.spacing_xs),
@@ -177,20 +177,20 @@ class _LoginTerms extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: strings.login_login_disclaimers,
+              text: strings.login_disclaimers,
               style: text.bodySmall,
             ),
             TextSpan(
-              text: strings.login_login_termsOfUse,
+              text: strings.login_termsOfUse,
               style: text.bodySmall?.copyWith(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()..onTap = () => _viewTermsOfUse(context),
             ),
             TextSpan(
-              text: strings.login_login_and,
+              text: strings.login_and,
               style: text.bodySmall,
             ),
             TextSpan(
-              text: strings.login_login_privacyPolicy,
+              text: strings.login_privacyPolicy,
               style: text.bodySmall?.copyWith(decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()..onTap = () => _viewPrivacyPolicy(context),
             ),

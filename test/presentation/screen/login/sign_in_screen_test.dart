@@ -37,6 +37,12 @@ void main() {
     });
 
     testWidgets("handles loading state", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
       await tester.pumpWidget(
         TestWrapper(
           globalBloc: bloc,
@@ -52,6 +58,12 @@ void main() {
     });
 
     testWidgets("handles error state", (tester) async {
+      tester.view.physicalSize = const Size(600, 1200);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() => tester.view.resetPhysicalSize());
+      addTearDown(() => tester.view.resetDevicePixelRatio());
+
       await tester.pumpWidget(
         TestWrapper(
           globalBloc: bloc,
