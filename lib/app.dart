@@ -1,11 +1,12 @@
+import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/router/router_event.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:j1_theme/bloc/j1_theme_bloc.dart";
-import "package:j1_theme/ui/ui.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 final _router = routeGraph.buildConfig();
 
@@ -17,8 +18,13 @@ class AromaApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<J1ThemeBloc>(
-          create: (_) =>
-              J1ThemeBloc(defaultColorScheme: AromaColorScheme.light.scheme, defaultTextTheme: AromaTextTheme.initial),
+          create: (_) => J1ThemeBloc(
+            defaultColorScheme: AromaColorScheme.light.scheme,
+            defaultTextTheme: AromaTextTheme.initial,
+          ),
+        ),
+        BlocProvider<RouterBloc>(
+          create: (_) => RouterBloc()..add(const RouterEventInit()),
         ),
       ],
       child: J1ThemeBuilder(

@@ -96,6 +96,180 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Aroma'**
   String get app_title;
+
+  /// No description provided for @login_loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get login_loginButton;
+
+  /// No description provided for @login_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get login_registerButton;
+
+  /// No description provided for @login_loginWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in with'**
+  String get login_loginWith;
+
+  /// No description provided for @login_disclaimers.
+  ///
+  /// In en, this message translates to:
+  /// **'By signing in, you agree to Aroma\'s '**
+  String get login_disclaimers;
+
+  /// No description provided for @login_termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'terms of use'**
+  String get login_termsOfUse;
+
+  /// No description provided for @login_and.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get login_and;
+
+  /// No description provided for @login_privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'privacy policy'**
+  String get login_privacyPolicy;
+
+  /// No description provided for @login_googleSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign in with google, please try again.'**
+  String get login_googleSignInFailed;
+
+  /// No description provided for @signIn_loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get signIn_loginButton;
+
+  /// No description provided for @signIn_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get signIn_registerButton;
+
+  /// No description provided for @signIn_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get signIn_emailLabel;
+
+  /// No description provided for @signIn_passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get signIn_passwordLabel;
+
+  /// No description provided for @signIn_resetPasswordPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get signIn_resetPasswordPrompt;
+
+  /// No description provided for @signIn_resetPasswordCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset it here'**
+  String get signIn_resetPasswordCta;
+
+  /// No description provided for @signIn_emailSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign in with email, please try again.'**
+  String get signIn_emailSignInFailed;
+
+  /// No description provided for @register_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get register_emailLabel;
+
+  /// No description provided for @register_passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get register_passwordLabel;
+
+  /// No description provided for @register_confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get register_confirmPasswordLabel;
+
+  /// No description provided for @register_registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register_registerButton;
+
+  /// No description provided for @register_passwordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get register_passwordMismatch;
+
+  /// No description provided for @register_emailSignUpFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign up, please try again.'**
+  String get register_emailSignUpFailed;
+
+  /// No description provided for @register_signInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get register_signInPrompt;
+
+  /// No description provided for @register_signInCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get register_signInCta;
+
+  /// No description provided for @resetPassword_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get resetPassword_emailLabel;
+
+  /// No description provided for @resetPassword_resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPassword_resetPassword;
+
+  /// No description provided for @resetPassword_signInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembered your password?'**
+  String get resetPassword_signInPrompt;
+
+  /// No description provided for @resetPassword_signInCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get resetPassword_signInCta;
+
+  /// No description provided for @resetPassword_resetPasswordSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent, please check your email.'**
+  String get resetPassword_resetPasswordSuccess;
+
+  /// No description provided for @resetPassword_sendPasswordResetEmailFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send password reset email, please try again.'**
+  String get resetPassword_sendPasswordResetEmailFailed;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

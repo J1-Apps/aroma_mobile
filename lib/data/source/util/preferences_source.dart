@@ -1,4 +1,4 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 typedef PreferencesAction<T> = Future<T> Function(SharedPreferencesAsync preferences);
@@ -13,7 +13,7 @@ abstract class PreferencesSource {
     try {
       return await getter(_preferences);
     } catch (e) {
-      throw AromaError(errorCode, message: "$key saving error: $e");
+      throw ErrorModel(errorCode, message: "$key saving error: $e");
     }
   }
 
@@ -21,7 +21,7 @@ abstract class PreferencesSource {
     try {
       await saver(_preferences);
     } catch (e) {
-      throw AromaError(errorCode, message: "$key saving error: $e");
+      throw ErrorModel(errorCode, message: "$key saving error: $e");
     }
   }
 }

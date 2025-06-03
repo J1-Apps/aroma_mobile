@@ -1,10 +1,8 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/util/preferences_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
-import "package:j1_theme/models/j1_color_scheme.dart";
-import "package:j1_theme/models/j1_page_transition.dart";
-import "package:j1_theme/models/j1_text_theme.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 const _colorSchemeKey = "aromaColorScheme";
 const _textThemeKey = "aromaTextTheme";

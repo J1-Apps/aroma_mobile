@@ -1,8 +1,8 @@
-import "package:aroma_mobile/data/model/aroma_error.dart";
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_theme_source/preferences_local_theme_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:j1_theme/j1_theme.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
 import "../../../test_util/testing_mocks.dart";

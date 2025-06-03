@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:j1_theme/j1_theme.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 const _header = "Crimson Text";
 const _body = "Poppins";
@@ -81,9 +81,9 @@ abstract class AromaTextTheme {
     headlineLarge: J1TextStyle.headlineLarge(fontFamily: _header),
     headlineMedium: J1TextStyle.headlineMedium(fontFamily: _header),
     headlineSmall: J1TextStyle.headlineSmall(fontFamily: _header),
-    titleLarge: J1TextStyle.titleLarge(fontFamily: _body),
-    titleMedium: J1TextStyle.titleMedium(fontFamily: _body),
-    titleSmall: J1TextStyle.titleSmall(fontFamily: _body),
+    titleLarge: J1TextStyle.titleLarge(fontFamily: _body, fontWeight: J1FontWeight.medium),
+    titleMedium: J1TextStyle.titleMedium(fontFamily: _body, fontWeight: J1FontWeight.medium),
+    titleSmall: J1TextStyle.titleSmall(fontFamily: _body, fontWeight: J1FontWeight.medium),
     bodyLarge: J1TextStyle.bodyLarge(fontFamily: _body),
     bodyMedium: J1TextStyle.bodyMedium(fontFamily: _body),
     bodySmall: J1TextStyle.bodySmall(fontFamily: _body),

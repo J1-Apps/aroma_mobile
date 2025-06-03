@@ -10,4 +10,91 @@ class StringsEn extends Strings {
 
   @override
   String get app_title => 'Aroma';
+
+  @override
+  String get login_loginButton => 'Log in';
+
+  @override
+  String get login_registerButton => 'Register';
+
+  @override
+  String get login_loginWith => 'Log in with';
+
+  @override
+  String get login_disclaimers => 'By signing in, you agree to Aroma\'s ';
+
+  @override
+  String get login_termsOfUse => 'terms of use';
+
+  @override
+  String get login_and => ' and ';
+
+  @override
+  String get login_privacyPolicy => 'privacy policy';
+
+  @override
+  String get login_googleSignInFailed => 'Failed to sign in with google, please try again.';
+
+  @override
+  String get signIn_loginButton => 'Log in';
+
+  @override
+  String get signIn_registerButton => 'Register';
+
+  @override
+  String get signIn_emailLabel => 'Email';
+
+  @override
+  String get signIn_passwordLabel => 'Password';
+
+  @override
+  String get signIn_resetPasswordPrompt => 'Forgot your password?';
+
+  @override
+  String get signIn_resetPasswordCta => 'Reset it here';
+
+  @override
+  String get signIn_emailSignInFailed => 'Failed to sign in with email, please try again.';
+
+  @override
+  String get register_emailLabel => 'Email';
+
+  @override
+  String get register_passwordLabel => 'Password';
+
+  @override
+  String get register_confirmPasswordLabel => 'Confirm password';
+
+  @override
+  String get register_registerButton => 'Register';
+
+  @override
+  String get register_passwordMismatch => 'Passwords do not match';
+
+  @override
+  String get register_emailSignUpFailed => 'Failed to sign up, please try again.';
+
+  @override
+  String get register_signInPrompt => 'Already have an account?';
+
+  @override
+  String get register_signInCta => 'Sign in';
+
+  @override
+  String get resetPassword_emailLabel => 'Email';
+
+  @override
+  String get resetPassword_resetPassword => 'Reset password';
+
+  @override
+  String get resetPassword_signInPrompt => 'Remembered your password?';
+
+  @override
+  String get resetPassword_signInCta => 'Sign in';
+
+  @override
+  String get resetPassword_resetPasswordSuccess => 'Password reset email sent, please check your email.';
+
+  @override
+  String get resetPassword_sendPasswordResetEmailFailed => 'Failed to send password reset email, please try again.';
 }

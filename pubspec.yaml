@@ -13,40 +13,16 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  j1_ui:
+  j1_core_base:
     git:
       url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_ui
+      path: packages/j1_core_base
       ref: v1.0.0
 
-  j1_environment:
+  j1_core_firebase:
     git:
       url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_environment
-      ref: v1.0.0
-
-  j1_theme:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_theme
-      ref: v1.0.0
-
-  j1_logger:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_logger
-      ref: v1.0.0
-
-  j1_crash_handler:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_crash_handler
-      ref: v1.0.0
-
-  j1_router:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_router
+      path: packages/j1_core_firebase
       ref: v1.0.0
 
   get_it: ^8.0.3
@@ -54,42 +30,37 @@ dependencies:
   package_info_plus: ^8.3.0
   flutter_bloc: ^9.1.1
   rxdart: ^0.28.0
-  dart_mappable: ^4.5.0
   shared_preferences: ^2.5.3
   bloc_concurrency: ^0.3.0
   vector_graphics: ^1.1.18
   supabase_flutter: ^2.9.0
   firebase_core_platform_interface: ^5.4.0
+  google_sign_in: ^6.3.0
+  dart_mappable: ^4.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  j1_lints:
-    git:
-      url: https://github.com/J1-Apps/j1_core.git
-      path: packages/j1_lints
-      ref: v1.0.0
       
   build_runner: ^2.4.15
-  dart_mappable_builder: ^4.5.0
   flutter_launcher_icons: ^0.14.3
   mocktail: ^1.0.4
   vector_graphics_compiler: ^1.1.17
+  dart_mappable_builder: ^4.5.0
 
 flutter:
   uses-material-design: true
   generate: true
 
   assets:
-    - path: assets/vector/
+    - path: assets/vector/logo/
       transformers:
         - package: vector_graphics_compiler
 
   fonts:
     - family: JamIcons
       fonts:
-        - asset: packages/j1_ui/fonts/JamIcons.ttf
+        - asset: packages/j1_core_base/j1_ui/fonts/JamIcons.ttf
 
     - family: Crimson Text
       fonts:
