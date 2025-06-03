@@ -17,12 +17,12 @@ void main() {
     });
 
     setUp(() {
-      repository = LanguageRepository();
+      repository = LanguageRepositoryImpl();
     });
 
     tearDown(() {
       reset(localSource);
-      repository.dispose();
+      repository.onDispose();
     });
 
     tearDownAll(() async {
@@ -48,7 +48,7 @@ void main() {
 
       verify(localSource.getLanguage).called(2);
       verify(() => localSource.updateLanguage(any())).called(2);
-      repository.dispose();
+      repository.onDispose();
     });
   });
 }

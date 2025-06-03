@@ -9,6 +9,9 @@ import "package:aroma_mobile/domain/usecase/auth/create_user_email_usecase.dart"
 import "package:aroma_mobile/domain/usecase/auth/reset_password_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_email_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
+import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
+import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
+import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
@@ -60,6 +63,12 @@ class MockSignInEmailUsecase extends Mock implements SignInEmailUsecase {}
 class MockCreateUserEmailUsecase extends Mock implements CreateUserEmailUsecase {}
 
 class MockResetPasswordUsecase extends Mock implements ResetPasswordUsecase {}
+
+class MockSignOutUsecase extends Mock implements SignOutUsecase {}
+
+class MockLanguageUsecase extends Mock implements LanguageUsecase {}
+
+class MockUpdateLanguageUsecase extends Mock implements UpdateLanguageUsecase {}
 
 // Mock Blocs
 
