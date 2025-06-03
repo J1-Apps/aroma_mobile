@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
@@ -18,6 +19,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
 
   // Source
 
+  LocalLanguageSource get localLanguageSource;
   LocalThemeSource get localThemeSource;
   RemoteAuthSource get remoteAuthSource;
 
@@ -45,6 +47,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
 
     // Source
 
+    locator.registerSingleton<LocalLanguageSource>(localLanguageSource);
     locator.registerSingleton<LocalThemeSource>(localThemeSource);
     locator.registerSingleton<RemoteAuthSource>(remoteAuthSource);
 

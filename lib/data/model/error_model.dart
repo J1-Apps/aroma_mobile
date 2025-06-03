@@ -42,6 +42,9 @@ enum ErrorCode {
   source_local_theme_textWriteError,
   source_local_theme_transitionReadError,
   source_local_theme_transitionWriteError,
+
+  source_local_language_readError,
+  source_local_language_writeError,
 }
 
 extension ExceptionExtension on Exception {

@@ -53,6 +53,10 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return ErrorCode.source_local_theme_transitionReadError;
       case r'source_local_theme_transitionWriteError':
         return ErrorCode.source_local_theme_transitionWriteError;
+      case r'source_local_language_readError':
+        return ErrorCode.source_local_language_readError;
+      case r'source_local_language_writeError':
+        return ErrorCode.source_local_language_writeError;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -89,6 +93,10 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return r'source_local_theme_transitionReadError';
       case ErrorCode.source_local_theme_transitionWriteError:
         return r'source_local_theme_transitionWriteError';
+      case ErrorCode.source_local_language_readError:
+        return r'source_local_language_readError';
+      case ErrorCode.source_local_language_writeError:
+        return r'source_local_language_writeError';
     }
   }
 }
