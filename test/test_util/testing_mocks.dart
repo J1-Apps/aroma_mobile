@@ -3,6 +3,7 @@ import "package:aroma_mobile/data/source/local_language_source/local_language_so
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
+import "package:aroma_mobile/domain/repository/language_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/create_user_email_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/reset_password_usecase.dart";
@@ -45,6 +46,8 @@ class MockLocalLanguageSource extends Mock implements LocalLanguageSource {}
 // Mock Repositories
 
 class MockAuthRepository extends Mock implements AuthRepository {}
+
+class MockLanguageRepository extends Mock implements LanguageRepository {}
 
 // Mock Usecases
 
