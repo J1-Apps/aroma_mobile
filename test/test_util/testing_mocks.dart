@@ -4,10 +4,12 @@ import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.d
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/create_user_email_usecase.dart";
+import "package:aroma_mobile/domain/usecase/auth/reset_password_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_email_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
 import "package:flutter/material.dart";
@@ -51,6 +53,8 @@ class MockSignInEmailUsecase extends Mock implements SignInEmailUsecase {}
 
 class MockCreateUserEmailUsecase extends Mock implements CreateUserEmailUsecase {}
 
+class MockResetPasswordUsecase extends Mock implements ResetPasswordUsecase {}
+
 // Mock Blocs
 
 class MockRouterBloc extends Mock implements RouterBloc {}
@@ -60,3 +64,5 @@ class MockLoginBloc extends Mock implements LoginBloc {}
 class MockSignInBloc extends Mock implements SignInBloc {}
 
 class MockRegisterBloc extends Mock implements RegisterBloc {}
+
+class MockResetPasswordBloc extends Mock implements ResetPasswordBloc {}

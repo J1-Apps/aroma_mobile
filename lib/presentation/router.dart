@@ -1,6 +1,7 @@
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
 import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
@@ -47,8 +48,11 @@ final routeGraph = GoRouteGraph(
               routes: [
                 J1RouteNode<EmailRouteConfig>(
                   route: AromaRoute.resetPassword,
-                  builder: (_, config) => ResetPasswordScreen(
-                    initialEmail: config.email,
+                  builder: (_, config) => BlocProvider(
+                    create: (_) => ResetPasswordBloc(),
+                    child: ResetPasswordScreen(
+                      initialEmail: config.email,
+                    ),
                   ),
                 ),
               ],
