@@ -154,8 +154,8 @@ class _EmailField extends StatelessWidget {
 
     return JTextField(
       controller: controller,
-      name: strings.signIn_emailLabel,
-      hint: strings.signIn_emailLabel,
+      name: strings.resetPassword_emailLabel,
+      hint: strings.resetPassword_emailLabel,
       errorText: errorText,
       showErrorText: true,
       keyboardType: TextInputType.emailAddress,

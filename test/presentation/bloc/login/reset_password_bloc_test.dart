@@ -35,7 +35,7 @@ void main() {
       bloc.add(const ResetPasswordEventResetPassword(email: "test@test.com"));
 
       await awaitMs(1);
-      expect(bloc.state, const ResetPasswordState());
+      expect(bloc.state, const ResetPasswordState(isSuccess: true));
     });
 
     test("handles reset password failure", () async {
