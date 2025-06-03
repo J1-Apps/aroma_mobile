@@ -15,7 +15,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final UpdateLanguageUsecase _updateLanguageUsecase;
   final SignOutUsecase _signOutUsecase;
 
-  StreamSubscription<String>? _languageSubscription;
+  StreamSubscription<String?>? _languageSubscription;
 
   SettingsBloc({
     LanguageUsecase? languageUsecase,
@@ -34,7 +34,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   Future<void> _onInit(SettingsEventInit event, Emitter<SettingsState> emit) async {
     await _languageSubscription?.cancel();
     _languageSubscription = _languageUsecase().listen(
-      (language) => add(SettingsEventLanguageUpdated(language)),
+      (language) => language != null ? add(SettingsEventLanguageUpdated(language)) : null,
     );
   }
 

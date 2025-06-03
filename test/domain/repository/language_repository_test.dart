@@ -30,7 +30,7 @@ void main() {
     });
 
     test("gets and updates language, handling errors", () async {
-      expect(repository.languageStream, emitsInOrder(["en", "en", "kr", "es"]));
+      expect(repository.languageStream, emitsInOrder([null, "en", "kr", "es"]));
 
       when(localSource.getLanguage).thenThrow(const ErrorModel(ErrorCode.source_local_language_readError));
       await repository.loadLanguage();

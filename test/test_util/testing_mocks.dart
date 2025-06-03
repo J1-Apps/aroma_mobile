@@ -16,7 +16,7 @@ import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -72,7 +72,7 @@ class MockUpdateLanguageUsecase extends Mock implements UpdateLanguageUsecase {}
 
 // Mock Blocs
 
-class MockRouterBloc extends Mock implements RouterBloc {}
+class MockRouterBloc extends Mock implements AppBloc {}
 
 class MockLoginBloc extends Mock implements LoginBloc {}
 

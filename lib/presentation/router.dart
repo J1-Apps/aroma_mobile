@@ -3,7 +3,7 @@ import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
 import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
 import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
 import "package:aroma_mobile/presentation/screen/login/login_screen.dart";
@@ -27,7 +27,7 @@ final routeGraph = GoRouteGraph(
   routes: [
     J1ShellNode(
       builder: (_, child) => LoginListener(child: child),
-      redirect: (context) => context.read<RouterBloc>().state.auth is AuthEntitySignedIn ? _homePath : null,
+      redirect: (context) => context.read<AppBloc>().state.auth is AuthEntitySignedIn ? _homePath : null,
       routes: [
         J1RouteNode(
           route: AromaRoute.login,
@@ -73,7 +73,7 @@ final routeGraph = GoRouteGraph(
     ),
     J1ShellNode(
       builder: (_, child) => LogoutListener(child: child),
-      redirect: (context) => context.read<RouterBloc>().state.auth is! AuthEntitySignedIn ? _loginPath : null,
+      redirect: (context) => context.read<AppBloc>().state.auth is! AuthEntitySignedIn ? _loginPath : null,
       routes: [
         J1RouteNode(
           route: AromaRoute.home,

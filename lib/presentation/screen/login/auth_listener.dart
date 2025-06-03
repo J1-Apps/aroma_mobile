@@ -1,6 +1,6 @@
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_state.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -16,7 +16,7 @@ class LoginListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RouterBloc, RouterState>(
+    return BlocListener<AppBloc, AppState>(
       listener: (context, state) {
         if (state.auth is AuthEntitySignedIn) {
           context.navigate(AromaRoute.home.build(const EmptyRouteConfig()));
@@ -37,7 +37,7 @@ class LogoutListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RouterBloc, RouterState>(
+    return BlocListener<AppBloc, AppState>(
       listener: (context, state) {
         if (state.auth is! AuthEntitySignedIn) {
           context.navigate(AromaRoute.login.build(const EmptyRouteConfig()));

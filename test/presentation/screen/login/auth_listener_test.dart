@@ -1,8 +1,8 @@
 import "dart:async";
 
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_state.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
 import "package:flutter/material.dart";
@@ -16,7 +16,7 @@ import "../../../test_util/testing_mocks.dart";
 void main() {
   group("Auth Listener", () {
     final router = MockRouter();
-    final RouterBloc bloc = MockRouterBloc();
+    final AppBloc bloc = MockRouterBloc();
     final BuildContext context = FakeBuildContext();
 
     setUp(() {
@@ -33,9 +33,9 @@ void main() {
     });
 
     testWidgets("redirects on login", (tester) async {
-      final stream = StreamController<RouterState>.broadcast();
+      final stream = StreamController<AppState>.broadcast();
 
-      when(() => bloc.state).thenReturn(const RouterState(auth: AuthEntitySignedOut()));
+      when(() => bloc.state).thenReturn(const AppState(auth: AuthEntitySignedOut(), language: null));
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
 
       await tester.pumpWidget(
@@ -44,12 +44,12 @@ void main() {
           child: const LoginListener(child: Center(child: Text("hello"))),
         ),
       );
-      stream.add(const RouterState(auth: AuthEntitySignedOut()));
+      stream.add(const AppState(auth: AuthEntitySignedOut(), language: null));
       await tester.pumpAndSettle();
 
       expect(find.text("hello"), findsOneWidget);
 
-      stream.add(const RouterState(auth: AuthEntitySignedIn(userId: "123")));
+      stream.add(const AppState(auth: AuthEntitySignedIn(userId: "123"), language: null));
       await tester.pumpAndSettle();
 
       verify(() => router.navigate(any(), AromaRoute.home.build(const EmptyRouteConfig()))).called(1);
@@ -58,9 +58,9 @@ void main() {
     });
 
     testWidgets("redirects on logout", (tester) async {
-      final stream = StreamController<RouterState>.broadcast();
+      final stream = StreamController<AppState>.broadcast();
 
-      when(() => bloc.state).thenReturn(const RouterState(auth: AuthEntitySignedIn(userId: "123")));
+      when(() => bloc.state).thenReturn(const AppState(auth: AuthEntitySignedIn(userId: "123"), language: null));
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
 
       await tester.pumpWidget(
@@ -71,12 +71,12 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      stream.add(const RouterState(auth: AuthEntitySignedIn(userId: "123")));
+      stream.add(const AppState(auth: AuthEntitySignedIn(userId: "123"), language: null));
       await tester.pumpAndSettle();
 
       expect(find.text("hello"), findsOneWidget);
 
-      stream.add(const RouterState(auth: AuthEntitySignedOut()));
+      stream.add(const AppState(auth: AuthEntitySignedOut(), language: null));
       await tester.pumpAndSettle();
 
       verify(() => router.navigate(any(), AromaRoute.login.build(const EmptyRouteConfig()))).called(1);

@@ -2,7 +2,7 @@ import "package:aroma_mobile/domain/repository/language_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class LanguageUsecase {
-  Stream<String> call();
+  Stream<String?> call();
 }
 
 class LanguageUsecaseImpl implements LanguageUsecase {
@@ -12,5 +12,5 @@ class LanguageUsecaseImpl implements LanguageUsecase {
     : _languageRepository = languageRepository ?? locator.get<LanguageRepository>();
 
   @override
-  Stream<String> call() => _languageRepository.languageStream;
+  Stream<String?> call() => _languageRepository.languageStream;
 }
