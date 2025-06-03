@@ -21,9 +21,9 @@ enum AromaColorScheme {
       onTertiary: 0xFFEEEEEE,
       error: 0xFFB33951,
       onError: 0xFFEEEEEE,
-      surface: 0xFFEEEEEE,
+      surface: 0xFFE5E3C9,
       onSurface: 0xFF121212,
-      background: 0xFFEEEEEE,
+      background: 0xFFE5E3C9,
     ),
   ),
   dark(
