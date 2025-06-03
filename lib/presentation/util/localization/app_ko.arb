@@ -90,5 +90,30 @@
     "resetPassword_resetPasswordSuccess": "비밀번호 재설정 이메일이 전송되었습니다. 이메일을 확인해주세요.",
     "@resetPassword_resetPasswordSuccess": {},
     "resetPassword_sendPasswordResetEmailFailed": "비밀번호 재설정 이메일 전송 실패, 다시 시도해주세요.",
-    "@resetPassword_sendPasswordResetEmailFailed": {}
+    "@resetPassword_sendPasswordResetEmailFailed": {},
+
+    "theme_title": "테마",
+    "@theme_title": {},
+    "theme_headerFonts": "헤더 폰트",
+    "@theme_headerFonts": {},
+    "theme_bodyFonts": "바디 폰트",
+    "@theme_bodyFonts": {},
+    "theme_colorsTitle": "{colors, select, light{라이트} dark{다크} blue{블루} other{알 수 없음}}",
+    "@theme_colorsTitle": {
+        "placeholders": {
+            "colors": {
+                "type": "String",
+                "example": "light"
+            }
+        }
+    },
+    "theme_fontTitle": "{font, select, crimsonText{크리미언 텍스트} poppins{팝핀스} other{알 수 없음}}",
+    "@theme_fontTitle": {
+        "placeholders": {
+            "font": {
+                "type": "String",
+                "example": "poppins"
+            }
+        }
+    }
 }

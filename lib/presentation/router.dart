@@ -13,6 +13,7 @@ import "package:aroma_mobile/presentation/widget/screen/login/register_screen.da
 import "package:aroma_mobile/presentation/widget/screen/login/reset_password_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/sign_in_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/settings/settings_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/settings/theme_screen.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
@@ -26,6 +27,7 @@ const _resetPasswordPath = "reset-password";
 
 const _homePath = "/";
 const _settingsPath = "settings";
+const _themePath = "theme";
 
 final routeGraph = GoRouteGraph(
   routes: [
@@ -89,6 +91,12 @@ final routeGraph = GoRouteGraph(
                 create: (_) => SettingsBloc()..add(const SettingsEventInit()),
                 child: const SettingsScreen(),
               ),
+              routes: [
+                J1RouteNode(
+                  route: AromaRoute.theme,
+                  builder: (_, _) => const ThemeScreen(),
+                ),
+              ],
             ),
           ],
         ),
@@ -125,6 +133,11 @@ abstract class AromaRoute {
 
   static final settings = J1Route<EmptyRouteConfig>(
     parts: [PathSegment(_homePath), PathSegment(_settingsPath)],
+    configParser: EmptyRouteConfig.parser,
+  );
+
+  static final theme = J1Route<EmptyRouteConfig>(
+    parts: [PathSegment(_homePath), PathSegment(_settingsPath), PathSegment(_themePath)],
     configParser: EmptyRouteConfig.parser,
   );
 }

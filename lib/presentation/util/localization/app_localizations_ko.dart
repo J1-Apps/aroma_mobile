@@ -135,4 +135,40 @@ class StringsKo extends Strings {
 
   @override
   String get resetPassword_sendPasswordResetEmailFailed => '비밀번호 재설정 이메일 전송 실패, 다시 시도해주세요.';
+
+  @override
+  String get theme_title => '테마';
+
+  @override
+  String get theme_headerFonts => '헤더 폰트';
+
+  @override
+  String get theme_bodyFonts => '바디 폰트';
+
+  @override
+  String theme_colorsTitle(String colors) {
+    String _temp0 = intl.Intl.selectLogic(
+      colors,
+      {
+        'light': '라이트',
+        'dark': '다크',
+        'blue': '블루',
+        'other': '알 수 없음',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String theme_fontTitle(String font) {
+    String _temp0 = intl.Intl.selectLogic(
+      font,
+      {
+        'crimsonText': '크리미언 텍스트',
+        'poppins': '팝핀스',
+        'other': '알 수 없음',
+      },
+    );
+    return '$_temp0';
+  }
 }

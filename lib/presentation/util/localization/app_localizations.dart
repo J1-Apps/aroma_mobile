@@ -325,6 +325,36 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to send password reset email, please try again.'**
   String get resetPassword_sendPasswordResetEmailFailed;
+
+  /// No description provided for @theme_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme_title;
+
+  /// No description provided for @theme_headerFonts.
+  ///
+  /// In en, this message translates to:
+  /// **'Header Fonts'**
+  String get theme_headerFonts;
+
+  /// No description provided for @theme_bodyFonts.
+  ///
+  /// In en, this message translates to:
+  /// **'Body Fonts'**
+  String get theme_bodyFonts;
+
+  /// No description provided for @theme_colorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{colors, select, light{Light} dark{Dark} blue{Blue} green{Green} other{Unknown}}'**
+  String theme_colorsTitle(String colors);
+
+  /// No description provided for @theme_fontTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{font, select, crimsonText{Crimson Text} poppins{Poppins} other{Unknown}}'**
+  String theme_fontTitle(String font);
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

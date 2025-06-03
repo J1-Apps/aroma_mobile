@@ -135,4 +135,41 @@ class StringsEn extends Strings {
 
   @override
   String get resetPassword_sendPasswordResetEmailFailed => 'Failed to send password reset email, please try again.';
+
+  @override
+  String get theme_title => 'Theme';
+
+  @override
+  String get theme_headerFonts => 'Header Fonts';
+
+  @override
+  String get theme_bodyFonts => 'Body Fonts';
+
+  @override
+  String theme_colorsTitle(String colors) {
+    String _temp0 = intl.Intl.selectLogic(
+      colors,
+      {
+        'light': 'Light',
+        'dark': 'Dark',
+        'blue': 'Blue',
+        'green': 'Green',
+        'other': 'Unknown',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String theme_fontTitle(String font) {
+    String _temp0 = intl.Intl.selectLogic(
+      font,
+      {
+        'crimsonText': 'Crimson Text',
+        'poppins': 'Poppins',
+        'other': 'Unknown',
+      },
+    );
+    return '$_temp0';
+  }
 }

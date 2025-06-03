@@ -90,5 +90,30 @@
     "resetPassword_resetPasswordSuccess": "Password reset email sent, please check your email.",
     "@resetPassword_resetPasswordSuccess": {},
     "resetPassword_sendPasswordResetEmailFailed": "Failed to send password reset email, please try again.",
-    "@resetPassword_sendPasswordResetEmailFailed": {}
+    "@resetPassword_sendPasswordResetEmailFailed": {},
+
+    "theme_title": "Theme",
+    "@theme_title": {},
+    "theme_headerFonts": "Header Fonts",
+    "@theme_headerFonts": {},
+    "theme_bodyFonts": "Body Fonts",
+    "@theme_bodyFonts": {},
+    "theme_colorsTitle": "{colors, select, light{Light} dark{Dark} blue{Blue} green{Green} other{Unknown}}",
+    "@theme_colorsTitle": {
+        "placeholders": {
+            "colors": {
+                "type": "String",
+                "example": "light"
+            }
+        }
+    },
+    "theme_fontTitle": "{font, select, crimsonText{Crimson Text} poppins{Poppins} other{Unknown}}",
+    "@theme_fontTitle": {
+        "placeholders": {
+            "font": {
+                "type": "String",
+                "example": "poppins"
+            }
+        }
+    }
 }

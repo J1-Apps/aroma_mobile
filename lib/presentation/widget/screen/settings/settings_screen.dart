@@ -1,6 +1,7 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_state.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/widget/common/aroma_back_button.dart";
 import "package:aroma_mobile/presentation/widget/screen/settings/select_language_drawer.dart";
@@ -32,6 +33,11 @@ class SettingsScreen extends StatelessWidget {
               child: SelectLanguageDrawer(bloc: context.read<SettingsBloc>()),
               scrollControlDisabledMaxHeightRatio: selectLanguageDrawerHeightRatio,
             ),
+          ),
+          _SettingsItem(
+            icon: JamIcons.paintbrush,
+            label: strings.settings_theme,
+            onPressed: () => context.navigate(AromaRoute.theme.build(const EmptyRouteConfig())),
           ),
         ],
       ),
