@@ -102,6 +102,8 @@ class _SignInFormState extends State<_SignInForm> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.strings();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
       child: Column(
@@ -119,7 +121,8 @@ class _SignInFormState extends State<_SignInForm> {
             errorText: _passwordError,
           ),
           const SizedBox(height: JDimens.spacing_s),
-          _LoginButton(
+          JTextButton(
+            text: strings.signIn_loginButton,
             onPressed: () => context.read<SignInBloc>().add(
               SignInEventSignInWithEmail(
                 email: _emailController.text,
@@ -128,7 +131,9 @@ class _SignInFormState extends State<_SignInForm> {
             ),
           ),
           const SizedBox(height: JDimens.spacing_s),
-          _RegisterButton(
+          JTextButton(
+            text: strings.signIn_registerButton,
+            color: JWidgetColor.secondary,
             onPressed: () => context.navigate(
               AromaRoute.signUp.build(
                 EmailPasswordRouteConfig(
@@ -230,37 +235,6 @@ class _PasswordFieldState extends State<_PasswordField> {
   void didUpdateWidget(covariant _PasswordField oldWidget) {
     _errorText = widget.errorText;
     super.didUpdateWidget(oldWidget);
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _LoginButton({required this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return JTextButton(
-      text: context.strings().signIn_loginButton,
-      onPressed: onPressed,
-    );
-  }
-}
-
-class _RegisterButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _RegisterButton({
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return JTextButton(
-      text: context.strings().signIn_registerButton,
-      color: JWidgetColor.secondary,
-      onPressed: onPressed,
-    );
   }
 }
 

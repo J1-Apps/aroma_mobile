@@ -12,7 +12,7 @@ class StringsEn extends Strings {
   String get app_title => 'Aroma';
 
   @override
-  String get login_loginButton => 'Log In';
+  String get login_loginButton => 'Log in';
 
   @override
   String get login_registerButton => 'Register';
@@ -36,7 +36,7 @@ class StringsEn extends Strings {
   String get login_googleSignInFailed => 'Failed to sign in with google, please try again.';
 
   @override
-  String get signIn_loginButton => 'Log In';
+  String get signIn_loginButton => 'Log in';
 
   @override
   String get signIn_registerButton => 'Register';
@@ -79,4 +79,19 @@ class StringsEn extends Strings {
 
   @override
   String get register_signInCta => 'Sign in';
+
+  @override
+  String get resetPassword_emailLabel => 'Email';
+
+  @override
+  String get resetPassword_resetPassword => 'Reset password';
+
+  @override
+  String get resetPassword_signInPrompt => 'Remembered your password?';
+
+  @override
+  String get resetPassword_signInCta => 'Sign in';
+
+  @override
+  String get resetPassword_sendPasswordResetEmailFailed => 'Failed to send password reset email, please try again.';
 }

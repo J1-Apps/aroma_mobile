@@ -100,7 +100,7 @@ abstract class Strings {
   /// No description provided for @login_loginButton.
   ///
   /// In en, this message translates to:
-  /// **'Log In'**
+  /// **'Log in'**
   String get login_loginButton;
 
   /// No description provided for @login_registerButton.
@@ -148,7 +148,7 @@ abstract class Strings {
   /// No description provided for @signIn_loginButton.
   ///
   /// In en, this message translates to:
-  /// **'Log In'**
+  /// **'Log in'**
   String get signIn_loginButton;
 
   /// No description provided for @signIn_registerButton.
@@ -234,6 +234,36 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Sign in'**
   String get register_signInCta;
+
+  /// No description provided for @resetPassword_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get resetPassword_emailLabel;
+
+  /// No description provided for @resetPassword_resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPassword_resetPassword;
+
+  /// No description provided for @resetPassword_signInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembered your password?'**
+  String get resetPassword_signInPrompt;
+
+  /// No description provided for @resetPassword_signInCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get resetPassword_signInCta;
+
+  /// No description provided for @resetPassword_sendPasswordResetEmailFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send password reset email, please try again.'**
+  String get resetPassword_sendPasswordResetEmailFailed;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

@@ -4,7 +4,7 @@
     "app_title": "Aroma",
     "@app_title": {},
 
-    "login_loginButton": "Log In",
+    "login_loginButton": "Log in",
     "@login_loginButton": {},
     "login_registerButton": "Register",
     "@login_registerButton": {},
@@ -21,7 +21,7 @@
     "login_googleSignInFailed": "Failed to sign in with google, please try again.",
     "@login_googleSignInFailed": {},
 
-    "signIn_loginButton": "Log In",
+    "signIn_loginButton": "Log in",
     "@signIn_loginButton": {},
     "signIn_registerButton": "Register",
     "@signIn_registerButton": {},
@@ -51,5 +51,16 @@
     "register_signInPrompt": "Already have an account?",
     "@register_signInPrompt": {},
     "register_signInCta": "Sign in",
-    "@register_signInCta": {}
+    "@register_signInCta": {},
+
+    "resetPassword_emailLabel": "Email",
+    "@resetPassword_emailLabel": {},
+    "resetPassword_resetPassword": "Reset password",
+    "@resetPassword_resetPassword": {},
+    "resetPassword_signInPrompt": "Remembered your password?",
+    "@resetPassword_signInPrompt": {},
+    "resetPassword_signInCta": "Sign in",
+    "@resetPassword_signInCta": {},
+    "resetPassword_sendPasswordResetEmailFailed": "Failed to send password reset email, please try again.",
+    "@resetPassword_sendPasswordResetEmailFailed": {}
 }
