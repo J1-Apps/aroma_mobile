@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_ko.dart';
 
 // ignore_for_file: type=lint
 
@@ -89,7 +90,7 @@ abstract class Strings {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('ko')];
 
   /// No description provided for @app_title.
   ///
@@ -144,6 +145,60 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Failed to sign in with google, please try again.'**
   String get login_googleSignInFailed;
+
+  /// No description provided for @settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings_title;
+
+  /// No description provided for @settings_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settings_language;
+
+  /// No description provided for @settings_theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settings_theme;
+
+  /// No description provided for @settings_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get settings_logout;
+
+  /// No description provided for @settings_languageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get settings_languageHint;
+
+  /// No description provided for @settings_languageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{language, select, en{English} ko{Korean} other{Unknown}}'**
+  String settings_languageLabel(String language);
+
+  /// No description provided for @settings_error_languageEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not find any languages. Please ensure that you\'re searching by IANA language subtag (ie: \"en\", \"ko\", etc.) or language name and try again.'**
+  String get settings_error_languageEmpty;
+
+  /// No description provided for @settings_error_getLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch the current language. Using the default language.'**
+  String get settings_error_getLanguage;
+
+  /// No description provided for @settings_error_saveLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save language.'**
+  String get settings_error_saveLanguage;
 
   /// No description provided for @signIn_loginButton.
   ///
@@ -281,7 +336,7 @@ class _StringsDelegate extends LocalizationsDelegate<Strings> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'ko'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_StringsDelegate old) => false;
@@ -292,6 +347,8 @@ Strings lookupStrings(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return StringsEn();
+    case 'ko':
+      return StringsKo();
   }
 
   throw FlutterError(

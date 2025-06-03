@@ -1,15 +1,18 @@
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
-import "package:aroma_mobile/presentation/screen/home/home_screen.dart";
-import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
-import "package:aroma_mobile/presentation/screen/login/login_screen.dart";
-import "package:aroma_mobile/presentation/screen/login/register_screen.dart";
-import "package:aroma_mobile/presentation/screen/login/reset_password_screen.dart";
-import "package:aroma_mobile/presentation/screen/login/sign_in_screen.dart";
+import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/home_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/login_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/register_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/reset_password_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/sign_in_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/settings/settings_screen.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
@@ -22,6 +25,7 @@ const _signUpPath = "signup";
 const _resetPasswordPath = "reset-password";
 
 const _homePath = "/";
+const _settingsPath = "settings";
 
 final routeGraph = GoRouteGraph(
   routes: [
@@ -78,7 +82,15 @@ final routeGraph = GoRouteGraph(
         J1RouteNode(
           route: AromaRoute.home,
           builder: (_, _) => const HomeScreen(),
-          routes: [],
+          routes: [
+            J1RouteNode(
+              route: AromaRoute.settings,
+              builder: (_, _) => BlocProvider(
+                create: (_) => SettingsBloc()..add(const SettingsEventInit()),
+                child: const SettingsScreen(),
+              ),
+            ),
+          ],
         ),
       ],
     ),
@@ -108,6 +120,11 @@ abstract class AromaRoute {
 
   static final home = J1Route<EmptyRouteConfig>(
     parts: [PathSegment(_homePath)],
+    configParser: EmptyRouteConfig.parser,
+  );
+
+  static final settings = J1Route<EmptyRouteConfig>(
+    parts: [PathSegment(_homePath), PathSegment(_settingsPath)],
     configParser: EmptyRouteConfig.parser,
   );
 }

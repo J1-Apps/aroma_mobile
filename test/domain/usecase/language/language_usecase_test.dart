@@ -28,16 +28,13 @@ void main() {
     });
 
     test("returns a stream of language", () {
+      when(languageRepository.loadLanguage).thenAnswer((_) async => const Success(""));
+
       when(() => languageRepository.languageStream).thenAnswer(
-        (_) => Stream.fromIterable([
-          "en",
-          "en",
-          "kr",
-          "es",
-        ]),
+        (_) => Stream.fromIterable([null, "en", "kr", "es"]),
       );
 
-      expect(languageUsecase.call(), emitsInOrder(["en", "en", "kr", "es"]));
+      expect(languageUsecase.call(), emitsInOrder([null, "en", "kr", "es"]));
     });
   });
 }

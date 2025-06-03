@@ -38,7 +38,7 @@ void main() {
 
     test("language changed event is handled correctly", () async {
       when(languageUsecase.call).thenAnswer((_) => Stream.value("es"));
-      expect(bloc.state, const SettingsState(language: "en", isSigningOut: false, error: null));
+      expect(bloc.state, const SettingsState(language: null, isSigningOut: false, error: null));
 
       bloc.add(const SettingsEventInit());
 
@@ -52,7 +52,7 @@ void main() {
       bloc.add(const SettingsEventUpdateLanguage("es"));
 
       await awaitMs(1);
-      expect(bloc.state, const SettingsState(language: "en", isSigningOut: false, error: null));
+      expect(bloc.state, const SettingsState(language: null, isSigningOut: false, error: null));
     });
 
     test("handles update language failure", () async {
@@ -63,7 +63,7 @@ void main() {
       bloc.add(const SettingsEventUpdateLanguage("es"));
 
       await awaitMs(1);
-      expect(bloc.state, const SettingsState(language: "en", isSigningOut: false, error: ErrorCode.common_unknown));
+      expect(bloc.state, const SettingsState(language: null, isSigningOut: false, error: ErrorCode.common_unknown));
     });
 
     test("sign out event is handled correctly", () async {
@@ -72,7 +72,7 @@ void main() {
       bloc.add(const SettingsEventSignOut());
 
       await awaitMs(1);
-      expect(bloc.state, const SettingsState(language: "en", isSigningOut: false, error: null));
+      expect(bloc.state, const SettingsState(language: null, isSigningOut: false, error: null));
     });
 
     test("handles sign out failure", () async {
@@ -81,7 +81,7 @@ void main() {
       bloc.add(const SettingsEventSignOut());
 
       await awaitMs(1);
-      expect(bloc.state, const SettingsState(language: "en", isSigningOut: false, error: ErrorCode.common_unknown));
+      expect(bloc.state, const SettingsState(language: null, isSigningOut: false, error: ErrorCode.common_unknown));
     });
   });
 }

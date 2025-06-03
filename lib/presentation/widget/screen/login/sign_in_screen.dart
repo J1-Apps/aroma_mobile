@@ -1,29 +1,29 @@
 import "package:aroma_mobile/data/model/error_model.dart";
-import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/login/register_event.dart";
-import "package:aroma_mobile/presentation/bloc/login/register_state.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_event.dart";
+import "package:aroma_mobile/presentation/bloc/login/sign_in_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
-import "package:aroma_mobile/presentation/screen/login/login_loading.dart";
-import "package:aroma_mobile/presentation/screen/login/login_scaffold.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/login_loading.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/login_scaffold.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
-class RegisterScreen extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
   final String initialEmail;
   final String initialPassword;
 
-  const RegisterScreen({
+  const SignInScreen({
+    super.key,
     this.initialEmail = "",
     this.initialPassword = "",
-    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return LoginScaffold(
-      child: _RegisterContent(
+      child: _SignInContent(
         initialEmail: initialEmail,
         initialPassword: initialPassword,
       ),
@@ -31,24 +31,24 @@ class RegisterScreen extends StatelessWidget {
   }
 }
 
-class _RegisterContent extends StatelessWidget {
+class _SignInContent extends StatelessWidget {
   final String initialEmail;
   final String initialPassword;
 
-  const _RegisterContent({
+  const _SignInContent({
     required this.initialEmail,
     required this.initialPassword,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterBloc, RegisterState>(
+    return BlocConsumer<SignInBloc, SignInState>(
       buildWhen: (previous, current) => previous.isLoading != current.isLoading,
       listenWhen: (previous, current) => previous.error != current.error && current.error != null,
       listener: (context, state) => _showErrorToast(context, state.error),
       builder: (context, state) => state.isLoading
           ? const LoginLoading()
-          : _RegisterForm(
+          : _SignInForm(
               initialEmail: initialEmail,
               initialPassword: initialPassword,
             ),
@@ -60,7 +60,7 @@ void _showErrorToast(BuildContext context, ErrorCode? error) {
   final strings = context.strings();
 
   final message = switch (error) {
-    ErrorCode.source_remote_auth_emailSignUpFailed => strings.register_emailSignUpFailed,
+    ErrorCode.source_remote_auth_emailSignInFailed => strings.signIn_emailSignInFailed,
     _ => null,
   };
 
@@ -69,25 +69,22 @@ void _showErrorToast(BuildContext context, ErrorCode? error) {
   }
 }
 
-class _RegisterForm extends StatefulWidget {
+class _SignInForm extends StatefulWidget {
   final String initialEmail;
   final String initialPassword;
 
-  const _RegisterForm({
+  const _SignInForm({
     required this.initialEmail,
     required this.initialPassword,
   });
 
   @override
-  State<_RegisterForm> createState() => _RegisterFormState();
+  State<StatefulWidget> createState() => _SignInFormState();
 }
 
-class _RegisterFormState extends State<_RegisterForm> {
+class _SignInFormState extends State<_SignInForm> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
-  late final TextEditingController _confirmController;
-
-  bool _showPassword = false;
 
   String? _emailError;
   String? _passwordError;
@@ -98,15 +95,15 @@ class _RegisterFormState extends State<_RegisterForm> {
 
     _emailController = TextEditingController(text: widget.initialEmail);
     _passwordController = TextEditingController(text: widget.initialPassword);
-    _confirmController = TextEditingController();
 
     _emailController.addListener(() => setState(() => _emailError = null));
     _passwordController.addListener(() => setState(() => _passwordError = null));
-    _confirmController.addListener(() => setState(() => _passwordError = null));
   }
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.strings();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
       child: Column(
@@ -122,39 +119,36 @@ class _RegisterFormState extends State<_RegisterForm> {
           _PasswordField(
             controller: _passwordController,
             errorText: _passwordError,
-            showPassword: _showPassword,
-            toggleShowPassword: () => setState(() => _showPassword = !_showPassword),
           ),
           const SizedBox(height: JDimens.spacing_s),
-          // TODO: Get confirm password error text
-          _ConfirmPasswordField(
-            controller: _confirmController,
-            errorText: _passwordError,
-            showPassword: _showPassword,
+          JTextButton(
+            text: strings.signIn_loginButton,
+            onPressed: () => context.read<SignInBloc>().add(
+              SignInEventSignInWithEmail(
+                email: _emailController.text,
+                password: _passwordController.text,
+              ),
+            ),
           ),
           const SizedBox(height: JDimens.spacing_s),
-          _RegisterButton(
-            onPressed: () {
-              if (_passwordController.text != _confirmController.text) {
-                setState(() => _passwordError = context.strings().register_passwordMismatch);
-                return;
-              }
-
-              context.read<RegisterBloc>().add(
-                RegisterEventSignUpWithEmail(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                ),
-              );
-            },
-          ),
-          const SizedBox(height: JDimens.spacing_m),
-          _SignIn(
+          JTextButton(
+            text: strings.signIn_registerButton,
+            color: JWidgetColor.secondary,
             onPressed: () => context.navigate(
-              AromaRoute.signIn.build(
+              AromaRoute.signUp.build(
                 EmailPasswordRouteConfig(
                   email: _emailController.text,
                   password: _passwordController.text,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: JDimens.spacing_m),
+          _ResetPassword(
+            onPressed: () => context.navigate(
+              AromaRoute.resetPassword.build(
+                EmailRouteConfig(
+                  email: _emailController.text,
                 ),
               ),
             ),
@@ -168,7 +162,6 @@ class _RegisterFormState extends State<_RegisterForm> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmController.dispose();
     super.dispose();
   }
 }
@@ -188,8 +181,8 @@ class _EmailField extends StatelessWidget {
 
     return JTextField(
       controller: controller,
-      name: strings.register_emailLabel,
-      hint: strings.register_emailLabel,
+      name: strings.signIn_emailLabel,
+      hint: strings.signIn_emailLabel,
       errorText: errorText,
       showErrorText: true,
       keyboardType: TextInputType.emailAddress,
@@ -197,100 +190,74 @@ class _EmailField extends StatelessWidget {
   }
 }
 
-class _PasswordField extends StatelessWidget {
+class _PasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String? errorText;
-  final bool showPassword;
-  final VoidCallback toggleShowPassword;
 
   const _PasswordField({
     required this.controller,
     this.errorText,
-    required this.showPassword,
-    required this.toggleShowPassword,
   });
+
+  @override
+  State<StatefulWidget> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<_PasswordField> {
+  bool _showPassword = false;
+  String? _errorText;
+
+  @override
+  void initState() {
+    _errorText = widget.errorText;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final strings = context.strings();
 
     return JTextField(
-      controller: controller,
-      name: strings.register_passwordLabel,
-      hint: strings.register_passwordLabel,
-      errorText: errorText,
+      controller: widget.controller,
+      name: strings.signIn_passwordLabel,
+      hint: strings.signIn_passwordLabel,
+      errorText: _errorText,
       showErrorText: true,
       keyboardType: TextInputType.visiblePassword,
       autocorrect: false,
-      obscureText: !showPassword,
-      icon: showPassword ? JamIcons.eyeclosed : JamIcons.eye,
-      onIconPressed: toggleShowPassword,
+      obscureText: !_showPassword,
+      icon: _showPassword ? JamIcons.eyeclosed : JamIcons.eye,
+      onIconPressed: () => setState(() => _showPassword = !_showPassword),
     );
+  }
+
+  @override
+  void didUpdateWidget(covariant _PasswordField oldWidget) {
+    _errorText = widget.errorText;
+    super.didUpdateWidget(oldWidget);
   }
 }
 
-class _ConfirmPasswordField extends StatelessWidget {
-  final TextEditingController controller;
-  final String? errorText;
-  final bool showPassword;
+class _ResetPassword extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  const _ConfirmPasswordField({
-    required this.controller,
-    this.errorText,
-    required this.showPassword,
+  const _ResetPassword({
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     final strings = context.strings();
 
-    return JTextField(
-      controller: controller,
-      name: strings.register_confirmPasswordLabel,
-      hint: strings.register_confirmPasswordLabel,
-      errorText: errorText,
-      showErrorText: true,
-      keyboardType: TextInputType.visiblePassword,
-      autocorrect: false,
-      obscureText: !showPassword,
-    );
-  }
-}
-
-class _RegisterButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _RegisterButton({
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return JTextButton(
-      text: context.strings().register_registerButton,
-      onPressed: onPressed,
-    );
-  }
-}
-
-class _SignIn extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _SignIn({
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          context.strings().register_signInPrompt,
+          strings.signIn_resetPasswordPrompt,
           style: context.textTheme().bodyMedium,
         ),
         JTextButton(
-          text: context.strings().register_signInCta,
+          text: strings.signIn_resetPasswordCta,
           forceCaps: false,
           size: JWidgetSize.small,
           type: JButtonType.flat,

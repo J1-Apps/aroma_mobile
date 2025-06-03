@@ -5,7 +5,7 @@ part "settings_state.mapper.dart";
 
 @MappableClass()
 class SettingsState with SettingsStateMappable {
-  final String language;
+  final String? language;
   final bool isSigningOut;
   final ErrorCode? error;
 

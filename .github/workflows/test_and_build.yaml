@@ -35,7 +35,7 @@ jobs:
         run: flutter analyze
 
       - name: test
-        run: flutter test --coverage
+        run: bash ./run_coverage.sh
 
       - name: upload to codecov
         uses: codecov/codecov-action@v4

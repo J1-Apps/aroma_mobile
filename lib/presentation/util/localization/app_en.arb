@@ -21,6 +21,32 @@
     "login_googleSignInFailed": "Failed to sign in with google, please try again.",
     "@login_googleSignInFailed": {},
 
+    "settings_title": "Settings",
+    "@settings_title": {},
+    "settings_language": "Language",
+    "@settings_language": {},
+    "settings_theme": "Theme",
+    "@settings_theme": {},
+    "settings_logout": "Log out",
+    "@settings_logout": {},
+    "settings_languageHint": "Search",
+    "@settings_languageHint": {},
+    "settings_languageLabel": "{language, select, en{English} ko{Korean} other{Unknown}}",
+    "@settings_languageLabel": {
+        "placeholders": {
+            "language": {
+                "type": "String",
+                "example": "en"
+            }
+        }
+    },
+    "settings_error_languageEmpty": "Could not find any languages. Please ensure that you're searching by IANA language subtag (ie: \"en\", \"ko\", etc.) or language name and try again.",
+    "@settings_error_languageEmpty": {},
+    "settings_error_getLanguage": "Failed to fetch the current language. Using the default language.",
+    "@settings_error_getLanguage": {},
+    "settings_error_saveLanguage": "Failed to save language.",
+    "@settings_error_saveLanguage": {},
+
     "signIn_loginButton": "Log in",
     "@signIn_loginButton": {},
     "signIn_registerButton": "Register",

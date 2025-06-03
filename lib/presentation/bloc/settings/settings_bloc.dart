@@ -1,7 +1,6 @@
 import "dart:async";
 
 import "package:aroma_mobile/data/model/error_model.dart";
-import "package:aroma_mobile/data/source/util/default.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
@@ -24,7 +23,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }) : _languageUsecase = languageUsecase ?? locator.get<LanguageUsecase>(),
        _updateLanguageUsecase = updateLanguageUsecase ?? locator.get<UpdateLanguageUsecase>(),
        _signOutUsecase = signOutUsecase ?? locator.get<SignOutUsecase>(),
-       super(const SettingsState(language: Default.language, isSigningOut: false, error: null)) {
+       super(const SettingsState(language: null, isSigningOut: false, error: null)) {
     on<SettingsEventInit>(_onInit);
     on<SettingsEventUpdateLanguage>(_onUpdateLanguage);
     on<SettingsEventLanguageUpdated>(_onLanguageUpdated);

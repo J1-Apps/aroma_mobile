@@ -5,15 +5,15 @@ import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_event.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
-import "package:aroma_mobile/presentation/screen/login/login_loading.dart";
-import "package:aroma_mobile/presentation/screen/login/login_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/login_loading.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/login_screen.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
-import "../../../test_util/test_wrapper.dart";
-import "../../../test_util/testing_mocks.dart";
+import "../../../../test_util/test_wrapper.dart";
+import "../../../../test_util/testing_mocks.dart";
 
 void main() {
   group("Login Screen", () {

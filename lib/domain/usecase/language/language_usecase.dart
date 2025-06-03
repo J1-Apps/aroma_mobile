@@ -12,5 +12,8 @@ class LanguageUsecaseImpl implements LanguageUsecase {
     : _languageRepository = languageRepository ?? locator.get<LanguageRepository>();
 
   @override
-  Stream<String?> call() => _languageRepository.languageStream;
+  Stream<String?> call() {
+    _languageRepository.loadLanguage();
+    return _languageRepository.languageStream;
+  }
 }

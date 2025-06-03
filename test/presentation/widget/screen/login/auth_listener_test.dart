@@ -4,14 +4,14 @@ import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/app/app_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
-import "package:aroma_mobile/presentation/screen/login/auth_listener.dart";
+import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
-import "../../../test_util/test_wrapper.dart";
-import "../../../test_util/testing_mocks.dart";
+import "../../../../test_util/test_wrapper.dart";
+import "../../../../test_util/testing_mocks.dart";
 
 void main() {
   group("Auth Listener", () {

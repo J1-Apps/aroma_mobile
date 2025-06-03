@@ -21,7 +21,7 @@ class SettingsStateMapper extends ClassMapperBase<SettingsState> {
   @override
   final String id = 'SettingsState';
 
-  static String _$language(SettingsState v) => v.language;
+  static String? _$language(SettingsState v) => v.language;
   static const Field<SettingsState, String> _f$language = Field('language', _$language);
   static bool _$isSigningOut(SettingsState v) => v.isSigningOut;
   static const Field<SettingsState, bool> _f$isSigningOut = Field('isSigningOut', _$isSigningOut);
@@ -99,9 +99,9 @@ class _SettingsStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Setting
   @override
   late final ClassMapperBase<SettingsState> $mapper = SettingsStateMapper.ensureInitialized();
   @override
-  $R call({String? language, bool? isSigningOut, Object? error = $none}) => $apply(
+  $R call({Object? language = $none, bool? isSigningOut, Object? error = $none}) => $apply(
     FieldCopyWithData({
-      if (language != null) #language: language,
+      if (language != $none) #language: language,
       if (isSigningOut != null) #isSigningOut: isSigningOut,
       if (error != $none) #error: error,
     }),

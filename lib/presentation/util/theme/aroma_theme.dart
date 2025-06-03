@@ -75,20 +75,20 @@ enum AromaFontFamily {
 
 abstract class AromaTextTheme {
   static const initial = J1TextTheme(
-    displayLarge: J1TextStyle.displayLarge(fontFamily: _header),
-    displayMedium: J1TextStyle.displayMedium(fontFamily: _header),
-    displaySmall: J1TextStyle.displaySmall(fontFamily: _header),
-    headlineLarge: J1TextStyle.headlineLarge(fontFamily: _header),
-    headlineMedium: J1TextStyle.headlineMedium(fontFamily: _header),
-    headlineSmall: J1TextStyle.headlineSmall(fontFamily: _header),
+    displayLarge: J1TextStyle.displayLarge(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
+    displayMedium: J1TextStyle.displayMedium(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
+    displaySmall: J1TextStyle.displaySmall(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
+    headlineLarge: J1TextStyle.headlineLarge(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
+    headlineMedium: J1TextStyle.headlineMedium(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
+    headlineSmall: J1TextStyle.headlineSmall(fontFamily: _header, fontWeight: J1FontWeight.semiBold),
     titleLarge: J1TextStyle.titleLarge(fontFamily: _body, fontWeight: J1FontWeight.medium),
     titleMedium: J1TextStyle.titleMedium(fontFamily: _body, fontWeight: J1FontWeight.medium),
     titleSmall: J1TextStyle.titleSmall(fontFamily: _body, fontWeight: J1FontWeight.medium),
     bodyLarge: J1TextStyle.bodyLarge(fontFamily: _body),
     bodyMedium: J1TextStyle.bodyMedium(fontFamily: _body),
     bodySmall: J1TextStyle.bodySmall(fontFamily: _body),
-    labelLarge: J1TextStyle.labelLarge(fontFamily: _body),
-    labelMedium: J1TextStyle.labelMedium(fontFamily: _body),
-    labelSmall: J1TextStyle.labelSmall(fontFamily: _body),
+    labelLarge: J1TextStyle.labelLarge(fontFamily: _body, fontWeight: J1FontWeight.medium),
+    labelMedium: J1TextStyle.labelMedium(fontFamily: _body, fontWeight: J1FontWeight.medium),
+    labelSmall: J1TextStyle.labelSmall(fontFamily: _body, fontWeight: J1FontWeight.medium),
   );
 }
