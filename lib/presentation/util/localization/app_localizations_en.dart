@@ -93,5 +93,8 @@ class StringsEn extends Strings {
   String get resetPassword_signInCta => 'Sign in';
 
   @override
+  String get resetPassword_resetPasswordSuccess => 'Password reset email sent, please check your email.';
+
+  @override
   String get resetPassword_sendPasswordResetEmailFailed => 'Failed to send password reset email, please try again.';
 }

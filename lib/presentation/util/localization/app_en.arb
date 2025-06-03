@@ -61,6 +61,8 @@
     "@resetPassword_signInPrompt": {},
     "resetPassword_signInCta": "Sign in",
     "@resetPassword_signInCta": {},
+    "resetPassword_resetPasswordSuccess": "Password reset email sent, please check your email.",
+    "@resetPassword_resetPasswordSuccess": {},
     "resetPassword_sendPasswordResetEmailFailed": "Failed to send password reset email, please try again.",
     "@resetPassword_sendPasswordResetEmailFailed": {}
 }

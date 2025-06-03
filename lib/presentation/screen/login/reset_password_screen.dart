@@ -37,8 +37,10 @@ class _ResetPasswordContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
       buildWhen: (previous, current) => previous.isLoading != current.isLoading,
-      listenWhen: (previous, current) => previous.error != current.error && current.error != null,
-      listener: (context, state) => _showErrorToast(context, state.error),
+      listenWhen: (previous, current) =>
+          (previous.error != current.error && current.error != null) ||
+          (previous.isSuccess != current.isSuccess && current.isSuccess),
+      listener: (context, state) => _handleStateUpdate(context, state.error, state.isSuccess),
       builder: (context, state) => state.isLoading
           ? const LoginLoading()
           : _ResetPasswordForm(
@@ -48,16 +50,25 @@ class _ResetPasswordContent extends StatelessWidget {
   }
 }
 
-void _showErrorToast(BuildContext context, ErrorCode? error) {
+void _handleStateUpdate(BuildContext context, ErrorCode? error, bool isSuccess) {
   final strings = context.strings();
+  String? message;
 
-  final message = switch (error) {
-    ErrorCode.source_remote_auth_sendPasswordResetEmailFailed => strings.resetPassword_sendPasswordResetEmailFailed,
-    _ => null,
-  };
+  if (isSuccess) {
+    message = strings.resetPassword_resetPasswordSuccess;
+  } else {
+    message = switch (error) {
+      ErrorCode.source_remote_auth_sendPasswordResetEmailFailed => strings.resetPassword_sendPasswordResetEmailFailed,
+      _ => null,
+    };
+  }
 
   if (message != null) {
     context.showJToastWithText(text: message, hasClose: true);
+  }
+
+  if (isSuccess) {
+    context.navigate(AromaRoute.signIn.build(EmailPasswordRouteConfig()));
   }
 }
 

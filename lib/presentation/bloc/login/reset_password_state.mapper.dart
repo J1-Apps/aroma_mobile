@@ -23,17 +23,24 @@ class ResetPasswordStateMapper extends ClassMapperBase<ResetPasswordState> {
 
   static bool _$isLoading(ResetPasswordState v) => v.isLoading;
   static const Field<ResetPasswordState, bool> _f$isLoading = Field('isLoading', _$isLoading, opt: true, def: false);
+  static bool _$isSuccess(ResetPasswordState v) => v.isSuccess;
+  static const Field<ResetPasswordState, bool> _f$isSuccess = Field('isSuccess', _$isSuccess, opt: true, def: false);
   static ErrorCode? _$error(ResetPasswordState v) => v.error;
   static const Field<ResetPasswordState, ErrorCode> _f$error = Field('error', _$error, opt: true);
 
   @override
   final MappableFields<ResetPasswordState> fields = const {
     #isLoading: _f$isLoading,
+    #isSuccess: _f$isSuccess,
     #error: _f$error,
   };
 
   static ResetPasswordState _instantiate(DecodingData data) {
-    return ResetPasswordState(isLoading: data.dec(_f$isLoading), error: data.dec(_f$error));
+    return ResetPasswordState(
+      isLoading: data.dec(_f$isLoading),
+      isSuccess: data.dec(_f$isSuccess),
+      error: data.dec(_f$error),
+    );
   }
 
   @override
@@ -86,7 +93,7 @@ extension ResetPasswordStateValueCopy<$R, $Out> on ObjectCopyWith<$R, ResetPassw
 
 abstract class ResetPasswordStateCopyWith<$R, $In extends ResetPasswordState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({bool? isLoading, ErrorCode? error});
+  $R call({bool? isLoading, bool? isSuccess, ErrorCode? error});
   ResetPasswordStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -97,11 +104,17 @@ class _ResetPasswordStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Re
   @override
   late final ClassMapperBase<ResetPasswordState> $mapper = ResetPasswordStateMapper.ensureInitialized();
   @override
-  $R call({bool? isLoading, Object? error = $none}) =>
-      $apply(FieldCopyWithData({if (isLoading != null) #isLoading: isLoading, if (error != $none) #error: error}));
+  $R call({bool? isLoading, bool? isSuccess, Object? error = $none}) => $apply(
+    FieldCopyWithData({
+      if (isLoading != null) #isLoading: isLoading,
+      if (isSuccess != null) #isSuccess: isSuccess,
+      if (error != $none) #error: error,
+    }),
+  );
   @override
   ResetPasswordState $make(CopyWithData data) => ResetPasswordState(
     isLoading: data.get(#isLoading, or: $value.isLoading),
+    isSuccess: data.get(#isSuccess, or: $value.isSuccess),
     error: data.get(#error, or: $value.error),
   );
 

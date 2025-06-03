@@ -6,10 +6,12 @@ part "reset_password_state.mapper.dart";
 @MappableClass()
 class ResetPasswordState with ResetPasswordStateMappable {
   final bool isLoading;
+  final bool isSuccess;
   final ErrorCode? error;
 
   const ResetPasswordState({
     this.isLoading = false,
+    this.isSuccess = false,
     this.error,
   });
 }

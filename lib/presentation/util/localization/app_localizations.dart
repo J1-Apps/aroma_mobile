@@ -259,6 +259,12 @@ abstract class Strings {
   /// **'Sign in'**
   String get resetPassword_signInCta;
 
+  /// No description provided for @resetPassword_resetPasswordSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent, please check your email.'**
+  String get resetPassword_resetPasswordSuccess;
+
   /// No description provided for @resetPassword_sendPasswordResetEmailFailed.
   ///
   /// In en, this message translates to:

@@ -15,12 +15,12 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
   }
 
   Future<void> _onResetPassword(ResetPasswordEventResetPassword event, Emitter<ResetPasswordState> emit) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(state.copyWith(isLoading: true, isSuccess: false, error: null));
     final result = await _resetPasswordUsecase(event.email);
 
     switch (result) {
       case Success():
-        emit(state.copyWith(isLoading: false, error: null));
+        emit(state.copyWith(isLoading: false, isSuccess: true, error: null));
       case Failure():
         emit(state.copyWith(isLoading: false, error: result.error.errorCode));
     }
