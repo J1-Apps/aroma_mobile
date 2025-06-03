@@ -1,4 +1,5 @@
 import "package:aroma_mobile/data/model/error_model.dart";
+import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
@@ -38,6 +39,8 @@ class MockSharedPreferences extends Mock implements SharedPreferencesAsync {}
 class MockRemoteAuthSource extends Mock implements RemoteAuthSource {}
 
 class MockLocalThemeSource extends Mock implements LocalThemeSource {}
+
+class MockLocalLanguageSource extends Mock implements LocalLanguageSource {}
 
 // Mock Repositories
 
