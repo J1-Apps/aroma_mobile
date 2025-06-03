@@ -1,4 +1,3 @@
-import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:flutter/material.dart";
@@ -17,20 +16,7 @@ class HomeScreen extends StatelessWidget {
         titleStyle: context.textTheme().headlineLarge,
         trailingActions: [const _HomeSettingsButton()],
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("Home"),
-            // coverage:ignore-start
-            TextButton(
-              onPressed: () => locator.get<SignOutUsecase>().call(),
-              child: const Text("Sign out"),
-            ),
-            // coverage:ignore-end
-          ],
-        ),
-      ),
+      body: Center(child: Text("Home")),
     );
   }
 }

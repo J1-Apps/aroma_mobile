@@ -74,6 +74,9 @@ class StringsEn extends Strings {
   String get settings_error_saveLanguage => 'Failed to save language.';
 
   @override
+  String get settings_error_signOut => 'Failed to sign out. Please try again.';
+
+  @override
   String get signIn_loginButton => 'Log in';
 
   @override

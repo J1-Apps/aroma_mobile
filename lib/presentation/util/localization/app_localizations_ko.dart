@@ -74,6 +74,9 @@ class StringsKo extends Strings {
   String get settings_error_saveLanguage => '언어를 저장하는 데 실패했습니다.';
 
   @override
+  String get settings_error_signOut => '로그아웃 실패, 다시 시도해주세요.';
+
+  @override
   String get signIn_loginButton => '로그인';
 
   @override

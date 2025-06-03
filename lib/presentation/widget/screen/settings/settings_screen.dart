@@ -1,5 +1,6 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
@@ -22,26 +23,47 @@ class SettingsScreen extends StatelessWidget {
         titleStyle: context.textTheme().headlineLarge,
         leadingAction: context.canPop() ? const AromaBackButton() : null,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _SettingsItem(
-            icon: JamIcons.language,
-            label: strings.settings_language,
-            trailingItem: const _LanguageSwitcher(),
-            onPressed: () => context.showJBottomSheet(
-              child: SelectLanguageDrawer(bloc: context.read<SettingsBloc>()),
-              scrollControlDisabledMaxHeightRatio: selectLanguageDrawerHeightRatio,
+      body: BlocListener<SettingsBloc, SettingsState>(
+        listenWhen: (previous, current) => previous.error != current.error && current.error != null,
+        listener: _listenErrors,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _SettingsItem(
+              icon: JamIcons.language,
+              label: strings.settings_language,
+              trailingItem: const _LanguageSwitcher(),
+              onPressed: () => context.showJBottomSheet(
+                child: SelectLanguageDrawer(bloc: context.read<SettingsBloc>()),
+                scrollControlDisabledMaxHeightRatio: selectLanguageDrawerHeightRatio,
+              ),
             ),
-          ),
-          _SettingsItem(
-            icon: JamIcons.paintbrush,
-            label: strings.settings_theme,
-            onPressed: () => context.navigate(AromaRoute.theme.build(const EmptyRouteConfig())),
-          ),
-        ],
+            _SettingsItem(
+              icon: JamIcons.paintbrush,
+              label: strings.settings_theme,
+              onPressed: () => context.navigate(AromaRoute.theme.build(const EmptyRouteConfig())),
+            ),
+            const SizedBox(height: JDimens.spacing_l),
+            const _SignOutButton(),
+          ],
+        ),
       ),
     );
+  }
+}
+
+void _listenErrors(BuildContext context, SettingsState state) {
+  final strings = context.strings();
+
+  final message = switch (state.error) {
+    ErrorCode.source_local_language_readError => strings.settings_error_getLanguage,
+    ErrorCode.source_local_language_writeError => strings.settings_error_saveLanguage,
+    ErrorCode.source_remote_auth_signOutFailed => strings.settings_error_signOut,
+    _ => null,
+  };
+
+  if (message != null) {
+    context.showJToastWithText(text: message, hasClose: true);
   }
 }
 
@@ -86,9 +108,7 @@ class _LanguageSwitcher extends StatelessWidget {
     final textTheme = context.textTheme();
     final strings = context.strings();
 
-    return BlocConsumer<SettingsBloc, SettingsState>(
-      listenWhen: (previous, current) => previous.error != current.error && current.error != null,
-      listener: _listenErrors,
+    return BlocBuilder<SettingsBloc, SettingsState>(
       buildWhen: (previous, current) => previous.language != current.language,
       builder: (context, state) {
         final language = state.language;
@@ -101,7 +121,7 @@ class _LanguageSwitcher extends StatelessWidget {
             children: [
               Text(strings.settings_languageLabel(language), style: textTheme.titleMedium),
               const SizedBox(width: JDimens.spacing_xs),
-              Text("▼", style: textTheme.labelSmall),
+              Icon(JamIcons.chevrondown, size: JDimens.size_16),
             ],
           );
         }
@@ -110,16 +130,32 @@ class _LanguageSwitcher extends StatelessWidget {
   }
 }
 
-void _listenErrors(BuildContext context, SettingsState state) {
-  final strings = context.strings();
+class _SignOutButton extends StatelessWidget {
+  const _SignOutButton();
 
-  final message = switch (state.error) {
-    ErrorCode.source_local_language_readError => strings.settings_error_getLanguage,
-    ErrorCode.source_local_language_writeError => strings.settings_error_saveLanguage,
-    _ => null,
-  };
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        buildWhen: (previous, current) => previous.isSigningOut != current.isSigningOut,
+        builder: (context, state) {
+          final isSigningOut = state.isSigningOut;
 
-  if (message != null) {
-    context.showJToastWithText(text: message, hasClose: true);
+          return isSigningOut
+              ? const Center(child: JLoadingIndicator())
+              : JTextButton(
+                  text: context.strings().settings_logout,
+                  type: JButtonType.flat,
+                  color: JWidgetColor.onSurface,
+                  size: JWidgetSize.small,
+                  onPressed: isSigningOut ? null : () => context.read<SettingsBloc>().add(const SettingsEventSignOut()),
+                  overrides: JTextButtonOverrides(
+                    outlineColor: context.colorScheme().onSurface,
+                  ),
+                );
+        },
+      ),
+    );
   }
 }

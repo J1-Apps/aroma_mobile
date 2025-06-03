@@ -200,6 +200,12 @@ abstract class Strings {
   /// **'Failed to save language.'**
   String get settings_error_saveLanguage;
 
+  /// No description provided for @settings_error_signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign out. Please try again.'**
+  String get settings_error_signOut;
+
   /// No description provided for @signIn_loginButton.
   ///
   /// In en, this message translates to:
