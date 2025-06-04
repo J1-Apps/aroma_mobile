@@ -1,3 +1,5 @@
+import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
+import "package:aroma_mobile/data/source/local_language_source/memory_local_language_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/memory_local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/memory_remote_auth_source.dart";
@@ -20,6 +22,9 @@ class LocalEnvironment extends AromaEnvironment {
   J1Router get router => GoRouter();
 
   // Source
+
+  @override
+  LocalLanguageSource get localLanguageSource => MemoryLocalLanguageSource();
 
   @override
   LocalThemeSource get localThemeSource => MemoryLocalThemeSource();

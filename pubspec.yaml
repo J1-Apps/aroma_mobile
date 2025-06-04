@@ -37,6 +37,7 @@ dependencies:
   firebase_core_platform_interface: ^5.4.0
   google_sign_in: ^6.3.0
   dart_mappable: ^4.5.0
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:

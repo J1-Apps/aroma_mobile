@@ -36,6 +36,47 @@ class StringsEn extends Strings {
   String get login_googleSignInFailed => 'Failed to sign in with google, please try again.';
 
   @override
+  String get settings_title => 'Settings';
+
+  @override
+  String get settings_language => 'Language';
+
+  @override
+  String get settings_theme => 'Theme';
+
+  @override
+  String get settings_logout => 'Log out';
+
+  @override
+  String get settings_languageHint => 'Search';
+
+  @override
+  String settings_languageLabel(String language) {
+    String _temp0 = intl.Intl.selectLogic(
+      language,
+      {
+        'en': 'English',
+        'ko': 'Korean',
+        'other': 'Unknown',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get settings_error_languageEmpty =>
+      'Could not find any languages. Please ensure that you\'re searching by IANA language subtag (ie: \"en\", \"ko\", etc.) or language name and try again.';
+
+  @override
+  String get settings_error_getLanguage => 'Failed to fetch the current language. Using the default language.';
+
+  @override
+  String get settings_error_saveLanguage => 'Failed to save language.';
+
+  @override
+  String get settings_error_signOut => 'Failed to sign out. Please try again.';
+
+  @override
   String get signIn_loginButton => 'Log in';
 
   @override
@@ -97,4 +138,41 @@ class StringsEn extends Strings {
 
   @override
   String get resetPassword_sendPasswordResetEmailFailed => 'Failed to send password reset email, please try again.';
+
+  @override
+  String get theme_title => 'Theme';
+
+  @override
+  String get theme_headerFonts => 'Header Fonts';
+
+  @override
+  String get theme_bodyFonts => 'Body Fonts';
+
+  @override
+  String theme_colorsTitle(String colors) {
+    String _temp0 = intl.Intl.selectLogic(
+      colors,
+      {
+        'light': 'Light',
+        'dark': 'Dark',
+        'blue': 'Blue',
+        'green': 'Green',
+        'other': 'Unknown',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String theme_fontTitle(String font) {
+    String _temp0 = intl.Intl.selectLogic(
+      font,
+      {
+        'crimsonText': 'Crimson Text',
+        'poppins': 'Poppins',
+        'other': 'Unknown',
+      },
+    );
+    return '$_temp0';
+  }
 }

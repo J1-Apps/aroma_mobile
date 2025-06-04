@@ -20,6 +20,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: setup lcov
+        uses: hrishikesh-kadam/setup-lcov@v1
+
       - name: setup flutter
         uses: subosito/flutter-action@v2
         with:
@@ -35,7 +38,7 @@ jobs:
         run: flutter analyze
 
       - name: test
-        run: flutter test --coverage
+        run: bash ./run_coverage.sh
 
       - name: upload to codecov
         uses: codecov/codecov-action@v4

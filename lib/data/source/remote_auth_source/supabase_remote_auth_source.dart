@@ -4,7 +4,7 @@ import "package:aroma_mobile/data/model/session_model.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
-const _googleClientId = "1099253870542-8o2c2nfedtf3nk4dht2d9uljbuofo94f.apps.googleusercontent.com";
+const _googleWebClientId = "1099253870542-8o2c2nfedtf3nk4dht2d9uljbuofo94f.apps.googleusercontent.com";
 
 class SupabaseRemoteAuthSource implements RemoteAuthSource {
   final SupabaseClient _supabase;
@@ -15,8 +15,8 @@ class SupabaseRemoteAuthSource implements RemoteAuthSource {
     SupabaseClient? supabase,
     GoogleSignIn? googleSignIn,
   }) : _supabase = supabase ?? Supabase.instance.client,
-       // TODO: Add iOS and web client IDs
-       _googleSignIn = googleSignIn ?? GoogleSignIn(serverClientId: _googleClientId);
+       // TODO: Add web client IDs
+       _googleSignIn = googleSignIn ?? GoogleSignIn(serverClientId: _googleWebClientId);
   // coverage:ignore-end
 
   @override

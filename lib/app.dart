@@ -1,5 +1,7 @@
-import "package:aroma_mobile/presentation/bloc/router/router_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/router/router_event.dart";
+import "package:collection/collection.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_event.dart";
+import "package:aroma_mobile/presentation/bloc/app/app_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
 import "package:aroma_mobile/presentation/router.dart";
@@ -23,20 +25,24 @@ class AromaApp extends StatelessWidget {
             defaultTextTheme: AromaTextTheme.initial,
           ),
         ),
-        BlocProvider<RouterBloc>(
-          create: (_) => RouterBloc()..add(const RouterEventInit()),
+        BlocProvider<AppBloc>(
+          create: (_) => AppBloc()..add(const AppEventInit()),
         ),
       ],
       child: J1ThemeBuilder(
-        builder: (context, theme) => MaterialApp.router(
-          onGenerateTitle: (context) => context.strings().app_title,
-          localizationsDelegates: Strings.localizationsDelegates,
-          supportedLocales: Strings.supportedLocales,
-          routerConfig: _router,
-          theme: theme,
-          // TODO: Add dynamic locale.
-          locale: const Locale("en", "US"),
-          scrollBehavior: ScrollConfiguration.of(context).copyWith(physics: AromaTheme.scrollPhysics),
+        builder: (context, theme) => BlocSelector<AppBloc, AppState, Locale?>(
+          selector: (state) => Strings.supportedLocales.firstWhereOrNull(
+            (locale) => locale.languageCode.toLowerCase() == state.language,
+          ),
+          builder: (context, locale) => MaterialApp.router(
+            onGenerateTitle: (context) => context.strings().app_title,
+            localizationsDelegates: Strings.localizationsDelegates,
+            supportedLocales: Strings.supportedLocales,
+            routerConfig: _router,
+            theme: theme,
+            locale: locale,
+            scrollBehavior: ScrollConfiguration.of(context).copyWith(physics: AromaTheme.scrollPhysics),
+          ),
         ),
       ),
     );
