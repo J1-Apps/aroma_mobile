@@ -36,6 +36,7 @@ void main() {
       locator.unregister<J1Router>();
       reset(router);
       reset(bloc);
+      stream.close();
     });
 
     testWidgets("handles loading state", (tester) async {
@@ -49,8 +50,6 @@ void main() {
       await tester.pump(const Duration(milliseconds: 100));
 
       expect(find.byType(LoginLoading), findsOneWidget);
-
-      stream.close();
     });
 
     testWidgets("handles error state", (tester) async {
@@ -73,8 +72,6 @@ void main() {
       await tester.pump(const Duration(milliseconds: 10));
 
       expect(find.byType(SnackBar), findsOneWidget);
-
-      stream.close();
     });
 
     testWidgets("navigates to sign in screen", (tester) async {

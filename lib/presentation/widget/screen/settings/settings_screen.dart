@@ -149,7 +149,7 @@ class _SignOutButton extends StatelessWidget {
                   type: JButtonType.flat,
                   color: JWidgetColor.onSurface,
                   size: JWidgetSize.small,
-                  onPressed: isSigningOut ? null : () => context.read<SettingsBloc>().add(const SettingsEventSignOut()),
+                  onPressed: () => context.read<SettingsBloc>().add(const SettingsEventSignOut()),
                   overrides: JTextButtonOverrides(
                     outlineColor: context.colorScheme().onSurface,
                   ),

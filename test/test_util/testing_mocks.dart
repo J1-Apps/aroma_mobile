@@ -17,6 +17,7 @@ import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -81,5 +82,7 @@ class MockSignInBloc extends Mock implements SignInBloc {}
 class MockRegisterBloc extends Mock implements RegisterBloc {}
 
 class MockResetPasswordBloc extends Mock implements ResetPasswordBloc {}
+
+class MockSettingsBloc extends Mock implements SettingsBloc {}
 
 class MockThemeBloc extends Mock implements J1ThemeBloc {}
