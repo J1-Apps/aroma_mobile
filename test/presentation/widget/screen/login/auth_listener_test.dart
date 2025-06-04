@@ -52,7 +52,7 @@ void main() {
       stream.add(const AppState(auth: AuthEntitySignedIn(userId: "123"), language: null));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.home.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.navigate(any(), AromaRoute.recipes.build(const EmptyRouteConfig()))).called(1);
 
       stream.close();
     });

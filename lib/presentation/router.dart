@@ -15,7 +15,8 @@ import "package:aroma_mobile/presentation/widget/screen/login/sign_in_screen.dar
 import "package:aroma_mobile/presentation/widget/screen/settings/settings_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/settings/theme_screen.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:j1_core_base/j1_core_base.dart";
+import "package:go_router/go_router.dart";
+import "package:j1_core_base/j1_core_base.dart" as j1;
 
 // This is a configuration file that doesn't need to be tested.
 // coverage:ignore-file
@@ -25,51 +26,60 @@ const _signInPath = "signin";
 const _signUpPath = "signup";
 const _resetPasswordPath = "reset-password";
 
-const _homePath = "/";
-const _settingsPath = "settings";
+const _settingsPath = "/settings";
 const _themePath = "theme";
 
-final routeGraph = GoRouteGraph(
+const _feedPath = "/feed";
+const _recipesPath = "/recipes";
+const _profilePath = "/profile";
+
+final routeConfig = GoRouter(
+  restorationScopeId: "aroma_router",
+  initialLocation: AromaRoute.recipes.build(const j1.EmptyRouteConfig()),
+  redirectLimit: 20,
   routes: [
-    J1ShellNode(
-      builder: (_, child) => LoginListener(child: child),
-      redirect: (context) => context.read<AppBloc>().state.auth is AuthEntitySignedIn ? _homePath : null,
+    ShellRoute(
+      restorationScopeId: "login_shell",
+      builder: (_, state, child) => LoginListener(child: child),
+      redirect: (context, _) => context.read<AppBloc>().state.auth is AuthEntitySignedIn
+          ? AromaRoute.recipes.build(const j1.EmptyRouteConfig())
+          : null,
       routes: [
-        J1RouteNode(
-          route: AromaRoute.login,
+        GoRoute(
+          path: AromaRoute.login.relativePath,
           builder: (_, _) => BlocProvider(
             create: (_) => LoginBloc(),
             child: const LoginScreen(),
           ),
           routes: [
-            J1RouteNode<EmailPasswordRouteConfig>(
-              route: AromaRoute.signIn,
-              builder: (_, config) => BlocProvider(
+            GoRoute(
+              path: AromaRoute.signIn.relativePath,
+              builder: (_, state) => BlocProvider(
                 create: (_) => SignInBloc(),
                 child: SignInScreen(
-                  initialEmail: config.email,
-                  initialPassword: config.password,
+                  initialEmail: state.uri.queryParameters["email"] ?? "",
+                  initialPassword: state.uri.queryParameters["password"] ?? "",
                 ),
               ),
               routes: [
-                J1RouteNode<EmailRouteConfig>(
-                  route: AromaRoute.resetPassword,
-                  builder: (_, config) => BlocProvider(
+                GoRoute(
+                  path: AromaRoute.resetPassword.relativePath,
+                  builder: (_, state) => BlocProvider(
                     create: (_) => ResetPasswordBloc(),
                     child: ResetPasswordScreen(
-                      initialEmail: config.email,
+                      initialEmail: state.uri.queryParameters["email"] ?? "",
                     ),
                   ),
                 ),
               ],
             ),
-            J1RouteNode<EmailPasswordRouteConfig>(
-              route: AromaRoute.signUp,
-              builder: (_, config) => BlocProvider(
+            GoRoute(
+              path: AromaRoute.signUp.relativePath,
+              builder: (_, state) => BlocProvider(
                 create: (_) => RegisterBloc(),
                 child: RegisterScreen(
-                  initialEmail: config.email,
-                  initialPassword: config.password,
+                  initialEmail: state.uri.queryParameters["email"] ?? "",
+                  initialPassword: state.uri.queryParameters["password"] ?? "",
                 ),
               ),
             ),
@@ -77,26 +87,38 @@ final routeGraph = GoRouteGraph(
         ),
       ],
     ),
-    J1ShellNode(
-      builder: (_, child) => LogoutListener(child: child),
-      redirect: (context) => context.read<AppBloc>().state.auth is! AuthEntitySignedIn ? _loginPath : null,
+    ShellRoute(
+      restorationScopeId: "home_shell",
+      builder: (_, state, child) => LogoutListener(child: child),
+      redirect: (context, _) => context.read<AppBloc>().state.auth is! AuthEntitySignedIn
+          ? AromaRoute.login.build(const j1.EmptyRouteConfig())
+          : null,
       routes: [
-        J1RouteNode(
-          route: AromaRoute.home,
+        GoRoute(
+          path: AromaRoute.feed.relativePath,
           builder: (_, _) => const HomeScreen(),
+          routes: [],
+        ),
+        GoRoute(
+          path: AromaRoute.recipes.relativePath,
+          builder: (_, _) => const HomeScreen(),
+          routes: [],
+        ),
+        GoRoute(
+          path: AromaRoute.profile.relativePath,
+          builder: (_, _) => const HomeScreen(),
+          routes: [],
+        ),
+        GoRoute(
+          path: AromaRoute.settings.relativePath,
+          builder: (_, _) => BlocProvider(
+            create: (_) => SettingsBloc()..add(const SettingsEventInit()),
+            child: const SettingsScreen(),
+          ),
           routes: [
-            J1RouteNode(
-              route: AromaRoute.settings,
-              builder: (_, _) => BlocProvider(
-                create: (_) => SettingsBloc()..add(const SettingsEventInit()),
-                child: const SettingsScreen(),
-              ),
-              routes: [
-                J1RouteNode(
-                  route: AromaRoute.theme,
-                  builder: (_, _) => const ThemeScreen(),
-                ),
-              ],
+            GoRoute(
+              path: AromaRoute.theme.relativePath,
+              builder: (_, _) => const ThemeScreen(),
             ),
           ],
         ),
@@ -106,43 +128,53 @@ final routeGraph = GoRouteGraph(
 );
 
 abstract class AromaRoute {
-  static final login = J1Route<EmptyRouteConfig>(
-    parts: [PathSegment(_loginPath)],
-    configParser: EmptyRouteConfig.parser,
+  static final login = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_loginPath)],
+    configParser: j1.EmptyRouteConfig.parser,
   );
 
-  static final signIn = J1Route<EmailPasswordRouteConfig>(
-    parts: [PathSegment(_loginPath), PathSegment(_signInPath)],
+  static final signIn = j1.J1Route<EmailPasswordRouteConfig>(
+    parts: [j1.PathSegment(_loginPath), j1.PathSegment(_signInPath)],
     configParser: EmailPasswordRouteConfig.parser,
   );
 
-  static final signUp = J1Route<EmailPasswordRouteConfig>(
-    parts: [PathSegment(_loginPath), PathSegment(_signUpPath)],
+  static final signUp = j1.J1Route<EmailPasswordRouteConfig>(
+    parts: [j1.PathSegment(_loginPath), j1.PathSegment(_signUpPath)],
     configParser: EmailPasswordRouteConfig.parser,
   );
 
-  static final resetPassword = J1Route<EmailRouteConfig>(
-    parts: [PathSegment(_loginPath), PathSegment(_signInPath), PathSegment(_resetPasswordPath)],
+  static final resetPassword = j1.J1Route<EmailRouteConfig>(
+    parts: [j1.PathSegment(_loginPath), j1.PathSegment(_signInPath), j1.PathSegment(_resetPasswordPath)],
     configParser: EmailRouteConfig.parser,
   );
 
-  static final home = J1Route<EmptyRouteConfig>(
-    parts: [PathSegment(_homePath)],
-    configParser: EmptyRouteConfig.parser,
+  static final settings = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_settingsPath)],
+    configParser: j1.EmptyRouteConfig.parser,
   );
 
-  static final settings = J1Route<EmptyRouteConfig>(
-    parts: [PathSegment(_homePath), PathSegment(_settingsPath)],
-    configParser: EmptyRouteConfig.parser,
+  static final theme = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_settingsPath), j1.PathSegment(_themePath)],
+    configParser: j1.EmptyRouteConfig.parser,
   );
 
-  static final theme = J1Route<EmptyRouteConfig>(
-    parts: [PathSegment(_homePath), PathSegment(_settingsPath), PathSegment(_themePath)],
-    configParser: EmptyRouteConfig.parser,
+  static final feed = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_feedPath)],
+    configParser: j1.EmptyRouteConfig.parser,
+  );
+
+  static final recipes = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_recipesPath)],
+    configParser: j1.EmptyRouteConfig.parser,
+  );
+
+  static final profile = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_profilePath)],
+    configParser: j1.EmptyRouteConfig.parser,
   );
 }
 
-class EmailPasswordRouteConfig extends RouteConfig {
+class EmailPasswordRouteConfig extends j1.RouteConfig {
   final String email;
   final String password;
 
@@ -165,7 +197,7 @@ class EmailPasswordRouteConfig extends RouteConfig {
   }
 }
 
-class EmailRouteConfig extends RouteConfig {
+class EmailRouteConfig extends j1.RouteConfig {
   final String email;
 
   @override

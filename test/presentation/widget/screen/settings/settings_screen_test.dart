@@ -5,7 +5,6 @@ import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
-import "package:aroma_mobile/presentation/widget/screen/settings/select_language_drawer.dart";
 import "package:aroma_mobile/presentation/widget/screen/settings/settings_screen.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -138,7 +137,7 @@ void main() {
       await tester.pumpAndSettle();
 
       final searchFinder = find.byType(JTextField);
-      final cardFinder = find.byType(SelectLanguageCard);
+      final cardFinder = find.byType(JCard);
       expect(searchFinder, findsOneWidget);
       expect(cardFinder, findsAtLeastNWidgets(1));
 

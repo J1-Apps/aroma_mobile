@@ -10,8 +10,6 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
-final _router = routeGraph.buildConfig();
-
 class AromaApp extends StatelessWidget {
   const AromaApp({super.key});
 
@@ -38,7 +36,7 @@ class AromaApp extends StatelessWidget {
             onGenerateTitle: (context) => context.strings().app_title,
             localizationsDelegates: Strings.localizationsDelegates,
             supportedLocales: Strings.supportedLocales,
-            routerConfig: _router,
+            routerConfig: routeConfig,
             theme: theme,
             locale: locale,
             scrollBehavior: ScrollConfiguration.of(context).copyWith(physics: AromaTheme.scrollPhysics),
