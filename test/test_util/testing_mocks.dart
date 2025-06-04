@@ -81,3 +81,5 @@ class MockSignInBloc extends Mock implements SignInBloc {}
 class MockRegisterBloc extends Mock implements RegisterBloc {}
 
 class MockResetPasswordBloc extends Mock implements ResetPasswordBloc {}
+
+class MockThemeBloc extends Mock implements J1ThemeBloc {}
