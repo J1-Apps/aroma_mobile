@@ -8,11 +8,13 @@ import "../../../../test_util/test_wrapper.dart";
 import "../../../../test_util/testing_mocks.dart";
 
 void main() {
-  setUpAll(() {
-    registerFallbackValue(FakeBuildContext());
-  });
-
   group("Home Screen", () {
+    setUpAll(() {
+      registerFallbackValue(FakeBuildContext());
+      registerFallbackValue(FakeEmptyRoute());
+      registerFallbackValue(const EmptyRouteConfig());
+    });
+
     testWidgets("shows home screen text", (tester) async {
       await tester.pumpWidget(TestWrapper(child: const HomeScreen()));
       await tester.pumpAndSettle();
@@ -24,13 +26,13 @@ void main() {
         final router = MockRouter();
         locator.registerSingleton<J1Router>(router);
 
-        when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+        when(() => router.push<EmptyRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
 
         await tester.pumpWidget(TestWrapper(child: const HomeScreen()));
         await tester.tap(find.byIcon(JamIcons.settings));
         await tester.pumpAndSettle();
 
-        verify(() => router.navigate(any(), AromaRoute.settings.build(const EmptyRouteConfig()))).called(1);
+        verify(() => router.push(any(), AromaRoute.settings, const EmptyRouteConfig())).called(1);
 
         await locator.reset();
       });

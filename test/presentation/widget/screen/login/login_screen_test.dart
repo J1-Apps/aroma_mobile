@@ -22,11 +22,16 @@ void main() {
     final BuildContext context = FakeBuildContext();
     late StreamController<LoginState> stream;
 
+    setUpAll(() {
+      registerFallbackValue(context);
+      registerFallbackValue(FakeEmailPasswordRoute());
+      registerFallbackValue(const EmailPasswordRouteConfig());
+    });
+
     setUp(() {
       stream = StreamController<LoginState>.broadcast();
       locator.registerSingleton<J1Router>(router);
-      registerFallbackValue(context);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmailPasswordRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const LoginState());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
@@ -87,7 +92,9 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(0));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.signIn.build(const EmailPasswordRouteConfig()))).called(1);
+      verify(
+        () => router.navigate<EmailPasswordRouteConfig>(any(), AromaRoute.signIn, const EmailPasswordRouteConfig()),
+      ).called(1);
     });
 
     testWidgets("navigates to register screen", (tester) async {
@@ -103,7 +110,9 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(1));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.signUp.build(const EmailPasswordRouteConfig()))).called(1);
+      verify(
+        () => router.navigate<EmailPasswordRouteConfig>(any(), AromaRoute.signUp, const EmailPasswordRouteConfig()),
+      ).called(1);
     });
 
     testWidgets("handles google sign in", (tester) async {

@@ -68,7 +68,7 @@ void _handleStateUpdate(BuildContext context, ErrorCode? error, bool isSuccess) 
   }
 
   if (isSuccess) {
-    context.navigate(AromaRoute.signIn.build(EmailPasswordRouteConfig()));
+    context.navigate(AromaRoute.signIn, EmailPasswordRouteConfig());
   }
 }
 
@@ -120,10 +120,9 @@ class _ResetPasswordFormState extends State<_ResetPasswordForm> {
           const SizedBox(height: JDimens.spacing_m),
           _SignIn(
             onPressed: () => context.navigate(
-              AromaRoute.signIn.build(
-                EmailPasswordRouteConfig(
-                  email: _emailController.text,
-                ),
+              AromaRoute.signIn,
+              EmailPasswordRouteConfig(
+                email: _emailController.text,
               ),
             ),
           ),

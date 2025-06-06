@@ -22,12 +22,18 @@ void main() {
     final SettingsEvent event = SettingsEventUpdateLanguage("en");
     late StreamController<SettingsState> stream;
 
+    setUpAll(() {
+      registerFallbackValue(context);
+      registerFallbackValue(event);
+      registerFallbackValue(FakeEmptyRoute());
+      registerFallbackValue(const EmptyRouteConfig());
+    });
+
     setUp(() {
       stream = StreamController<SettingsState>.broadcast();
       locator.registerSingleton<J1Router>(router);
-      registerFallbackValue(context);
-      registerFallbackValue(event);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmptyRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.push<EmptyRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(() => router.canPop(any())).thenReturn(true);
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const SettingsState(language: "en", isSigningOut: false, error: null));
@@ -166,7 +172,7 @@ void main() {
       await tester.tap(find.byIcon(JamIcons.chevronright).at(0));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.theme.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.push<EmptyRouteConfig>(any(), AromaRoute.theme, const EmptyRouteConfig())).called(1);
     });
 
     testWidgets("handles sign out", (tester) async {

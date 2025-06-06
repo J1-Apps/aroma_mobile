@@ -19,7 +19,7 @@ class LoginListener extends StatelessWidget {
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) {
         if (state.auth is AuthEntitySignedIn) {
-          context.navigate(AromaRoute.recipes.build(const EmptyRouteConfig()));
+          context.navigate(AromaRoute.recipes, const EmptyRouteConfig());
         }
       },
       child: child,
@@ -40,7 +40,7 @@ class LogoutListener extends StatelessWidget {
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) {
         if (state.auth is! AuthEntitySignedIn) {
-          context.navigate(AromaRoute.login.build(const EmptyRouteConfig()));
+          context.navigate(AromaRoute.login, const EmptyRouteConfig());
         }
       },
       child: child,

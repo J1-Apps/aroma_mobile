@@ -21,7 +21,7 @@ class ProdEnvironment extends AromaEnvironment {
   J1Logger get logger => LocalLogger();
 
   @override
-  J1Router get router => GoRouter();
+  J1Router get router => J1RouterGo();
 
   // Source
 

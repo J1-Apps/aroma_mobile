@@ -28,7 +28,7 @@ class _HomeSettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return JIconButton(
       icon: JamIcons.settings,
-      onPressed: () => context.navigate(AromaRoute.settings.build(const EmptyRouteConfig())),
+      onPressed: () => context.push(AromaRoute.settings, const EmptyRouteConfig()),
     );
   }
 }

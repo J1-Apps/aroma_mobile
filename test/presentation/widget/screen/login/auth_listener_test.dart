@@ -19,10 +19,15 @@ void main() {
     final AppBloc bloc = MockRouterBloc();
     final BuildContext context = FakeBuildContext();
 
+    setUpAll(() {
+      registerFallbackValue(context);
+      registerFallbackValue(FakeEmptyRoute());
+      registerFallbackValue(const EmptyRouteConfig());
+    });
+
     setUp(() {
       locator.registerSingleton<J1Router>(router);
-      registerFallbackValue(context);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmptyRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
     });
 
@@ -52,7 +57,7 @@ void main() {
       stream.add(const AppState(auth: AuthEntitySignedIn(userId: "123"), language: null));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.recipes.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.navigate<EmptyRouteConfig>(any(), AromaRoute.recipes, const EmptyRouteConfig())).called(1);
 
       stream.close();
     });
@@ -79,7 +84,7 @@ void main() {
       stream.add(const AppState(auth: AuthEntitySignedOut(), language: null));
       await tester.pumpAndSettle();
 
-      verify(() => router.navigate(any(), AromaRoute.login.build(const EmptyRouteConfig()))).called(1);
+      verify(() => router.navigate<EmptyRouteConfig>(any(), AromaRoute.login, const EmptyRouteConfig())).called(1);
 
       stream.close();
     });

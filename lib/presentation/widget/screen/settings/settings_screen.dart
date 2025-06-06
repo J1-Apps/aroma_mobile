@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
             _SettingsItem(
               icon: JamIcons.paintbrush,
               label: strings.settings_theme,
-              onPressed: () => context.navigate(AromaRoute.theme.build(const EmptyRouteConfig())),
+              onPressed: () => context.push(AromaRoute.theme, const EmptyRouteConfig()),
             ),
             const SizedBox(height: JDimens.spacing_l),
             const _SignOutButton(),

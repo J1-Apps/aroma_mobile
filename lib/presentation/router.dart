@@ -33,13 +33,21 @@ const _feedPath = "/feed";
 const _recipesPath = "/recipes";
 const _profilePath = "/profile";
 
+const _rootRestorationScopeId = "root";
+const _loginRestorationScopeId = "login";
+const _homeRestorationScopeId = "home";
+const _navShellRestorationScopeId = "nav_shell";
+const _feedBranchRestorationScopeId = "feed_branch";
+const _recipesBranchRestorationScopeId = "recipes_branch";
+const _profileBranchRestorationScopeId = "profile_branch";
+
 final routeConfig = GoRouter(
-  restorationScopeId: "aroma_router",
+  restorationScopeId: _rootRestorationScopeId,
   initialLocation: AromaRoute.recipes.build(const j1.EmptyRouteConfig()),
   redirectLimit: 20,
   routes: [
     ShellRoute(
-      restorationScopeId: "login_shell",
+      restorationScopeId: _loginRestorationScopeId,
       builder: (_, state, child) => LoginListener(child: child),
       redirect: (context, _) => context.read<AppBloc>().state.auth is AuthEntitySignedIn
           ? AromaRoute.recipes.build(const j1.EmptyRouteConfig())
@@ -88,26 +96,47 @@ final routeConfig = GoRouter(
       ],
     ),
     ShellRoute(
-      restorationScopeId: "home_shell",
+      restorationScopeId: _homeRestorationScopeId,
       builder: (_, state, child) => LogoutListener(child: child),
       redirect: (context, _) => context.read<AppBloc>().state.auth is! AuthEntitySignedIn
           ? AromaRoute.login.build(const j1.EmptyRouteConfig())
           : null,
       routes: [
-        GoRoute(
-          path: AromaRoute.feed.relativePath,
-          builder: (_, _) => const HomeScreen(),
-          routes: [],
-        ),
-        GoRoute(
-          path: AromaRoute.recipes.relativePath,
-          builder: (_, _) => const HomeScreen(),
-          routes: [],
-        ),
-        GoRoute(
-          path: AromaRoute.profile.relativePath,
-          builder: (_, _) => const HomeScreen(),
-          routes: [],
+        StatefulShellRoute.indexedStack(
+          restorationScopeId: _navShellRestorationScopeId,
+          builder: (_, state, child) => child,
+          branches: [
+            StatefulShellBranch(
+              restorationScopeId: _feedBranchRestorationScopeId,
+              routes: [
+                GoRoute(
+                  path: AromaRoute.feed.relativePath,
+                  builder: (_, _) => const HomeScreen(),
+                  routes: [],
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              restorationScopeId: _recipesBranchRestorationScopeId,
+              routes: [
+                GoRoute(
+                  path: AromaRoute.recipes.relativePath,
+                  builder: (_, _) => const HomeScreen(),
+                  routes: [],
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              restorationScopeId: _profileBranchRestorationScopeId,
+              routes: [
+                GoRoute(
+                  path: AromaRoute.profile.relativePath,
+                  builder: (_, _) => const HomeScreen(),
+                  routes: [],
+                ),
+              ],
+            ),
+          ],
         ),
         GoRoute(
           path: AromaRoute.settings.relativePath,

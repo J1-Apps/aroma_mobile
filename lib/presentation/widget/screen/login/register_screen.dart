@@ -151,11 +151,10 @@ class _RegisterFormState extends State<_RegisterForm> {
           const SizedBox(height: JDimens.spacing_m),
           _SignIn(
             onPressed: () => context.navigate(
-              AromaRoute.signIn.build(
-                EmailPasswordRouteConfig(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                ),
+              AromaRoute.signIn,
+              EmailPasswordRouteConfig(
+                email: _emailController.text,
+                password: _passwordController.text,
               ),
             ),
           ),

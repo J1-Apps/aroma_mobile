@@ -24,14 +24,17 @@ void main() {
     late StreamController<RegisterState> stream;
 
     setUpAll(() {
+      registerFallbackValue(context);
       registerFallbackValue(fallback);
+      registerFallbackValue(FakeEmailPasswordRoute());
+      registerFallbackValue(const EmailPasswordRouteConfig());
     });
 
     setUp(() {
       stream = StreamController<RegisterState>.broadcast();
       locator.registerSingleton<J1Router>(router);
       registerFallbackValue(context);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmailPasswordRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const RegisterState());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
@@ -185,13 +188,21 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(
-        () => router.navigate(
+        () => router.navigate<EmailPasswordRouteConfig>(
           any(),
-          AromaRoute.signIn.build(
-            EmailPasswordRouteConfig(
-              email: "test@test.com",
-              password: "password",
-            ),
+          AromaRoute.signIn,
+          any(
+            that: isA<EmailPasswordRouteConfig>()
+                .having(
+                  (e) => e.email,
+                  "email",
+                  "test@test.com",
+                )
+                .having(
+                  (e) => e.password,
+                  "password",
+                  "password",
+                ),
           ),
         ),
       ).called(1);

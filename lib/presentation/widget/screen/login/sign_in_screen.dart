@@ -135,21 +135,19 @@ class _SignInFormState extends State<_SignInForm> {
             text: strings.signIn_registerButton,
             color: JWidgetColor.secondary,
             onPressed: () => context.navigate(
-              AromaRoute.signUp.build(
-                EmailPasswordRouteConfig(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                ),
+              AromaRoute.signUp,
+              EmailPasswordRouteConfig(
+                email: _emailController.text,
+                password: _passwordController.text,
               ),
             ),
           ),
           const SizedBox(height: JDimens.spacing_m),
           _ResetPassword(
             onPressed: () => context.navigate(
-              AromaRoute.resetPassword.build(
-                EmailRouteConfig(
-                  email: _emailController.text,
-                ),
+              AromaRoute.resetPassword,
+              EmailRouteConfig(
+                email: _emailController.text,
               ),
             ),
           ),
