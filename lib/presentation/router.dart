@@ -7,7 +7,7 @@ import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/feed/feed_screen.dart";
-import "package:aroma_mobile/presentation/widget/screen/home/home_scaffold.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/home_navigation.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/profile/profile_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
@@ -118,7 +118,7 @@ final routeConfig = GoRouter(
       routes: [
         StatefulShellRoute.indexedStack(
           restorationScopeId: _navShellRestorationScopeId,
-          builder: (_, _, shell) => HomeScaffold(
+          builder: (_, _, shell) => HomeNavigation(
             currentIndex: shell.currentIndex,
             updateIndex: (index) => shell.goBranch(index, initialLocation: index == shell.currentIndex),
             body: shell,
