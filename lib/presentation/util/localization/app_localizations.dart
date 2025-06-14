@@ -146,66 +146,6 @@ abstract class Strings {
   /// **'Failed to sign in with google, please try again.'**
   String get login_googleSignInFailed;
 
-  /// No description provided for @settings_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings_title;
-
-  /// No description provided for @settings_language.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get settings_language;
-
-  /// No description provided for @settings_theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get settings_theme;
-
-  /// No description provided for @settings_logout.
-  ///
-  /// In en, this message translates to:
-  /// **'Log out'**
-  String get settings_logout;
-
-  /// No description provided for @settings_languageHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Search'**
-  String get settings_languageHint;
-
-  /// No description provided for @settings_languageLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'{language, select, en{English} ko{Korean} other{Unknown}}'**
-  String settings_languageLabel(String language);
-
-  /// No description provided for @settings_error_languageEmpty.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not find any languages. Please ensure that you\'re searching by IANA language subtag (ie: \"en\", \"ko\", etc.) or language name and try again.'**
-  String get settings_error_languageEmpty;
-
-  /// No description provided for @settings_error_getLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to fetch the current language. Using the default language.'**
-  String get settings_error_getLanguage;
-
-  /// No description provided for @settings_error_saveLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to save language.'**
-  String get settings_error_saveLanguage;
-
-  /// No description provided for @settings_error_signOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to sign out. Please try again.'**
-  String get settings_error_signOut;
-
   /// No description provided for @signIn_loginButton.
   ///
   /// In en, this message translates to:
@@ -332,6 +272,66 @@ abstract class Strings {
   /// **'Failed to send password reset email, please try again.'**
   String get resetPassword_sendPasswordResetEmailFailed;
 
+  /// No description provided for @settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings_title;
+
+  /// No description provided for @settings_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settings_language;
+
+  /// No description provided for @settings_theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settings_theme;
+
+  /// No description provided for @settings_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get settings_logout;
+
+  /// No description provided for @settings_languageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get settings_languageHint;
+
+  /// No description provided for @settings_languageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{language, select, en{English} ko{Korean} other{Unknown}}'**
+  String settings_languageLabel(String language);
+
+  /// No description provided for @settings_error_languageEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not find any languages. Please ensure that you\'re searching by IANA language subtag (ie: \"en\", \"ko\", etc.) or language name and try again.'**
+  String get settings_error_languageEmpty;
+
+  /// No description provided for @settings_error_getLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch the current language. Using the default language.'**
+  String get settings_error_getLanguage;
+
+  /// No description provided for @settings_error_saveLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save language.'**
+  String get settings_error_saveLanguage;
+
+  /// No description provided for @settings_error_signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to sign out. Please try again.'**
+  String get settings_error_signOut;
+
   /// No description provided for @theme_title.
   ///
   /// In en, this message translates to:
@@ -361,6 +361,24 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'{font, select, crimsonText{Crimson Text} poppins{Poppins} other{Unknown}}'**
   String theme_fontTitle(String font);
+
+  /// No description provided for @feed_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Feed'**
+  String get feed_title;
+
+  /// No description provided for @recipes_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipes'**
+  String get recipes_title;
+
+  /// No description provided for @profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile_title;
 }
 
 class _StringsDelegate extends LocalizationsDelegate<Strings> {

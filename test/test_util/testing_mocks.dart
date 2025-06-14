@@ -18,6 +18,7 @@ import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -33,9 +34,31 @@ class HasErrorCode extends CustomMatcher {
   Object? featureValueOf(actual) => (actual as ErrorModel).code;
 }
 
+// Mock Callbacks
+
+abstract class _MockVoidCallback {
+  void call();
+}
+
+class MockVoidCallback extends Mock implements _MockVoidCallback {}
+
+abstract class _MockCallback<T> {
+  void call(T value);
+}
+
+class MockCallback<T> extends Mock implements _MockCallback<T> {}
+
+// Mock Routing
+
 class FakeBuildContext extends Fake implements BuildContext {}
 
 class MockRouter extends Mock implements J1Router {}
+
+class FakeEmptyRoute extends Fake implements J1Route<EmptyRouteConfig> {}
+
+class FakeEmailPasswordRoute extends Fake implements J1Route<EmailPasswordRouteConfig> {}
+
+class FakeEmailRoute extends Fake implements J1Route<EmailRouteConfig> {}
 
 // Mock Data Sources
 

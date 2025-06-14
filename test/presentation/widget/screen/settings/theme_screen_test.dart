@@ -35,7 +35,6 @@ void main() {
       when(() => bloc.add(any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
 
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
       when(() => router.canPop(any())).thenAnswer((_) => true);
       when(() => router.pop(any())).thenAnswer((_) => Future.value());
     });

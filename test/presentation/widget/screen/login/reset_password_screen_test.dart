@@ -24,14 +24,18 @@ void main() {
     late StreamController<ResetPasswordState> stream;
 
     setUpAll(() {
+      registerFallbackValue(context);
       registerFallbackValue(fallback);
+      registerFallbackValue(FakeEmailRoute());
+      registerFallbackValue(const EmailRouteConfig());
+      registerFallbackValue(FakeEmailPasswordRoute());
+      registerFallbackValue(const EmailPasswordRouteConfig());
     });
 
     setUp(() {
       stream = StreamController<ResetPasswordState>.broadcast();
       locator.registerSingleton<J1Router>(router);
-      registerFallbackValue(context);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmailRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const ResetPasswordState());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
@@ -147,10 +151,13 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(
-        () => router.navigate(
+        () => router.navigate<EmailPasswordRouteConfig>(
           any(),
-          AromaRoute.signIn.build(
-            EmailPasswordRouteConfig(),
+          AromaRoute.signIn,
+          any(
+            that: isA<EmailPasswordRouteConfig>()
+                .having((e) => e.email, "email", "")
+                .having((e) => e.password, "password", ""),
           ),
         ),
       ).called(1);
@@ -179,10 +186,13 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(
-        () => router.navigate(
+        () => router.navigate<EmailPasswordRouteConfig>(
           any(),
-          AromaRoute.signIn.build(
-            EmailPasswordRouteConfig(),
+          AromaRoute.signIn,
+          any(
+            that: isA<EmailPasswordRouteConfig>()
+                .having((e) => e.email, "email", "test@test.com")
+                .having((e) => e.password, "password", ""),
           ),
         ),
       ).called(1);

@@ -79,7 +79,7 @@ class _LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return JTextButton(
       text: context.strings().login_loginButton,
-      onPressed: () => context.navigate(AromaRoute.signIn.build(const EmailPasswordRouteConfig())),
+      onPressed: () => context.navigate(AromaRoute.signIn, const EmailPasswordRouteConfig()),
     );
   }
 }
@@ -91,7 +91,7 @@ class _RegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return JTextButton(
       text: context.strings().login_registerButton,
-      onPressed: () => context.navigate(AromaRoute.signUp.build(const EmailPasswordRouteConfig())),
+      onPressed: () => context.navigate(AromaRoute.signUp, const EmailPasswordRouteConfig()),
       color: JWidgetColor.secondary,
     );
   }

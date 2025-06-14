@@ -213,10 +213,10 @@ packages:
     dependency: transitive
     description:
       name: checked_yaml
-      sha256: feb6bed21949061731a7a75fc5d2aa727cf160b91af9a3e464c5e3a32e28b5ff
+      sha256: "959525d3162f249993882720d52b7e0c833978df229be20702b33d48d91de70f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   cli_util:
     dependency: transitive
     description:
@@ -486,13 +486,13 @@ packages:
     source: hosted
     version: "2.1.3"
   go_router:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: go_router
-      sha256: "0b1e06223bee260dee31a171fb1153e306907563a0b0225e8c1733211911429a"
+      sha256: b453934c36e289cef06525734d1e676c1f91da9e22e2017d9dcab6ce0f999175
       url: "https://pub.dev"
     source: hosted
-    version: "15.1.2"
+    version: "15.1.3"
   google_identity_services_web:
     dependency: transitive
     description:
@@ -618,7 +618,7 @@ packages:
     description:
       path: "packages/j1_core_base"
       ref: "v1.0.0"
-      resolved-ref: "1752f9eb90d8dfa21eb0b44d9ec4293c0e5dc28d"
+      resolved-ref: "08b702e7582122270febbe15964f8f3ada471714"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -627,7 +627,7 @@ packages:
     description:
       path: "packages/j1_core_firebase"
       ref: "v1.0.0"
-      resolved-ref: "1752f9eb90d8dfa21eb0b44d9ec4293c0e5dc28d"
+      resolved-ref: "08b702e7582122270febbe15964f8f3ada471714"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"

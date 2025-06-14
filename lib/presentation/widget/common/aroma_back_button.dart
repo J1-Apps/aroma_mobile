@@ -9,11 +9,7 @@ class AromaBackButton extends StatelessWidget {
     return JIconButton(
       icon: JamIcons.chevronleft,
       color: JWidgetColor.secondary,
-      onPressed: () {
-        if (context.canPop()) {
-          context.pop();
-        }
-      },
+      onPressed: context.canPop() ? () => context.pop() : null,
     );
   }
 }

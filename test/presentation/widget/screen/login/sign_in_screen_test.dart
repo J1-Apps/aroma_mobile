@@ -25,13 +25,17 @@ void main() {
 
     setUpAll(() {
       registerFallbackValue(fallback);
+      registerFallbackValue(FakeEmailPasswordRoute());
+      registerFallbackValue(FakeEmailRoute());
+      registerFallbackValue(const EmailPasswordRouteConfig());
+      registerFallbackValue(const EmailRouteConfig());
     });
 
     setUp(() {
       stream = StreamController<SignInState>.broadcast();
       locator.registerSingleton<J1Router>(router);
       registerFallbackValue(context);
-      when(() => router.navigate(any(), any())).thenAnswer((_) => Future.value());
+      when(() => router.navigate<EmailPasswordRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const SignInState());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
@@ -159,11 +163,11 @@ void main() {
       verify(
         () => router.navigate(
           any(),
-          AromaRoute.signUp.build(
-            EmailPasswordRouteConfig(
-              email: "test@test.com",
-              password: "password",
-            ),
+          AromaRoute.signUp,
+          any(
+            that: isA<EmailPasswordRouteConfig>()
+                .having((e) => e.email, "email", "test@test.com")
+                .having((e) => e.password, "password", "password"),
           ),
         ),
       ).called(1);
@@ -195,11 +199,8 @@ void main() {
       verify(
         () => router.navigate(
           any(),
-          AromaRoute.resetPassword.build(
-            EmailRouteConfig(
-              email: "test@test.com",
-            ),
-          ),
+          AromaRoute.resetPassword,
+          any(that: isA<EmailRouteConfig>().having((e) => e.email, "email", "test@test.com")),
         ),
       ).called(1);
     });

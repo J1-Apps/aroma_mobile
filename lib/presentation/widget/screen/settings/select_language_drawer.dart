@@ -152,7 +152,7 @@ final class _SelectLanguageCardItem extends _SelectLanguageDrawerItem {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: JDimens.spacing_s),
-      child: SelectLanguageCard(
+      child: _SelectLanguageCard(
         language: language,
         isSelected: isSelected,
         onSelected: () {
@@ -167,16 +167,15 @@ final class _SelectLanguageCardItem extends _SelectLanguageDrawerItem {
   }
 }
 
-final class SelectLanguageCard extends StatelessWidget {
+final class _SelectLanguageCard extends StatelessWidget {
   final String language;
   final bool isSelected;
   final VoidCallback onSelected;
 
-  const SelectLanguageCard({
+  const _SelectLanguageCard({
     required this.language,
     required this.isSelected,
     required this.onSelected,
-    super.key,
   });
 
   @override
@@ -189,7 +188,7 @@ final class SelectLanguageCard extends StatelessWidget {
             padding: const EdgeInsets.all(JDimens.spacing_s),
             child: Text(
               context.strings().settings_languageLabel(language),
-              style: context.textTheme().titleLarge,
+              style: context.textTheme().titleMedium,
             ),
           ),
           const Spacer(),
