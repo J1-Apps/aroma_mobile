@@ -36,47 +36,6 @@ class StringsKo extends Strings {
   String get login_googleSignInFailed => '구글 로그인 실패, 다시 시도해주세요.';
 
   @override
-  String get settings_title => '설정';
-
-  @override
-  String get settings_language => '언어';
-
-  @override
-  String get settings_theme => '테마';
-
-  @override
-  String get settings_logout => '로그아웃';
-
-  @override
-  String get settings_languageHint => '검색';
-
-  @override
-  String settings_languageLabel(String language) {
-    String _temp0 = intl.Intl.selectLogic(
-      language,
-      {
-        'en': '영어',
-        'ko': '한국어',
-        'other': '알 수 없음',
-      },
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get settings_error_languageEmpty =>
-      '언어를 찾을 수 없습니다. IANA 언어 서브태그(예: \"en\", \"ko\" 등) 또는 언어 이름을 검색하고 다시 시도해주세요.';
-
-  @override
-  String get settings_error_getLanguage => '현재 언어를 가져오는 데 실패했습니다. 기본 언어를 사용합니다.';
-
-  @override
-  String get settings_error_saveLanguage => '언어를 저장하는 데 실패했습니다.';
-
-  @override
-  String get settings_error_signOut => '로그아웃 실패, 다시 시도해주세요.';
-
-  @override
   String get signIn_loginButton => '로그인';
 
   @override
@@ -140,6 +99,47 @@ class StringsKo extends Strings {
   String get resetPassword_sendPasswordResetEmailFailed => '비밀번호 재설정 이메일 전송 실패, 다시 시도해주세요.';
 
   @override
+  String get settings_title => '설정';
+
+  @override
+  String get settings_language => '언어';
+
+  @override
+  String get settings_theme => '테마';
+
+  @override
+  String get settings_logout => '로그아웃';
+
+  @override
+  String get settings_languageHint => '검색';
+
+  @override
+  String settings_languageLabel(String language) {
+    String _temp0 = intl.Intl.selectLogic(
+      language,
+      {
+        'en': '영어',
+        'ko': '한국어',
+        'other': '알 수 없음',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get settings_error_languageEmpty =>
+      '언어를 찾을 수 없습니다. IANA 언어 서브태그(예: \"en\", \"ko\" 등) 또는 언어 이름을 검색하고 다시 시도해주세요.';
+
+  @override
+  String get settings_error_getLanguage => '현재 언어를 가져오는 데 실패했습니다. 기본 언어를 사용합니다.';
+
+  @override
+  String get settings_error_saveLanguage => '언어를 저장하는 데 실패했습니다.';
+
+  @override
+  String get settings_error_signOut => '로그아웃 실패, 다시 시도해주세요.';
+
+  @override
   String get theme_title => '테마';
 
   @override
@@ -174,4 +174,13 @@ class StringsKo extends Strings {
     );
     return '$_temp0';
   }
+
+  @override
+  String get feed_title => '피드';
+
+  @override
+  String get recipes_title => '레시피';
+
+  @override
+  String get profile_title => '프로필';
 }

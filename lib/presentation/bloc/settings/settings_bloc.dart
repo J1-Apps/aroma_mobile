@@ -38,14 +38,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   Future<void> _onUpdateLanguage(SettingsEventUpdateLanguage event, Emitter<SettingsState> emit) async {
-    emit(state.copyWith(isSigningOut: true, error: null));
+    emit(state.copyWith(error: null));
     final result = await _updateLanguageUsecase(event.language);
 
     switch (result) {
       case Success():
-        emit(state.copyWith(isSigningOut: false, error: null));
+        emit(state.copyWith(error: null));
       case Failure():
-        emit(state.copyWith(isSigningOut: false, error: result.error.errorCode));
+        emit(state.copyWith(error: result.error.errorCode));
     }
   }
 
