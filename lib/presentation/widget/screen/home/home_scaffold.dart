@@ -1,14 +1,17 @@
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:flutter/material.dart";
-import "package:go_router/go_router.dart" hide GoRouterHelper;
 import "package:j1_core_base/j1_core_base.dart";
 
 class HomeScaffold extends StatelessWidget {
-  final StatefulNavigationShell shell;
+  final int currentIndex;
+  final Function(int) updateIndex;
+  final Widget body;
 
   const HomeScaffold({
-    required this.shell,
+    required this.currentIndex,
+    required this.updateIndex,
+    required this.body,
     super.key,
   });
 
@@ -16,14 +19,19 @@ class HomeScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.strings();
 
+    // TODO: Update app bar title based on page. See "Nested Scaffolds" below.
+    // https://api.flutter.dev/flutter/material/Scaffold-class.html
     return Scaffold(
       appBar: JAppBar(
         title: strings.app_title,
         titleStyle: context.textTheme().headlineLarge,
         trailingActions: [const _HomeSettingsButton()],
       ),
-      body: shell,
-      bottomNavigationBar: _HomeNavigationContainer(shell: shell),
+      body: body,
+      bottomNavigationBar: _HomeNavigationContainer(
+        currentIndex: currentIndex,
+        updateIndex: updateIndex,
+      ),
     );
   }
 }
@@ -41,9 +49,13 @@ class _HomeSettingsButton extends StatelessWidget {
 }
 
 class _HomeNavigationContainer extends StatelessWidget {
-  final StatefulNavigationShell shell;
+  final int currentIndex;
+  final Function(int) updateIndex;
 
-  const _HomeNavigationContainer({required this.shell});
+  const _HomeNavigationContainer({
+    required this.currentIndex,
+    required this.updateIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,15 +71,22 @@ class _HomeNavigationContainer extends StatelessWidget {
           ),
         ],
       ),
-      child: _HomeNavigationBar(shell: shell),
+      child: _HomeNavigationBar(
+        currentIndex: currentIndex,
+        updateIndex: updateIndex,
+      ),
     );
   }
 }
 
 class _HomeNavigationBar extends StatelessWidget {
-  final StatefulNavigationShell shell;
+  final int currentIndex;
+  final Function(int) updateIndex;
 
-  const _HomeNavigationBar({required this.shell});
+  const _HomeNavigationBar({
+    required this.currentIndex,
+    required this.updateIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +110,8 @@ class _HomeNavigationBar extends StatelessWidget {
           label: strings.profile_title,
         ),
       ],
-      currentIndex: shell.currentIndex,
-      onTap: (index) => shell.goBranch(index, initialLocation: index == shell.currentIndex),
+      currentIndex: currentIndex,
+      onTap: updateIndex,
       elevation: JDimens.elevation_none,
       selectedItemColor: colorScheme.tertiary,
       unselectedItemColor: colorScheme.onSurface,

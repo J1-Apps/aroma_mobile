@@ -34,6 +34,22 @@ class HasErrorCode extends CustomMatcher {
   Object? featureValueOf(actual) => (actual as ErrorModel).code;
 }
 
+// Mock Callbacks
+
+abstract class _MockVoidCallback {
+  void call();
+}
+
+class MockVoidCallback extends Mock implements _MockVoidCallback {}
+
+abstract class _MockCallback<T> {
+  void call(T value);
+}
+
+class MockCallback<T> extends Mock implements _MockCallback<T> {}
+
+// Mock Routing
+
 class FakeBuildContext extends Fake implements BuildContext {}
 
 class MockRouter extends Mock implements J1Router {}

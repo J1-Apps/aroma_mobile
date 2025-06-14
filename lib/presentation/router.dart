@@ -118,7 +118,11 @@ final routeConfig = GoRouter(
       routes: [
         StatefulShellRoute.indexedStack(
           restorationScopeId: _navShellRestorationScopeId,
-          builder: (_, _, shell) => HomeScaffold(shell: shell),
+          builder: (_, _, shell) => HomeScaffold(
+            currentIndex: shell.currentIndex,
+            updateIndex: (index) => shell.goBranch(index, initialLocation: index == shell.currentIndex),
+            body: shell,
+          ),
           branches: [
             StatefulShellBranch(
               navigatorKey: _feedKey,
