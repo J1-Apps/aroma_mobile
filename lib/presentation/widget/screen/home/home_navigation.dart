@@ -1,14 +1,13 @@
-import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:flutter/material.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
-class HomeScaffold extends StatelessWidget {
+class HomeNavigation extends StatelessWidget {
   final int currentIndex;
   final Function(int) updateIndex;
   final Widget body;
 
-  const HomeScaffold({
+  const HomeNavigation({
     required this.currentIndex,
     required this.updateIndex,
     required this.body,
@@ -17,33 +16,19 @@ class HomeScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.strings();
-
-    // TODO: Update app bar title based on page. See "Nested Scaffolds" below.
-    // https://api.flutter.dev/flutter/material/Scaffold-class.html
-    return Scaffold(
-      appBar: JAppBar(
-        title: strings.app_title,
-        titleStyle: context.textTheme().headlineLarge,
-        trailingActions: [const _HomeSettingsButton()],
+    return SafeArea(
+      top: false,
+      right: false,
+      left: false,
+      child: Column(
+        children: [
+          Expanded(child: body),
+          _HomeNavigationContainer(
+            currentIndex: currentIndex,
+            updateIndex: updateIndex,
+          ),
+        ],
       ),
-      body: body,
-      bottomNavigationBar: _HomeNavigationContainer(
-        currentIndex: currentIndex,
-        updateIndex: updateIndex,
-      ),
-    );
-  }
-}
-
-class _HomeSettingsButton extends StatelessWidget {
-  const _HomeSettingsButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return JIconButton(
-      icon: JamIcons.settings,
-      onPressed: () => context.push(AromaRoute.settings, const EmptyRouteConfig()),
     );
   }
 }
