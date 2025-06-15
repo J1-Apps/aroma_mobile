@@ -21,13 +21,15 @@ class RecipesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.strings();
 
-    return Scaffold(
-      appBar: JAppBar(
-        title: strings.app_title,
-        titleStyle: context.textTheme().headlineLarge,
-        trailingActions: [const AromaSettingsButton()],
+    return ScaffoldMessenger(
+      child: Scaffold(
+        appBar: JAppBar(
+          title: strings.app_title,
+          titleStyle: context.textTheme().headlineLarge,
+          trailingActions: [const AromaSettingsButton()],
+        ),
+        body: const _RecipesList(),
       ),
-      body: const _RecipesList(),
     );
   }
 }
@@ -56,7 +58,7 @@ class _RecipesListState extends State<_RecipesList> {
         controller: _scrollController,
         restorationId: _listRestorationId,
         floatHeaderSlivers: true,
-        physics: state.status == RecipesStatus.loading ? const NeverScrollableScrollPhysics() : null,
+        physics: state.status == RecipesStatus.success ? null : const NeverScrollableScrollPhysics(),
         headerSliverBuilder: (_, _) => [const SliverFloatingHeader(child: _RecipesHeader())],
         body: RefreshIndicator(
           onRefresh: () async => _refresh(context),
@@ -111,9 +113,50 @@ class _RecipesContentSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return switch (status) {
       RecipesStatus.loading => const RecipesPlaceholder(),
-      RecipesStatus.empty => const RecipesPlaceholder(),
-      RecipesStatus.error => const RecipesPlaceholder(),
+      RecipesStatus.empty => const _RecipesEmpty(),
+      RecipesStatus.error => const _RecipesError(),
       RecipesStatus.success => const RecipesContent(),
     };
+  }
+}
+
+class _RecipesError extends StatelessWidget {
+  const _RecipesError();
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = context.strings();
+
+    return Padding(
+      padding: const EdgeInsets.all(JDimens.spacing_xl),
+      child: Center(
+        child: JErrorMessage(
+          message: strings.recipes_loadError,
+          cta: strings.recipes_loadErrorRefresh,
+          ctaAction: () => context.read<RecipesBloc>().add(const RecipesEventLoad()),
+        ),
+      ),
+    );
+  }
+}
+
+class _RecipesEmpty extends StatelessWidget {
+  const _RecipesEmpty();
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = context.strings();
+
+    return Padding(
+      padding: const EdgeInsets.all(JDimens.spacing_xl),
+      child: Center(
+        child: JErrorMessage(
+          message: strings.recipes_loadEmpty,
+          cta: strings.recipes_loadEmptyCreate,
+          // TODO: Navigate to create recipe screen.
+          ctaAction: () => context.showJToastWithText(text: "Create recipe.", hasClose: true),
+        ),
+      ),
+    );
   }
 }

@@ -126,6 +126,14 @@
     "@recipes_title": {},
     "recipes_searchHint": "Search recipes",
     "@recipes_searchHint": {},
+    "recipes_loadError": "Sorry, we encountered an error loading your recipes. Please refresh the page or check back again later.",
+    "@recipes_loadError": {},
+    "recipes_loadErrorRefresh": "Refresh",
+    "@recipes_loadErrorRefresh": {},
+    "recipes_loadEmpty": "Looks like you don’t have any recipes yet. Let’s get cooking!",
+    "@recipes_loadEmpty": {},
+    "recipes_loadEmptyCreate": "Create",
+    "@recipes_loadEmptyCreate": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

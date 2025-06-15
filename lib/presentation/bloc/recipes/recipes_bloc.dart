@@ -1,3 +1,5 @@
+import "dart:math";
+
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:bloc_concurrency/bloc_concurrency.dart";
@@ -13,9 +15,16 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     emit(state.copyWith(status: RecipesStatus.loading));
 
     // TODO: Load recipes from use case.
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 3));
 
-    emit(state.copyWith(status: RecipesStatus.success));
+    switch (Random().nextDouble()) {
+      case < 0.3:
+        emit(state.copyWith(status: RecipesStatus.success));
+      case < 0.6:
+        emit(state.copyWith(status: RecipesStatus.error));
+      default:
+        emit(state.copyWith(status: RecipesStatus.empty));
+    }
   }
 
   Future<void> _onSearch(RecipesEventSearch event, Emitter<RecipesState> emit) async {

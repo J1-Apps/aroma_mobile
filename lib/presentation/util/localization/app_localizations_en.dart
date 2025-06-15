@@ -186,5 +186,18 @@ class StringsEn extends Strings {
   String get recipes_searchHint => 'Search recipes';
 
   @override
+  String get recipes_loadError =>
+      'Sorry, we encountered an error loading your recipes. Please refresh the page or check back again later.';
+
+  @override
+  String get recipes_loadErrorRefresh => 'Refresh';
+
+  @override
+  String get recipes_loadEmpty => 'Looks like you don’t have any recipes yet. Let’s get cooking!';
+
+  @override
+  String get recipes_loadEmptyCreate => 'Create';
+
+  @override
   String get profile_title => 'Profile';
 }

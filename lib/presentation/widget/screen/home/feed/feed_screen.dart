@@ -10,13 +10,15 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.strings();
 
-    return Scaffold(
-      appBar: JAppBar(
-        title: strings.app_title,
-        titleStyle: context.textTheme().headlineLarge,
-        trailingActions: [const AromaSettingsButton()],
+    return ScaffoldMessenger(
+      child: Scaffold(
+        appBar: JAppBar(
+          title: strings.app_title,
+          titleStyle: context.textTheme().headlineLarge,
+          trailingActions: [const AromaSettingsButton()],
+        ),
+        body: const Center(child: Text("Feed")),
       ),
-      body: const Center(child: Text("Feed")),
     );
   }
 }

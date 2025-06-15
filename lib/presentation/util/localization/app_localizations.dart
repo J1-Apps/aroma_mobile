@@ -380,6 +380,30 @@ abstract class Strings {
   /// **'Search recipes'**
   String get recipes_searchHint;
 
+  /// No description provided for @recipes_loadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, we encountered an error loading your recipes. Please refresh the page or check back again later.'**
+  String get recipes_loadError;
+
+  /// No description provided for @recipes_loadErrorRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get recipes_loadErrorRefresh;
+
+  /// No description provided for @recipes_loadEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Looks like you don’t have any recipes yet. Let’s get cooking!'**
+  String get recipes_loadEmpty;
+
+  /// No description provided for @recipes_loadEmptyCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get recipes_loadEmptyCreate;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

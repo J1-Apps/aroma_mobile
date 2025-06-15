@@ -185,5 +185,17 @@ class StringsKo extends Strings {
   String get recipes_searchHint => '레시피 검색';
 
   @override
+  String get recipes_loadError => '레시피를 불러오는 중 오류가 발생했습니다. 페이지를 새로고침하거나 나중에 다시 시도해주세요.';
+
+  @override
+  String get recipes_loadErrorRefresh => '새로고침';
+
+  @override
+  String get recipes_loadEmpty => '레시피가 없습니다. 요리를 시작해보세요!';
+
+  @override
+  String get recipes_loadEmptyCreate => '만들기';
+
+  @override
   String get profile_title => '프로필';
 }
