@@ -1,4 +1,7 @@
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 class RecipesContent extends StatelessWidget {
@@ -6,16 +9,25 @@ class RecipesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return JLoadingProvider(
-      child: GridView.count(
+    // TODO: Implement the recipes content.
+    return BlocSelector<RecipesBloc, RecipesState, String>(
+      selector: (state) => state.searchQuery.isEmpty ? "Empty" : state.searchQuery,
+      builder: (_, searchQuery) => GridView.count(
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
         mainAxisSpacing: JDimens.spacing_xs,
         crossAxisSpacing: JDimens.spacing_xs,
+        padding: const EdgeInsets.all(JDimens.spacing_m),
         children: List.generate(
           20,
-          (_) => const JLoadingBox(
-            cornerRadius: JDimens.radius_m,
+          (_) => DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.colorScheme().primary,
+              borderRadius: BorderRadius.circular(JDimens.radius_m),
+            ),
+            child: Center(
+              child: Text("search: $searchQuery"),
+            ),
           ),
         ),
       ),

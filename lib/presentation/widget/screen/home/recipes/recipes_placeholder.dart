@@ -8,19 +8,14 @@ class RecipesPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
-      child: JLoadingProvider(
-        child: GridView.count(
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          mainAxisSpacing: JDimens.spacing_xs,
-          crossAxisSpacing: JDimens.spacing_xs,
-          children: List.generate(
-            _recipeCount,
-            (_) => const _RecipePlaceholder(),
-          ),
-        ),
+    return JLoadingProvider(
+      child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: JDimens.spacing_xs,
+        crossAxisSpacing: JDimens.spacing_xs,
+        padding: const EdgeInsets.all(JDimens.spacing_m),
+        children: List.generate(_recipeCount, (_) => const _RecipePlaceholder()),
       ),
     );
   }
