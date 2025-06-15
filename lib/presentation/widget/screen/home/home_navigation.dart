@@ -16,18 +16,11 @@ class HomeNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      right: false,
-      left: false,
-      child: Column(
-        children: [
-          Expanded(child: body),
-          _HomeNavigationContainer(
-            currentIndex: currentIndex,
-            updateIndex: updateIndex,
-          ),
-        ],
+    return Scaffold(
+      body: body,
+      bottomNavigationBar: _HomeNavigationContainer(
+        currentIndex: currentIndex,
+        updateIndex: updateIndex,
       ),
     );
   }

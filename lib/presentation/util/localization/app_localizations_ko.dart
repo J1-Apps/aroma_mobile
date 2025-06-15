@@ -182,5 +182,8 @@ class StringsKo extends Strings {
   String get recipes_title => '레시피';
 
   @override
+  String get recipes_searchHint => '레시피 검색';
+
+  @override
   String get profile_title => '프로필';
 }

@@ -124,6 +124,8 @@
 
     "recipes_title": "Recipes",
     "@recipes_title": {},
+    "recipes_searchHint": "Search recipes",
+    "@recipes_searchHint": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

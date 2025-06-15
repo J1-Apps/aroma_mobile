@@ -124,6 +124,8 @@
 
     "recipes_title": "레시피",
     "@recipes_title": {},
+    "recipes_searchHint": "레시피 검색",
+    "@recipes_searchHint": {},
 
     "profile_title": "프로필",
     "@profile_title": {}

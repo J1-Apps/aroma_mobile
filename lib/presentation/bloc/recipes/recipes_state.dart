@@ -2,22 +2,22 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "recipes_state.mapper.dart";
 
-@MappableClass(discriminatorKey: "status")
-sealed class RecipesState with RecipesStateMappable {
-  const RecipesState();
+@MappableClass()
+class RecipesState with RecipesStateMappable {
+  final RecipesStatus status;
+  final String searchQuery;
+  // TODO: Add filters.
+
+  const RecipesState({
+    required this.status,
+    required this.searchQuery,
+  });
 }
 
-@MappableClass(discriminatorValue: "loading")
-class RecipesStateLoading extends RecipesState with RecipesStateLoadingMappable {
-  const RecipesStateLoading();
-}
-
-@MappableClass(discriminatorValue: "error")
-class RecipesStateError extends RecipesState with RecipesStateErrorMappable {
-  const RecipesStateError();
-}
-
-@MappableClass(discriminatorValue: "success")
-class RecipesStateSuccess extends RecipesState with RecipesStateSuccessMappable {
-  const RecipesStateSuccess();
+@MappableEnum()
+enum RecipesStatus {
+  loading,
+  error,
+  empty,
+  success,
 }

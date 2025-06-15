@@ -183,5 +183,8 @@ class StringsEn extends Strings {
   String get recipes_title => 'Recipes';
 
   @override
+  String get recipes_searchHint => 'Search recipes';
+
+  @override
   String get profile_title => 'Profile';
 }

@@ -6,6 +6,7 @@ import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_state.dart";
+import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
@@ -25,9 +26,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
        _signOutUsecase = signOutUsecase ?? locator.get<SignOutUsecase>(),
        super(const SettingsState(language: null, isSigningOut: false, error: null)) {
     on<SettingsEventInit>(_onInit);
-    on<SettingsEventUpdateLanguage>(_onUpdateLanguage);
+    on<SettingsEventUpdateLanguage>(_onUpdateLanguage, transformer: restartable());
     on<SettingsEventLanguageUpdated>(_onLanguageUpdated);
-    on<SettingsEventSignOut>(_onSignOut);
+    on<SettingsEventSignOut>(_onSignOut, transformer: restartable());
   }
 
   Future<void> _onInit(SettingsEventInit event, Emitter<SettingsState> emit) async {

@@ -4,6 +4,8 @@ import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/feed/feed_screen.dart";
@@ -141,7 +143,10 @@ final routeConfig = GoRouter(
               routes: [
                 GoRoute(
                   path: AromaRoute.recipes.relativePath,
-                  builder: (_, _) => const RecipesScreen(),
+                  builder: (_, _) => BlocProvider(
+                    create: (_) => RecipesBloc()..add(RecipesEventLoad()),
+                    child: const RecipesScreen(),
+                  ),
                   routes: [],
                 ),
               ],

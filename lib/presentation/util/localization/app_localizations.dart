@@ -374,6 +374,12 @@ abstract class Strings {
   /// **'Recipes'**
   String get recipes_title;
 
+  /// No description provided for @recipes_searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search recipes'**
+  String get recipes_searchHint;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:
