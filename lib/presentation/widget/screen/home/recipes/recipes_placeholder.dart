@@ -14,7 +14,12 @@ class RecipesPlaceholder extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: JDimens.spacing_xs,
         crossAxisSpacing: JDimens.spacing_xs,
-        padding: const EdgeInsets.all(JDimens.spacing_m),
+        padding: const EdgeInsets.fromLTRB(
+          JDimens.spacing_m,
+          JDimens.spacing_xs,
+          JDimens.spacing_m,
+          JDimens.spacing_xxxl,
+        ),
         children: List.generate(_recipeCount, (_) => const _RecipePlaceholder()),
       ),
     );

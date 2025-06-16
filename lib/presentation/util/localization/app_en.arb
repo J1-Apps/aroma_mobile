@@ -134,6 +134,16 @@
     "@recipes_loadEmpty": {},
     "recipes_loadEmptyCreate": "Create",
     "@recipes_loadEmptyCreate": {},
+    "recipes_sortFilterHint": "Sort and filter",
+    "@recipes_sortFilterHint": {},
+    "recipes_sort_recentlyViewed": "Recently viewed",
+    "@recipes_sort_recentlyViewed": {},
+    "recipes_sort_rating": "Rating",
+    "@recipes_sort_rating": {},
+    "recipes_sort_quickest": "Quickest",
+    "@recipes_sort_quickest": {},
+    "recipes_sort_easiest": "Easiest",
+    "@recipes_sort_easiest": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

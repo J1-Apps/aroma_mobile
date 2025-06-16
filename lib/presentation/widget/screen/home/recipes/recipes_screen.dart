@@ -88,15 +88,16 @@ class _RecipesHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.colorScheme().surface,
       padding: const EdgeInsets.symmetric(
         horizontal: JDimens.spacing_m,
-        vertical: JDimens.spacing_xxs,
+        vertical: JDimens.spacing_xs,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const RecipesSearch(),
+          const SizedBox(height: JDimens.spacing_xs),
           const RecipesFilter(),
         ],
       ),

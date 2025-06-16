@@ -1,3 +1,5 @@
+import "package:aroma_mobile/domain/entity/filter_entity.dart";
+import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 part "recipes_state.mapper.dart";
@@ -6,12 +8,22 @@ part "recipes_state.mapper.dart";
 class RecipesState with RecipesStateMappable {
   final RecipesStatus status;
   final String searchQuery;
-  // TODO: Add filters.
+  final SortEntity? sort;
+  final FilterEntity filter;
 
   const RecipesState({
     required this.status,
     required this.searchQuery,
+    required this.sort,
+    required this.filter,
   });
+
+  factory RecipesState.initial() => RecipesState(
+    status: RecipesStatus.loading,
+    searchQuery: "",
+    sort: null,
+    filter: FilterEntity.initial(),
+  );
 }
 
 @MappableEnum()

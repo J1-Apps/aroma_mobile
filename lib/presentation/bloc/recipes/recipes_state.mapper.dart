@@ -68,6 +68,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = RecipesStateMapper._());
       RecipesStatusMapper.ensureInitialized();
+      SortEntityMapper.ensureInitialized();
+      FilterEntityMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -79,15 +81,26 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, RecipesStatus> _f$status = Field('status', _$status);
   static String _$searchQuery(RecipesState v) => v.searchQuery;
   static const Field<RecipesState, String> _f$searchQuery = Field('searchQuery', _$searchQuery);
+  static SortEntity? _$sort(RecipesState v) => v.sort;
+  static const Field<RecipesState, SortEntity> _f$sort = Field('sort', _$sort);
+  static FilterEntity _$filter(RecipesState v) => v.filter;
+  static const Field<RecipesState, FilterEntity> _f$filter = Field('filter', _$filter);
 
   @override
   final MappableFields<RecipesState> fields = const {
     #status: _f$status,
     #searchQuery: _f$searchQuery,
+    #sort: _f$sort,
+    #filter: _f$filter,
   };
 
   static RecipesState _instantiate(DecodingData data) {
-    return RecipesState(status: data.dec(_f$status), searchQuery: data.dec(_f$searchQuery));
+    return RecipesState(
+      status: data.dec(_f$status),
+      searchQuery: data.dec(_f$searchQuery),
+      sort: data.dec(_f$sort),
+      filter: data.dec(_f$filter),
+    );
   }
 
   @override
@@ -135,7 +148,8 @@ extension RecipesStateValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesState, $O
 }
 
 abstract class RecipesStateCopyWith<$R, $In extends RecipesState, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({RecipesStatus? status, String? searchQuery});
+  FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter;
+  $R call({RecipesStatus? status, String? searchQuery, SortEntity? sort, FilterEntity? filter});
   RecipesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -146,13 +160,23 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
   @override
   late final ClassMapperBase<RecipesState> $mapper = RecipesStateMapper.ensureInitialized();
   @override
-  $R call({RecipesStatus? status, String? searchQuery}) => $apply(
-    FieldCopyWithData({if (status != null) #status: status, if (searchQuery != null) #searchQuery: searchQuery}),
+  FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter =>
+      $value.filter.copyWith.$chain((v) => call(filter: v));
+  @override
+  $R call({RecipesStatus? status, String? searchQuery, Object? sort = $none, FilterEntity? filter}) => $apply(
+    FieldCopyWithData({
+      if (status != null) #status: status,
+      if (searchQuery != null) #searchQuery: searchQuery,
+      if (sort != $none) #sort: sort,
+      if (filter != null) #filter: filter,
+    }),
   );
   @override
   RecipesState $make(CopyWithData data) => RecipesState(
     status: data.get(#status, or: $value.status),
     searchQuery: data.get(#searchQuery, or: $value.searchQuery),
+    sort: data.get(#sort, or: $value.sort),
+    filter: data.get(#filter, or: $value.filter),
   );
 
   @override

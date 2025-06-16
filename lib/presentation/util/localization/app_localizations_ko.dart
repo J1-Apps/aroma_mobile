@@ -197,5 +197,20 @@ class StringsKo extends Strings {
   String get recipes_loadEmptyCreate => '만들기';
 
   @override
+  String get recipes_sortFilterHint => '정렬 및 필터';
+
+  @override
+  String get recipes_sort_recentlyViewed => '최근 본 레시피';
+
+  @override
+  String get recipes_sort_rating => '평점';
+
+  @override
+  String get recipes_sort_quickest => '빠른 조리';
+
+  @override
+  String get recipes_sort_easiest => '쉬운 조리';
+
+  @override
   String get profile_title => '프로필';
 }

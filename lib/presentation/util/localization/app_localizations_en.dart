@@ -199,5 +199,20 @@ class StringsEn extends Strings {
   String get recipes_loadEmptyCreate => 'Create';
 
   @override
+  String get recipes_sortFilterHint => 'Sort and filter';
+
+  @override
+  String get recipes_sort_recentlyViewed => 'Recently viewed';
+
+  @override
+  String get recipes_sort_rating => 'Rating';
+
+  @override
+  String get recipes_sort_quickest => 'Quickest';
+
+  @override
+  String get recipes_sort_easiest => 'Easiest';
+
+  @override
   String get profile_title => 'Profile';
 }

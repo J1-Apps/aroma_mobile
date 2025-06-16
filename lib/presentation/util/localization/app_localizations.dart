@@ -404,6 +404,36 @@ abstract class Strings {
   /// **'Create'**
   String get recipes_loadEmptyCreate;
 
+  /// No description provided for @recipes_sortFilterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort and filter'**
+  String get recipes_sortFilterHint;
+
+  /// No description provided for @recipes_sort_recentlyViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently viewed'**
+  String get recipes_sort_recentlyViewed;
+
+  /// No description provided for @recipes_sort_rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get recipes_sort_rating;
+
+  /// No description provided for @recipes_sort_quickest.
+  ///
+  /// In en, this message translates to:
+  /// **'Quickest'**
+  String get recipes_sort_quickest;
+
+  /// No description provided for @recipes_sort_easiest.
+  ///
+  /// In en, this message translates to:
+  /// **'Easiest'**
+  String get recipes_sort_easiest;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:
