@@ -4,6 +4,7 @@ import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
+import "package:aroma_mobile/presentation/widget/common/star_rating.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_filter.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -96,7 +97,14 @@ class _FilterItems extends StatelessWidget {
                 onSortChanged: onSortChanged,
               ),
             ),
-            Text(strings.recipes_drawer_ratingTitle, style: textTheme.titleMedium),
+            _FilterSection(
+              title: strings.recipes_drawer_ratingTitle,
+              textTheme: textTheme,
+              child: _RatingRow(
+                rating: filter.ratingMin,
+                onRatingChanged: (value) => onFilterChanged(filter.copyWith(ratingMin: value)),
+              ),
+            ),
             _FilterSection(
               title: strings.recipes_drawer_timeTitle,
               textTheme: textTheme,
@@ -182,6 +190,28 @@ class _SortRow extends StatelessWidget {
             ),
           )
           .toList(),
+    );
+  }
+}
+
+class _RatingRow extends StatelessWidget {
+  final int? rating;
+  final Function(int?) onRatingChanged;
+
+  const _RatingRow({
+    required this.rating,
+    required this.onRatingChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: JDimens.spacing_xs, left: JDimens.spacing_s),
+      child: StarRating(
+        rating: rating ?? 0,
+        onRatingChanged: (value) => onRatingChanged(value == 0 ? null : value),
+        size: JDimens.size_32,
+      ),
     );
   }
 }
