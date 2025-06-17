@@ -25,6 +25,8 @@ class SortEntityMapper extends EnumMapper<SortEntity> {
   @override
   SortEntity decode(dynamic value) {
     switch (value) {
+      case r'none':
+        return SortEntity.none;
       case r'recentlyViewed':
         return SortEntity.recentlyViewed;
       case r'rating':
@@ -41,6 +43,8 @@ class SortEntityMapper extends EnumMapper<SortEntity> {
   @override
   dynamic encode(SortEntity self) {
     switch (self) {
+      case SortEntity.none:
+        return r'none';
       case SortEntity.recentlyViewed:
         return r'recentlyViewed';
       case SortEntity.rating:

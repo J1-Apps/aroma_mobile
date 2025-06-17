@@ -81,7 +81,7 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, RecipesStatus> _f$status = Field('status', _$status);
   static String _$searchQuery(RecipesState v) => v.searchQuery;
   static const Field<RecipesState, String> _f$searchQuery = Field('searchQuery', _$searchQuery);
-  static SortEntity? _$sort(RecipesState v) => v.sort;
+  static SortEntity _$sort(RecipesState v) => v.sort;
   static const Field<RecipesState, SortEntity> _f$sort = Field('sort', _$sort);
   static FilterEntity _$filter(RecipesState v) => v.filter;
   static const Field<RecipesState, FilterEntity> _f$filter = Field('filter', _$filter);
@@ -163,11 +163,11 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
   FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter =>
       $value.filter.copyWith.$chain((v) => call(filter: v));
   @override
-  $R call({RecipesStatus? status, String? searchQuery, Object? sort = $none, FilterEntity? filter}) => $apply(
+  $R call({RecipesStatus? status, String? searchQuery, SortEntity? sort, FilterEntity? filter}) => $apply(
     FieldCopyWithData({
       if (status != null) #status: status,
       if (searchQuery != null) #searchQuery: searchQuery,
-      if (sort != $none) #sort: sort,
+      if (sort != null) #sort: sort,
       if (filter != null) #filter: filter,
     }),
   );

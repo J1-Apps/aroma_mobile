@@ -4,6 +4,7 @@ part "sort_entity.mapper.dart";
 
 @MappableEnum()
 enum SortEntity {
+  none,
   recentlyViewed,
   rating,
   quickest,

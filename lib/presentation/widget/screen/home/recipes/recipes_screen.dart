@@ -88,6 +88,7 @@ class _RecipesHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: context.colorScheme().surface,
       padding: const EdgeInsets.symmetric(
         horizontal: JDimens.spacing_m,
         vertical: JDimens.spacing_xs,

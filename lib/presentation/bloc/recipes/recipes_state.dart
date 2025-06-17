@@ -8,7 +8,7 @@ part "recipes_state.mapper.dart";
 class RecipesState with RecipesStateMappable {
   final RecipesStatus status;
   final String searchQuery;
-  final SortEntity? sort;
+  final SortEntity sort;
   final FilterEntity filter;
 
   const RecipesState({
@@ -21,7 +21,7 @@ class RecipesState with RecipesStateMappable {
   factory RecipesState.initial() => RecipesState(
     status: RecipesStatus.loading,
     searchQuery: "",
-    sort: null,
+    sort: SortEntity.none,
     filter: FilterEntity.initial(),
   );
 }
