@@ -220,6 +220,11 @@ class StringsEn extends Strings {
   String get recipes_sort_alphabetical => 'Alphabetical';
 
   @override
+  String recipes_filter_timeEqual(int time) {
+    return 'Time = ${time}m';
+  }
+
+  @override
   String recipes_filter_timeMin(int time) {
     return 'Time > ${time}m';
   }
@@ -232,6 +237,11 @@ class StringsEn extends Strings {
   @override
   String recipes_filter_ratingMin(double rating) {
     return 'Rating > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsEqual(int servings) {
+    return 'Servings = $servings';
   }
 
   @override

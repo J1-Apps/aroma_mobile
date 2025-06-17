@@ -218,6 +218,11 @@ class StringsKo extends Strings {
   String get recipes_sort_alphabetical => '알파벳순';
 
   @override
+  String recipes_filter_timeEqual(int time) {
+    return '시간 = $time분';
+  }
+
+  @override
   String recipes_filter_timeMin(int time) {
     return '시간 > $time분';
   }
@@ -230,6 +235,11 @@ class StringsKo extends Strings {
   @override
   String recipes_filter_ratingMin(double rating) {
     return '평점 > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsEqual(int servings) {
+    return '인분 = $servings';
   }
 
   @override

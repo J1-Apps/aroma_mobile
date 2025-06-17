@@ -82,12 +82,20 @@ class _RecipesSortTag extends StatelessWidget {
 }
 
 List<Widget> _createFilterTags(Strings strings, FilterEntity filter) {
+  final timeEqual = filter.timeMin == filter.timeMax;
+  final servingsEqual = filter.servingsMin == filter.servingsMax;
+
   return [
-    if (filter.timeMin != null) AromaTag(text: strings.recipes_filter_timeMin(filter.timeMin!)),
-    if (filter.timeMax != null) AromaTag(text: strings.recipes_filter_timeMax(filter.timeMax!)),
+    if (timeEqual && filter.timeMin != null) AromaTag(text: strings.recipes_filter_timeEqual(filter.timeMin!)),
+    if (filter.timeMin != null && !timeEqual) AromaTag(text: strings.recipes_filter_timeMin(filter.timeMin!)),
+    if (filter.timeMax != null && !timeEqual) AromaTag(text: strings.recipes_filter_timeMax(filter.timeMax!)),
     if (filter.ratingMin != null) AromaTag(text: strings.recipes_filter_ratingMin(filter.ratingMin!.toDouble() / 2.0)),
-    if (filter.servingsMin != null) AromaTag(text: strings.recipes_filter_servingsMin(filter.servingsMin!)),
-    if (filter.servingsMax != null) AromaTag(text: strings.recipes_filter_servingsMax(filter.servingsMax!)),
+    if (servingsEqual && filter.servingsMin != null)
+      AromaTag(text: strings.recipes_filter_servingsEqual(filter.servingsMin!)),
+    if (filter.servingsMin != null && !servingsEqual)
+      AromaTag(text: strings.recipes_filter_servingsMin(filter.servingsMin!)),
+    if (filter.servingsMax != null && !servingsEqual)
+      AromaTag(text: strings.recipes_filter_servingsMax(filter.servingsMax!)),
     ...filter.difficulties.map((difficulty) => AromaTag(text: difficultyToString(strings, difficulty))),
     ...filter.tags.map((tag) => AromaTag(text: tag.name)),
   ];

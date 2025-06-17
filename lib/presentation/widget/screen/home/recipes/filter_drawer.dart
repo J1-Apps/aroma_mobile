@@ -10,6 +10,8 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 const filterDrawerHeightRatio = 0.8;
+const _maxTime = 120.0;
+const _maxServings = 20.0;
 
 class FilterDrawer extends StatefulWidget {
   final RecipesBloc bloc;
@@ -79,32 +81,51 @@ class _FilterItems extends StatelessWidget {
     final textTheme = context.textTheme();
 
     return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: JDimens.spacing_s,
-        children: [
-          _FilterSection(
-            title: strings.recipes_drawer_sortTitle,
-            textTheme: textTheme,
-            child: _SortRow(
-              sort: sort,
-              onSortChanged: onSortChanged,
+      child: Padding(
+        padding: const EdgeInsets.only(top: JDimens.spacing_xxs),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: JDimens.spacing_s,
+          children: [
+            _FilterSection(
+              title: strings.recipes_drawer_sortTitle,
+              textTheme: textTheme,
+              child: _SortRow(
+                sort: sort,
+                onSortChanged: onSortChanged,
+              ),
             ),
-          ),
-          Text(strings.recipes_drawer_ratingTitle, style: textTheme.titleMedium),
-          Text(strings.recipes_drawer_timeTitle, style: textTheme.titleMedium),
-          Text(strings.recipes_drawer_servingsTitle, style: textTheme.titleMedium),
-          _FilterSection(
-            title: strings.recipes_drawer_difficultyTitle,
-            textTheme: textTheme,
-            child: _DifficultyRow(
-              difficulties: filter.difficulties,
-              onDifficultyChanged: (difficulties) => onFilterChanged(filter.copyWith(difficulties: difficulties)),
+            Text(strings.recipes_drawer_ratingTitle, style: textTheme.titleMedium),
+            _FilterSection(
+              title: strings.recipes_drawer_timeTitle,
+              textTheme: textTheme,
+              child: _TimeRow(
+                timeMin: filter.timeMin,
+                timeMax: filter.timeMax,
+                onTimeChanged: (min, max) => onFilterChanged(filter.copyWith(timeMin: min, timeMax: max)),
+              ),
             ),
-          ),
-          Text(strings.recipes_drawer_tagsTitle, style: textTheme.titleMedium),
-        ],
+            _FilterSection(
+              title: strings.recipes_drawer_servingsTitle,
+              textTheme: textTheme,
+              child: _ServingsRow(
+                servingsMin: filter.servingsMin,
+                servingsMax: filter.servingsMax,
+                onServingsChanged: (min, max) => onFilterChanged(filter.copyWith(servingsMin: min, servingsMax: max)),
+              ),
+            ),
+            _FilterSection(
+              title: strings.recipes_drawer_difficultyTitle,
+              textTheme: textTheme,
+              child: _DifficultyRow(
+                difficulties: filter.difficulties,
+                onDifficultyChanged: (difficulties) => onFilterChanged(filter.copyWith(difficulties: difficulties)),
+              ),
+            ),
+            Text(strings.recipes_drawer_tagsTitle, style: textTheme.titleMedium),
+          ],
+        ),
       ),
     );
   }
@@ -161,6 +182,62 @@ class _SortRow extends StatelessWidget {
             ),
           )
           .toList(),
+    );
+  }
+}
+
+class _TimeRow extends StatelessWidget {
+  final int? timeMin;
+  final int? timeMax;
+  final Function(int?, int?) onTimeChanged;
+
+  const _TimeRow({
+    required this.timeMin,
+    required this.timeMax,
+    required this.onTimeChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RangeSlider(
+      values: RangeValues(timeMin?.toDouble() ?? 0, timeMax?.toDouble() ?? _maxTime),
+      labels: RangeLabels(timeMin?.toString() ?? "0", timeMax?.toString() ?? "∞"),
+      divisions: (_maxTime / 5).toInt(),
+      max: _maxTime,
+      onChanged: (values) {
+        final min = values.start.floor();
+        final max = values.end.floor();
+
+        onTimeChanged(min == 0 ? null : min, max == _maxTime ? null : max);
+      },
+    );
+  }
+}
+
+class _ServingsRow extends StatelessWidget {
+  final int? servingsMin;
+  final int? servingsMax;
+  final Function(int?, int?) onServingsChanged;
+
+  const _ServingsRow({
+    required this.servingsMin,
+    required this.servingsMax,
+    required this.onServingsChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RangeSlider(
+      values: RangeValues(servingsMin?.toDouble() ?? 0, servingsMax?.toDouble() ?? _maxServings),
+      labels: RangeLabels(servingsMin?.toString() ?? "0", servingsMax?.toString() ?? "∞"),
+      divisions: _maxServings.toInt(),
+      max: _maxServings,
+      onChanged: (values) {
+        final min = values.start.floor();
+        final max = values.end.floor();
+
+        onServingsChanged(min == 0 ? null : min, max == _maxServings ? null : max);
+      },
     );
   }
 }

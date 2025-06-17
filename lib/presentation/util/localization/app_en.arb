@@ -148,6 +148,15 @@
     "@recipes_sort_easiest": {},
     "recipes_sort_alphabetical": "Alphabetical",
     "@recipes_sort_alphabetical": {},
+    "recipes_filter_timeEqual": "Time = {time}m",
+    "@recipes_filter_timeEqual": {
+        "placeholders": {
+            "time": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
     "recipes_filter_timeMin": "Time > {time}m",
     "@recipes_filter_timeMin": {
         "placeholders": {
@@ -172,6 +181,15 @@
             "rating": {
                 "type": "double",
                 "example": "4.5"
+            }
+        }
+    },
+    "recipes_filter_servingsEqual": "Servings = {servings}",
+    "@recipes_filter_servingsEqual": {
+        "placeholders": {
+            "servings": {
+                "type": "int",
+                "example": "10"
             }
         }
     },

@@ -446,6 +446,12 @@ abstract class Strings {
   /// **'Alphabetical'**
   String get recipes_sort_alphabetical;
 
+  /// No description provided for @recipes_filter_timeEqual.
+  ///
+  /// In en, this message translates to:
+  /// **'Time = {time}m'**
+  String recipes_filter_timeEqual(int time);
+
   /// No description provided for @recipes_filter_timeMin.
   ///
   /// In en, this message translates to:
@@ -463,6 +469,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Rating > {rating}'**
   String recipes_filter_ratingMin(double rating);
+
+  /// No description provided for @recipes_filter_servingsEqual.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings = {servings}'**
+  String recipes_filter_servingsEqual(int servings);
 
   /// No description provided for @recipes_filter_servingsMin.
   ///
