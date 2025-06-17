@@ -6,18 +6,18 @@ part "filter_entity.mapper.dart";
 
 @MappableClass()
 class FilterEntity with FilterEntityMappable {
+  final int? ratingMin;
   final int? timeMin;
   final int? timeMax;
-  final int? ratingMin;
   final int? servingsMin;
   final int? servingsMax;
   final Set<DifficultyEntity> difficulties;
   final Set<TagEntity> tags;
 
   const FilterEntity({
+    this.ratingMin,
     this.timeMin,
     this.timeMax,
-    this.ratingMin,
     this.servingsMin,
     this.servingsMax,
     this.difficulties = const {},

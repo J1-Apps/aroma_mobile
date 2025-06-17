@@ -1,3 +1,4 @@
+import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 
 sealed class RecipesEvent {
@@ -14,8 +15,9 @@ class RecipesEventSearch extends RecipesEvent {
   const RecipesEventSearch({required this.searchQuery});
 }
 
-class RecipesEventSort extends RecipesEvent {
+class RecipesEventFilter extends RecipesEvent {
   final SortEntity sort;
+  final FilterEntity filter;
 
-  const RecipesEventSort({required this.sort});
+  const RecipesEventFilter({required this.sort, required this.filter});
 }

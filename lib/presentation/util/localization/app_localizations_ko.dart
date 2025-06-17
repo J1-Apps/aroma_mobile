@@ -246,5 +246,11 @@ class StringsKo extends Strings {
   String get recipes_filter_difficultyHard => '어려움';
 
   @override
+  String get recipes_filter_reset => '초기화';
+
+  @override
+  String get recipes_filter_apply => '적용';
+
+  @override
   String get profile_title => '프로필';
 }

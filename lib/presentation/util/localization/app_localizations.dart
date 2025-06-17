@@ -482,6 +482,18 @@ abstract class Strings {
   /// **'Hard'**
   String get recipes_filter_difficultyHard;
 
+  /// No description provided for @recipes_filter_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get recipes_filter_reset;
+
+  /// No description provided for @recipes_filter_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get recipes_filter_apply;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

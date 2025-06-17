@@ -7,7 +7,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   RecipesBloc() : super(RecipesState.initial()) {
     on<RecipesEventLoad>(_onLoad, transformer: restartable());
     on<RecipesEventSearch>(_onSearch);
-    on<RecipesEventSort>(_onSort);
+    on<RecipesEventFilter>(_onFilter);
   }
 
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
@@ -20,12 +20,20 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }
 
   Future<void> _onSearch(RecipesEventSearch event, Emitter<RecipesState> emit) async {
+    if (event.searchQuery == state.searchQuery) {
+      return;
+    }
+
     emit(state.copyWith(searchQuery: event.searchQuery));
     add(const RecipesEventLoad());
   }
 
-  Future<void> _onSort(RecipesEventSort event, Emitter<RecipesState> emit) async {
-    emit(state.copyWith(sort: event.sort));
+  Future<void> _onFilter(RecipesEventFilter event, Emitter<RecipesState> emit) async {
+    if (event.sort == state.sort && event.filter == state.filter) {
+      return;
+    }
+
+    emit(state.copyWith(sort: event.sort, filter: event.filter));
     add(const RecipesEventLoad());
   }
 }

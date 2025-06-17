@@ -195,6 +195,10 @@
     "@recipes_filter_difficultyMedium": {},
     "recipes_filter_difficultyHard": "어려움",
     "@recipes_filter_difficultyHard": {},
+    "recipes_filter_reset": "초기화",
+    "@recipes_filter_reset": {},
+    "recipes_filter_apply": "적용",
+    "@recipes_filter_apply": {},
 
     "profile_title": "프로필",
     "@profile_title": {}

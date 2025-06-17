@@ -6,6 +6,7 @@ import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
 import "package:aroma_mobile/presentation/widget/common/aroma_tag.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipes/filter_drawer.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -40,8 +41,9 @@ class _RecipesFilterDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return JCard(
       size: JWidgetSize.small,
-      // TODO: Show filter bottom sheet.
-      onPressed: () => context.showJToastWithText(text: "Sort and filter", hasClose: true),
+      onPressed: () => context.showJBottomSheet(
+        child: FilterDrawer(bloc: context.read<RecipesBloc>()),
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
           JDimens.spacing_s,

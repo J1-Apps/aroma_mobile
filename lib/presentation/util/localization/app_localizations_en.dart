@@ -248,5 +248,11 @@ class StringsEn extends Strings {
   String get recipes_filter_difficultyHard => 'Hard';
 
   @override
+  String get recipes_filter_reset => 'Reset';
+
+  @override
+  String get recipes_filter_apply => 'Apply';
+
+  @override
   String get profile_title => 'Profile';
 }
