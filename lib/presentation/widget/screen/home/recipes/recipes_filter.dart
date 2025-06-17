@@ -1,9 +1,10 @@
+import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
-import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
+import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
 import "package:aroma_mobile/presentation/widget/common/aroma_tag.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -24,6 +25,7 @@ class RecipesFilter extends StatelessWidget {
           children: [
             _RecipesFilterDropdown(),
             if (filter.$1 != SortEntity.none) _RecipesSortTag(sort: filter.$1),
+            ..._createFilterTags(context.strings(), filter.$2),
           ],
         );
       },
@@ -80,7 +82,30 @@ class _RecipesSortTag extends StatelessWidget {
         SortEntity.quickest => strings.recipes_sort_quickest,
         SortEntity.easiest => strings.recipes_sort_easiest,
       },
-      onPressed: () => context.read<RecipesBloc>().add(const RecipesEventSort(sort: SortEntity.none)),
     );
   }
+}
+
+List<Widget> _createFilterTags(Strings strings, FilterEntity filter) {
+  return [
+    if (filter.timeMin != null) AromaTag(text: strings.recipes_filter_timeMin(filter.timeMin!)),
+    if (filter.timeMax != null) AromaTag(text: strings.recipes_filter_timeMax(filter.timeMax!)),
+    if (filter.ratingMin != null) AromaTag(text: strings.recipes_filter_ratingMin(filter.ratingMin!.toDouble() / 2.0)),
+    if (filter.servingsMin != null) AromaTag(text: strings.recipes_filter_servingsMin(filter.servingsMin!)),
+    if (filter.servingsMax != null) AromaTag(text: strings.recipes_filter_servingsMax(filter.servingsMax!)),
+    ...filter.difficulties.map(
+      (difficulty) => AromaTag(
+        text: switch (difficulty) {
+          DifficultyEntity.easy => strings.recipes_filter_difficultyEasy,
+          DifficultyEntity.medium => strings.recipes_filter_difficultyMedium,
+          DifficultyEntity.hard => strings.recipes_filter_difficultyHard,
+        },
+      ),
+    ),
+    ...filter.tags.map(
+      (tag) => AromaTag(
+        text: tag.name,
+      ),
+    ),
+  ];
 }

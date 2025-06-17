@@ -144,6 +144,57 @@
     "@recipes_sort_quickest": {},
     "recipes_sort_easiest": "쉬운 조리",
     "@recipes_sort_easiest": {},
+    "recipes_filter_timeMin": "시간 > {time}분",
+    "@recipes_filter_timeMin": {
+        "placeholders": {
+            "time": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_timeMax": "시간 < {time}분",
+    "@recipes_filter_timeMax": {
+        "placeholders": {
+            "time": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_ratingMin": "평점 > {rating}",
+    "@recipes_filter_ratingMin": {
+        "placeholders": {
+            "rating": {
+                "type": "double",
+                "example": "4.5"
+            }
+        }
+    },
+    "recipes_filter_servingsMin": "인분 > {servings}",
+    "@recipes_filter_servingsMin": {
+        "placeholders": {
+            "servings": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_servingsMax": "인분 < {servings}",
+    "@recipes_filter_servingsMax": {
+        "placeholders": {
+            "servings": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_difficultyEasy": "쉬움",
+    "@recipes_filter_difficultyEasy": {},
+    "recipes_filter_difficultyMedium": "보통",
+    "@recipes_filter_difficultyMedium": {},
+    "recipes_filter_difficultyHard": "어려움",
+    "@recipes_filter_difficultyHard": {},
 
     "profile_title": "프로필",
     "@profile_title": {}

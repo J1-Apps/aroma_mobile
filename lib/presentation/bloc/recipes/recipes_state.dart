@@ -22,7 +22,7 @@ class RecipesState with RecipesStateMappable {
     status: RecipesStatus.loading,
     searchQuery: "",
     sort: SortEntity.none,
-    filter: FilterEntity.initial(),
+    filter: FilterEntity(),
   );
 }
 

@@ -214,5 +214,39 @@ class StringsEn extends Strings {
   String get recipes_sort_easiest => 'Easiest';
 
   @override
+  String recipes_filter_timeMin(int time) {
+    return 'Time > ${time}m';
+  }
+
+  @override
+  String recipes_filter_timeMax(int time) {
+    return 'Time < ${time}m';
+  }
+
+  @override
+  String recipes_filter_ratingMin(double rating) {
+    return 'Rating > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsMin(int servings) {
+    return 'Servings > $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMax(int servings) {
+    return 'Servings < $servings';
+  }
+
+  @override
+  String get recipes_filter_difficultyEasy => 'Easy';
+
+  @override
+  String get recipes_filter_difficultyMedium => 'Medium';
+
+  @override
+  String get recipes_filter_difficultyHard => 'Hard';
+
+  @override
   String get profile_title => 'Profile';
 }

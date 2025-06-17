@@ -1,3 +1,5 @@
+import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
+import "package:aroma_mobile/domain/entity/tag_entity.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 part "filter_entity.mapper.dart";
@@ -7,28 +9,18 @@ class FilterEntity with FilterEntityMappable {
   final int? timeMin;
   final int? timeMax;
   final int? ratingMin;
-  final int? ratingMax;
-  final int? difficultyMin;
-  final int? difficultyMax;
-  final List<int> tags;
+  final int? servingsMin;
+  final int? servingsMax;
+  final Set<DifficultyEntity> difficulties;
+  final Set<TagEntity> tags;
 
   const FilterEntity({
-    required this.timeMin,
-    required this.timeMax,
-    required this.ratingMin,
-    required this.ratingMax,
-    required this.difficultyMin,
-    required this.difficultyMax,
-    required this.tags,
+    this.timeMin,
+    this.timeMax,
+    this.ratingMin,
+    this.servingsMin,
+    this.servingsMax,
+    this.difficulties = const {},
+    this.tags = const {},
   });
-
-  factory FilterEntity.initial() => const FilterEntity(
-    timeMin: null,
-    timeMax: null,
-    ratingMin: null,
-    ratingMax: null,
-    difficultyMin: null,
-    difficultyMax: null,
-    tags: [],
-  );
 }

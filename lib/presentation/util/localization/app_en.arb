@@ -144,6 +144,57 @@
     "@recipes_sort_quickest": {},
     "recipes_sort_easiest": "Easiest",
     "@recipes_sort_easiest": {},
+    "recipes_filter_timeMin": "Time > {time}m",
+    "@recipes_filter_timeMin": {
+        "placeholders": {
+            "time": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_timeMax": "Time < {time}m",
+    "@recipes_filter_timeMax": {
+        "placeholders": {
+            "time": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_ratingMin": "Rating > {rating}",
+    "@recipes_filter_ratingMin": {
+        "placeholders": {
+            "rating": {
+                "type": "double",
+                "example": "4.5"
+            }
+        }
+    },
+    "recipes_filter_servingsMin": "Servings > {servings}",
+    "@recipes_filter_servingsMin": {
+        "placeholders": {
+            "servings": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_servingsMax": "Servings < {servings}",
+    "@recipes_filter_servingsMax": {
+        "placeholders": {
+            "servings": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "recipes_filter_difficultyEasy": "Easy",
+    "@recipes_filter_difficultyEasy": {},
+    "recipes_filter_difficultyMedium": "Medium",
+    "@recipes_filter_difficultyMedium": {},
+    "recipes_filter_difficultyHard": "Hard",
+    "@recipes_filter_difficultyHard": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

@@ -434,6 +434,54 @@ abstract class Strings {
   /// **'Easiest'**
   String get recipes_sort_easiest;
 
+  /// No description provided for @recipes_filter_timeMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Time > {time}m'**
+  String recipes_filter_timeMin(int time);
+
+  /// No description provided for @recipes_filter_timeMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Time < {time}m'**
+  String recipes_filter_timeMax(int time);
+
+  /// No description provided for @recipes_filter_ratingMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating > {rating}'**
+  String recipes_filter_ratingMin(double rating);
+
+  /// No description provided for @recipes_filter_servingsMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings > {servings}'**
+  String recipes_filter_servingsMin(int servings);
+
+  /// No description provided for @recipes_filter_servingsMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings < {servings}'**
+  String recipes_filter_servingsMax(int servings);
+
+  /// No description provided for @recipes_filter_difficultyEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get recipes_filter_difficultyEasy;
+
+  /// No description provided for @recipes_filter_difficultyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get recipes_filter_difficultyMedium;
+
+  /// No description provided for @recipes_filter_difficultyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get recipes_filter_difficultyHard;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

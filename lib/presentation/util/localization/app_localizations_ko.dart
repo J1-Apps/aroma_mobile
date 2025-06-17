@@ -212,5 +212,39 @@ class StringsKo extends Strings {
   String get recipes_sort_easiest => '쉬운 조리';
 
   @override
+  String recipes_filter_timeMin(int time) {
+    return '시간 > $time분';
+  }
+
+  @override
+  String recipes_filter_timeMax(int time) {
+    return '시간 < $time분';
+  }
+
+  @override
+  String recipes_filter_ratingMin(double rating) {
+    return '평점 > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsMin(int servings) {
+    return '인분 > $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMax(int servings) {
+    return '인분 < $servings';
+  }
+
+  @override
+  String get recipes_filter_difficultyEasy => '쉬움';
+
+  @override
+  String get recipes_filter_difficultyMedium => '보통';
+
+  @override
+  String get recipes_filter_difficultyHard => '어려움';
+
+  @override
   String get profile_title => '프로필';
 }
