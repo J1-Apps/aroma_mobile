@@ -618,7 +618,7 @@ packages:
     description:
       path: "packages/j1_core_base"
       ref: "v1.0.0"
-      resolved-ref: df360add4d9b37b8c464dad1ded22d50d1d24550
+      resolved-ref: "6e9aac093e24db0100329dc9494a468870e60b85"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -627,7 +627,7 @@ packages:
     description:
       path: "packages/j1_core_firebase"
       ref: "v1.0.0"
-      resolved-ref: df360add4d9b37b8c464dad1ded22d50d1d24550
+      resolved-ref: "6e9aac093e24db0100329dc9494a468870e60b85"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"

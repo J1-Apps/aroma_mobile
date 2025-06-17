@@ -31,7 +31,7 @@ void main() {
       await tester.pumpWidget(TestWrapper(child: ProfileScreen()));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(JamIcons.settings));
+      await tester.tap(find.byIcon(JamIcons.cog));
       await tester.pumpAndSettle();
 
       verify(() => router.push<EmptyRouteConfig>(any(), AromaRoute.settings, const EmptyRouteConfig())).called(1);

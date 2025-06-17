@@ -7,7 +7,7 @@ class AromaBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JIconButton(
-      icon: JamIcons.chevronleft,
+      icon: JamIcons.chevron_left,
       color: JWidgetColor.secondary,
       onPressed: context.canPop() ? () => context.pop() : null,
     );

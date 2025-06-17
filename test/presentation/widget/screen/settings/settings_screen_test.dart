@@ -169,7 +169,7 @@ void main() {
       stream.add(const SettingsState(language: "en", isSigningOut: false, error: null));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(JamIcons.chevronright).at(0));
+      await tester.tap(find.byIcon(JamIcons.chevron_right).at(0));
       await tester.pumpAndSettle();
 
       verify(() => router.push<EmptyRouteConfig>(any(), AromaRoute.theme, const EmptyRouteConfig())).called(1);

@@ -57,7 +57,7 @@ class _RecipesFilterDropdown extends StatelessWidget {
               style: context.textTheme().labelMedium,
             ),
             const SizedBox(width: JDimens.spacing_xxs),
-            const Icon(JamIcons.chevrondown, size: JDimens.size_16),
+            const Icon(JamIcons.chevron_down, size: JDimens.size_16),
           ],
         ),
       ),

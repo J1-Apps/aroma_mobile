@@ -10,7 +10,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.strings();
 
-    // TODO: Use user's name for title.
     return ScaffoldMessenger(
       child: Scaffold(
         appBar: JAppBar(

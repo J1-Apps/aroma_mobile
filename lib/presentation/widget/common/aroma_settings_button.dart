@@ -8,7 +8,7 @@ class AromaSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JIconButton(
-      icon: JamIcons.settings,
+      icon: JamIcons.cog,
       onPressed: () => context.push(AromaRoute.settings, const EmptyRouteConfig()),
     );
   }

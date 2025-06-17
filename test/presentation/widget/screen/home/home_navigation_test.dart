@@ -24,11 +24,11 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text("Body"), findsOneWidget);
-      expect(find.byIcon(JamIcons.unorderedlist), findsOneWidget);
+      expect(find.byIcon(JamIcons.unordered_list), findsOneWidget);
       expect(find.byIcon(JamIcons.book), findsOneWidget);
-      expect(find.byIcon(JamIcons.account), findsOneWidget);
+      expect(find.byIcon(JamIcons.user_circle), findsOneWidget);
 
-      await tester.tap(find.byIcon(JamIcons.unorderedlist));
+      await tester.tap(find.byIcon(JamIcons.unordered_list));
       await tester.pumpAndSettle();
       verify(() => updateIndex(0)).called(1);
 
@@ -36,7 +36,7 @@ void main() {
       await tester.pumpAndSettle();
       verify(() => updateIndex(1)).called(1);
 
-      await tester.tap(find.byIcon(JamIcons.account));
+      await tester.tap(find.byIcon(JamIcons.user_circle));
       await tester.pumpAndSettle();
       verify(() => updateIndex(2)).called(1);
     });

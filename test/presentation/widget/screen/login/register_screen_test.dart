@@ -225,7 +225,7 @@ void main() {
       await tester.pumpAndSettle();
 
       final hideFinder = find.byIcon(JamIcons.eye);
-      final showFinder = find.byIcon(JamIcons.eyeclosed);
+      final showFinder = find.byIcon(JamIcons.eye_close);
 
       expect(hideFinder, findsOneWidget);
       expect(showFinder, findsNothing);

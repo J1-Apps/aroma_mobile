@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             _SettingsItem(
-              icon: JamIcons.paintbrush,
+              icon: JamIcons.brush,
               label: strings.settings_theme,
               onPressed: () => context.push(AromaRoute.theme, const EmptyRouteConfig()),
             ),
@@ -94,7 +94,7 @@ class _SettingsItem extends StatelessWidget {
             Text(label, style: context.textTheme().headlineSmall),
           ],
         ),
-        trailingItem ?? const Icon(JamIcons.chevronright),
+        trailingItem ?? const Icon(JamIcons.chevron_right),
       ],
     );
   }
@@ -121,7 +121,7 @@ class _LanguageSwitcher extends StatelessWidget {
             children: [
               Text(strings.settings_languageLabel(language), style: textTheme.titleMedium),
               const SizedBox(width: JDimens.spacing_xs),
-              Icon(JamIcons.chevrondown, size: JDimens.size_16),
+              Icon(JamIcons.chevron_down, size: JDimens.size_16),
             ],
           );
         }
