@@ -136,6 +136,8 @@
     "@recipes_loadEmptyCreate": {},
     "recipes_sortFilterHint": "Sort and filter",
     "@recipes_sortFilterHint": {},
+    "recipes_sort_none": "None",
+    "@recipes_sort_none": {},
     "recipes_sort_recentlyViewed": "Recently viewed",
     "@recipes_sort_recentlyViewed": {},
     "recipes_sort_rating": "Rating",
@@ -144,6 +146,8 @@
     "@recipes_sort_quickest": {},
     "recipes_sort_easiest": "Easiest",
     "@recipes_sort_easiest": {},
+    "recipes_sort_alphabetical": "Alphabetical",
+    "@recipes_sort_alphabetical": {},
     "recipes_filter_timeMin": "Time > {time}m",
     "@recipes_filter_timeMin": {
         "placeholders": {
@@ -199,6 +203,18 @@
     "@recipes_filter_reset": {},
     "recipes_filter_apply": "Apply",
     "@recipes_filter_apply": {},
+    "recipes_drawer_sortTitle": "Sort by",
+    "@recipes_drawer_sortTitle": {},
+    "recipes_drawer_ratingTitle": "Rating",
+    "@recipes_drawer_ratingTitle": {},
+    "recipes_drawer_timeTitle": "Time",
+    "@recipes_drawer_timeTitle": {},
+    "recipes_drawer_servingsTitle": "Servings",
+    "@recipes_drawer_servingsTitle": {},
+    "recipes_drawer_difficultyTitle": "Difficulty",
+    "@recipes_drawer_difficultyTitle": {},
+    "recipes_drawer_tagsTitle": "Tags",
+    "@recipes_drawer_tagsTitle": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

@@ -202,6 +202,9 @@ class StringsEn extends Strings {
   String get recipes_sortFilterHint => 'Sort and filter';
 
   @override
+  String get recipes_sort_none => 'None';
+
+  @override
   String get recipes_sort_recentlyViewed => 'Recently viewed';
 
   @override
@@ -212,6 +215,9 @@ class StringsEn extends Strings {
 
   @override
   String get recipes_sort_easiest => 'Easiest';
+
+  @override
+  String get recipes_sort_alphabetical => 'Alphabetical';
 
   @override
   String recipes_filter_timeMin(int time) {
@@ -252,6 +258,24 @@ class StringsEn extends Strings {
 
   @override
   String get recipes_filter_apply => 'Apply';
+
+  @override
+  String get recipes_drawer_sortTitle => 'Sort by';
+
+  @override
+  String get recipes_drawer_ratingTitle => 'Rating';
+
+  @override
+  String get recipes_drawer_timeTitle => 'Time';
+
+  @override
+  String get recipes_drawer_servingsTitle => 'Servings';
+
+  @override
+  String get recipes_drawer_difficultyTitle => 'Difficulty';
+
+  @override
+  String get recipes_drawer_tagsTitle => 'Tags';
 
   @override
   String get profile_title => 'Profile';

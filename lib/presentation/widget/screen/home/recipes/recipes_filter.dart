@@ -43,6 +43,7 @@ class _RecipesFilterDropdown extends StatelessWidget {
       size: JWidgetSize.small,
       onPressed: () => context.showJBottomSheet(
         child: FilterDrawer(bloc: context.read<RecipesBloc>()),
+        scrollControlDisabledMaxHeightRatio: filterDrawerHeightRatio,
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
@@ -53,12 +54,12 @@ class _RecipesFilterDropdown extends StatelessWidget {
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          spacing: JDimens.spacing_xxs,
           children: [
             Text(
               context.strings().recipes_sortFilterHint,
               style: context.textTheme().labelMedium,
             ),
-            const SizedBox(width: JDimens.spacing_xxs),
             const Icon(JamIcons.chevron_down, size: JDimens.size_16),
           ],
         ),
@@ -76,15 +77,7 @@ class _RecipesSortTag extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.strings();
 
-    return AromaTag(
-      text: switch (sort) {
-        SortEntity.none => strings.recipes_sort_recentlyViewed,
-        SortEntity.recentlyViewed => strings.recipes_sort_recentlyViewed,
-        SortEntity.rating => strings.recipes_sort_rating,
-        SortEntity.quickest => strings.recipes_sort_quickest,
-        SortEntity.easiest => strings.recipes_sort_easiest,
-      },
-    );
+    return AromaTag(text: sortToString(strings, sort));
   }
 }
 
@@ -95,19 +88,26 @@ List<Widget> _createFilterTags(Strings strings, FilterEntity filter) {
     if (filter.ratingMin != null) AromaTag(text: strings.recipes_filter_ratingMin(filter.ratingMin!.toDouble() / 2.0)),
     if (filter.servingsMin != null) AromaTag(text: strings.recipes_filter_servingsMin(filter.servingsMin!)),
     if (filter.servingsMax != null) AromaTag(text: strings.recipes_filter_servingsMax(filter.servingsMax!)),
-    ...filter.difficulties.map(
-      (difficulty) => AromaTag(
-        text: switch (difficulty) {
-          DifficultyEntity.easy => strings.recipes_filter_difficultyEasy,
-          DifficultyEntity.medium => strings.recipes_filter_difficultyMedium,
-          DifficultyEntity.hard => strings.recipes_filter_difficultyHard,
-        },
-      ),
-    ),
-    ...filter.tags.map(
-      (tag) => AromaTag(
-        text: tag.name,
-      ),
-    ),
+    ...filter.difficulties.map((difficulty) => AromaTag(text: difficultyToString(strings, difficulty))),
+    ...filter.tags.map((tag) => AromaTag(text: tag.name)),
   ];
+}
+
+String sortToString(Strings strings, SortEntity sort) {
+  return switch (sort) {
+    SortEntity.none => strings.recipes_sort_none,
+    SortEntity.recentlyViewed => strings.recipes_sort_recentlyViewed,
+    SortEntity.rating => strings.recipes_sort_rating,
+    SortEntity.quickest => strings.recipes_sort_quickest,
+    SortEntity.easiest => strings.recipes_sort_easiest,
+    SortEntity.alphabetical => strings.recipes_sort_alphabetical,
+  };
+}
+
+String difficultyToString(Strings strings, DifficultyEntity difficulty) {
+  return switch (difficulty) {
+    DifficultyEntity.easy => strings.recipes_filter_difficultyEasy,
+    DifficultyEntity.medium => strings.recipes_filter_difficultyMedium,
+    DifficultyEntity.hard => strings.recipes_filter_difficultyHard,
+  };
 }

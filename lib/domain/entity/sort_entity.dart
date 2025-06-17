@@ -9,4 +9,5 @@ enum SortEntity {
   rating,
   quickest,
   easiest,
+  alphabetical,
 }

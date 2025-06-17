@@ -35,6 +35,8 @@ class SortEntityMapper extends EnumMapper<SortEntity> {
         return SortEntity.quickest;
       case r'easiest':
         return SortEntity.easiest;
+      case r'alphabetical':
+        return SortEntity.alphabetical;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -53,6 +55,8 @@ class SortEntityMapper extends EnumMapper<SortEntity> {
         return r'quickest';
       case SortEntity.easiest:
         return r'easiest';
+      case SortEntity.alphabetical:
+        return r'alphabetical';
     }
   }
 }

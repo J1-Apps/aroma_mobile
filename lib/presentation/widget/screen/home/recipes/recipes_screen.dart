@@ -96,9 +96,9 @@ class _RecipesHeader extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: JDimens.spacing_xs,
         children: [
           const RecipesSearch(),
-          const SizedBox(height: JDimens.spacing_xs),
           const RecipesFilter(),
         ],
       ),

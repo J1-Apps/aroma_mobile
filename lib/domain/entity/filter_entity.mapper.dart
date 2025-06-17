@@ -22,12 +22,12 @@ class FilterEntityMapper extends ClassMapperBase<FilterEntity> {
   @override
   final String id = 'FilterEntity';
 
+  static int? _$ratingMin(FilterEntity v) => v.ratingMin;
+  static const Field<FilterEntity, int> _f$ratingMin = Field('ratingMin', _$ratingMin, opt: true);
   static int? _$timeMin(FilterEntity v) => v.timeMin;
   static const Field<FilterEntity, int> _f$timeMin = Field('timeMin', _$timeMin, opt: true);
   static int? _$timeMax(FilterEntity v) => v.timeMax;
   static const Field<FilterEntity, int> _f$timeMax = Field('timeMax', _$timeMax, opt: true);
-  static int? _$ratingMin(FilterEntity v) => v.ratingMin;
-  static const Field<FilterEntity, int> _f$ratingMin = Field('ratingMin', _$ratingMin, opt: true);
   static int? _$servingsMin(FilterEntity v) => v.servingsMin;
   static const Field<FilterEntity, int> _f$servingsMin = Field('servingsMin', _$servingsMin, opt: true);
   static int? _$servingsMax(FilterEntity v) => v.servingsMax;
@@ -44,9 +44,9 @@ class FilterEntityMapper extends ClassMapperBase<FilterEntity> {
 
   @override
   final MappableFields<FilterEntity> fields = const {
+    #ratingMin: _f$ratingMin,
     #timeMin: _f$timeMin,
     #timeMax: _f$timeMax,
-    #ratingMin: _f$ratingMin,
     #servingsMin: _f$servingsMin,
     #servingsMax: _f$servingsMax,
     #difficulties: _f$difficulties,
@@ -55,9 +55,9 @@ class FilterEntityMapper extends ClassMapperBase<FilterEntity> {
 
   static FilterEntity _instantiate(DecodingData data) {
     return FilterEntity(
+      ratingMin: data.dec(_f$ratingMin),
       timeMin: data.dec(_f$timeMin),
       timeMax: data.dec(_f$timeMax),
-      ratingMin: data.dec(_f$ratingMin),
       servingsMin: data.dec(_f$servingsMin),
       servingsMax: data.dec(_f$servingsMax),
       difficulties: data.dec(_f$difficulties),
@@ -111,9 +111,9 @@ extension FilterEntityValueCopy<$R, $Out> on ObjectCopyWith<$R, FilterEntity, $O
 
 abstract class FilterEntityCopyWith<$R, $In extends FilterEntity, $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({
+    int? ratingMin,
     int? timeMin,
     int? timeMax,
-    int? ratingMin,
     int? servingsMin,
     int? servingsMax,
     Set<DifficultyEntity>? difficulties,
@@ -130,18 +130,18 @@ class _FilterEntityCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, FilterEn
   late final ClassMapperBase<FilterEntity> $mapper = FilterEntityMapper.ensureInitialized();
   @override
   $R call({
+    Object? ratingMin = $none,
     Object? timeMin = $none,
     Object? timeMax = $none,
-    Object? ratingMin = $none,
     Object? servingsMin = $none,
     Object? servingsMax = $none,
     Set<DifficultyEntity>? difficulties,
     Set<TagEntity>? tags,
   }) => $apply(
     FieldCopyWithData({
+      if (ratingMin != $none) #ratingMin: ratingMin,
       if (timeMin != $none) #timeMin: timeMin,
       if (timeMax != $none) #timeMax: timeMax,
-      if (ratingMin != $none) #ratingMin: ratingMin,
       if (servingsMin != $none) #servingsMin: servingsMin,
       if (servingsMax != $none) #servingsMax: servingsMax,
       if (difficulties != null) #difficulties: difficulties,
@@ -150,9 +150,9 @@ class _FilterEntityCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, FilterEn
   );
   @override
   FilterEntity $make(CopyWithData data) => FilterEntity(
+    ratingMin: data.get(#ratingMin, or: $value.ratingMin),
     timeMin: data.get(#timeMin, or: $value.timeMin),
     timeMax: data.get(#timeMax, or: $value.timeMax),
-    ratingMin: data.get(#ratingMin, or: $value.ratingMin),
     servingsMin: data.get(#servingsMin, or: $value.servingsMin),
     servingsMax: data.get(#servingsMax, or: $value.servingsMax),
     difficulties: data.get(#difficulties, or: $value.difficulties),

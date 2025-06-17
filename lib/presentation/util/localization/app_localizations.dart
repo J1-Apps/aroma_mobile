@@ -410,6 +410,12 @@ abstract class Strings {
   /// **'Sort and filter'**
   String get recipes_sortFilterHint;
 
+  /// No description provided for @recipes_sort_none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get recipes_sort_none;
+
   /// No description provided for @recipes_sort_recentlyViewed.
   ///
   /// In en, this message translates to:
@@ -433,6 +439,12 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Easiest'**
   String get recipes_sort_easiest;
+
+  /// No description provided for @recipes_sort_alphabetical.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphabetical'**
+  String get recipes_sort_alphabetical;
 
   /// No description provided for @recipes_filter_timeMin.
   ///
@@ -493,6 +505,42 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'Apply'**
   String get recipes_filter_apply;
+
+  /// No description provided for @recipes_drawer_sortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get recipes_drawer_sortTitle;
+
+  /// No description provided for @recipes_drawer_ratingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get recipes_drawer_ratingTitle;
+
+  /// No description provided for @recipes_drawer_timeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get recipes_drawer_timeTitle;
+
+  /// No description provided for @recipes_drawer_servingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings'**
+  String get recipes_drawer_servingsTitle;
+
+  /// No description provided for @recipes_drawer_difficultyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get recipes_drawer_difficultyTitle;
+
+  /// No description provided for @recipes_drawer_tagsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get recipes_drawer_tagsTitle;
 
   /// No description provided for @profile_title.
   ///

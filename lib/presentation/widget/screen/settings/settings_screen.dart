@@ -88,9 +88,9 @@ class _SettingsItem extends StatelessWidget {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          spacing: JDimens.spacing_xs,
           children: [
             Icon(icon),
-            const SizedBox(width: JDimens.spacing_xs),
             Text(label, style: context.textTheme().headlineSmall),
           ],
         ),
@@ -118,9 +118,9 @@ class _LanguageSwitcher extends StatelessWidget {
         } else {
           return Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: JDimens.spacing_xs,
             children: [
               Text(strings.settings_languageLabel(language), style: textTheme.titleMedium),
-              const SizedBox(width: JDimens.spacing_xs),
               Icon(JamIcons.chevron_down, size: JDimens.size_16),
             ],
           );

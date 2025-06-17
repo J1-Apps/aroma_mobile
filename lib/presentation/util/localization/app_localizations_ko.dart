@@ -200,6 +200,9 @@ class StringsKo extends Strings {
   String get recipes_sortFilterHint => '정렬 및 필터';
 
   @override
+  String get recipes_sort_none => '없음';
+
+  @override
   String get recipes_sort_recentlyViewed => '최근 본 레시피';
 
   @override
@@ -210,6 +213,9 @@ class StringsKo extends Strings {
 
   @override
   String get recipes_sort_easiest => '쉬운 조리';
+
+  @override
+  String get recipes_sort_alphabetical => '알파벳순';
 
   @override
   String recipes_filter_timeMin(int time) {
@@ -250,6 +256,24 @@ class StringsKo extends Strings {
 
   @override
   String get recipes_filter_apply => '적용';
+
+  @override
+  String get recipes_drawer_sortTitle => '순서';
+
+  @override
+  String get recipes_drawer_ratingTitle => '평점';
+
+  @override
+  String get recipes_drawer_timeTitle => '시간';
+
+  @override
+  String get recipes_drawer_servingsTitle => '인분';
+
+  @override
+  String get recipes_drawer_difficultyTitle => '난이도';
+
+  @override
+  String get recipes_drawer_tagsTitle => '태그';
 
   @override
   String get profile_title => '프로필';

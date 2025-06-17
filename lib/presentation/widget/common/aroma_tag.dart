@@ -36,9 +36,9 @@ class AromaTag extends StatelessWidget {
         padding: padding,
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          spacing: JDimens.spacing_xxxs,
           children: [
             Text(text, style: context.textTheme().labelMedium),
-            if (showClose) const SizedBox(width: JDimens.spacing_xxxs),
             if (showClose) const Icon(JamIcons.close, size: JDimens.size_16),
           ],
         ),
