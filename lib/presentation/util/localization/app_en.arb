@@ -233,6 +233,10 @@
     "@recipes_drawer_difficultyTitle": {},
     "recipes_drawer_tagsTitle": "Tags",
     "@recipes_drawer_tagsTitle": {},
+    "recipes_drawer_tagsHint": "Search tags",
+    "@recipes_drawer_tagsHint": {},
+    "recipes_drawer_tagsEmpty": "No results",
+    "@recipes_drawer_tagsEmpty": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

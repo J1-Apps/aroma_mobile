@@ -288,5 +288,11 @@ class StringsEn extends Strings {
   String get recipes_drawer_tagsTitle => 'Tags';
 
   @override
+  String get recipes_drawer_tagsHint => 'Search tags';
+
+  @override
+  String get recipes_drawer_tagsEmpty => 'No results';
+
+  @override
   String get profile_title => 'Profile';
 }

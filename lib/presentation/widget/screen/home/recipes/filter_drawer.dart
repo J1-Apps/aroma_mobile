@@ -1,9 +1,14 @@
 import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
+import "package:aroma_mobile/domain/entity/tag_entity.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_event.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_state.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
+import "package:aroma_mobile/presentation/widget/common/aroma_tag.dart";
 import "package:aroma_mobile/presentation/widget/common/star_rating.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_filter.dart";
 import "package:flutter/material.dart";
@@ -13,6 +18,8 @@ import "package:j1_core_base/j1_core_base.dart";
 const filterDrawerHeightRatio = 0.8;
 const _maxTime = 120.0;
 const _maxServings = 20.0;
+const _loading = "Loading";
+const _empty = "Empty";
 
 class FilterDrawer extends StatefulWidget {
   final RecipesBloc bloc;
@@ -39,22 +46,31 @@ class _FilterDrawerState extends State<FilterDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: widget.bloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => FilterDrawerBloc()..add(FilterDrawerTagQueryChanged(tagQuery: ""))),
+        BlocProvider.value(value: widget.bloc),
+      ],
       child: Padding(
-        padding: const EdgeInsets.all(JDimens.spacing_s),
+        padding: const EdgeInsets.only(
+          left: JDimens.spacing_m,
+          right: JDimens.spacing_m,
+          bottom: JDimens.spacing_m,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: JDimens.spacing_s,
           children: [
-            _FilterItems(
-              sort: sort,
-              filter: filter,
-              onSortChanged: (value) => setState(() => sort = value),
-              onFilterChanged: (value) => setState(() => filter = value),
+            Expanded(
+              child: _FilterItems(
+                sort: sort,
+                filter: filter,
+                onSortChanged: (value) => setState(() => sort = value),
+                onFilterChanged: (value) => setState(() => filter = value),
+              ),
             ),
             Divider(height: 1, color: context.colorScheme().onSurface),
+            SizedBox(height: JDimens.spacing_s),
             _ActionRow(sort: sort, filter: filter),
           ],
         ),
@@ -83,11 +99,14 @@ class _FilterItems extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(top: JDimens.spacing_xxs),
+        padding: const EdgeInsets.only(
+          top: JDimens.spacing_m,
+          bottom: JDimens.spacing_s,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: JDimens.spacing_s,
+          spacing: JDimens.spacing_xs,
           children: [
             _FilterSection(
               title: strings.recipes_drawer_sortTitle,
@@ -131,7 +150,14 @@ class _FilterItems extends StatelessWidget {
                 onDifficultyChanged: (difficulties) => onFilterChanged(filter.copyWith(difficulties: difficulties)),
               ),
             ),
-            Text(strings.recipes_drawer_tagsTitle, style: textTheme.titleMedium),
+            _FilterSection(
+              title: strings.recipes_drawer_tagsTitle,
+              textTheme: textTheme,
+              child: _TagsRow(
+                tags: filter.tags,
+                onTagsChanged: (tags) => onFilterChanged(filter.copyWith(tags: tags)),
+              ),
+            ),
           ],
         ),
       ),
@@ -206,7 +232,11 @@ class _RatingRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: JDimens.spacing_xs, left: JDimens.spacing_s),
+      padding: const EdgeInsets.only(
+        top: JDimens.spacing_xxs,
+        left: JDimens.spacing_s,
+        bottom: JDimens.spacing_xxs,
+      ),
       child: StarRating(
         rating: rating ?? 0,
         onRatingChanged: (value) => onRatingChanged(value == 0 ? null : value),
@@ -299,6 +329,150 @@ class _DifficultyRow extends StatelessWidget {
         },
       ).toList(),
     );
+  }
+}
+
+class _TagsRow extends StatelessWidget {
+  final Set<TagEntity> tags;
+  final Function(Set<TagEntity>) onTagsChanged;
+
+  const _TagsRow({required this.tags, required this.onTagsChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: JDimens.spacing_xs),
+      child: Wrap(
+        spacing: JDimens.spacing_xs,
+        runSpacing: JDimens.spacing_xs,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          _TagDropdown(tags: tags, onTagsChanged: onTagsChanged),
+          ...tags.map(
+            (value) => AromaTag(
+              text: value.name,
+              onPressed: () => onTagsChanged(tags.difference({value})),
+              showClose: true,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TagDropdown extends StatefulWidget {
+  final Set<TagEntity> tags;
+  final Function(Set<TagEntity>) onTagsChanged;
+
+  const _TagDropdown({required this.tags, required this.onTagsChanged});
+
+  @override
+  State<_TagDropdown> createState() => _TagDropdownState();
+}
+
+class _TagDropdownState extends State<_TagDropdown> {
+  final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(
+      () => context.read<FilterDrawerBloc>().add(
+        FilterDrawerTagQueryChanged(tagQuery: _controller.text),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = context.strings();
+    final textTheme = context.textTheme();
+    final colorScheme = context.colorScheme();
+
+    return BlocBuilder<FilterDrawerBloc, FilterDrawerState>(
+      builder: (context, state) {
+        final border = OutlineInputBorder(
+          borderRadius: BorderRadius.circular(JDimens.radius_m),
+          borderSide: BorderSide(color: colorScheme.onSurface, width: 2),
+        );
+
+        return DropdownMenu<TagEntity>(
+          controller: _controller,
+          hintText: strings.recipes_drawer_tagsHint,
+          enableSearch: false,
+          requestFocusOnTap: true,
+          textStyle: textTheme.bodyMedium,
+          trailingIcon: const Icon(Icons.search),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: textTheme.bodyMedium?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.5)),
+            isDense: true,
+            contentPadding: EdgeInsets.fromLTRB(
+              JDimens.spacing_s,
+              JDimens.spacing_xxs,
+              JDimens.spacing_xxs,
+              JDimens.spacing_xxs,
+            ),
+            border: border,
+            focusedBorder: border,
+            errorBorder: border,
+            focusedErrorBorder: border,
+            disabledBorder: border,
+            enabledBorder: border,
+            constraints: BoxConstraints(maxHeight: JDimens.size_40),
+          ),
+          onSelected: (value) {
+            if (value != null) {
+              widget.onTagsChanged(widget.tags.union({value}));
+            }
+
+            _controller.clear();
+            FocusScope.of(context).unfocus();
+          },
+          dropdownMenuEntries: switch (state.tagStatus) {
+            TagStatus.loading => [
+              DropdownMenuEntry(
+                value: TagEntity(id: -1, name: _loading),
+                label: _loading,
+                labelWidget: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: JDimens.spacing_xxs),
+                    child: JLoadingIndicator(),
+                  ),
+                ),
+                enabled: false,
+              ),
+            ],
+            TagStatus.empty => [
+              DropdownMenuEntry(
+                value: TagEntity(id: -1, name: _empty),
+                label: strings.recipes_drawer_tagsEmpty,
+                enabled: false,
+              ),
+            ],
+            TagStatus.success =>
+              state.tagResults
+                  .map(
+                    (value) => DropdownMenuEntry(
+                      value: value,
+                      label: value.name,
+                      labelWidget: Align(
+                        alignment: Alignment.centerLeft,
+                        child: AromaTag(text: value.name),
+                      ),
+                    ),
+                  )
+                  .toList(),
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
 

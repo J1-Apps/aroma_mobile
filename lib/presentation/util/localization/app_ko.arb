@@ -233,6 +233,10 @@
     "@recipes_drawer_difficultyTitle": {},
     "recipes_drawer_tagsTitle": "태그",
     "@recipes_drawer_tagsTitle": {},
+    "recipes_drawer_tagsHint": "태그 검색",
+    "@recipes_drawer_tagsHint": {},
+    "recipes_drawer_tagsEmpty": "결과 없음",
+    "@recipes_drawer_tagsEmpty": {},
 
     "profile_title": "프로필",
     "@profile_title": {}

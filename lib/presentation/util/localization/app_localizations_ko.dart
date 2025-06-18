@@ -286,5 +286,11 @@ class StringsKo extends Strings {
   String get recipes_drawer_tagsTitle => '태그';
 
   @override
+  String get recipes_drawer_tagsHint => '태그 검색';
+
+  @override
+  String get recipes_drawer_tagsEmpty => '결과 없음';
+
+  @override
   String get profile_title => '프로필';
 }

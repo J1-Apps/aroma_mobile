@@ -554,6 +554,18 @@ abstract class Strings {
   /// **'Tags'**
   String get recipes_drawer_tagsTitle;
 
+  /// No description provided for @recipes_drawer_tagsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tags'**
+  String get recipes_drawer_tagsHint;
+
+  /// No description provided for @recipes_drawer_tagsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get recipes_drawer_tagsEmpty;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

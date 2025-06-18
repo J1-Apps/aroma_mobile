@@ -39,6 +39,7 @@ dependencies:
   dart_mappable: ^4.5.0
   collection: ^1.19.1
   go_router: ^15.1.2
+  bloc_event_transformers: ^2.0.0
 
 dev_dependencies:
   flutter_test:
