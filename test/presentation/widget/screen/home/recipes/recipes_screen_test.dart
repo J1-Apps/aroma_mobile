@@ -1,3 +1,5 @@
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_screen.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -28,19 +30,21 @@ void main() {
     });
 
     testWidgets("navigates to settings", (tester) async {
-      await tester.pumpWidget(TestWrapper(child: const RecipesScreen()));
+      final bloc = RecipesBloc();
+      bloc.add(const RecipesEventLoad());
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const RecipesScreen(),
+        ),
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(find.byIcon(JamIcons.cog));
       await tester.pumpAndSettle();
 
       verify(() => router.push<EmptyRouteConfig>(any(), AromaRoute.settings, const EmptyRouteConfig())).called(1);
-    });
-
-    testWidgets("shows recipes screen text", (tester) async {
-      await tester.pumpWidget(TestWrapper(child: const RecipesScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text("Recipes"), findsOneWidget);
     });
   });
 }

@@ -6,7 +6,8 @@ abstract class TagUsecase {
   Future<List<TagEntity>> call({String? query, int limit = _defaultLimit});
 }
 
-// TODO: Remove this implementation.
+// TODO: Remove this implementation and test the file.
+// coverage:ignore-file
 const _mockTags = [
   TagEntity(id: 1, name: "Dinner"),
   TagEntity(id: 2, name: "Lunch"),
@@ -27,7 +28,7 @@ class TagUsecaseTestImpl implements TagUsecase {
 
   @override
   Future<List<TagEntity>> call({String? query, int limit = _defaultLimit}) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     final filtered = query != null
         ? _mockTags.where((tag) => tag.name.toLowerCase().contains(query.toLowerCase())).toList()

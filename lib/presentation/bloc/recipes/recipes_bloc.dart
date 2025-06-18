@@ -14,7 +14,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     emit(state.copyWith(status: RecipesStatus.loading));
 
     // TODO: Load recipes from use case.
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     emit(state.copyWith(status: RecipesStatus.success));
   }
