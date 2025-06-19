@@ -19,11 +19,9 @@ void main() {
   group("Sign In Screen", () {
     final router = MockRouter();
     final SignInBloc bloc = MockSignInBloc();
-    final SignInEvent fallback = SignInEventSignInWithEmail(email: "", password: "");
     late StreamController<SignInState> stream;
 
     setUpAll(() {
-      registerFallbackValue(fallback);
       registerFallbackValue(FakeBuildContext());
       registerFallbackValue(FakeEmailPasswordRoute());
       registerFallbackValue(FakeEmailRoute());
@@ -117,23 +115,7 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(0));
       await tester.pumpAndSettle();
 
-      verify(
-        () => bloc.add(
-          any(
-            that: isA<SignInEventSignInWithEmail>()
-                .having(
-                  (e) => e.email,
-                  "email",
-                  "test@test.com",
-                )
-                .having(
-                  (e) => e.password,
-                  "password",
-                  "password",
-                ),
-          ),
-        ),
-      ).called(1);
+      verify(() => bloc.add(SignInEventSignInWithEmail(email: "test@test.com", password: "password"))).called(1);
     });
 
     testWidgets("navigates to register screen", (tester) async {

@@ -17,12 +17,10 @@ void main() {
   group("Recipes Screen", () {
     final router = MockRouter();
     final RecipesBloc bloc = MockRecipesBloc();
-    final RecipesEvent fallback = const RecipesEventLoad();
     final BuildContext context = FakeBuildContext();
     late StreamController<RecipesState> stream;
 
     setUpAll(() {
-      registerFallbackValue(fallback);
       registerFallbackValue(context);
       registerFallbackValue(FakeEmptyRoute());
       registerFallbackValue(const EmptyRouteConfig());

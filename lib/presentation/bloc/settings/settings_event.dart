@@ -1,23 +1,32 @@
-sealed class SettingsEvent {
+import "package:dart_mappable/dart_mappable.dart";
+
+part "settings_event.mapper.dart";
+
+@MappableClass(discriminatorKey: "event")
+sealed class SettingsEvent with SettingsEventMappable {
   const SettingsEvent();
 }
 
-final class SettingsEventInit extends SettingsEvent {
+@MappableClass(discriminatorValue: "init")
+final class SettingsEventInit extends SettingsEvent with SettingsEventInitMappable {
   const SettingsEventInit();
 }
 
-final class SettingsEventUpdateLanguage extends SettingsEvent {
+@MappableClass(discriminatorValue: "updateLanguage")
+final class SettingsEventUpdateLanguage extends SettingsEvent with SettingsEventUpdateLanguageMappable {
   final String language;
 
   const SettingsEventUpdateLanguage(this.language);
 }
 
-final class SettingsEventLanguageUpdated extends SettingsEvent {
+@MappableClass(discriminatorValue: "languageUpdated")
+final class SettingsEventLanguageUpdated extends SettingsEvent with SettingsEventLanguageUpdatedMappable {
   final String language;
 
   const SettingsEventLanguageUpdated(this.language);
 }
 
-final class SettingsEventSignOut extends SettingsEvent {
+@MappableClass(discriminatorValue: "signOut")
+final class SettingsEventSignOut extends SettingsEvent with SettingsEventSignOutMappable {
   const SettingsEventSignOut();
 }

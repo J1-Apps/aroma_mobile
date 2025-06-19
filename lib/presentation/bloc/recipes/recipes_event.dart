@@ -1,21 +1,29 @@
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 
-sealed class RecipesEvent {
+import "package:dart_mappable/dart_mappable.dart";
+
+part "recipes_event.mapper.dart";
+
+@MappableClass(discriminatorKey: "event")
+sealed class RecipesEvent with RecipesEventMappable {
   const RecipesEvent();
 }
 
-class RecipesEventLoad extends RecipesEvent {
+@MappableClass(discriminatorValue: "load")
+class RecipesEventLoad extends RecipesEvent with RecipesEventLoadMappable {
   const RecipesEventLoad();
 }
 
-class RecipesEventSearch extends RecipesEvent {
+@MappableClass(discriminatorValue: "search")
+class RecipesEventSearch extends RecipesEvent with RecipesEventSearchMappable {
   final String searchQuery;
 
   const RecipesEventSearch({required this.searchQuery});
 }
 
-class RecipesEventFilter extends RecipesEvent {
+@MappableClass(discriminatorValue: "filter")
+class RecipesEventFilter extends RecipesEvent with RecipesEventFilterMappable {
   final SortEntity sort;
   final FilterEntity filter;
 

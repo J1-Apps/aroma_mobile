@@ -1,8 +1,14 @@
-sealed class RegisterEvent {
+import "package:dart_mappable/dart_mappable.dart";
+
+part "register_event.mapper.dart";
+
+@MappableClass(discriminatorKey: "event")
+sealed class RegisterEvent with RegisterEventMappable {
   const RegisterEvent();
 }
 
-class RegisterEventSignUpWithEmail extends RegisterEvent {
+@MappableClass(discriminatorValue: "signUpWithEmail")
+class RegisterEventSignUpWithEmail extends RegisterEvent with RegisterEventSignUpWithEmailMappable {
   final String email;
   final String password;
 

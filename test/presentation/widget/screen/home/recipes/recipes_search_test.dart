@@ -14,12 +14,7 @@ import "../../../../../test_util/testing_mocks.dart";
 void main() {
   group("Recipes Search", () {
     final RecipesBloc bloc = MockRecipesBloc();
-    final RecipesEvent fallback = const RecipesEventLoad();
     late StreamController<RecipesState> stream;
-
-    setUpAll(() {
-      registerFallbackValue(fallback);
-    });
 
     setUp(() {
       stream = StreamController<RecipesState>.broadcast();
@@ -41,17 +36,7 @@ void main() {
       await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.pumpAndSettle();
 
-      verify(
-        () => bloc.add(
-          any(
-            that: isA<RecipesEventSearch>().having(
-              (event) => event.searchQuery,
-              "searchQuery",
-              "test",
-            ),
-          ),
-        ),
-      ).called(1);
+      verify(() => bloc.add(RecipesEventSearch(searchQuery: "test"))).called(1);
     });
 
     testWidgets("handles search icon press", (tester) async {
@@ -62,17 +47,7 @@ void main() {
       await tester.tap(find.byIcon(JamIcons.search));
       await tester.pumpAndSettle();
 
-      verify(
-        () => bloc.add(
-          any(
-            that: isA<RecipesEventSearch>().having(
-              (event) => event.searchQuery,
-              "searchQuery",
-              "test",
-            ),
-          ),
-        ),
-      ).called(1);
+      verify(() => bloc.add(RecipesEventSearch(searchQuery: "test"))).called(1);
     });
   });
 }
