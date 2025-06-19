@@ -19,12 +19,12 @@ void main() {
   group("Sign In Screen", () {
     final router = MockRouter();
     final SignInBloc bloc = MockSignInBloc();
-    final BuildContext context = FakeBuildContext();
     final SignInEvent fallback = SignInEventSignInWithEmail(email: "", password: "");
     late StreamController<SignInState> stream;
 
     setUpAll(() {
       registerFallbackValue(fallback);
+      registerFallbackValue(FakeBuildContext());
       registerFallbackValue(FakeEmailPasswordRoute());
       registerFallbackValue(FakeEmailRoute());
       registerFallbackValue(const EmailPasswordRouteConfig());
@@ -34,7 +34,6 @@ void main() {
     setUp(() {
       stream = StreamController<SignInState>.broadcast();
       locator.registerSingleton<J1Router>(router);
-      registerFallbackValue(context);
       when(() => router.navigate<EmailPasswordRouteConfig>(any(), any(), any())).thenAnswer((_) => Future.value());
       when(bloc.close).thenAnswer((_) => Future.value());
       when(() => bloc.state).thenReturn(const SignInState());
