@@ -53,3 +53,7 @@ default.realm.note
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Env related
+.env.*
+env.g.dart
