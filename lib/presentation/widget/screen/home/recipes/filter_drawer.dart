@@ -373,15 +373,21 @@ class _TagDropdown extends StatefulWidget {
 
 class _TagDropdownState extends State<_TagDropdown> {
   final _controller = TextEditingController();
+  var previousQuery = "";
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(
-      () => context.read<FilterDrawerBloc>().add(
-        FilterDrawerEventTagQueryChanged(tagQuery: _controller.text),
-      ),
-    );
+    _controller.addListener(() {
+      final query = _controller.text;
+
+      if (query != previousQuery) {
+        previousQuery = query;
+        context.read<FilterDrawerBloc>().add(
+          FilterDrawerEventTagQueryChanged(tagQuery: query),
+        );
+      }
+    });
   }
 
   @override
