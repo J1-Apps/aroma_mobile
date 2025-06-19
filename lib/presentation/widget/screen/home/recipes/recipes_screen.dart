@@ -1,6 +1,7 @@
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/widget/common/aroma_settings_button.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_content.dart";
@@ -155,8 +156,7 @@ class _RecipesEmpty extends StatelessWidget {
         child: JErrorMessage(
           message: strings.recipes_loadEmpty,
           cta: strings.recipes_loadEmptyCreate,
-          // TODO: Navigate to create recipe screen.
-          ctaAction: () => context.showJToastWithText(text: "Create recipe.", hasClose: true),
+          ctaAction: () => context.navigate(AromaRoute.create, const EmptyRouteConfig()),
         ),
       ),
     );
