@@ -75,9 +75,7 @@ class _RecipesSortTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.strings();
-
-    return AromaTag(text: sortToString(strings, sort));
+    return AromaTag(text: sortToString(context.strings(), sort));
   }
 }
 
