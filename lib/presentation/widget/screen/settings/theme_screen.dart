@@ -106,7 +106,7 @@ class _HeaderFontCard extends StatelessWidget {
           J1TextStyle.titleMedium(fontFamily: font.fontFamily).toMaterial(),
         ],
         onPressed: () => context.read<J1ThemeBloc>().add(
-          UpdateTextThemeEvent(fonts.copyWithHeaderFont(font.fontFamily)),
+          UpdateTextThemeEvent(fonts.copyWithHeaderFont(font.fontFamily, includeTitle: false)),
         ),
       ),
     );
@@ -130,7 +130,7 @@ class _BodyFontCard extends StatelessWidget {
           J1TextStyle.bodySmall(fontFamily: font.fontFamily).toMaterial(),
         ],
         onPressed: () => context.read<J1ThemeBloc>().add(
-          UpdateTextThemeEvent(fonts.copyWithBodyFont(font.fontFamily)),
+          UpdateTextThemeEvent(fonts.copyWithBodyFont(font.fontFamily, includeTitle: true)),
         ),
       ),
     );

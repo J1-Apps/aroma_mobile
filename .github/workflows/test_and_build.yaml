@@ -34,6 +34,15 @@ jobs:
       - name: update dependencies
         run: flutter pub get
 
+      - name: create test env file
+        run: echo "${{secrets.ENV_TEST }}" > .env.test
+
+      - name: create prod env file
+        run: echo "${{secrets.ENV_PROD }}" > .env.prod
+
+      - name: run build runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
       - name: analyze
         run: flutter analyze
 
