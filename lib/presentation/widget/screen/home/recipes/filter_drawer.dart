@@ -48,7 +48,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => FilterDrawerBloc()..add(FilterDrawerTagQueryChanged(tagQuery: ""))),
+        BlocProvider(create: (context) => FilterDrawerBloc()..add(FilterDrawerEventTagQueryChanged(tagQuery: ""))),
         BlocProvider.value(value: widget.bloc),
       ],
       child: Padding(
@@ -379,7 +379,7 @@ class _TagDropdownState extends State<_TagDropdown> {
     super.initState();
     _controller.addListener(
       () => context.read<FilterDrawerBloc>().add(
-        FilterDrawerTagQueryChanged(tagQuery: _controller.text),
+        FilterDrawerEventTagQueryChanged(tagQuery: _controller.text),
       ),
     );
   }

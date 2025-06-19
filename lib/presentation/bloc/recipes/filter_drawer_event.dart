@@ -2,8 +2,8 @@ sealed class FilterDrawerEvent {
   const FilterDrawerEvent();
 }
 
-class FilterDrawerTagQueryChanged extends FilterDrawerEvent {
+class FilterDrawerEventTagQueryChanged extends FilterDrawerEvent {
   final String tagQuery;
 
-  const FilterDrawerTagQueryChanged({required this.tagQuery});
+  const FilterDrawerEventTagQueryChanged({required this.tagQuery});
 }

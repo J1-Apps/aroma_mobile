@@ -13,10 +13,10 @@ class FilterDrawerBloc extends Bloc<FilterDrawerEvent, FilterDrawerState> {
   FilterDrawerBloc({TagUsecase? tagUsecase})
     : _tagUsecase = tagUsecase ?? locator.get<TagUsecase>(),
       super(FilterDrawerState.initial()) {
-    on<FilterDrawerTagQueryChanged>(_onTagQueryChanged, transformer: debounce(_debounceDuration));
+    on<FilterDrawerEventTagQueryChanged>(_onTagQueryChanged, transformer: debounce(_debounceDuration));
   }
 
-  Future<void> _onTagQueryChanged(FilterDrawerTagQueryChanged event, Emitter<FilterDrawerState> emit) async {
+  Future<void> _onTagQueryChanged(FilterDrawerEventTagQueryChanged event, Emitter<FilterDrawerState> emit) async {
     emit(state.copyWith(tagStatus: TagStatus.loading, tagResults: []));
     final tags = await _tagUsecase(query: event.tagQuery);
     emit(state.copyWith(tagStatus: tags.isEmpty ? TagStatus.empty : TagStatus.success, tagResults: tags));
