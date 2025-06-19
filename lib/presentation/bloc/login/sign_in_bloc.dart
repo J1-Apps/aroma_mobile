@@ -2,6 +2,7 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_in_email_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_event.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_state.dart";
+import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
@@ -11,7 +12,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({SignInEmailUsecase? signInEmailUsecase})
     : _signInEmailUsecase = signInEmailUsecase ?? locator.get<SignInEmailUsecase>(),
       super(const SignInState()) {
-    on<SignInEventSignInWithEmail>(_onSignInWithEmail);
+    on<SignInEventSignInWithEmail>(_onSignInWithEmail, transformer: restartable());
   }
 
   Future<void> _onSignInWithEmail(SignInEventSignInWithEmail event, Emitter<SignInState> emit) async {

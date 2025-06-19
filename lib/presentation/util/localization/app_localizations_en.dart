@@ -183,5 +183,116 @@ class StringsEn extends Strings {
   String get recipes_title => 'Recipes';
 
   @override
+  String get recipes_searchHint => 'Search recipes';
+
+  @override
+  String get recipes_loadError =>
+      'Sorry, we encountered an error loading your recipes. Please refresh the page or check back again later.';
+
+  @override
+  String get recipes_loadErrorRefresh => 'Refresh';
+
+  @override
+  String get recipes_loadEmpty => 'Looks like you don’t have any recipes yet. Let’s get cooking!';
+
+  @override
+  String get recipes_loadEmptyCreate => 'Create';
+
+  @override
+  String get recipes_sortFilterHint => 'Sort and filter';
+
+  @override
+  String get recipes_sort_none => 'None';
+
+  @override
+  String get recipes_sort_recentlyViewed => 'Recently viewed';
+
+  @override
+  String get recipes_sort_rating => 'Rating';
+
+  @override
+  String get recipes_sort_quickest => 'Quickest';
+
+  @override
+  String get recipes_sort_easiest => 'Easiest';
+
+  @override
+  String get recipes_sort_alphabetical => 'Alphabetical';
+
+  @override
+  String recipes_filter_timeEqual(int time) {
+    return 'Time = ${time}m';
+  }
+
+  @override
+  String recipes_filter_timeMin(int time) {
+    return 'Time > ${time}m';
+  }
+
+  @override
+  String recipes_filter_timeMax(int time) {
+    return 'Time < ${time}m';
+  }
+
+  @override
+  String recipes_filter_ratingMin(double rating) {
+    return 'Rating > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsEqual(int servings) {
+    return 'Servings = $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMin(int servings) {
+    return 'Servings > $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMax(int servings) {
+    return 'Servings < $servings';
+  }
+
+  @override
+  String get recipes_filter_difficultyEasy => 'Easy';
+
+  @override
+  String get recipes_filter_difficultyMedium => 'Medium';
+
+  @override
+  String get recipes_filter_difficultyHard => 'Hard';
+
+  @override
+  String get recipes_filter_reset => 'Reset';
+
+  @override
+  String get recipes_filter_apply => 'Apply';
+
+  @override
+  String get recipes_drawer_sortTitle => 'Sort by';
+
+  @override
+  String get recipes_drawer_ratingTitle => 'Rating';
+
+  @override
+  String get recipes_drawer_timeTitle => 'Time';
+
+  @override
+  String get recipes_drawer_servingsTitle => 'Servings';
+
+  @override
+  String get recipes_drawer_difficultyTitle => 'Difficulty';
+
+  @override
+  String get recipes_drawer_tagsTitle => 'Tags';
+
+  @override
+  String get recipes_drawer_tagsHint => 'Search tags';
+
+  @override
+  String get recipes_drawer_tagsEmpty => 'No results';
+
+  @override
   String get profile_title => 'Profile';
 }

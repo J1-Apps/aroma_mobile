@@ -16,18 +16,11 @@ class HomeNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      right: false,
-      left: false,
-      child: Column(
-        children: [
-          Expanded(child: body),
-          _HomeNavigationContainer(
-            currentIndex: currentIndex,
-            updateIndex: updateIndex,
-          ),
-        ],
+    return Scaffold(
+      body: body,
+      bottomNavigationBar: _HomeNavigationContainer(
+        currentIndex: currentIndex,
+        updateIndex: updateIndex,
       ),
     );
   }
@@ -79,11 +72,10 @@ class _HomeNavigationBar extends StatelessWidget {
     final textTheme = context.textTheme();
     final colorScheme = context.colorScheme();
 
-    // TODO: Update styling and icons.
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-          icon: Icon(JamIcons.unorderedlist),
+          icon: Icon(JamIcons.unordered_list),
           label: strings.feed_title,
         ),
         BottomNavigationBarItem(
@@ -91,7 +83,7 @@ class _HomeNavigationBar extends StatelessWidget {
           label: strings.recipes_title,
         ),
         BottomNavigationBarItem(
-          icon: Icon(JamIcons.account),
+          icon: Icon(JamIcons.user_circle),
           label: strings.profile_title,
         ),
       ],

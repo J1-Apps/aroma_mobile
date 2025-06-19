@@ -182,5 +182,115 @@ class StringsKo extends Strings {
   String get recipes_title => '레시피';
 
   @override
+  String get recipes_searchHint => '레시피 검색';
+
+  @override
+  String get recipes_loadError => '레시피를 불러오는 중 오류가 발생했습니다. 페이지를 새로고침하거나 나중에 다시 시도해주세요.';
+
+  @override
+  String get recipes_loadErrorRefresh => '새로고침';
+
+  @override
+  String get recipes_loadEmpty => '레시피가 없습니다. 요리를 시작해보세요!';
+
+  @override
+  String get recipes_loadEmptyCreate => '만들기';
+
+  @override
+  String get recipes_sortFilterHint => '정렬 및 필터';
+
+  @override
+  String get recipes_sort_none => '없음';
+
+  @override
+  String get recipes_sort_recentlyViewed => '최근 본 레시피';
+
+  @override
+  String get recipes_sort_rating => '평점';
+
+  @override
+  String get recipes_sort_quickest => '빠른 조리';
+
+  @override
+  String get recipes_sort_easiest => '쉬운 조리';
+
+  @override
+  String get recipes_sort_alphabetical => '알파벳순';
+
+  @override
+  String recipes_filter_timeEqual(int time) {
+    return '시간 = $time분';
+  }
+
+  @override
+  String recipes_filter_timeMin(int time) {
+    return '시간 > $time분';
+  }
+
+  @override
+  String recipes_filter_timeMax(int time) {
+    return '시간 < $time분';
+  }
+
+  @override
+  String recipes_filter_ratingMin(double rating) {
+    return '평점 > $rating';
+  }
+
+  @override
+  String recipes_filter_servingsEqual(int servings) {
+    return '인분 = $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMin(int servings) {
+    return '인분 > $servings';
+  }
+
+  @override
+  String recipes_filter_servingsMax(int servings) {
+    return '인분 < $servings';
+  }
+
+  @override
+  String get recipes_filter_difficultyEasy => '쉬움';
+
+  @override
+  String get recipes_filter_difficultyMedium => '보통';
+
+  @override
+  String get recipes_filter_difficultyHard => '어려움';
+
+  @override
+  String get recipes_filter_reset => '초기화';
+
+  @override
+  String get recipes_filter_apply => '적용';
+
+  @override
+  String get recipes_drawer_sortTitle => '순서';
+
+  @override
+  String get recipes_drawer_ratingTitle => '평점';
+
+  @override
+  String get recipes_drawer_timeTitle => '시간';
+
+  @override
+  String get recipes_drawer_servingsTitle => '인분';
+
+  @override
+  String get recipes_drawer_difficultyTitle => '난이도';
+
+  @override
+  String get recipes_drawer_tagsTitle => '태그';
+
+  @override
+  String get recipes_drawer_tagsHint => '태그 검색';
+
+  @override
+  String get recipes_drawer_tagsEmpty => '결과 없음';
+
+  @override
   String get profile_title => '프로필';
 }

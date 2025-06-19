@@ -52,7 +52,7 @@ void main() {
     group("user flows", () {
       testWidgets("navigates back", (tester) async {
         await tester.pumpWidget(_TestWidget(bloc));
-        await tester.tap(find.byIcon(JamIcons.chevronleft));
+        await tester.tap(find.byIcon(JamIcons.chevron_left));
         await tester.pumpAndSettle();
 
         verify(() => router.pop(any())).called(1);

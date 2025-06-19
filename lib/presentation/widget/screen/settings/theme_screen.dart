@@ -63,26 +63,16 @@ class _ThemeCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          const SizedBox(width: JDimens.spacing_m),
-          ..._space(children),
-          const SizedBox(width: JDimens.spacing_m),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_m),
+        child: Row(
+          spacing: JDimens.spacing_s,
+          children: children,
+        ),
       ),
     );
   }
 }
-
-List<Widget> _space(Iterable<Widget> children) => children
-    .expand(
-      (item) sync* {
-        yield const SizedBox(width: JDimens.spacing_s);
-        yield item;
-      },
-    )
-    .skip(1)
-    .toList();
 
 class _ColorCard extends StatelessWidget {
   final AromaColorScheme colors;

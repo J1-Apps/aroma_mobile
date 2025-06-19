@@ -374,6 +374,198 @@ abstract class Strings {
   /// **'Recipes'**
   String get recipes_title;
 
+  /// No description provided for @recipes_searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search recipes'**
+  String get recipes_searchHint;
+
+  /// No description provided for @recipes_loadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, we encountered an error loading your recipes. Please refresh the page or check back again later.'**
+  String get recipes_loadError;
+
+  /// No description provided for @recipes_loadErrorRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get recipes_loadErrorRefresh;
+
+  /// No description provided for @recipes_loadEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Looks like you don’t have any recipes yet. Let’s get cooking!'**
+  String get recipes_loadEmpty;
+
+  /// No description provided for @recipes_loadEmptyCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get recipes_loadEmptyCreate;
+
+  /// No description provided for @recipes_sortFilterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort and filter'**
+  String get recipes_sortFilterHint;
+
+  /// No description provided for @recipes_sort_none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get recipes_sort_none;
+
+  /// No description provided for @recipes_sort_recentlyViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently viewed'**
+  String get recipes_sort_recentlyViewed;
+
+  /// No description provided for @recipes_sort_rating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get recipes_sort_rating;
+
+  /// No description provided for @recipes_sort_quickest.
+  ///
+  /// In en, this message translates to:
+  /// **'Quickest'**
+  String get recipes_sort_quickest;
+
+  /// No description provided for @recipes_sort_easiest.
+  ///
+  /// In en, this message translates to:
+  /// **'Easiest'**
+  String get recipes_sort_easiest;
+
+  /// No description provided for @recipes_sort_alphabetical.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphabetical'**
+  String get recipes_sort_alphabetical;
+
+  /// No description provided for @recipes_filter_timeEqual.
+  ///
+  /// In en, this message translates to:
+  /// **'Time = {time}m'**
+  String recipes_filter_timeEqual(int time);
+
+  /// No description provided for @recipes_filter_timeMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Time > {time}m'**
+  String recipes_filter_timeMin(int time);
+
+  /// No description provided for @recipes_filter_timeMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Time < {time}m'**
+  String recipes_filter_timeMax(int time);
+
+  /// No description provided for @recipes_filter_ratingMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating > {rating}'**
+  String recipes_filter_ratingMin(double rating);
+
+  /// No description provided for @recipes_filter_servingsEqual.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings = {servings}'**
+  String recipes_filter_servingsEqual(int servings);
+
+  /// No description provided for @recipes_filter_servingsMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings > {servings}'**
+  String recipes_filter_servingsMin(int servings);
+
+  /// No description provided for @recipes_filter_servingsMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings < {servings}'**
+  String recipes_filter_servingsMax(int servings);
+
+  /// No description provided for @recipes_filter_difficultyEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get recipes_filter_difficultyEasy;
+
+  /// No description provided for @recipes_filter_difficultyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get recipes_filter_difficultyMedium;
+
+  /// No description provided for @recipes_filter_difficultyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get recipes_filter_difficultyHard;
+
+  /// No description provided for @recipes_filter_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get recipes_filter_reset;
+
+  /// No description provided for @recipes_filter_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get recipes_filter_apply;
+
+  /// No description provided for @recipes_drawer_sortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get recipes_drawer_sortTitle;
+
+  /// No description provided for @recipes_drawer_ratingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get recipes_drawer_ratingTitle;
+
+  /// No description provided for @recipes_drawer_timeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get recipes_drawer_timeTitle;
+
+  /// No description provided for @recipes_drawer_servingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Servings'**
+  String get recipes_drawer_servingsTitle;
+
+  /// No description provided for @recipes_drawer_difficultyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get recipes_drawer_difficultyTitle;
+
+  /// No description provided for @recipes_drawer_tagsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get recipes_drawer_tagsTitle;
+
+  /// No description provided for @recipes_drawer_tagsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tags'**
+  String get recipes_drawer_tagsHint;
+
+  /// No description provided for @recipes_drawer_tagsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get recipes_drawer_tagsEmpty;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

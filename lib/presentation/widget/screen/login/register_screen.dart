@@ -222,7 +222,7 @@ class _PasswordField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       autocorrect: false,
       obscureText: !showPassword,
-      icon: showPassword ? JamIcons.eyeclosed : JamIcons.eye,
+      icon: showPassword ? JamIcons.eye_close : JamIcons.eye,
       onIconPressed: toggleShowPassword,
     );
   }

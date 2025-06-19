@@ -4,11 +4,14 @@ import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/feed/feed_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/home_navigation.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/profile/profile_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipe/create_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/login_screen.dart";
@@ -41,7 +44,10 @@ const _settingsPath = "/settings";
 const _themePath = "theme";
 
 const _feedPath = "/feed";
+
 const _recipesPath = "/recipes";
+const _createPath = "create";
+
 const _profilePath = "/profile";
 
 const _rootRestorationScopeId = "root";
@@ -141,8 +147,16 @@ final routeConfig = GoRouter(
               routes: [
                 GoRoute(
                   path: AromaRoute.recipes.relativePath,
-                  builder: (_, _) => const RecipesScreen(),
-                  routes: [],
+                  builder: (_, _) => BlocProvider(
+                    create: (_) => RecipesBloc()..add(RecipesEventLoad()),
+                    child: const RecipesScreen(),
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: AromaRoute.create.relativePath,
+                      builder: (_, _) => const CreateScreen(),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -216,6 +230,11 @@ abstract class AromaRoute {
 
   static final recipes = j1.J1Route<j1.EmptyRouteConfig>(
     parts: [j1.PathSegment(_recipesPath)],
+    configParser: j1.EmptyRouteConfig.parser,
+  );
+
+  static final create = j1.J1Route<j1.EmptyRouteConfig>(
+    parts: [j1.PathSegment(_recipesPath), j1.PathSegment(_createPath)],
     configParser: j1.EmptyRouteConfig.parser,
   );
 

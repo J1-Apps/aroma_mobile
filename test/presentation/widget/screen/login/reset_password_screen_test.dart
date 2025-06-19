@@ -20,12 +20,10 @@ void main() {
     final router = MockRouter();
     final ResetPasswordBloc bloc = MockResetPasswordBloc();
     final BuildContext context = FakeBuildContext();
-    final ResetPasswordEvent fallback = ResetPasswordEventResetPassword(email: "");
     late StreamController<ResetPasswordState> stream;
 
     setUpAll(() {
       registerFallbackValue(context);
-      registerFallbackValue(fallback);
       registerFallbackValue(FakeEmailRoute());
       registerFallbackValue(const EmailRouteConfig());
       registerFallbackValue(FakeEmailPasswordRoute());
@@ -117,17 +115,7 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(0));
       await tester.pumpAndSettle();
 
-      verify(
-        () => bloc.add(
-          any(
-            that: isA<ResetPasswordEventResetPassword>().having(
-              (event) => event.email,
-              "email",
-              "test@test.com",
-            ),
-          ),
-        ),
-      ).called(1);
+      verify(() => bloc.add(ResetPasswordEventResetPassword(email: "test@test.com"))).called(1);
     });
 
     testWidgets("handles success state", (tester) async {

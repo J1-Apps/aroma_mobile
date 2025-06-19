@@ -224,7 +224,7 @@ class _PasswordFieldState extends State<_PasswordField> {
       keyboardType: TextInputType.visiblePassword,
       autocorrect: false,
       obscureText: !_showPassword,
-      icon: _showPassword ? JamIcons.eyeclosed : JamIcons.eye,
+      icon: _showPassword ? JamIcons.eye_close : JamIcons.eye,
       onIconPressed: () => setState(() => _showPassword = !_showPassword),
     );
   }

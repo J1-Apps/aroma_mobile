@@ -20,12 +20,10 @@ void main() {
     final router = MockRouter();
     final RegisterBloc bloc = MockRegisterBloc();
     final BuildContext context = FakeBuildContext();
-    final RegisterEvent fallback = RegisterEventSignUpWithEmail(email: "", password: "");
     late StreamController<RegisterState> stream;
 
     setUpAll(() {
       registerFallbackValue(context);
-      registerFallbackValue(fallback);
       registerFallbackValue(FakeEmailPasswordRoute());
       registerFallbackValue(const EmailPasswordRouteConfig());
     });
@@ -118,23 +116,7 @@ void main() {
       await tester.tap(find.byType(JTextButton).at(0));
       await tester.pumpAndSettle();
 
-      verify(
-        () => bloc.add(
-          any(
-            that: isA<RegisterEventSignUpWithEmail>()
-                .having(
-                  (e) => e.email,
-                  "email",
-                  "test@test.com",
-                )
-                .having(
-                  (e) => e.password,
-                  "password",
-                  "password",
-                ),
-          ),
-        ),
-      ).called(1);
+      verify(() => bloc.add(RegisterEventSignUpWithEmail(email: "test@test.com", password: "password"))).called(1);
     });
 
     testWidgets("shows password mismatch error", (tester) async {
@@ -225,7 +207,7 @@ void main() {
       await tester.pumpAndSettle();
 
       final hideFinder = find.byIcon(JamIcons.eye);
-      final showFinder = find.byIcon(JamIcons.eyeclosed);
+      final showFinder = find.byIcon(JamIcons.eye_close);
 
       expect(hideFinder, findsOneWidget);
       expect(showFinder, findsNothing);

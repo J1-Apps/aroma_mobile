@@ -13,7 +13,7 @@ import "../../../test_util/testing_mocks.dart";
 import "../../../test_util/testing_utils.dart";
 
 void main() {
-  group("SettingsBloc", () {
+  group("Settings Bloc", () {
     final languageUsecase = MockLanguageUsecase();
     final updateLanguageUsecase = MockUpdateLanguageUsecase();
     final signOutUsecase = MockSignOutUsecase();

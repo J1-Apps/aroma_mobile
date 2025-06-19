@@ -12,11 +12,13 @@ import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/sign_in_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/app/app_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:flutter/material.dart";
@@ -94,6 +96,8 @@ class MockLanguageUsecase extends Mock implements LanguageUsecase {}
 
 class MockUpdateLanguageUsecase extends Mock implements UpdateLanguageUsecase {}
 
+class MockTagUsecase extends Mock implements TagUsecase {}
+
 // Mock Blocs
 
 class MockRouterBloc extends Mock implements AppBloc {}
@@ -109,3 +113,5 @@ class MockResetPasswordBloc extends Mock implements ResetPasswordBloc {}
 class MockSettingsBloc extends Mock implements SettingsBloc {}
 
 class MockThemeBloc extends Mock implements J1ThemeBloc {}
+
+class MockRecipesBloc extends Mock implements RecipesBloc {}

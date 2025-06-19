@@ -32,17 +32,45 @@ class AromaApp extends StatelessWidget {
           selector: (state) => Strings.supportedLocales.firstWhereOrNull(
             (locale) => locale.languageCode.toLowerCase() == state.language,
           ),
-          builder: (context, locale) => MaterialApp.router(
-            onGenerateTitle: (context) => context.strings().app_title,
-            localizationsDelegates: Strings.localizationsDelegates,
-            supportedLocales: Strings.supportedLocales,
-            routerConfig: routeConfig,
-            theme: theme,
-            locale: locale,
-            scrollBehavior: ScrollConfiguration.of(context).copyWith(physics: AromaTheme.scrollPhysics),
+          builder: (context, locale) => _ThemeOverrides(
+            child: MaterialApp.router(
+              onGenerateTitle: (context) => context.strings().app_title,
+              localizationsDelegates: Strings.localizationsDelegates,
+              supportedLocales: Strings.supportedLocales,
+              routerConfig: routeConfig,
+              theme: theme,
+              locale: locale,
+              scrollBehavior: ScrollConfiguration.of(context).copyWith(physics: AromaTheme.scrollPhysics),
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ThemeOverrides extends StatelessWidget {
+  final Widget child;
+
+  const _ThemeOverrides({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme();
+
+    return Theme(
+      data: theme.copyWith(
+        chipTheme: ChipThemeData(
+          labelPadding: EdgeInsets.symmetric(horizontal: JDimens.spacing_xxs),
+          padding: EdgeInsets.all(JDimens.spacing_xxs),
+          labelStyle: theme.textTheme.bodyMedium,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(JDimens.radius_m),
+            side: BorderSide(color: theme.colorScheme.onSurface, width: 2),
+          ),
+        ),
+      ),
+      child: child,
     );
   }
 }
