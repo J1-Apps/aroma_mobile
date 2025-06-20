@@ -219,8 +219,6 @@
     "@recipes_filter_difficultyHard": {},
     "recipes_filter_reset": "Reset",
     "@recipes_filter_reset": {},
-    "recipes_filter_apply": "Apply",
-    "@recipes_filter_apply": {},
     "recipes_drawer_sortTitle": "Sort by",
     "@recipes_drawer_sortTitle": {},
     "recipes_drawer_ratingTitle": "Rating",

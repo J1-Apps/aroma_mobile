@@ -265,9 +265,6 @@ class StringsKo extends Strings {
   String get recipes_filter_reset => '초기화';
 
   @override
-  String get recipes_filter_apply => '적용';
-
-  @override
   String get recipes_drawer_sortTitle => '순서';
 
   @override

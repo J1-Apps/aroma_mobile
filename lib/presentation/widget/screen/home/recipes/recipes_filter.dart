@@ -2,6 +2,7 @@ import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
@@ -41,10 +42,7 @@ class _RecipesFilterDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return JCard(
       size: JWidgetSize.small,
-      onPressed: () => context.showJBottomSheet(
-        child: FilterDrawer(bloc: context.read<RecipesBloc>()),
-        scrollControlDisabledMaxHeightRatio: filterDrawerHeightRatio,
-      ),
+      onPressed: () => _onFilterPressed(context),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
           JDimens.spacing_s,
@@ -66,6 +64,25 @@ class _RecipesFilterDropdown extends StatelessWidget {
       ),
     );
   }
+}
+
+void _onFilterPressed(BuildContext context) {
+  final bloc = context.read<RecipesBloc>();
+  final initialSort = bloc.state.sort;
+  final initialFilter = bloc.state.filter;
+
+  context
+      .showJBottomSheet(
+        child: FilterDrawer(bloc: bloc),
+        scrollControlDisabledMaxHeightRatio: filterDrawerHeightRatio,
+      )
+      .then((value) {
+        if (bloc.isClosed || (initialSort == bloc.state.sort && initialFilter == bloc.state.filter)) {
+          return;
+        }
+
+        bloc.add(const RecipesEventLoad());
+      });
 }
 
 class _RecipesSortTag extends StatelessWidget {
