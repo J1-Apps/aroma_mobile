@@ -219,8 +219,6 @@
     "@recipes_filter_difficultyHard": {},
     "recipes_filter_reset": "초기화",
     "@recipes_filter_reset": {},
-    "recipes_filter_apply": "적용",
-    "@recipes_filter_apply": {},
     "recipes_drawer_sortTitle": "순서",
     "@recipes_drawer_sortTitle": {},
     "recipes_drawer_ratingTitle": "평점",

@@ -512,12 +512,6 @@ abstract class Strings {
   /// **'Reset'**
   String get recipes_filter_reset;
 
-  /// No description provided for @recipes_filter_apply.
-  ///
-  /// In en, this message translates to:
-  /// **'Apply'**
-  String get recipes_filter_apply;
-
   /// No description provided for @recipes_drawer_sortTitle.
   ///
   /// In en, this message translates to:

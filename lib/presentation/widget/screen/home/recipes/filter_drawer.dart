@@ -1,5 +1,4 @@
 import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
-import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_bloc.dart";
@@ -7,6 +6,7 @@ import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_event.dart"
 import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_state.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/widget/common/aroma_tag.dart";
 import "package:aroma_mobile/presentation/widget/common/star_rating.dart";
@@ -21,7 +21,7 @@ const _maxServings = 20.0;
 const _loading = "Loading";
 const _empty = "Empty";
 
-class FilterDrawer extends StatefulWidget {
+class FilterDrawer extends StatelessWidget {
   final RecipesBloc bloc;
 
   const FilterDrawer({
@@ -30,26 +30,11 @@ class FilterDrawer extends StatefulWidget {
   });
 
   @override
-  State<FilterDrawer> createState() => _FilterDrawerState();
-}
-
-class _FilterDrawerState extends State<FilterDrawer> {
-  late SortEntity sort;
-  late FilterEntity filter;
-
-  @override
-  void initState() {
-    sort = widget.bloc.state.sort;
-    filter = widget.bloc.state.filter;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => FilterDrawerBloc()..add(FilterDrawerEventTagQueryChanged(tagQuery: ""))),
-        BlocProvider.value(value: widget.bloc),
+        BlocProvider.value(value: bloc),
       ],
       child: Padding(
         padding: const EdgeInsets.only(
@@ -59,19 +44,12 @@ class _FilterDrawerState extends State<FilterDrawer> {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: _FilterItems(
-                sort: sort,
-                filter: filter,
-                onSortChanged: (value) => setState(() => sort = value),
-                onFilterChanged: (value) => setState(() => filter = value),
-              ),
-            ),
+            const Expanded(child: _FilterItems()),
             Divider(height: 1, color: context.colorScheme().onSurface),
-            SizedBox(height: JDimens.spacing_s),
-            _ActionRow(sort: sort, filter: filter),
+            const SizedBox(height: JDimens.spacing_s),
+            const _ResetRow(),
           ],
         ),
       ),
@@ -80,17 +58,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
 }
 
 class _FilterItems extends StatelessWidget {
-  final SortEntity sort;
-  final FilterEntity filter;
-  final Function(SortEntity) onSortChanged;
-  final Function(FilterEntity) onFilterChanged;
-
-  const _FilterItems({
-    required this.sort,
-    required this.filter,
-    required this.onSortChanged,
-    required this.onFilterChanged,
-  });
+  const _FilterItems();
 
   @override
   Widget build(BuildContext context) {
@@ -111,52 +79,32 @@ class _FilterItems extends StatelessWidget {
             _FilterSection(
               title: strings.recipes_drawer_sortTitle,
               textTheme: textTheme,
-              child: _SortRow(
-                sort: sort,
-                onSortChanged: onSortChanged,
-              ),
+              child: const _SortRow(),
             ),
             _FilterSection(
               title: strings.recipes_drawer_ratingTitle,
               textTheme: textTheme,
-              child: _RatingRow(
-                rating: filter.ratingMin,
-                onRatingChanged: (value) => onFilterChanged(filter.copyWith(ratingMin: value)),
-              ),
+              child: const _RatingRow(),
             ),
             _FilterSection(
               title: strings.recipes_drawer_timeTitle,
               textTheme: textTheme,
-              child: _TimeRow(
-                timeMin: filter.timeMin,
-                timeMax: filter.timeMax,
-                onTimeChanged: (min, max) => onFilterChanged(filter.copyWith(timeMin: min, timeMax: max)),
-              ),
+              child: const _TimeRow(),
             ),
             _FilterSection(
               title: strings.recipes_drawer_servingsTitle,
               textTheme: textTheme,
-              child: _ServingsRow(
-                servingsMin: filter.servingsMin,
-                servingsMax: filter.servingsMax,
-                onServingsChanged: (min, max) => onFilterChanged(filter.copyWith(servingsMin: min, servingsMax: max)),
-              ),
+              child: const _ServingsRow(),
             ),
             _FilterSection(
               title: strings.recipes_drawer_difficultyTitle,
               textTheme: textTheme,
-              child: _DifficultyRow(
-                difficulties: filter.difficulties,
-                onDifficultyChanged: (difficulties) => onFilterChanged(filter.copyWith(difficulties: difficulties)),
-              ),
+              child: const _DifficultyRow(),
             ),
             _FilterSection(
               title: strings.recipes_drawer_tagsTitle,
               textTheme: textTheme,
-              child: _TagsRow(
-                tags: filter.tags,
-                onTagsChanged: (tags) => onFilterChanged(filter.copyWith(tags: tags)),
-              ),
+              child: const _TagsRow(),
             ),
           ],
         ),
@@ -198,164 +146,171 @@ const _sortOptions = [
 ];
 
 class _SortRow extends StatelessWidget {
-  final SortEntity sort;
-  final Function(SortEntity) onSortChanged;
-
-  const _SortRow({required this.sort, required this.onSortChanged});
+  const _SortRow();
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: JDimens.spacing_xs,
-      children: _sortOptions
-          .map(
-            (value) => _FilterChip(
-              text: sortToString(context.strings(), value),
-              selected: sort == value,
-              onSelected: (_) => onSortChanged(sort == value ? SortEntity.none : value),
-            ),
-          )
-          .toList(),
+    return BlocSelector<RecipesBloc, RecipesState, SortEntity>(
+      selector: (state) => state.sort,
+      builder: (context, sort) => Wrap(
+        spacing: JDimens.spacing_xs,
+        children: _sortOptions
+            .map(
+              (value) => _FilterChip(
+                text: sortToString(context.strings(), value),
+                selected: sort == value,
+                onSelected: (_) => context.read<RecipesBloc>().add(
+                  RecipesEventUpdateSort(sort: sort == value ? SortEntity.none : value),
+                ),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
 
 class _RatingRow extends StatelessWidget {
-  final int? rating;
-  final Function(int?) onRatingChanged;
-
-  const _RatingRow({
-    required this.rating,
-    required this.onRatingChanged,
-  });
+  const _RatingRow();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: JDimens.spacing_xxs,
-        left: JDimens.spacing_s,
-        bottom: JDimens.spacing_xxs,
-      ),
-      child: StarRating(
-        rating: rating ?? 0,
-        onRatingChanged: (value) => onRatingChanged(value == 0 ? null : value),
-        size: JDimens.size_32,
+    return BlocSelector<RecipesBloc, RecipesState, int?>(
+      selector: (state) => state.filter.ratingMin,
+      builder: (context, ratingMin) => Padding(
+        padding: const EdgeInsets.only(
+          top: JDimens.spacing_xxs,
+          left: JDimens.spacing_s,
+          bottom: JDimens.spacing_xxs,
+        ),
+        child: StarRating(
+          rating: ratingMin ?? 0,
+          onRatingChanged: (value) => context.read<RecipesBloc>().add(
+            RecipesEventUpdateRatingMin(ratingMin: value == 0 ? null : value),
+          ),
+          size: JDimens.size_32,
+        ),
       ),
     );
   }
 }
 
 class _TimeRow extends StatelessWidget {
-  final int? timeMin;
-  final int? timeMax;
-  final Function(int?, int?) onTimeChanged;
-
-  const _TimeRow({
-    required this.timeMin,
-    required this.timeMax,
-    required this.onTimeChanged,
-  });
+  const _TimeRow();
 
   @override
   Widget build(BuildContext context) {
-    return RangeSlider(
-      values: RangeValues(timeMin?.toDouble() ?? 0, timeMax?.toDouble() ?? _maxTime),
-      labels: RangeLabels(timeMin?.toString() ?? "0", timeMax?.toString() ?? "∞"),
-      divisions: (_maxTime / 5).toInt(),
-      max: _maxTime,
-      onChanged: (values) {
-        final min = values.start.floor();
-        final max = values.end.floor();
+    return BlocSelector<RecipesBloc, RecipesState, (int?, int?)>(
+      selector: (state) => (state.filter.timeMin, state.filter.timeMax),
+      builder: (context, values) => RangeSlider(
+        values: RangeValues(values.$1?.toDouble() ?? 0, values.$2?.toDouble() ?? _maxTime),
+        labels: RangeLabels(values.$1?.toString() ?? "0", values.$2?.toString() ?? "∞"),
+        divisions: (_maxTime / 5).toInt(),
+        max: _maxTime,
+        onChanged: (values) {
+          final min = values.start.floor();
+          final max = values.end.floor();
 
-        onTimeChanged(min == 0 ? null : min, max == _maxTime ? null : max);
-      },
+          context.read<RecipesBloc>().add(
+            RecipesEventUpdateTime(
+              timeMin: min == 0 ? null : min,
+              timeMax: max == _maxTime ? null : max,
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class _ServingsRow extends StatelessWidget {
-  final int? servingsMin;
-  final int? servingsMax;
-  final Function(int?, int?) onServingsChanged;
-
-  const _ServingsRow({
-    required this.servingsMin,
-    required this.servingsMax,
-    required this.onServingsChanged,
-  });
+  const _ServingsRow();
 
   @override
   Widget build(BuildContext context) {
-    return RangeSlider(
-      values: RangeValues(servingsMin?.toDouble() ?? 0, servingsMax?.toDouble() ?? _maxServings),
-      labels: RangeLabels(servingsMin?.toString() ?? "0", servingsMax?.toString() ?? "∞"),
-      divisions: _maxServings.toInt(),
-      max: _maxServings,
-      onChanged: (values) {
-        final min = values.start.floor();
-        final max = values.end.floor();
+    return BlocSelector<RecipesBloc, RecipesState, (int?, int?)>(
+      selector: (state) => (state.filter.servingsMin, state.filter.servingsMax),
+      builder: (context, values) => RangeSlider(
+        values: RangeValues(values.$1?.toDouble() ?? 0, values.$2?.toDouble() ?? _maxServings),
+        labels: RangeLabels(values.$1?.toString() ?? "0", values.$2?.toString() ?? "∞"),
+        divisions: _maxServings.toInt(),
+        max: _maxServings,
+        onChanged: (values) {
+          final min = values.start.floor();
+          final max = values.end.floor();
 
-        onServingsChanged(min == 0 ? null : min, max == _maxServings ? null : max);
-      },
+          context.read<RecipesBloc>().add(
+            RecipesEventUpdateServings(
+              servingsMin: min == 0 ? null : min,
+              servingsMax: max == _maxServings ? null : max,
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class _DifficultyRow extends StatelessWidget {
-  final Set<DifficultyEntity> difficulties;
-  final Function(Set<DifficultyEntity>) onDifficultyChanged;
-
-  const _DifficultyRow({
-    required this.difficulties,
-    required this.onDifficultyChanged,
-  });
+  const _DifficultyRow();
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: JDimens.spacing_xs,
-      children: DifficultyEntity.values.map(
-        (value) {
-          final isSelected = difficulties.contains(value);
+    return BlocSelector<RecipesBloc, RecipesState, Set<DifficultyEntity>>(
+      selector: (state) => state.filter.difficulties,
+      builder: (context, difficulties) => Wrap(
+        spacing: JDimens.spacing_xs,
+        children: DifficultyEntity.values.map(
+          (value) {
+            final isSelected = difficulties.contains(value);
 
-          return _FilterChip(
-            text: difficultyToString(context.strings(), value),
-            selected: isSelected,
-            onSelected: (_) => onDifficultyChanged(
-              isSelected ? difficulties.difference({value}) : difficulties.union({value}),
-            ),
-          );
-        },
-      ).toList(),
+            return _FilterChip(
+              text: difficultyToString(context.strings(), value),
+              selected: isSelected,
+              onSelected: (_) => context.read<RecipesBloc>().add(
+                RecipesEventUpdateDifficulty(
+                  difficulties: isSelected ? difficulties.difference({value}) : difficulties.union({value}),
+                ),
+              ),
+            );
+          },
+        ).toList(),
+      ),
     );
   }
 }
 
 class _TagsRow extends StatelessWidget {
-  final Set<TagEntity> tags;
-  final Function(Set<TagEntity>) onTagsChanged;
-
-  const _TagsRow({required this.tags, required this.onTagsChanged});
+  const _TagsRow();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: JDimens.spacing_xs),
-      child: Wrap(
-        spacing: JDimens.spacing_xs,
-        runSpacing: JDimens.spacing_xs,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          _TagDropdown(tags: tags, onTagsChanged: onTagsChanged),
-          ...tags.map(
-            (value) => AromaTag(
-              text: value.name,
-              onPressed: () => onTagsChanged(tags.difference({value})),
-              showClose: true,
+    return BlocSelector<RecipesBloc, RecipesState, Set<TagEntity>>(
+      selector: (state) => state.filter.tags,
+      builder: (context, tags) => Padding(
+        padding: const EdgeInsets.only(top: JDimens.spacing_xs),
+        child: Wrap(
+          spacing: JDimens.spacing_xs,
+          runSpacing: JDimens.spacing_xs,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            _TagDropdown(
+              tags: tags,
+              onTagsChanged: (tags) => context.read<RecipesBloc>().add(
+                RecipesEventUpdateTags(tags: tags),
+              ),
             ),
-          ),
-        ],
+            ...tags.map(
+              (value) => AromaTag(
+                text: value.name,
+                onPressed: () => context.read<RecipesBloc>().add(
+                  RecipesEventUpdateTags(tags: tags.difference({value})),
+                ),
+                showClose: true,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -482,48 +437,19 @@ class _TagDropdownState extends State<_TagDropdown> {
   }
 }
 
-class _ActionRow extends StatelessWidget {
-  final SortEntity sort;
-  final FilterEntity filter;
-
-  const _ActionRow({
-    required this.sort,
-    required this.filter,
-  });
+class _ResetRow extends StatelessWidget {
+  const _ResetRow();
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.strings();
-
-    return Row(
-      spacing: JDimens.spacing_s,
-      children: [
-        Expanded(
-          child: JTextButton(
-            text: strings.recipes_filter_reset,
-            forceCaps: false,
-            type: JButtonType.flat,
-            color: JWidgetColor.onSurface,
-            size: JWidgetSize.small,
-            overrides: JTextButtonOverrides(outlineColor: context.colorScheme().onSurface),
-            onPressed: () {
-              context.read<RecipesBloc>().add(RecipesEventFilter(sort: SortEntity.none, filter: FilterEntity()));
-              context.pop();
-            },
-          ),
-        ),
-        Expanded(
-          child: JTextButton(
-            text: strings.recipes_filter_apply,
-            forceCaps: false,
-            size: JWidgetSize.small,
-            onPressed: () {
-              context.read<RecipesBloc>().add(RecipesEventFilter(sort: sort, filter: filter));
-              context.pop();
-            },
-          ),
-        ),
-      ],
+    return JTextButton(
+      text: context.strings().recipes_filter_reset,
+      forceCaps: false,
+      type: JButtonType.flat,
+      color: JWidgetColor.onSurface,
+      size: JWidgetSize.small,
+      overrides: JTextButtonOverrides(outlineColor: context.colorScheme().onSurface),
+      onPressed: () => context.read<RecipesBloc>().add(const RecipesEventResetFilter()),
     );
   }
 }

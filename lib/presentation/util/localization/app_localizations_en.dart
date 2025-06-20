@@ -267,9 +267,6 @@ class StringsEn extends Strings {
   String get recipes_filter_reset => 'Reset';
 
   @override
-  String get recipes_filter_apply => 'Apply';
-
-  @override
   String get recipes_drawer_sortTitle => 'Sort by';
 
   @override
