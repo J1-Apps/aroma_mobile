@@ -1,12 +1,18 @@
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
+import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
-  RecipesBloc() : super(RecipesState.initial()) {
+  final RecipesUsecase _recipesUsecase;
+
+  RecipesBloc({RecipesUsecase? recipesUsecase})
+    : _recipesUsecase = recipesUsecase ?? locator.get<RecipesUsecase>(),
+      super(RecipesState.initial()) {
     on<RecipesEventLoad>(_onLoad, transformer: restartable());
     on<RecipesEventSearch>(_onSearch);
     on<RecipesEventResetFilter>(_onResetFilter);
@@ -21,10 +27,18 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
     emit(state.copyWith(status: RecipesStatus.loading));
 
-    // TODO: Load recipes from use case.
-    await Future.delayed(const Duration(seconds: 1));
+    final result = await _recipesUsecase(state.sort, state.filter);
 
-    emit(state.copyWith(status: RecipesStatus.success));
+    switch (result) {
+      case Success():
+        if (result.value.isEmpty) {
+          emit(state.copyWith(status: RecipesStatus.empty, recipes: const []));
+        } else {
+          emit(state.copyWith(status: RecipesStatus.success, recipes: result.value));
+        }
+      case Failure():
+        emit(state.copyWith(status: RecipesStatus.error));
+    }
   }
 
   Future<void> _onSearch(RecipesEventSearch event, Emitter<RecipesState> emit) async {

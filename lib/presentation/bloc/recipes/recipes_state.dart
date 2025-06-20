@@ -1,4 +1,5 @@
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
+import "package:aroma_mobile/domain/entity/recipe_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
@@ -10,12 +11,14 @@ class RecipesState with RecipesStateMappable {
   final String searchQuery;
   final SortEntity sort;
   final FilterEntity filter;
+  final List<RecipeEntity> recipes;
 
   const RecipesState({
     required this.status,
     required this.searchQuery,
     required this.sort,
     required this.filter,
+    required this.recipes,
   });
 
   factory RecipesState.initial() => RecipesState(
@@ -23,6 +26,7 @@ class RecipesState with RecipesStateMappable {
     searchQuery: "",
     sort: SortEntity.none,
     filter: FilterEntity(),
+    recipes: const [],
   );
 }
 
