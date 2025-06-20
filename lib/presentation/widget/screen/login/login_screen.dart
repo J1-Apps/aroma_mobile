@@ -38,7 +38,7 @@ void _showErrorToast(BuildContext context, ErrorCode? error) {
   final strings = context.strings();
 
   final message = switch (error) {
-    ErrorCode.source_remote_auth_googleSignInFailed => strings.login_googleSignInFailed,
+    ErrorCode.repository_auth_signInWithGoogleFailed => strings.login_googleSignInFailed,
     _ => null,
   };
 

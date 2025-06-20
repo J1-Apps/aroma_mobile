@@ -60,7 +60,7 @@ void _showErrorToast(BuildContext context, ErrorCode? error) {
   final strings = context.strings();
 
   final message = switch (error) {
-    ErrorCode.source_remote_auth_emailSignInFailed => strings.signIn_emailSignInFailed,
+    ErrorCode.repository_auth_signInWithEmailAndPasswordFailed => strings.signIn_emailSignInFailed,
     _ => null,
   };
 

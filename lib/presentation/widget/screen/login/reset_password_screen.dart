@@ -58,7 +58,7 @@ void _handleStateUpdate(BuildContext context, ErrorCode? error, bool isSuccess) 
     message = strings.resetPassword_resetPasswordSuccess;
   } else {
     message = switch (error) {
-      ErrorCode.source_remote_auth_sendPasswordResetEmailFailed => strings.resetPassword_sendPasswordResetEmailFailed,
+      ErrorCode.repository_auth_sendPasswordResetEmailFailed => strings.resetPassword_sendPasswordResetEmailFailed,
       _ => null,
     };
   }

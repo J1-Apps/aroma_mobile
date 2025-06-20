@@ -8,6 +8,15 @@ enum DifficultyEntity {
   medium,
   hard;
 
+  factory DifficultyEntity.fromModel(int model) {
+    return switch (model) {
+      1 => DifficultyEntity.easy,
+      2 => DifficultyEntity.medium,
+      3 => DifficultyEntity.hard,
+      _ => DifficultyEntity.medium,
+    };
+  }
+
   int toModel() {
     switch (this) {
       case DifficultyEntity.easy:

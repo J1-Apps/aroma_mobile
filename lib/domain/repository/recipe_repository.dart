@@ -22,7 +22,7 @@ class RecipeRepositoryImpl implements RecipeRepository {
       final recipes = await _remoteRecipeSource.getRecipes(sort.toModel(), filter.toModel());
       return Success(recipes.map(RecipeEntity.fromModel).toList());
     } catch (e) {
-      return Failure(ErrorModel(ErrorCode.source_remote_recipe_getRecipesFailed, message: e.toString()));
+      return Failure(ErrorModel(ErrorCode.repository_recipe_getRecipesFailed, message: e.toString()));
     }
   }
 }

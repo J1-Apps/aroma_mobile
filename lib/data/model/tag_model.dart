@@ -4,7 +4,7 @@ part "tag_model.mapper.dart";
 
 @MappableClass()
 class TagModel with TagModelMappable {
-  final String id;
+  final int id;
   final String name;
 
   const TagModel({

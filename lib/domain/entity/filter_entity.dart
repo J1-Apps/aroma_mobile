@@ -33,7 +33,7 @@ class FilterEntity with FilterEntityMappable {
       servingsMin: servingsMin,
       servingsMax: servingsMax,
       difficulties: difficulties.map((e) => e.toModel()).toSet(),
-      tags: tags.map((e) => e.toModel()).toSet(),
+      tags: tags.map((e) => e.id).toSet(),
     );
   }
 }

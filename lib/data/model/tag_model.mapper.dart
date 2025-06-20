@@ -20,8 +20,8 @@ class TagModelMapper extends ClassMapperBase<TagModel> {
   @override
   final String id = 'TagModel';
 
-  static String _$id(TagModel v) => v.id;
-  static const Field<TagModel, String> _f$id = Field('id', _$id);
+  static int _$id(TagModel v) => v.id;
+  static const Field<TagModel, int> _f$id = Field('id', _$id);
   static String _$name(TagModel v) => v.name;
   static const Field<TagModel, String> _f$name = Field('name', _$name);
 
@@ -80,7 +80,7 @@ extension TagModelValueCopy<$R, $Out> on ObjectCopyWith<$R, TagModel, $Out> {
 }
 
 abstract class TagModelCopyWith<$R, $In extends TagModel, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, String? name});
+  $R call({int? id, String? name});
   TagModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -91,7 +91,7 @@ class _TagModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, TagModel, $O
   @override
   late final ClassMapperBase<TagModel> $mapper = TagModelMapper.ensureInitialized();
   @override
-  $R call({String? id, String? name}) =>
+  $R call({int? id, String? name}) =>
       $apply(FieldCopyWithData({if (id != null) #id: id, if (name != null) #name: name}));
   @override
   TagModel $make(CopyWithData data) => TagModel(

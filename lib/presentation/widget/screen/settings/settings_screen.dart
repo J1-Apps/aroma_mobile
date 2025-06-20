@@ -56,9 +56,9 @@ void _listenErrors(BuildContext context, SettingsState state) {
   final strings = context.strings();
 
   final message = switch (state.error) {
-    ErrorCode.source_local_language_readError => strings.settings_error_getLanguage,
-    ErrorCode.source_local_language_writeError => strings.settings_error_saveLanguage,
-    ErrorCode.source_remote_auth_signOutFailed => strings.settings_error_signOut,
+    ErrorCode.repository_language_loadFailed => strings.settings_error_getLanguage,
+    ErrorCode.repository_language_updateFailed => strings.settings_error_saveLanguage,
+    ErrorCode.repository_auth_signOutFailed => strings.settings_error_signOut,
     _ => null,
   };
 
