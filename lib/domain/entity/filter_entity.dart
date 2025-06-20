@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/model/filter_model.dart";
 import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
 import "package:dart_mappable/dart_mappable.dart";
@@ -23,4 +24,16 @@ class FilterEntity with FilterEntityMappable {
     this.difficulties = const {},
     this.tags = const {},
   });
+
+  FilterModel toModel() {
+    return FilterModel(
+      ratingMin: ratingMin,
+      timeMin: timeMin,
+      timeMax: timeMax,
+      servingsMin: servingsMin,
+      servingsMax: servingsMax,
+      difficulties: difficulties.map((e) => e.toModel()).toSet(),
+      tags: tags.map((e) => e.toModel()).toSet(),
+    );
+  }
 }

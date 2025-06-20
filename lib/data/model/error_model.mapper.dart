@@ -57,6 +57,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return ErrorCode.source_local_language_readError;
       case r'source_local_language_writeError':
         return ErrorCode.source_local_language_writeError;
+      case r'source_remote_recipe_getRecipesFailed':
+        return ErrorCode.source_remote_recipe_getRecipesFailed;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -97,6 +99,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return r'source_local_language_readError';
       case ErrorCode.source_local_language_writeError:
         return r'source_local_language_writeError';
+      case ErrorCode.source_remote_recipe_getRecipesFailed:
+        return r'source_remote_recipe_getRecipesFailed';
     }
   }
 }

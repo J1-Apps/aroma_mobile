@@ -1,18 +1,14 @@
 import "package:dart_mappable/dart_mappable.dart";
 
-part "tag_entity.mapper.dart";
+part "tag_model.mapper.dart";
 
 @MappableClass()
-class TagEntity with TagEntityMappable {
-  final int id;
+class TagModel with TagModelMappable {
+  final String id;
   final String name;
 
-  const TagEntity({
+  const TagModel({
     required this.id,
     required this.name,
   });
-
-  int toModel() {
-    return id;
-  }
 }

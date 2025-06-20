@@ -45,6 +45,8 @@ enum ErrorCode {
 
   source_local_language_readError,
   source_local_language_writeError,
+
+  source_remote_recipe_getRecipesFailed,
 }
 
 extension ExceptionExtension on Exception {

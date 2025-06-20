@@ -1,8 +1,10 @@
 import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/repository/language_repository.dart";
+import "package:aroma_mobile/domain/repository/recipe_repository.dart";
 import "package:aroma_mobile/domain/repository/theme_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/change_password_usecase.dart";
@@ -26,12 +28,14 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   LocalLanguageSource get localLanguageSource;
   LocalThemeSource get localThemeSource;
   RemoteAuthSource get remoteAuthSource;
+  RemoteRecipeSource get remoteRecipeSource;
 
   // Repository
 
   J1ThemeRepository get themeRepository => ThemeRepository();
   AuthRepository get authRepository => AuthRepositoryImpl();
   LanguageRepository get languageRepository => LanguageRepositoryImpl();
+  RecipeRepository get recipeRepository => RecipeRepositoryImpl();
 
   // Usecase
 
@@ -59,12 +63,14 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerSingleton<LocalLanguageSource>(localLanguageSource);
     locator.registerSingleton<LocalThemeSource>(localThemeSource);
     locator.registerSingleton<RemoteAuthSource>(remoteAuthSource);
+    locator.registerSingleton<RemoteRecipeSource>(remoteRecipeSource);
 
     // Repository
 
     locator.registerSingleton<J1ThemeRepository>(themeRepository);
     locator.registerSingleton<AuthRepository>(authRepository);
     locator.registerSingleton<LanguageRepository>(languageRepository);
+    locator.registerSingleton<RecipeRepository>(recipeRepository);
 
     // Usecase
 

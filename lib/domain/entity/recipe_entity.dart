@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/model/recipe_model.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 part "recipe_entity.mapper.dart";
@@ -32,4 +33,19 @@ class RecipeEntity with RecipeEntityMappable {
     required this.sourceName,
     required this.sourceUrl,
   });
+
+  factory RecipeEntity.fromModel(RecipeModel model) {
+    return RecipeEntity(
+      id: model.id,
+      title: model.title,
+      prepTime: model.prepTime,
+      cookTime: model.cookTime,
+      servings: model.servings,
+      imageUrl: model.imageUrl,
+      rating: model.rating,
+      difficulty: model.difficulty,
+      sourceName: model.sourceName,
+      sourceUrl: model.sourceUrl,
+    );
+  }
 }
