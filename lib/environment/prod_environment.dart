@@ -6,6 +6,8 @@ import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.d
 import "package:aroma_mobile/data/source/remote_auth_source/supabase_remote_auth_source.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/supabase_remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/supabase_remote_tag_source.dart";
 import "package:aroma_mobile/environment/aroma_environment.dart";
 import "package:aroma_mobile/environment/env.dart";
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
@@ -42,6 +44,9 @@ class ProdEnvironment extends AromaEnvironment {
 
   @override
   RemoteRecipeSource get remoteRecipeSource => SupabaseRemoteRecipeSource();
+
+  @override
+  RemoteTagSource get remoteTagSource => SupabaseRemoteTagSource();
 
   @override
   Future<void> configure() async {

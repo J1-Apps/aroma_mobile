@@ -6,6 +6,8 @@ import "package:aroma_mobile/data/source/remote_auth_source/memory_remote_auth_s
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/memory_remote_recipe_source.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/memory_remote_tag_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
 import "package:aroma_mobile/environment/aroma_environment.dart";
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -36,4 +38,7 @@ class LocalEnvironment extends AromaEnvironment {
 
   @override
   RemoteRecipeSource get remoteRecipeSource => MemoryRemoteRecipeSource();
+
+  @override
+  RemoteTagSource get remoteTagSource => MemoryRemoteTagSource();
 }

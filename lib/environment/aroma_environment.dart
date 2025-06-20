@@ -2,9 +2,11 @@ import "package:aroma_mobile/data/source/local_language_source/local_language_so
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/repository/language_repository.dart";
 import "package:aroma_mobile/domain/repository/recipe_repository.dart";
+import "package:aroma_mobile/domain/repository/tag_repository.dart";
 import "package:aroma_mobile/domain/repository/theme_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/change_password_usecase.dart";
@@ -30,6 +32,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   LocalThemeSource get localThemeSource;
   RemoteAuthSource get remoteAuthSource;
   RemoteRecipeSource get remoteRecipeSource;
+  RemoteTagSource get remoteTagSource;
 
   // Repository
 
@@ -37,6 +40,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   AuthRepository get authRepository => AuthRepositoryImpl();
   LanguageRepository get languageRepository => LanguageRepositoryImpl();
   RecipeRepository get recipeRepository => RecipeRepositoryImpl();
+  TagRepository get tagRepository => TagRepositoryImpl();
 
   // Usecase
 
@@ -50,8 +54,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   DeleteAccountUsecase get deleteAccountUsecase => DeleteAccountUsecaseImpl();
   LanguageUsecase get languageUsecase => LanguageUsecaseImpl();
   UpdateLanguageUsecase get updateLanguageUsecase => UpdateLanguageUsecaseImpl();
-  // TODO: Remove this implementation.
-  TagUsecase get tagUsecase => TagUsecaseTestImpl();
+  TagUsecase get tagUsecase => TagUsecaseImpl();
   RecipesUsecase get recipesUsecase => RecipesUsecaseImpl();
 
   // coverage:ignore-end
@@ -66,6 +69,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerSingleton<LocalThemeSource>(localThemeSource);
     locator.registerSingleton<RemoteAuthSource>(remoteAuthSource);
     locator.registerSingleton<RemoteRecipeSource>(remoteRecipeSource);
+    locator.registerSingleton<RemoteTagSource>(remoteTagSource);
 
     // Repository
 
@@ -73,6 +77,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerSingleton<AuthRepository>(authRepository);
     locator.registerSingleton<LanguageRepository>(languageRepository);
     locator.registerSingleton<RecipeRepository>(recipeRepository);
+    locator.registerSingleton<TagRepository>(tagRepository);
 
     // Usecase
 
