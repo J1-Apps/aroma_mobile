@@ -41,26 +41,14 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }
 
   Future<void> _onUpdateSort(RecipesEventUpdateSort event, Emitter<RecipesState> emit) async {
-    if (event.sort == state.sort) {
-      return;
-    }
-
     emit(state.copyWith(sort: event.sort));
   }
 
   Future<void> _onUpdateRatingMin(RecipesEventUpdateRatingMin event, Emitter<RecipesState> emit) async {
-    if (event.ratingMin == state.filter.ratingMin) {
-      return;
-    }
-
     emit(state.copyWith(filter: state.filter.copyWith(ratingMin: event.ratingMin)));
   }
 
   Future<void> _onUpdateTime(RecipesEventUpdateTime event, Emitter<RecipesState> emit) async {
-    if (event.timeMin == state.filter.timeMin && event.timeMax == state.filter.timeMax) {
-      return;
-    }
-
     emit(
       state.copyWith(
         filter: state.filter.copyWith(
@@ -72,10 +60,6 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }
 
   Future<void> _onUpdateServings(RecipesEventUpdateServings event, Emitter<RecipesState> emit) async {
-    if (event.servingsMin == state.filter.servingsMin && event.servingsMax == state.filter.servingsMax) {
-      return;
-    }
-
     emit(
       state.copyWith(
         filter: state.filter.copyWith(
@@ -87,18 +71,10 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }
 
   Future<void> _onUpdateDifficulty(RecipesEventUpdateDifficulty event, Emitter<RecipesState> emit) async {
-    if (event.difficulties == state.filter.difficulties) {
-      return;
-    }
-
     emit(state.copyWith(filter: state.filter.copyWith(difficulties: event.difficulties)));
   }
 
   Future<void> _onUpdateTags(RecipesEventUpdateTags event, Emitter<RecipesState> emit) async {
-    if (event.tags == state.filter.tags) {
-      return;
-    }
-
     emit(state.copyWith(filter: state.filter.copyWith(tags: event.tags)));
   }
 }

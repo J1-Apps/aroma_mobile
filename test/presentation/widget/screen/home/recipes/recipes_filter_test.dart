@@ -6,6 +6,7 @@ import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
 import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
+import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/filter_drawer.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_filter.dart";
@@ -28,6 +29,7 @@ void main() {
 
       stream = StreamController<RecipesState>.broadcast();
       when(bloc.close).thenAnswer((_) => Future.value());
+      when(() => bloc.isClosed).thenReturn(false);
       when(() => bloc.state).thenReturn(RecipesState.initial());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
       when(
@@ -61,10 +63,33 @@ void main() {
           child: const RecipesFilter(),
         ),
       );
+
       await tester.tap(find.byType(JCard));
       await tester.pumpAndSettle();
 
       expect(find.byType(FilterDrawer), findsOneWidget);
+
+      await tester.tap(find.text("Recently viewed"));
+      await tester.pumpAndSettle();
+
+      when(() => bloc.state).thenReturn(RecipesState.initial().copyWith(sort: SortEntity.recentlyViewed));
+
+      final rect = tester.getRect(find.byType(FilterDrawer));
+
+      await tester.tapAt(Offset(rect.left + rect.width / 2, rect.top - 100));
+      await tester.pumpAndSettle();
+
+      verify(() => bloc.add(const RecipesEventLoad())).called(1);
+
+      await tester.tap(find.byType(JCard));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(FilterDrawer), findsOneWidget);
+
+      await tester.tapAt(Offset(rect.left + rect.width / 2, rect.top - 100));
+      await tester.pumpAndSettle();
+
+      verifyNever(() => bloc.add(const RecipesEventLoad()));
     });
 
     testWidgets("shows relevant min/max filters", (tester) async {

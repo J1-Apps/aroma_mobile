@@ -57,34 +57,34 @@ void main() {
       expect(bloc.state, RecipesState.initial().copyWith(status: RecipesStatus.success, searchQuery: "test"));
     });
 
-    test("filter event is handled correctly", () async {
+    test("filter reset event is handled correctly", () async {
       expect(bloc.state, RecipesState.initial());
 
-      // bloc.add(
-      //   RecipesEventFilter(
-      //     sort: SortEntity.recentlyViewed,
-      //     filter: _filterEntity,
-      //   ),
-      // );
+      bloc.add(RecipesEventUpdateSort(sort: SortEntity.recentlyViewed));
+      bloc.add(RecipesEventUpdateRatingMin(ratingMin: 1));
+      bloc.add(RecipesEventUpdateTime(timeMin: 2, timeMax: 3));
+      bloc.add(RecipesEventUpdateServings(servingsMin: 4, servingsMax: 5));
+      bloc.add(RecipesEventUpdateDifficulty(difficulties: {DifficultyEntity.easy, DifficultyEntity.medium}));
+      bloc.add(
+        RecipesEventUpdateTags(
+          tags: {
+            TagEntity(id: 1, name: "tag1"),
+            TagEntity(id: 2, name: "tag2"),
+          },
+        ),
+      );
       await awaitMs(1);
       expect(
         bloc.state,
         RecipesState.initial().copyWith(
-          status: RecipesStatus.loading,
           sort: SortEntity.recentlyViewed,
           filter: _filterEntity,
         ),
       );
 
-      await awaitMs(1100);
-      expect(
-        bloc.state,
-        RecipesState.initial().copyWith(
-          status: RecipesStatus.success,
-          sort: SortEntity.recentlyViewed,
-          filter: _filterEntity,
-        ),
-      );
+      bloc.add(const RecipesEventResetFilter());
+      await awaitMs(1);
+      expect(bloc.state, RecipesState.initial());
     });
   });
 }
