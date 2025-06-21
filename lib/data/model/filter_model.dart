@@ -12,6 +12,15 @@ class FilterModel with FilterModelMappable {
   final Set<int> difficulties;
   final Set<int> tags;
 
+  bool get isEmpty =>
+      ratingMin == null &&
+      timeMin == null &&
+      timeMax == null &&
+      servingsMin == null &&
+      servingsMax == null &&
+      difficulties.isEmpty &&
+      tags.isEmpty;
+
   const FilterModel({
     this.ratingMin,
     this.timeMin,
