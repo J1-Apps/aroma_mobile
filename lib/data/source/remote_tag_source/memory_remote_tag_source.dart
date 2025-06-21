@@ -15,8 +15,8 @@ class MemoryRemoteTagSource extends MemorySource implements RemoteTagSource {
     return wrapRequest(
       Future.sync(() {
         final filtered = query.isNotEmpty
-            ? _memoryTags.where((tag) => tag.name.toLowerCase().contains(query.toLowerCase())).toList()
-            : _memoryTags;
+            ? MockTags.all.where((tag) => tag.name.toLowerCase().contains(query.toLowerCase())).toList()
+            : MockTags.all;
 
         return filtered.take(limit).toList();
       }),
@@ -24,19 +24,3 @@ class MemoryRemoteTagSource extends MemorySource implements RemoteTagSource {
     );
   }
 }
-
-const _memoryTags = [
-  MockTags.dinner,
-  MockTags.lunch,
-  MockTags.breakfast,
-  MockTags.snack,
-  MockTags.dessert,
-  MockTags.asian,
-  MockTags.italian,
-  MockTags.mexican,
-  MockTags.indian,
-  MockTags.french,
-  MockTags.japanese,
-  MockTags.korean,
-  MockTags.thai,
-];

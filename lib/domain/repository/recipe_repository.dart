@@ -6,7 +6,7 @@ import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class RecipeRepository {
-  Future<Result<List<RecipeEntity>>> getRecipes(SortEntity sort, FilterEntity filter);
+  Future<Result<List<RecipeEntity>>> getRecipes(String searchQuery, SortEntity sort, FilterEntity filter);
 }
 
 class RecipeRepositoryImpl implements RecipeRepository {
@@ -17,9 +17,9 @@ class RecipeRepositoryImpl implements RecipeRepository {
   }) : _remoteRecipeSource = remoteRecipeSource ?? locator.get<RemoteRecipeSource>();
 
   @override
-  Future<Result<List<RecipeEntity>>> getRecipes(SortEntity sort, FilterEntity filter) async {
+  Future<Result<List<RecipeEntity>>> getRecipes(String searchQuery, SortEntity sort, FilterEntity filter) async {
     try {
-      final recipes = await _remoteRecipeSource.getRecipes(sort.toModel(), filter.toModel());
+      final recipes = await _remoteRecipeSource.getRecipes(searchQuery, sort.toModel(), filter.toModel());
       return Success(recipes.map(RecipeEntity.fromModel).toList());
     } catch (e) {
       return Failure(ErrorModel(ErrorCode.repository_recipe_getRecipesFailed, message: e.toString()));

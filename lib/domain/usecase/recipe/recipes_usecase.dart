@@ -5,7 +5,7 @@ import "package:aroma_mobile/domain/repository/recipe_repository.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class RecipesUsecase {
-  Future<Result<List<RecipeEntity>>> call(SortEntity sort, FilterEntity filter);
+  Future<Result<List<RecipeEntity>>> call(String searchQuery, SortEntity sort, FilterEntity filter);
 }
 
 class RecipesUsecaseImpl implements RecipesUsecase {
@@ -15,6 +15,6 @@ class RecipesUsecaseImpl implements RecipesUsecase {
     : _recipeRepository = recipeRepository ?? locator.get<RecipeRepository>();
 
   @override
-  Future<Result<List<RecipeEntity>>> call(SortEntity sort, FilterEntity filter) =>
-      _recipeRepository.getRecipes(sort, filter);
+  Future<Result<List<RecipeEntity>>> call(String searchQuery, SortEntity sort, FilterEntity filter) =>
+      _recipeRepository.getRecipes(searchQuery, sort, filter);
 }

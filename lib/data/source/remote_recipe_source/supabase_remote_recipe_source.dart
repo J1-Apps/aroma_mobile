@@ -8,7 +8,7 @@ class SupabaseRemoteRecipeSource extends RemoteRecipeSource {
   SupabaseRemoteRecipeSource();
 
   @override
-  Future<List<RecipeModel>> getRecipes(SortModel sort, FilterModel filter) async {
+  Future<List<RecipeModel>> getRecipes(String searchQuery, SortModel sort, FilterModel filter) async {
     return [];
   }
 }

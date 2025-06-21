@@ -28,7 +28,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
     emit(state.copyWith(status: RecipesStatus.loading));
 
-    final result = await _recipesUsecase(state.sort, state.filter);
+    final result = await _recipesUsecase(state.searchQuery, state.sort, state.filter);
 
     switch (result) {
       case Success():

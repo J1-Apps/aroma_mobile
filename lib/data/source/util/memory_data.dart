@@ -4,6 +4,22 @@ import "package:aroma_mobile/data/model/tag_model.dart";
 // Tags
 
 abstract class MockTags {
+  static const List<TagModel> all = [
+    dinner,
+    lunch,
+    breakfast,
+    snack,
+    dessert,
+    asian,
+    italian,
+    mexican,
+    indian,
+    french,
+    japanese,
+    korean,
+    thai,
+  ];
+
   static const dinner = TagModel(id: 1, name: "Dinner");
   static const lunch = TagModel(id: 2, name: "Lunch");
   static const breakfast = TagModel(id: 3, name: "Breakfast");
@@ -23,6 +39,12 @@ abstract class MockTags {
 
 // TODO: Populate recipe JSON, tags, and nutrition.
 abstract class MockRecipes {
+  static const List<RecipeModel> all = [
+    tebaShio,
+    thaiRedCurry,
+    oiMuchin,
+  ];
+
   static const tebaShio = RecipeModel(
     id: "1",
     title: "Teba Shio",

@@ -14,12 +14,12 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
   });
 
   @override
-  Future<List<RecipeModel>> getRecipes(SortModel sort, FilterModel filter) async {
+  Future<List<RecipeModel>> getRecipes(String searchQuery, SortModel sort, FilterModel filter) async {
     return wrapRequest(
       Future.sync(() {
         final filtered = filter.isEmpty
-            ? _memoryRecipes
-            : _memoryRecipes.where((recipe) {
+            ? MockRecipes.all
+            : MockRecipes.all.where((recipe) {
                 final totalTime = recipe.prepTime + recipe.cookTime;
 
                 return (filter.ratingMin == null || recipe.rating >= filter.ratingMin!) &&
@@ -31,22 +31,26 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
                     (filter.tags.isEmpty || recipe.tags.any((tag) => filter.tags.contains(tag.id)));
               });
 
+        final searched = searchQuery.isEmpty
+            ? filtered
+            : filtered.where((recipe) {
+                return recipe.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
+                    recipe.descriptionRaw.toLowerCase().contains(searchQuery.toLowerCase()) ||
+                    recipe.ingredientsRaw.toLowerCase().contains(searchQuery.toLowerCase()) ||
+                    recipe.directionsRaw.toLowerCase().contains(searchQuery.toLowerCase()) ||
+                    recipe.notesRaw.toLowerCase().contains(searchQuery.toLowerCase());
+              }).toList();
+
         return switch (sort) {
-          SortModel.none => filtered,
-          SortModel.recentlyViewed => filtered,
-          SortModel.rating => filtered.sortedBy((recipe) => recipe.rating),
-          SortModel.quickest => filtered.sortedBy((recipe) => recipe.prepTime + recipe.cookTime),
-          SortModel.easiest => filtered.sortedBy((recipe) => recipe.difficulty),
-          SortModel.alphabetical => filtered.sortedBy((recipe) => recipe.title),
+          SortModel.none => searched,
+          SortModel.recentlyViewed => searched,
+          SortModel.rating => searched.sortedBy((recipe) => recipe.rating),
+          SortModel.quickest => searched.sortedBy((recipe) => recipe.prepTime + recipe.cookTime),
+          SortModel.easiest => searched.sortedBy((recipe) => recipe.difficulty),
+          SortModel.alphabetical => searched.sortedBy((recipe) => recipe.title),
         }.toList();
       }),
       ErrorCode.source_remote_recipe_getRecipesFailed,
     );
   }
 }
-
-const _memoryRecipes = [
-  MockRecipes.tebaShio,
-  MockRecipes.thaiRedCurry,
-  MockRecipes.oiMuchin,
-];
