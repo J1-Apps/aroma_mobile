@@ -12,20 +12,14 @@ void main() {
     final authRepository = MockAuthRepository();
     late AuthUsecase authUsecase;
 
-    setUpAll(() {
-      locator.registerSingleton<AuthRepository>(authRepository);
-    });
-
     setUp(() {
+      locator.registerSingleton<AuthRepository>(authRepository);
       authUsecase = AuthUsecaseImpl();
     });
 
     tearDown(() {
+      locator.unregister<AuthRepository>();
       reset(authRepository);
-    });
-
-    tearDownAll(() async {
-      await locator.reset();
     });
 
     test("returns a stream of multiple auth entities", () {

@@ -1,5 +1,5 @@
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
-import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/filter_drawer_state.dart";
@@ -12,22 +12,22 @@ import "../../../test_util/testing_utils.dart";
 
 void main() {
   group("Filter Bloc", () {
-    final tagUsecase = MockTagUsecase();
+    final tagsUsecase = MockTagsUsecase();
     late FilterDrawerBloc bloc;
 
     setUp(() {
-      locator.registerSingleton<TagUsecase>(tagUsecase);
+      locator.registerSingleton<TagsUsecase>(tagsUsecase);
       bloc = FilterDrawerBloc();
     });
 
     tearDown(() {
-      locator.unregister<TagUsecase>();
-      reset(tagUsecase);
+      locator.unregister<TagsUsecase>();
+      reset(tagsUsecase);
       bloc.close();
     });
 
     test("handles tag query changed", () async {
-      when(() => tagUsecase(query: "test")).thenAnswer(
+      when(() => tagsUsecase(query: "test")).thenAnswer(
         (_) => Future.delayed(
           const Duration(milliseconds: 50),
           () => [TagEntity(id: 1, name: "test")],

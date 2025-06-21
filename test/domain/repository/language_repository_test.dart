@@ -12,21 +12,15 @@ void main() {
     final localSource = MockLocalLanguageSource();
     late LanguageRepository repository;
 
-    setUpAll(() {
-      locator.registerSingleton<LocalLanguageSource>(localSource);
-    });
-
     setUp(() {
+      locator.registerSingleton<LocalLanguageSource>(localSource);
       repository = LanguageRepositoryImpl();
     });
 
     tearDown(() {
+      locator.unregister<LocalLanguageSource>();
       reset(localSource);
       repository.onDispose();
-    });
-
-    tearDownAll(() async {
-      await locator.reset();
     });
 
     test("gets and updates language, handling errors", () async {

@@ -14,18 +14,18 @@ void main() {
     final localSource = MockLocalThemeSource();
 
     setUpAll(() {
-      locator.registerSingleton<LocalThemeSource>(localSource);
       registerFallbackValue(AromaColorScheme.light.scheme);
       registerFallbackValue(AromaTextTheme.initial);
       registerFallbackValue(AromaTheme.pageTransition);
     });
 
-    tearDown(() {
-      reset(localSource);
+    setUp(() {
+      locator.registerSingleton<LocalThemeSource>(localSource);
     });
 
-    tearDownAll(() async {
-      await locator.reset();
+    tearDown(() {
+      locator.unregister<LocalThemeSource>();
+      reset(localSource);
     });
 
     test("gets and updates color scheme, handling errors", () async {

@@ -4,14 +4,14 @@ import "package:j1_core_base/j1_core_base.dart";
 
 const _defaultLimit = 10;
 
-abstract class TagUsecase {
+abstract class TagsUsecase {
   Future<List<TagEntity>> call({String? query, int limit = _defaultLimit});
 }
 
-class TagUsecaseImpl implements TagUsecase {
+class TagsUsecaseImpl implements TagsUsecase {
   final TagRepository _tagRepository;
 
-  TagUsecaseImpl({TagRepository? tagRepository}) : _tagRepository = tagRepository ?? locator.get<TagRepository>();
+  TagsUsecaseImpl({TagRepository? tagRepository}) : _tagRepository = tagRepository ?? locator.get<TagRepository>();
 
   @override
   Future<List<TagEntity>> call({String? query, int limit = _defaultLimit}) async {

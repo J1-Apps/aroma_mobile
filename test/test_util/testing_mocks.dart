@@ -6,6 +6,8 @@ import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_sour
 import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/repository/language_repository.dart";
+import "package:aroma_mobile/domain/repository/recipe_repository.dart";
+import "package:aroma_mobile/domain/repository/tag_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/create_user_email_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/reset_password_usecase.dart";
@@ -15,7 +17,7 @@ import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
-import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/register_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/login/reset_password_bloc.dart";
@@ -85,6 +87,10 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockLanguageRepository extends Mock implements LanguageRepository {}
 
+class MockRecipeRepository extends Mock implements RecipeRepository {}
+
+class MockTagRepository extends Mock implements TagRepository {}
+
 // Mock Usecases
 
 class MockAuthUsecase extends Mock implements AuthUsecase {}
@@ -103,7 +109,7 @@ class MockLanguageUsecase extends Mock implements LanguageUsecase {}
 
 class MockUpdateLanguageUsecase extends Mock implements UpdateLanguageUsecase {}
 
-class MockTagUsecase extends Mock implements TagUsecase {}
+class MockTagsUsecase extends Mock implements TagsUsecase {}
 
 class MockRecipesUsecase extends Mock implements RecipesUsecase {}
 

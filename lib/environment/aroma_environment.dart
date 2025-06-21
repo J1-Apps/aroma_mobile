@@ -19,7 +19,7 @@ import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
-import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:j1_core_firebase/j1_core_firebase.dart";
 
@@ -54,7 +54,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   DeleteAccountUsecase get deleteAccountUsecase => DeleteAccountUsecaseImpl();
   LanguageUsecase get languageUsecase => LanguageUsecaseImpl();
   UpdateLanguageUsecase get updateLanguageUsecase => UpdateLanguageUsecaseImpl();
-  TagUsecase get tagUsecase => TagUsecaseImpl();
+  TagsUsecase get tagsUsecase => TagsUsecaseImpl();
   RecipesUsecase get recipesUsecase => RecipesUsecaseImpl();
 
   // coverage:ignore-end
@@ -91,7 +91,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerFactory<DeleteAccountUsecase>(() => deleteAccountUsecase);
     locator.registerFactory<LanguageUsecase>(() => languageUsecase);
     locator.registerFactory<UpdateLanguageUsecase>(() => updateLanguageUsecase);
-    locator.registerFactory<TagUsecase>(() => tagUsecase);
+    locator.registerFactory<TagsUsecase>(() => tagsUsecase);
     locator.registerFactory<RecipesUsecase>(() => recipesUsecase);
   }
 }
