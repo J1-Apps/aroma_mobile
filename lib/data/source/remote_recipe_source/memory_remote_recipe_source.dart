@@ -44,7 +44,7 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
         return switch (sort) {
           SortModel.none => searched,
           SortModel.recentlyViewed => searched,
-          SortModel.rating => searched.sortedBy((recipe) => recipe.rating),
+          SortModel.rating => searched.sortedBy((recipe) => -recipe.rating),
           SortModel.quickest => searched.sortedBy((recipe) => recipe.prepTime + recipe.cookTime),
           SortModel.easiest => searched.sortedBy((recipe) => recipe.difficulty),
           SortModel.alphabetical => searched.sortedBy((recipe) => recipe.title),
