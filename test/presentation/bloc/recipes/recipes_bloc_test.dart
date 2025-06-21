@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/util/memory_data.dart";
 import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
@@ -46,13 +47,7 @@ void main() {
     });
 
     test("load event is handled correctly", () async {
-      when(
-        () => recipesUsecase(
-          "",
-          SortEntity.none,
-          const FilterEntity(),
-        ),
-      ).thenAnswer(
+      when(() => recipesUsecase("", SortEntity.none, const FilterEntity())).thenAnswer(
         (_) => Future.delayed(
           const Duration(milliseconds: 5),
           () => Success(MockRecipes.all.map(RecipeEntity.fromModel).toList()),
@@ -75,14 +70,44 @@ void main() {
       );
     });
 
-    test("search event is handled correctly", () async {
-      when(
-        () => recipesUsecase(
-          "test",
-          SortEntity.none,
-          const FilterEntity(),
+    test("load event is handled correctly with empty recipes", () async {
+      when(() => recipesUsecase("", SortEntity.none, const FilterEntity())).thenAnswer(
+        (_) => Future.delayed(
+          const Duration(milliseconds: 5),
+          () => Success([]),
         ),
-      ).thenAnswer(
+      );
+
+      expect(bloc.state, RecipesState.initial());
+
+      bloc.add(const RecipesEventLoad());
+      await awaitMs(1);
+      expect(bloc.state, RecipesState.initial().copyWith(status: RecipesStatus.loading));
+
+      await awaitMs(10);
+      expect(bloc.state, RecipesState.initial().copyWith(status: RecipesStatus.empty, recipes: const []));
+    });
+
+    test("load event is handled correctly with failure", () async {
+      when(() => recipesUsecase("", SortEntity.none, const FilterEntity())).thenAnswer(
+        (_) => Future.delayed(
+          const Duration(milliseconds: 5),
+          () => Failure(ErrorModel(ErrorCode.repository_recipe_getRecipesFailed)),
+        ),
+      );
+
+      expect(bloc.state, RecipesState.initial());
+
+      bloc.add(const RecipesEventLoad());
+      await awaitMs(1);
+      expect(bloc.state, RecipesState.initial().copyWith(status: RecipesStatus.loading));
+
+      await awaitMs(10);
+      expect(bloc.state, RecipesState.initial().copyWith(status: RecipesStatus.error));
+    });
+
+    test("search event is handled correctly", () async {
+      when(() => recipesUsecase("test", SortEntity.none, const FilterEntity())).thenAnswer(
         (_) => Future.delayed(
           const Duration(milliseconds: 5),
           () => Success(MockRecipes.all.map(RecipeEntity.fromModel).toList()),
