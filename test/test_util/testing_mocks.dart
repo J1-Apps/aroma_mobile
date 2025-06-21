@@ -2,6 +2,8 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:aroma_mobile/domain/repository/language_repository.dart";
 import "package:aroma_mobile/domain/usecase/auth/auth_usecase.dart";
@@ -72,6 +74,10 @@ class MockRemoteAuthSource extends Mock implements RemoteAuthSource {}
 class MockLocalThemeSource extends Mock implements LocalThemeSource {}
 
 class MockLocalLanguageSource extends Mock implements LocalLanguageSource {}
+
+class MockRemoteRecipeSource extends Mock implements RemoteRecipeSource {}
+
+class MockRemoteTagSource extends Mock implements RemoteTagSource {}
 
 // Mock Repositories
 

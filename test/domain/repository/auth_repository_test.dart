@@ -15,7 +15,7 @@ void main() {
   late BehaviorSubject<SessionModel> sessionSubject;
   late AuthRepository authRepository;
 
-  setUp(() async {
+  setUp(() {
     sessionSubject = BehaviorSubject<SessionModel>.seeded(const SessionModelSignedOut());
     when(() => remoteSource.sessionStream).thenAnswer((_) => sessionSubject.stream);
     authRepository = AuthRepositoryImpl(remoteAuthSource: remoteSource);
