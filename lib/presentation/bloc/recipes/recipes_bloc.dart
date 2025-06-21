@@ -3,6 +3,7 @@ import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
+import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
 import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -34,7 +35,12 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
         if (result.value.isEmpty) {
           emit(state.copyWith(status: RecipesStatus.empty, recipes: const []));
         } else {
-          emit(state.copyWith(status: RecipesStatus.success, recipes: result.value));
+          emit(
+            state.copyWith(
+              status: RecipesStatus.success,
+              recipes: result.value.map(RecipeCardDetails.fromEntity).toList(),
+            ),
+          );
         }
       case Failure():
         emit(state.copyWith(status: RecipesStatus.error));

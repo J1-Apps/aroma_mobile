@@ -1,6 +1,6 @@
-import "package:aroma_mobile/domain/entity/recipe_entity.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
+import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -11,7 +11,7 @@ class RecipesContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Implement the recipes content.
-    return BlocSelector<RecipesBloc, RecipesState, List<RecipeEntity>>(
+    return BlocSelector<RecipesBloc, RecipesState, List<RecipeCardDetails>>(
       selector: (state) => state.recipes,
       builder: (_, recipes) => GridView.count(
         physics: const NeverScrollableScrollPhysics(),

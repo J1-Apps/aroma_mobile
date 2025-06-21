@@ -1,6 +1,6 @@
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
-import "package:aroma_mobile/domain/entity/recipe_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
+import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 part "recipes_state.mapper.dart";
@@ -11,7 +11,7 @@ class RecipesState with RecipesStateMappable {
   final String searchQuery;
   final SortEntity sort;
   final FilterEntity filter;
-  final List<RecipeEntity> recipes;
+  final List<RecipeCardDetails> recipes;
 
   const RecipesState({
     required this.status,

@@ -87,7 +87,7 @@ void main() {
 
       expect(find.byType(SnackBar), findsNothing);
 
-      stream.add(const ResetPasswordState(error: ErrorCode.source_remote_auth_sendPasswordResetEmailFailed));
+      stream.add(const ResetPasswordState(error: ErrorCode.repository_auth_sendPasswordResetEmailFailed));
       await tester.pump(const Duration(milliseconds: 10));
 
       expect(find.byType(SnackBar), findsOneWidget);

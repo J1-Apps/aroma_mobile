@@ -70,7 +70,7 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       RecipesStatusMapper.ensureInitialized();
       SortEntityMapper.ensureInitialized();
       FilterEntityMapper.ensureInitialized();
-      RecipeEntityMapper.ensureInitialized();
+      RecipeCardDetailsMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -86,8 +86,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, SortEntity> _f$sort = Field('sort', _$sort);
   static FilterEntity _$filter(RecipesState v) => v.filter;
   static const Field<RecipesState, FilterEntity> _f$filter = Field('filter', _$filter);
-  static List<RecipeEntity> _$recipes(RecipesState v) => v.recipes;
-  static const Field<RecipesState, List<RecipeEntity>> _f$recipes = Field('recipes', _$recipes);
+  static List<RecipeCardDetails> _$recipes(RecipesState v) => v.recipes;
+  static const Field<RecipesState, List<RecipeCardDetails>> _f$recipes = Field('recipes', _$recipes);
 
   @override
   final MappableFields<RecipesState> fields = const {
@@ -154,13 +154,13 @@ extension RecipesStateValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesState, $O
 
 abstract class RecipesStateCopyWith<$R, $In extends RecipesState, $Out> implements ClassCopyWith<$R, $In, $Out> {
   FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter;
-  ListCopyWith<$R, RecipeEntity, RecipeEntityCopyWith<$R, RecipeEntity, RecipeEntity>> get recipes;
+  ListCopyWith<$R, RecipeCardDetails, RecipeCardDetailsCopyWith<$R, RecipeCardDetails, RecipeCardDetails>> get recipes;
   $R call({
     RecipesStatus? status,
     String? searchQuery,
     SortEntity? sort,
     FilterEntity? filter,
-    List<RecipeEntity>? recipes,
+    List<RecipeCardDetails>? recipes,
   });
   RecipesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -175,15 +175,15 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
   FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter =>
       $value.filter.copyWith.$chain((v) => call(filter: v));
   @override
-  ListCopyWith<$R, RecipeEntity, RecipeEntityCopyWith<$R, RecipeEntity, RecipeEntity>> get recipes =>
-      ListCopyWith($value.recipes, (v, t) => v.copyWith.$chain(t), (v) => call(recipes: v));
+  ListCopyWith<$R, RecipeCardDetails, RecipeCardDetailsCopyWith<$R, RecipeCardDetails, RecipeCardDetails>>
+  get recipes => ListCopyWith($value.recipes, (v, t) => v.copyWith.$chain(t), (v) => call(recipes: v));
   @override
   $R call({
     RecipesStatus? status,
     String? searchQuery,
     SortEntity? sort,
     FilterEntity? filter,
-    List<RecipeEntity>? recipes,
+    List<RecipeCardDetails>? recipes,
   }) => $apply(
     FieldCopyWithData({
       if (status != null) #status: status,

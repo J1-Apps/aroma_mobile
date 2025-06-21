@@ -73,7 +73,7 @@ void main() {
 
       expect(find.byType(SnackBar), findsNothing);
 
-      stream.add(const LoginState(error: ErrorCode.source_remote_auth_googleSignInFailed));
+      stream.add(const LoginState(error: ErrorCode.repository_auth_signInWithGoogleFailed));
       await tester.pump(const Duration(milliseconds: 10));
 
       expect(find.byType(SnackBar), findsOneWidget);

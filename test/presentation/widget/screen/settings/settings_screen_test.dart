@@ -75,7 +75,7 @@ void main() {
         const SettingsState(
           language: "en",
           isSigningOut: false,
-          error: ErrorCode.source_local_language_readError,
+          error: ErrorCode.repository_language_loadFailed,
         ),
       );
       await tester.pump(const Duration(milliseconds: 10));
@@ -87,7 +87,7 @@ void main() {
         const SettingsState(
           language: "en",
           isSigningOut: false,
-          error: ErrorCode.source_local_language_writeError,
+          error: ErrorCode.repository_language_updateFailed,
         ),
       );
       await tester.pump(const Duration(milliseconds: 10));
@@ -108,7 +108,7 @@ void main() {
         const SettingsState(
           language: "en",
           isSigningOut: false,
-          error: ErrorCode.source_remote_auth_signOutFailed,
+          error: ErrorCode.repository_auth_signOutFailed,
         ),
       );
     });
