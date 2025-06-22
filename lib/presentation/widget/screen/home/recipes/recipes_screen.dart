@@ -43,6 +43,7 @@ class _RecipesListState extends State<_RecipesList> {
   Widget build(BuildContext context) {
     return BlocConsumer<RecipesBloc, RecipesState>(
       listenWhen: (previous, current) => previous.status != current.status,
+      // TODO: Handle delete error.
       listener: (context, state) {
         if (state.status == RecipesStatus.loading) {
           _scrollController.animateTo(0, duration: _scrollToTopDuration, curve: Curves.easeInOut);

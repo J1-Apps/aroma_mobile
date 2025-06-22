@@ -18,6 +18,7 @@ import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
+import "package:aroma_mobile/domain/usecase/recipe/delete_recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -56,6 +57,7 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   UpdateLanguageUsecase get updateLanguageUsecase => UpdateLanguageUsecaseImpl();
   TagsUsecase get tagsUsecase => TagsUsecaseImpl();
   RecipesUsecase get recipesUsecase => RecipesUsecaseImpl();
+  DeleteRecipesUsecase get deleteRecipesUsecase => DeleteRecipesUsecaseImpl();
 
   // coverage:ignore-end
 
@@ -93,5 +95,6 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
     locator.registerFactory<UpdateLanguageUsecase>(() => updateLanguageUsecase);
     locator.registerFactory<TagsUsecase>(() => tagsUsecase);
     locator.registerFactory<RecipesUsecase>(() => recipesUsecase);
+    locator.registerFactory<DeleteRecipesUsecase>(() => deleteRecipesUsecase);
   }
 }

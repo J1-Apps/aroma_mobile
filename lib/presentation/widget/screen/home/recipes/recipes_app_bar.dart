@@ -51,12 +51,13 @@ class _RecipesDeleteButton extends StatelessWidget {
       icon: JamIcons.trash,
       type: JButtonType.flat,
       overrides: JIconButtonOverrides(iconColor: context.colorScheme().onTertiary),
-      onPressed: () => _confirmDeleteNotes(context),
+      onPressed: () => _confirmDeleteNotes(context, context.read<RecipesBloc>()),
     );
   }
 }
 
-Future<void> _confirmDeleteNotes(BuildContext context) async {
+// TODO: Handle delete.
+Future<void> _confirmDeleteNotes(BuildContext context, RecipesBloc bloc) async {
   final strings = context.strings();
 
   showDialog<bool>(
@@ -80,9 +81,7 @@ Future<void> _confirmDeleteNotes(BuildContext context) async {
           color: JWidgetColor.onSurface,
           forceCaps: false,
           type: JButtonType.flat,
-          overrides: JTextButtonOverrides(
-            outlineColor: context.colorScheme().onSurface,
-          ),
+          overrides: JTextButtonOverrides(outlineColor: context.colorScheme().onSurface),
           onPressed: () => context.pop(),
         ),
         JTextButton(
@@ -90,7 +89,7 @@ Future<void> _confirmDeleteNotes(BuildContext context) async {
           size: JWidgetSize.small,
           forceCaps: false,
           onPressed: () {
-            context.read<RecipesBloc>().add(const RecipesEventDeleteSelected());
+            bloc.add(const RecipesEventDeleteSelected());
             context.pop();
           },
         ),

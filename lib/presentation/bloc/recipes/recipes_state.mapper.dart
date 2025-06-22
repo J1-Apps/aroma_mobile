@@ -71,6 +71,7 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       SortEntityMapper.ensureInitialized();
       FilterEntityMapper.ensureInitialized();
       RecipeCardDetailsMapper.ensureInitialized();
+      ErrorCodeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -90,6 +91,10 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, List<RecipeCardDetails>> _f$recipes = Field('recipes', _$recipes);
   static Set<String> _$selectedIds(RecipesState v) => v.selectedIds;
   static const Field<RecipesState, Set<String>> _f$selectedIds = Field('selectedIds', _$selectedIds);
+  static bool _$isDeleting(RecipesState v) => v.isDeleting;
+  static const Field<RecipesState, bool> _f$isDeleting = Field('isDeleting', _$isDeleting);
+  static ErrorCode? _$error(RecipesState v) => v.error;
+  static const Field<RecipesState, ErrorCode> _f$error = Field('error', _$error);
 
   @override
   final MappableFields<RecipesState> fields = const {
@@ -99,6 +104,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
     #filter: _f$filter,
     #recipes: _f$recipes,
     #selectedIds: _f$selectedIds,
+    #isDeleting: _f$isDeleting,
+    #error: _f$error,
   };
 
   static RecipesState _instantiate(DecodingData data) {
@@ -109,6 +116,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       filter: data.dec(_f$filter),
       recipes: data.dec(_f$recipes),
       selectedIds: data.dec(_f$selectedIds),
+      isDeleting: data.dec(_f$isDeleting),
+      error: data.dec(_f$error),
     );
   }
 
@@ -166,6 +175,8 @@ abstract class RecipesStateCopyWith<$R, $In extends RecipesState, $Out> implemen
     FilterEntity? filter,
     List<RecipeCardDetails>? recipes,
     Set<String>? selectedIds,
+    bool? isDeleting,
+    ErrorCode? error,
   });
   RecipesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -190,6 +201,8 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
     FilterEntity? filter,
     List<RecipeCardDetails>? recipes,
     Set<String>? selectedIds,
+    bool? isDeleting,
+    Object? error = $none,
   }) => $apply(
     FieldCopyWithData({
       if (status != null) #status: status,
@@ -198,6 +211,8 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
       if (filter != null) #filter: filter,
       if (recipes != null) #recipes: recipes,
       if (selectedIds != null) #selectedIds: selectedIds,
+      if (isDeleting != null) #isDeleting: isDeleting,
+      if (error != $none) #error: error,
     }),
   );
   @override
@@ -208,6 +223,8 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
     filter: data.get(#filter, or: $value.filter),
     recipes: data.get(#recipes, or: $value.recipes),
     selectedIds: data.get(#selectedIds, or: $value.selectedIds),
+    isDeleting: data.get(#isDeleting, or: $value.isDeleting),
+    error: data.get(#error, or: $value.error),
   );
 
   @override

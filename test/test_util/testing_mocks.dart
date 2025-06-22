@@ -16,6 +16,7 @@ import "package:aroma_mobile/domain/usecase/auth/sign_in_google_usecase.dart";
 import "package:aroma_mobile/domain/usecase/auth/sign_out_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/language_usecase.dart";
 import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dart";
+import "package:aroma_mobile/domain/usecase/recipe/delete_recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/login/login_bloc.dart";
@@ -112,6 +113,8 @@ class MockUpdateLanguageUsecase extends Mock implements UpdateLanguageUsecase {}
 class MockTagsUsecase extends Mock implements TagsUsecase {}
 
 class MockRecipesUsecase extends Mock implements RecipesUsecase {}
+
+class MockDeleteRecipesUsecase extends Mock implements DeleteRecipesUsecase {}
 
 // Mock Blocs
 

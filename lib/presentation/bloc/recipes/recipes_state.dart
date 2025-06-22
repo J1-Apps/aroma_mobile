@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
@@ -13,6 +14,8 @@ class RecipesState with RecipesStateMappable {
   final FilterEntity filter;
   final List<RecipeCardDetails> recipes;
   final Set<String> selectedIds;
+  final bool isDeleting;
+  final ErrorCode? error;
 
   const RecipesState({
     required this.status,
@@ -21,6 +24,8 @@ class RecipesState with RecipesStateMappable {
     required this.filter,
     required this.recipes,
     required this.selectedIds,
+    required this.isDeleting,
+    required this.error,
   });
 
   factory RecipesState.initial() => RecipesState(
@@ -30,6 +35,8 @@ class RecipesState with RecipesStateMappable {
     filter: FilterEntity(),
     recipes: const [],
     selectedIds: const {},
+    isDeleting: false,
+    error: null,
   );
 }
 
