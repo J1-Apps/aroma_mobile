@@ -5,6 +5,7 @@ import "package:aroma_mobile/data/model/sort_model.dart";
 import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
 import "package:aroma_mobile/data/source/util/memory_data.dart";
 import "package:aroma_mobile/data/source/util/memory_source.dart";
+import "package:aroma_mobile/util/string_extension.dart";
 import "package:collection/collection.dart";
 
 class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSource {
@@ -28,10 +29,10 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
                     (filter.servingsMin == null || recipe.servings >= filter.servingsMin!) &&
                     (filter.servingsMax == null || recipe.servings <= filter.servingsMax!) &&
                     (filter.difficulties.isEmpty || filter.difficulties.contains(recipe.difficulty)) &&
-                    (filter.tags.isEmpty || recipe.tags.any((tag) => filter.tags.contains(tag.id)));
+                    (filter.tags.isEmpty || recipe.tags.map((tag) => tag.id).toSet().containsAll(filter.tags));
               });
 
-        final searched = searchQuery.isEmpty
+        final searched = searchQuery.isBlank
             ? filtered
             : filtered.where((recipe) {
                 return recipe.title.toLowerCase().contains(searchQuery.toLowerCase()) ||

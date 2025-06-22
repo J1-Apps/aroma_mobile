@@ -560,6 +560,18 @@ abstract class Strings {
   /// **'No results'**
   String get recipes_drawer_tagsEmpty;
 
+  /// No description provided for @recipe_card_hour.
+  ///
+  /// In en, this message translates to:
+  /// **'h'**
+  String get recipe_card_hour;
+
+  /// No description provided for @recipe_card_minute.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get recipe_card_minute;
+
   /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:

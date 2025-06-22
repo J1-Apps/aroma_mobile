@@ -2,6 +2,7 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.dart";
 import "package:aroma_mobile/data/source/util/preferences_source.dart";
 import "package:aroma_mobile/presentation/util/theme/aroma_theme.dart";
+import "package:aroma_mobile/util/string_extension.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 const _colorSchemeKey = "aromaColorScheme";
@@ -16,7 +17,7 @@ class PreferencesLocalThemeSource extends PreferencesSource implements LocalThem
     return getItem(_colorSchemeKey, ErrorCode.source_local_theme_colorReadError, (preferences) async {
       final colorSchemeJson = await preferences.getString(_colorSchemeKey);
 
-      if (colorSchemeJson == null || colorSchemeJson.isEmpty) {
+      if (colorSchemeJson == null || colorSchemeJson.isBlank) {
         return AromaColorScheme.light.scheme;
       }
 
@@ -36,7 +37,7 @@ class PreferencesLocalThemeSource extends PreferencesSource implements LocalThem
     return getItem(_textThemeKey, ErrorCode.source_local_theme_textReadError, (preferences) async {
       final textThemeJson = await preferences.getString(_textThemeKey);
 
-      if (textThemeJson == null || textThemeJson.isEmpty) {
+      if (textThemeJson == null || textThemeJson.isBlank) {
         return AromaTextTheme.initial;
       }
 
@@ -56,7 +57,7 @@ class PreferencesLocalThemeSource extends PreferencesSource implements LocalThem
     return getItem(_pageTransitionKey, ErrorCode.source_local_theme_transitionReadError, (preferences) async {
       final transitionJson = await preferences.getString(_pageTransitionKey);
 
-      if (transitionJson == null || transitionJson.isEmpty) {
+      if (transitionJson == null || transitionJson.isBlank) {
         return AromaTheme.pageTransition;
       }
 

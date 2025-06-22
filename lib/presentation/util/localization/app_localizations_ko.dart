@@ -289,5 +289,11 @@ class StringsKo extends Strings {
   String get recipes_drawer_tagsEmpty => '결과 없음';
 
   @override
+  String get recipe_card_hour => '시간';
+
+  @override
+  String get recipe_card_minute => '분';
+
+  @override
   String get profile_title => '프로필';
 }

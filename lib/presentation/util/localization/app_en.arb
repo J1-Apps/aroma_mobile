@@ -235,6 +235,10 @@
     "@recipes_drawer_tagsHint": {},
     "recipes_drawer_tagsEmpty": "No results",
     "@recipes_drawer_tagsEmpty": {},
+    "recipe_card_hour": "h",
+    "@recipe_card_hour": {},
+    "recipe_card_minute": "m",
+    "@recipe_card_minute": {},
 
     "profile_title": "Profile",
     "@profile_title": {}

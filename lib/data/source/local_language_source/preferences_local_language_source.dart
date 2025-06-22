@@ -2,6 +2,7 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_language_source/local_language_source.dart";
 import "package:aroma_mobile/data/source/util/default.dart";
 import "package:aroma_mobile/data/source/util/preferences_source.dart";
+import "package:aroma_mobile/util/string_extension.dart";
 
 class PreferencesLocalLanguageSource extends PreferencesSource implements LocalLanguageSource {
   static const languageKey = "aromaLanguage";
@@ -13,7 +14,7 @@ class PreferencesLocalLanguageSource extends PreferencesSource implements LocalL
     return getItem(languageKey, ErrorCode.source_local_language_readError, (preferences) async {
       final languageJson = await preferences.getString(languageKey);
 
-      if (languageJson == null || languageJson.isEmpty) {
+      if (languageJson == null || languageJson.isBlank) {
         return Default.language;
       }
 

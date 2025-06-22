@@ -291,5 +291,11 @@ class StringsEn extends Strings {
   String get recipes_drawer_tagsEmpty => 'No results';
 
   @override
+  String get recipe_card_hour => 'h';
+
+  @override
+  String get recipe_card_minute => 'm';
+
+  @override
   String get profile_title => 'Profile';
 }
