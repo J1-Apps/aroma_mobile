@@ -11,7 +11,7 @@ import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/feed/feed_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/home_navigation.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/profile/profile_screen.dart";
-import "package:aroma_mobile/presentation/widget/screen/home/recipe/create_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipe/create_recipe_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipe/view_recipe_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
@@ -158,7 +158,7 @@ final routeConfig = GoRouter(
                   routes: [
                     GoRoute(
                       path: AromaRoute.create.relativePath,
-                      builder: (_, _) => const CreateScreen(),
+                      builder: (_, _) => const CreateRecipeScreen(),
                     ),
                     GoRoute(
                       path: AromaRoute.view.relativePath,
