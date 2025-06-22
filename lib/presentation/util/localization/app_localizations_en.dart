@@ -301,6 +301,9 @@ class StringsEn extends Strings {
       'Are you sure you want to delete these recipes? This action cannot be undone.';
 
   @override
+  String get recipes_deleteFailed => 'Failed to delete recipes. Please try again.';
+
+  @override
   String get recipe_card_hour => 'h';
 
   @override

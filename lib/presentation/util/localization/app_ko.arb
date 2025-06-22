@@ -242,6 +242,8 @@
     "@recipes_drawer_tagsEmpty": {},
     "recipes_delete_confirmText": "정말 이 레시피를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
     "@recipes_delete_confirmText": {},
+    "recipes_deleteFailed": "레시피 삭제 실패, 다시 시도해주세요.",
+    "@recipes_deleteFailed": {},
     "recipe_card_hour": "시간",
     "@recipe_card_hour": {},
     "recipe_card_minute": "분",

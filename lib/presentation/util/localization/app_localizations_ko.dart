@@ -298,6 +298,9 @@ class StringsKo extends Strings {
   String get recipes_delete_confirmText => '정말 이 레시피를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.';
 
   @override
+  String get recipes_deleteFailed => '레시피 삭제 실패, 다시 시도해주세요.';
+
+  @override
   String get recipe_card_hour => '시간';
 
   @override

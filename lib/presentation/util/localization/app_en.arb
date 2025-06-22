@@ -242,6 +242,8 @@
     "@recipes_drawer_tagsEmpty": {},
     "recipes_delete_confirmText": "Are you sure you want to delete these recipes? This action cannot be undone.",
     "@recipes_delete_confirmText": {},
+    "recipes_deleteFailed": "Failed to delete recipes. Please try again.",
+    "@recipes_deleteFailed": {},
     "recipe_card_hour": "h",
     "@recipe_card_hour": {},
     "recipe_card_minute": "m",

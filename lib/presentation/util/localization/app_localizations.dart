@@ -578,6 +578,12 @@ abstract class Strings {
   /// **'Are you sure you want to delete these recipes? This action cannot be undone.'**
   String get recipes_delete_confirmText;
 
+  /// No description provided for @recipes_deleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete recipes. Please try again.'**
+  String get recipes_deleteFailed;
+
   /// No description provided for @recipe_card_hour.
   ///
   /// In en, this message translates to:

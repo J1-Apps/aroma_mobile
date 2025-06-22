@@ -1,3 +1,4 @@
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
@@ -21,11 +22,28 @@ class RecipesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldMessenger(
-      child: Scaffold(
-        appBar: const RecipesAppBar(),
-        body: const _RecipesList(),
+      child: BlocListener<RecipesBloc, RecipesState>(
+        listenWhen: (previous, current) => previous.error != current.error && current.error != null,
+        listener: (context, state) => _showErrorToast(context, state.error),
+        child: Scaffold(
+          appBar: const RecipesAppBar(),
+          body: const _RecipesList(),
+        ),
       ),
     );
+  }
+}
+
+void _showErrorToast(BuildContext context, ErrorCode? error) {
+  final strings = context.strings();
+
+  final message = switch (error) {
+    ErrorCode.repository_recipe_deleteRecipesFailed => strings.recipes_deleteFailed,
+    _ => null,
+  };
+
+  if (message != null) {
+    context.showJToastWithText(text: message, hasClose: true);
   }
 }
 
@@ -43,7 +61,6 @@ class _RecipesListState extends State<_RecipesList> {
   Widget build(BuildContext context) {
     return BlocConsumer<RecipesBloc, RecipesState>(
       listenWhen: (previous, current) => previous.status != current.status,
-      // TODO: Handle delete error.
       listener: (context, state) {
         if (state.status == RecipesStatus.loading) {
           _scrollController.animateTo(0, duration: _scrollToTopDuration, curve: Curves.easeInOut);

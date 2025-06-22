@@ -56,46 +56,64 @@ class _RecipesDeleteButton extends StatelessWidget {
   }
 }
 
-// TODO: Handle delete.
 Future<void> _confirmDeleteNotes(BuildContext context, RecipesBloc bloc) async {
   final strings = context.strings();
 
   showDialog<bool>(
     context: context,
-    builder: (context) => AlertDialog(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: context.colorScheme().onSurface,
-          width: J1Config.strokeWidth,
+    builder: (context) => BlocProvider.value(
+      value: bloc,
+      child: BlocConsumer<RecipesBloc, RecipesState>(
+        listenWhen: (previous, current) => previous.isDeleting != current.isDeleting && !current.isDeleting,
+        listener: (context, state) => context.pop(),
+        buildWhen: (previous, current) => previous.isDeleting != current.isDeleting,
+        builder: (context, state) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: context.colorScheme().onSurface, width: J1Config.strokeWidth),
+            borderRadius: BorderRadius.circular(JDimens.radius_l),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(JDimens.spacing_l, JDimens.spacing_l, JDimens.spacing_l, JDimens.size_0),
+          actionsPadding: EdgeInsets.all(JDimens.spacing_l),
+          actionsAlignment: state.isDeleting ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
+          content: Text(strings.recipes_delete_confirmText),
+          actions: state.isDeleting
+              ? [const JLoadingIndicator()]
+              : [const _DeleteCancelButton(), const _DeleteConfirmButton()],
         ),
-        borderRadius: BorderRadius.circular(JDimens.radius_l),
       ),
-      contentPadding: EdgeInsets.fromLTRB(JDimens.spacing_l, JDimens.spacing_l, JDimens.spacing_l, JDimens.size_0),
-      actionsPadding: EdgeInsets.all(JDimens.spacing_l),
-      actionsAlignment: MainAxisAlignment.spaceBetween,
-      content: Text(strings.recipes_delete_confirmText),
-      actions: [
-        JTextButton(
-          text: strings.common_cancel,
-          size: JWidgetSize.small,
-          color: JWidgetColor.onSurface,
-          forceCaps: false,
-          type: JButtonType.flat,
-          overrides: JTextButtonOverrides(outlineColor: context.colorScheme().onSurface),
-          onPressed: () => context.pop(),
-        ),
-        JTextButton(
-          text: strings.common_confirm,
-          size: JWidgetSize.small,
-          forceCaps: false,
-          onPressed: () {
-            bloc.add(const RecipesEventDeleteSelected());
-            context.pop();
-          },
-        ),
-      ],
     ),
   );
+}
+
+class _DeleteCancelButton extends StatelessWidget {
+  const _DeleteCancelButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return JTextButton(
+      text: context.strings().common_cancel,
+      size: JWidgetSize.small,
+      color: JWidgetColor.onSurface,
+      forceCaps: false,
+      type: JButtonType.flat,
+      overrides: JTextButtonOverrides(outlineColor: context.colorScheme().onSurface),
+      onPressed: () => context.pop(),
+    );
+  }
+}
+
+class _DeleteConfirmButton extends StatelessWidget {
+  const _DeleteConfirmButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return JTextButton(
+      text: context.strings().common_confirm,
+      size: JWidgetSize.small,
+      forceCaps: false,
+      onPressed: () => context.read<RecipesBloc>().add(const RecipesEventDeleteSelected()),
+    );
+  }
 }
 
 class _RecipesCancelSelectionButton extends StatelessWidget {
