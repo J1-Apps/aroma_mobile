@@ -88,6 +88,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, FilterEntity> _f$filter = Field('filter', _$filter);
   static List<RecipeCardDetails> _$recipes(RecipesState v) => v.recipes;
   static const Field<RecipesState, List<RecipeCardDetails>> _f$recipes = Field('recipes', _$recipes);
+  static Set<String> _$selectedIds(RecipesState v) => v.selectedIds;
+  static const Field<RecipesState, Set<String>> _f$selectedIds = Field('selectedIds', _$selectedIds);
 
   @override
   final MappableFields<RecipesState> fields = const {
@@ -96,6 +98,7 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
     #sort: _f$sort,
     #filter: _f$filter,
     #recipes: _f$recipes,
+    #selectedIds: _f$selectedIds,
   };
 
   static RecipesState _instantiate(DecodingData data) {
@@ -105,6 +108,7 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       sort: data.dec(_f$sort),
       filter: data.dec(_f$filter),
       recipes: data.dec(_f$recipes),
+      selectedIds: data.dec(_f$selectedIds),
     );
   }
 
@@ -161,6 +165,7 @@ abstract class RecipesStateCopyWith<$R, $In extends RecipesState, $Out> implemen
     SortEntity? sort,
     FilterEntity? filter,
     List<RecipeCardDetails>? recipes,
+    Set<String>? selectedIds,
   });
   RecipesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -184,6 +189,7 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
     SortEntity? sort,
     FilterEntity? filter,
     List<RecipeCardDetails>? recipes,
+    Set<String>? selectedIds,
   }) => $apply(
     FieldCopyWithData({
       if (status != null) #status: status,
@@ -191,6 +197,7 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
       if (sort != null) #sort: sort,
       if (filter != null) #filter: filter,
       if (recipes != null) #recipes: recipes,
+      if (selectedIds != null) #selectedIds: selectedIds,
     }),
   );
   @override
@@ -200,6 +207,7 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
     sort: data.get(#sort, or: $value.sort),
     filter: data.get(#filter, or: $value.filter),
     recipes: data.get(#recipes, or: $value.recipes),
+    selectedIds: data.get(#selectedIds, or: $value.selectedIds),
   );
 
   @override

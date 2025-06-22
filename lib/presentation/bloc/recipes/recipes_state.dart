@@ -12,6 +12,7 @@ class RecipesState with RecipesStateMappable {
   final SortEntity sort;
   final FilterEntity filter;
   final List<RecipeCardDetails> recipes;
+  final Set<String> selectedIds;
 
   const RecipesState({
     required this.status,
@@ -19,6 +20,7 @@ class RecipesState with RecipesStateMappable {
     required this.sort,
     required this.filter,
     required this.recipes,
+    required this.selectedIds,
   });
 
   factory RecipesState.initial() => RecipesState(
@@ -27,6 +29,7 @@ class RecipesState with RecipesStateMappable {
     sort: SortEntity.none,
     filter: FilterEntity(),
     recipes: const [],
+    selectedIds: const {},
   );
 }
 

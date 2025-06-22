@@ -1,6 +1,7 @@
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
+import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipe_card.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -30,7 +31,7 @@ class RecipesContent extends StatelessWidget {
         itemBuilder: (_, index) => RecipeCard(
           recipe: recipes[index],
           isSelected: false,
-          onPressed: () {},
+          onPressed: () => context.navigate(AromaRoute.view, RecipeRouteConfig(recipeId: recipes[index].id)),
           onLongPressed: () {},
         ),
       ),
