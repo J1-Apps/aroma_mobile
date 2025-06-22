@@ -3,7 +3,7 @@ import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
-import "package:aroma_mobile/presentation/widget/common/aroma_settings_button.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_app_bar.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_content.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_filter.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_placeholder.dart";
@@ -20,15 +20,9 @@ class RecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.strings();
-
     return ScaffoldMessenger(
       child: Scaffold(
-        appBar: JAppBar(
-          title: strings.app_title,
-          titleStyle: context.textTheme().headlineLarge,
-          trailingActions: [const AromaSettingsButton()],
-        ),
+        appBar: const RecipesAppBar(),
         body: const _RecipesList(),
       ),
     );

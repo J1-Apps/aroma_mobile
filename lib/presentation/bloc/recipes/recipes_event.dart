@@ -71,3 +71,10 @@ class RecipesEventUpdateTags extends RecipesEvent with RecipesEventUpdateTagsMap
 
   const RecipesEventUpdateTags({required this.tags});
 }
+
+@MappableClass(discriminatorValue: "toggle_selected")
+class RecipesEventToggleSelected extends RecipesEvent with RecipesEventToggleSelectedMappable {
+  final String recipeId;
+
+  const RecipesEventToggleSelected({required this.recipeId});
+}

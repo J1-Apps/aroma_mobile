@@ -23,6 +23,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     on<RecipesEventUpdateServings>(_onUpdateServings);
     on<RecipesEventUpdateDifficulty>(_onUpdateDifficulty);
     on<RecipesEventUpdateTags>(_onUpdateTags);
+    on<RecipesEventToggleSelected>(_onToggleSelected);
   }
 
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
@@ -33,17 +34,18 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     switch (result) {
       case Success():
         if (result.value.isEmpty) {
-          emit(state.copyWith(status: RecipesStatus.empty, recipes: const []));
+          emit(state.copyWith(status: RecipesStatus.empty, recipes: const [], selectedIds: const {}));
         } else {
           emit(
             state.copyWith(
               status: RecipesStatus.success,
               recipes: result.value.map(RecipeCardDetails.fromEntity).toList(),
+              selectedIds: state.selectedIds.intersection(result.value.map((e) => e.id).toSet()),
             ),
           );
         }
       case Failure():
-        emit(state.copyWith(status: RecipesStatus.error));
+        emit(state.copyWith(status: RecipesStatus.error, selectedIds: const {}));
     }
   }
 
@@ -96,5 +98,15 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
 
   Future<void> _onUpdateTags(RecipesEventUpdateTags event, Emitter<RecipesState> emit) async {
     emit(state.copyWith(filter: state.filter.copyWith(tags: event.tags)));
+  }
+
+  Future<void> _onToggleSelected(RecipesEventToggleSelected event, Emitter<RecipesState> emit) async {
+    emit(
+      state.copyWith(
+        selectedIds: state.selectedIds.contains(event.recipeId)
+            ? state.selectedIds.difference({event.recipeId})
+            : state.selectedIds.union({event.recipeId}),
+      ),
+    );
   }
 }

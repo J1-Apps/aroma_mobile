@@ -13,7 +13,7 @@ class RecipeCard extends StatelessWidget {
   final RecipeCardDetails recipe;
   final bool isSelected;
   final VoidCallback onPressed;
-  final VoidCallback onLongPressed;
+  final VoidCallback? onLongPressed;
 
   const RecipeCard({
     required this.recipe,

@@ -22,6 +22,7 @@ class RecipesEventMapper extends ClassMapperBase<RecipesEvent> {
       RecipesEventUpdateServingsMapper.ensureInitialized();
       RecipesEventUpdateDifficultyMapper.ensureInitialized();
       RecipesEventUpdateTagsMapper.ensureInitialized();
+      RecipesEventToggleSelectedMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -1063,4 +1064,114 @@ class _RecipesEventUpdateTagsCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R
   @override
   RecipesEventUpdateTagsCopyWith<$R2, RecipesEventUpdateTags, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _RecipesEventUpdateTagsCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class RecipesEventToggleSelectedMapper extends SubClassMapperBase<RecipesEventToggleSelected> {
+  RecipesEventToggleSelectedMapper._();
+
+  static RecipesEventToggleSelectedMapper? _instance;
+  static RecipesEventToggleSelectedMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = RecipesEventToggleSelectedMapper._());
+      RecipesEventMapper.ensureInitialized().addSubMapper(_instance!);
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'RecipesEventToggleSelected';
+
+  static String _$recipeId(RecipesEventToggleSelected v) => v.recipeId;
+  static const Field<RecipesEventToggleSelected, String> _f$recipeId = Field('recipeId', _$recipeId);
+
+  @override
+  final MappableFields<RecipesEventToggleSelected> fields = const {
+    #recipeId: _f$recipeId,
+  };
+
+  @override
+  final String discriminatorKey = 'event';
+  @override
+  final dynamic discriminatorValue = "toggle_selected";
+  @override
+  late final ClassMapperBase superMapper = RecipesEventMapper.ensureInitialized();
+
+  static RecipesEventToggleSelected _instantiate(DecodingData data) {
+    return RecipesEventToggleSelected(recipeId: data.dec(_f$recipeId));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static RecipesEventToggleSelected fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<RecipesEventToggleSelected>(map);
+  }
+
+  static RecipesEventToggleSelected fromJson(String json) {
+    return ensureInitialized().decodeJson<RecipesEventToggleSelected>(json);
+  }
+}
+
+mixin RecipesEventToggleSelectedMappable {
+  String toJson() {
+    return RecipesEventToggleSelectedMapper.ensureInitialized().encodeJson<RecipesEventToggleSelected>(
+      this as RecipesEventToggleSelected,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return RecipesEventToggleSelectedMapper.ensureInitialized().encodeMap<RecipesEventToggleSelected>(
+      this as RecipesEventToggleSelected,
+    );
+  }
+
+  RecipesEventToggleSelectedCopyWith<RecipesEventToggleSelected, RecipesEventToggleSelected, RecipesEventToggleSelected>
+  get copyWith => _RecipesEventToggleSelectedCopyWithImpl<RecipesEventToggleSelected, RecipesEventToggleSelected>(
+    this as RecipesEventToggleSelected,
+    $identity,
+    $identity,
+  );
+  @override
+  String toString() {
+    return RecipesEventToggleSelectedMapper.ensureInitialized().stringifyValue(this as RecipesEventToggleSelected);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return RecipesEventToggleSelectedMapper.ensureInitialized().equalsValue(this as RecipesEventToggleSelected, other);
+  }
+
+  @override
+  int get hashCode {
+    return RecipesEventToggleSelectedMapper.ensureInitialized().hashValue(this as RecipesEventToggleSelected);
+  }
+}
+
+extension RecipesEventToggleSelectedValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesEventToggleSelected, $Out> {
+  RecipesEventToggleSelectedCopyWith<$R, RecipesEventToggleSelected, $Out> get $asRecipesEventToggleSelected =>
+      $base.as((v, t, t2) => _RecipesEventToggleSelectedCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class RecipesEventToggleSelectedCopyWith<$R, $In extends RecipesEventToggleSelected, $Out>
+    implements RecipesEventCopyWith<$R, $In, $Out> {
+  @override
+  $R call({String? recipeId});
+  RecipesEventToggleSelectedCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _RecipesEventToggleSelectedCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesEventToggleSelected, $Out>
+    implements RecipesEventToggleSelectedCopyWith<$R, RecipesEventToggleSelected, $Out> {
+  _RecipesEventToggleSelectedCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<RecipesEventToggleSelected> $mapper = RecipesEventToggleSelectedMapper.ensureInitialized();
+  @override
+  $R call({String? recipeId}) => $apply(FieldCopyWithData({if (recipeId != null) #recipeId: recipeId}));
+  @override
+  RecipesEventToggleSelected $make(CopyWithData data) =>
+      RecipesEventToggleSelected(recipeId: data.get(#recipeId, or: $value.recipeId));
+
+  @override
+  RecipesEventToggleSelectedCopyWith<$R2, RecipesEventToggleSelected, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _RecipesEventToggleSelectedCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
