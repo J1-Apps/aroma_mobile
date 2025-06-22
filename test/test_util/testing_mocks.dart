@@ -68,6 +68,8 @@ class FakeEmailPasswordRoute extends Fake implements J1Route<EmailPasswordRouteC
 
 class FakeEmailRoute extends Fake implements J1Route<EmailRouteConfig> {}
 
+class FakeRecipeRoute extends Fake implements J1Route<RecipeRouteConfig> {}
+
 // Mock Data Sources
 
 class MockSharedPreferences extends Mock implements SharedPreferencesAsync {}
