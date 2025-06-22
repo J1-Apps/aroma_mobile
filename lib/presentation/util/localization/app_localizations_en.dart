@@ -12,6 +12,12 @@ class StringsEn extends Strings {
   String get app_title => 'Aroma';
 
   @override
+  String get common_confirm => 'Confirm';
+
+  @override
+  String get common_cancel => 'Cancel';
+
+  @override
   String get login_loginButton => 'Log in';
 
   @override
@@ -289,6 +295,10 @@ class StringsEn extends Strings {
 
   @override
   String get recipes_drawer_tagsEmpty => 'No results';
+
+  @override
+  String get recipes_delete_confirmText =>
+      'Are you sure you want to delete these recipes? This action cannot be undone.';
 
   @override
   String get recipe_card_hour => 'h';

@@ -24,6 +24,8 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     on<RecipesEventUpdateDifficulty>(_onUpdateDifficulty);
     on<RecipesEventUpdateTags>(_onUpdateTags);
     on<RecipesEventToggleSelected>(_onToggleSelected);
+    on<RecipesEventDeleteSelected>(_onDeleteSelected);
+    on<RecipesEventResetSelected>(_onResetSelected);
   }
 
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
@@ -108,5 +110,13 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
             : state.selectedIds.union({event.recipeId}),
       ),
     );
+  }
+
+  Future<void> _onDeleteSelected(RecipesEventDeleteSelected event, Emitter<RecipesState> emit) async {
+    // TODO: Delete selected recipes.
+  }
+
+  Future<void> _onResetSelected(RecipesEventResetSelected event, Emitter<RecipesState> emit) async {
+    emit(state.copyWith(selectedIds: const {}));
   }
 }

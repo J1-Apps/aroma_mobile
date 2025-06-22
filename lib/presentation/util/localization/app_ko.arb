@@ -4,6 +4,11 @@
     "app_title": "아로마",
     "@app_title": {},
 
+    "common_confirm": "확인",
+    "@common_confirm": {},
+    "common_cancel": "취소",
+    "@common_cancel": {},
+
     "login_loginButton": "로그인",
     "@login_loginButton": {},
     "login_registerButton": "회원가입",
@@ -235,6 +240,8 @@
     "@recipes_drawer_tagsHint": {},
     "recipes_drawer_tagsEmpty": "결과 없음",
     "@recipes_drawer_tagsEmpty": {},
+    "recipes_delete_confirmText": "정말 이 레시피를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+    "@recipes_delete_confirmText": {},
     "recipe_card_hour": "시간",
     "@recipe_card_hour": {},
     "recipe_card_minute": "분",

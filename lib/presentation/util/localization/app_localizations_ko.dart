@@ -12,6 +12,12 @@ class StringsKo extends Strings {
   String get app_title => '아로마';
 
   @override
+  String get common_confirm => '확인';
+
+  @override
+  String get common_cancel => '취소';
+
+  @override
   String get login_loginButton => '로그인';
 
   @override
@@ -287,6 +293,9 @@ class StringsKo extends Strings {
 
   @override
   String get recipes_drawer_tagsEmpty => '결과 없음';
+
+  @override
+  String get recipes_delete_confirmText => '정말 이 레시피를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.';
 
   @override
   String get recipe_card_hour => '시간';

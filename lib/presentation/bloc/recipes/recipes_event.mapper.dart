@@ -23,6 +23,8 @@ class RecipesEventMapper extends ClassMapperBase<RecipesEvent> {
       RecipesEventUpdateDifficultyMapper.ensureInitialized();
       RecipesEventUpdateTagsMapper.ensureInitialized();
       RecipesEventToggleSelectedMapper.ensureInitialized();
+      RecipesEventDeleteSelectedMapper.ensureInitialized();
+      RecipesEventResetSelectedMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -1174,4 +1176,212 @@ class _RecipesEventToggleSelectedCopyWithImpl<$R, $Out> extends ClassCopyWithBas
   @override
   RecipesEventToggleSelectedCopyWith<$R2, RecipesEventToggleSelected, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _RecipesEventToggleSelectedCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class RecipesEventDeleteSelectedMapper extends SubClassMapperBase<RecipesEventDeleteSelected> {
+  RecipesEventDeleteSelectedMapper._();
+
+  static RecipesEventDeleteSelectedMapper? _instance;
+  static RecipesEventDeleteSelectedMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = RecipesEventDeleteSelectedMapper._());
+      RecipesEventMapper.ensureInitialized().addSubMapper(_instance!);
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'RecipesEventDeleteSelected';
+
+  @override
+  final MappableFields<RecipesEventDeleteSelected> fields = const {};
+
+  @override
+  final String discriminatorKey = 'event';
+  @override
+  final dynamic discriminatorValue = "delete_selected";
+  @override
+  late final ClassMapperBase superMapper = RecipesEventMapper.ensureInitialized();
+
+  static RecipesEventDeleteSelected _instantiate(DecodingData data) {
+    return RecipesEventDeleteSelected();
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static RecipesEventDeleteSelected fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<RecipesEventDeleteSelected>(map);
+  }
+
+  static RecipesEventDeleteSelected fromJson(String json) {
+    return ensureInitialized().decodeJson<RecipesEventDeleteSelected>(json);
+  }
+}
+
+mixin RecipesEventDeleteSelectedMappable {
+  String toJson() {
+    return RecipesEventDeleteSelectedMapper.ensureInitialized().encodeJson<RecipesEventDeleteSelected>(
+      this as RecipesEventDeleteSelected,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return RecipesEventDeleteSelectedMapper.ensureInitialized().encodeMap<RecipesEventDeleteSelected>(
+      this as RecipesEventDeleteSelected,
+    );
+  }
+
+  RecipesEventDeleteSelectedCopyWith<RecipesEventDeleteSelected, RecipesEventDeleteSelected, RecipesEventDeleteSelected>
+  get copyWith => _RecipesEventDeleteSelectedCopyWithImpl<RecipesEventDeleteSelected, RecipesEventDeleteSelected>(
+    this as RecipesEventDeleteSelected,
+    $identity,
+    $identity,
+  );
+  @override
+  String toString() {
+    return RecipesEventDeleteSelectedMapper.ensureInitialized().stringifyValue(this as RecipesEventDeleteSelected);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return RecipesEventDeleteSelectedMapper.ensureInitialized().equalsValue(this as RecipesEventDeleteSelected, other);
+  }
+
+  @override
+  int get hashCode {
+    return RecipesEventDeleteSelectedMapper.ensureInitialized().hashValue(this as RecipesEventDeleteSelected);
+  }
+}
+
+extension RecipesEventDeleteSelectedValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesEventDeleteSelected, $Out> {
+  RecipesEventDeleteSelectedCopyWith<$R, RecipesEventDeleteSelected, $Out> get $asRecipesEventDeleteSelected =>
+      $base.as((v, t, t2) => _RecipesEventDeleteSelectedCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class RecipesEventDeleteSelectedCopyWith<$R, $In extends RecipesEventDeleteSelected, $Out>
+    implements RecipesEventCopyWith<$R, $In, $Out> {
+  @override
+  $R call();
+  RecipesEventDeleteSelectedCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _RecipesEventDeleteSelectedCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesEventDeleteSelected, $Out>
+    implements RecipesEventDeleteSelectedCopyWith<$R, RecipesEventDeleteSelected, $Out> {
+  _RecipesEventDeleteSelectedCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<RecipesEventDeleteSelected> $mapper = RecipesEventDeleteSelectedMapper.ensureInitialized();
+  @override
+  $R call() => $apply(FieldCopyWithData({}));
+  @override
+  RecipesEventDeleteSelected $make(CopyWithData data) => RecipesEventDeleteSelected();
+
+  @override
+  RecipesEventDeleteSelectedCopyWith<$R2, RecipesEventDeleteSelected, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _RecipesEventDeleteSelectedCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class RecipesEventResetSelectedMapper extends SubClassMapperBase<RecipesEventResetSelected> {
+  RecipesEventResetSelectedMapper._();
+
+  static RecipesEventResetSelectedMapper? _instance;
+  static RecipesEventResetSelectedMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = RecipesEventResetSelectedMapper._());
+      RecipesEventMapper.ensureInitialized().addSubMapper(_instance!);
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'RecipesEventResetSelected';
+
+  @override
+  final MappableFields<RecipesEventResetSelected> fields = const {};
+
+  @override
+  final String discriminatorKey = 'event';
+  @override
+  final dynamic discriminatorValue = "reset_selected";
+  @override
+  late final ClassMapperBase superMapper = RecipesEventMapper.ensureInitialized();
+
+  static RecipesEventResetSelected _instantiate(DecodingData data) {
+    return RecipesEventResetSelected();
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static RecipesEventResetSelected fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<RecipesEventResetSelected>(map);
+  }
+
+  static RecipesEventResetSelected fromJson(String json) {
+    return ensureInitialized().decodeJson<RecipesEventResetSelected>(json);
+  }
+}
+
+mixin RecipesEventResetSelectedMappable {
+  String toJson() {
+    return RecipesEventResetSelectedMapper.ensureInitialized().encodeJson<RecipesEventResetSelected>(
+      this as RecipesEventResetSelected,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return RecipesEventResetSelectedMapper.ensureInitialized().encodeMap<RecipesEventResetSelected>(
+      this as RecipesEventResetSelected,
+    );
+  }
+
+  RecipesEventResetSelectedCopyWith<RecipesEventResetSelected, RecipesEventResetSelected, RecipesEventResetSelected>
+  get copyWith => _RecipesEventResetSelectedCopyWithImpl<RecipesEventResetSelected, RecipesEventResetSelected>(
+    this as RecipesEventResetSelected,
+    $identity,
+    $identity,
+  );
+  @override
+  String toString() {
+    return RecipesEventResetSelectedMapper.ensureInitialized().stringifyValue(this as RecipesEventResetSelected);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return RecipesEventResetSelectedMapper.ensureInitialized().equalsValue(this as RecipesEventResetSelected, other);
+  }
+
+  @override
+  int get hashCode {
+    return RecipesEventResetSelectedMapper.ensureInitialized().hashValue(this as RecipesEventResetSelected);
+  }
+}
+
+extension RecipesEventResetSelectedValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesEventResetSelected, $Out> {
+  RecipesEventResetSelectedCopyWith<$R, RecipesEventResetSelected, $Out> get $asRecipesEventResetSelected =>
+      $base.as((v, t, t2) => _RecipesEventResetSelectedCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class RecipesEventResetSelectedCopyWith<$R, $In extends RecipesEventResetSelected, $Out>
+    implements RecipesEventCopyWith<$R, $In, $Out> {
+  @override
+  $R call();
+  RecipesEventResetSelectedCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _RecipesEventResetSelectedCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesEventResetSelected, $Out>
+    implements RecipesEventResetSelectedCopyWith<$R, RecipesEventResetSelected, $Out> {
+  _RecipesEventResetSelectedCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<RecipesEventResetSelected> $mapper = RecipesEventResetSelectedMapper.ensureInitialized();
+  @override
+  $R call() => $apply(FieldCopyWithData({}));
+  @override
+  RecipesEventResetSelected $make(CopyWithData data) => RecipesEventResetSelected();
+
+  @override
+  RecipesEventResetSelectedCopyWith<$R2, RecipesEventResetSelected, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _RecipesEventResetSelectedCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
