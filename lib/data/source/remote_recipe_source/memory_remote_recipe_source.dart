@@ -9,6 +9,8 @@ import "package:aroma_mobile/util/string_extension.dart";
 import "package:collection/collection.dart";
 
 class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSource {
+  final _recipes = MockRecipes.all.toList();
+
   MemoryRemoteRecipeSource({
     super.initialShouldThrow,
     super.initialMsDelay,
@@ -19,8 +21,8 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
     return wrapRequest(
       Future.sync(() {
         final filtered = filter.isEmpty
-            ? MockRecipes.all
-            : MockRecipes.all.where((recipe) {
+            ? _recipes
+            : _recipes.where((recipe) {
                 final totalTime = recipe.prepTime + recipe.cookTime;
 
                 return (filter.ratingMin == null || recipe.rating >= filter.ratingMin!) &&
@@ -52,6 +54,14 @@ class MemoryRemoteRecipeSource extends MemorySource implements RemoteRecipeSourc
         }.toList();
       }),
       ErrorCode.source_remote_recipe_getRecipesFailed,
+    );
+  }
+
+  @override
+  Future<void> deleteRecipes(List<String> ids) async {
+    return wrapRequest(
+      Future.sync(() => _recipes.removeWhere((recipe) => ids.contains(recipe.id))),
+      ErrorCode.source_remote_recipe_deleteRecipesFailed,
     );
   }
 }

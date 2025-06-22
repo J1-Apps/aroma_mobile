@@ -47,6 +47,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return ErrorCode.repository_language_updateFailed;
       case r'repository_recipe_getRecipesFailed':
         return ErrorCode.repository_recipe_getRecipesFailed;
+      case r'repository_recipe_deleteRecipesFailed':
+        return ErrorCode.repository_recipe_deleteRecipesFailed;
       case r'repository_tag_getTagsFailed':
         return ErrorCode.repository_tag_getTagsFailed;
       case r'source_remote_auth_googleSignInFailed':
@@ -81,6 +83,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return ErrorCode.source_local_language_writeError;
       case r'source_remote_recipe_getRecipesFailed':
         return ErrorCode.source_remote_recipe_getRecipesFailed;
+      case r'source_remote_recipe_deleteRecipesFailed':
+        return ErrorCode.source_remote_recipe_deleteRecipesFailed;
       case r'source_remote_tag_getTagsFailed':
         return ErrorCode.source_remote_tag_getTagsFailed;
       default:
@@ -113,6 +117,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return r'repository_language_updateFailed';
       case ErrorCode.repository_recipe_getRecipesFailed:
         return r'repository_recipe_getRecipesFailed';
+      case ErrorCode.repository_recipe_deleteRecipesFailed:
+        return r'repository_recipe_deleteRecipesFailed';
       case ErrorCode.repository_tag_getTagsFailed:
         return r'repository_tag_getTagsFailed';
       case ErrorCode.source_remote_auth_googleSignInFailed:
@@ -147,6 +153,8 @@ class ErrorCodeMapper extends EnumMapper<ErrorCode> {
         return r'source_local_language_writeError';
       case ErrorCode.source_remote_recipe_getRecipesFailed:
         return r'source_remote_recipe_getRecipesFailed';
+      case ErrorCode.source_remote_recipe_deleteRecipesFailed:
+        return r'source_remote_recipe_deleteRecipesFailed';
       case ErrorCode.source_remote_tag_getTagsFailed:
         return r'source_remote_tag_getTagsFailed';
     }

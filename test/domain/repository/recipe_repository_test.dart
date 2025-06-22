@@ -7,6 +7,7 @@ import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/recipe_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/repository/recipe_repository.dart";
+import "package:aroma_mobile/util/none.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
@@ -56,6 +57,32 @@ void main() {
         ),
       );
       verify(() => remoteSource.getRecipes("chicken", SortModel.none, const FilterModel())).called(1);
+    });
+
+    test("returns success when remote source delete recipes succeeds", () async {
+      when(() => remoteSource.deleteRecipes(["1", "2", "3"])).thenAnswer((_) async => const Success(0));
+
+      final result = await repository.deleteRecipes(["1", "2", "3"]);
+      expect(result, const Success(None()));
+      verify(() => remoteSource.deleteRecipes(["1", "2", "3"])).called(1);
+    });
+
+    test("returns failure when remote source delete recipes fails", () async {
+      when(() => remoteSource.deleteRecipes(["1", "2", "3"])).thenThrow(
+        ErrorModel(ErrorCode.source_remote_recipe_deleteRecipesFailed),
+      );
+
+      final result = await repository.deleteRecipes(["1", "2", "3"]);
+      expect(
+        result,
+        Failure<None, Exception>(
+          ErrorModel(
+            ErrorCode.repository_recipe_deleteRecipesFailed,
+            message: "ErrorModel(code: ErrorCode.source_remote_recipe_deleteRecipesFailed, message: )",
+          ),
+        ),
+      );
+      verify(() => remoteSource.deleteRecipes(["1", "2", "3"])).called(1);
     });
   });
 }

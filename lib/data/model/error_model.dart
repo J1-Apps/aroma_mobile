@@ -38,6 +38,7 @@ enum ErrorCode {
   repository_language_updateFailed,
 
   repository_recipe_getRecipesFailed,
+  repository_recipe_deleteRecipesFailed,
 
   repository_tag_getTagsFailed,
 
@@ -61,6 +62,7 @@ enum ErrorCode {
   source_local_language_writeError,
 
   source_remote_recipe_getRecipesFailed,
+  source_remote_recipe_deleteRecipesFailed,
 
   source_remote_tag_getTagsFailed,
 }

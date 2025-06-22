@@ -73,5 +73,14 @@ void main() {
       final recipes = await source.getRecipes("", SortModel.alphabetical, const FilterModel());
       expect(recipes, MockRecipes.all.sortedBy((recipe) => recipe.title).toList());
     });
+
+    test("deletes recipes", () async {
+      final recipes = await source.getRecipes("", SortModel.none, const FilterModel());
+      expect(recipes, MockRecipes.all.toList());
+
+      await source.deleteRecipes(recipes.map((recipe) => recipe.id).toList());
+      final recipes2 = await source.getRecipes("", SortModel.none, const FilterModel());
+      expect(recipes2, []);
+    });
   });
 }

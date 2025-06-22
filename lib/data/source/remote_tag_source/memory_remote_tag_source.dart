@@ -5,6 +5,8 @@ import "package:aroma_mobile/data/source/util/memory_data.dart";
 import "package:aroma_mobile/data/source/util/memory_source.dart";
 
 class MemoryRemoteTagSource extends MemorySource implements RemoteTagSource {
+  final _tags = MockTags.all.toList();
+
   MemoryRemoteTagSource({
     super.initialShouldThrow,
     super.initialMsDelay,
@@ -15,8 +17,8 @@ class MemoryRemoteTagSource extends MemorySource implements RemoteTagSource {
     return wrapRequest(
       Future.sync(() {
         final filtered = query.isNotEmpty
-            ? MockTags.all.where((tag) => tag.name.toLowerCase().contains(query.toLowerCase())).toList()
-            : MockTags.all;
+            ? _tags.where((tag) => tag.name.toLowerCase().contains(query.toLowerCase())).toList()
+            : _tags;
 
         return filtered.take(limit).toList();
       }),
