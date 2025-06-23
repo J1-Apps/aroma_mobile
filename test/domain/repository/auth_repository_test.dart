@@ -1,5 +1,6 @@
 import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/model/session_model.dart";
+import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
 import "package:aroma_mobile/domain/entity/auth_entity.dart";
 import "package:aroma_mobile/domain/repository/auth_repository.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -16,12 +17,14 @@ void main() {
   late AuthRepository authRepository;
 
   setUp(() {
+    locator.registerSingleton<RemoteAuthSource>(remoteSource);
     sessionSubject = BehaviorSubject<SessionModel>.seeded(const SessionModelSignedOut());
     when(() => remoteSource.sessionStream).thenAnswer((_) => sessionSubject.stream);
-    authRepository = AuthRepositoryImpl(remoteAuthSource: remoteSource);
+    authRepository = AuthRepositoryImpl();
   });
 
   tearDown(() async {
+    locator.unregister<RemoteAuthSource>();
     reset(remoteSource);
     await sessionSubject.close();
   });

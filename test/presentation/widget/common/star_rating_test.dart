@@ -1,6 +1,6 @@
 import "package:aroma_mobile/presentation/widget/common/star_rating.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:j1_core_base/j1_ui/icons/jam_icons.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
 import "../../../test_util/test_wrapper.dart";

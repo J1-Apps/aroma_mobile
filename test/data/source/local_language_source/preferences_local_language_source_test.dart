@@ -2,24 +2,31 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/data/source/local_language_source/preferences_local_language_source.dart";
 import "package:aroma_mobile/data/source/util/default.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 import "../../../test_util/testing_mocks.dart";
 
 void main() {
   group("Preferences Local Language Source", () {
     final preferences = MockSharedPreferences();
+    late PreferencesLocalLanguageSource source;
+
+    setUp(() {
+      locator.registerSingleton<SharedPreferencesAsync>(preferences);
+      source = PreferencesLocalLanguageSource();
+    });
 
     tearDown(() {
+      locator.unregister<SharedPreferencesAsync>();
       reset(preferences);
     });
 
     test("gets and sets language", () async {
-      when(
-        () => preferences.setString(PreferencesLocalLanguageSource.languageKey, any()),
-      ).thenAnswer((_) => Future.value());
-
-      final source = PreferencesLocalLanguageSource(preferences: preferences);
+      when(() => preferences.setString(PreferencesLocalLanguageSource.languageKey, any())).thenAnswer(
+        (_) => Future.value(),
+      );
 
       when(() => preferences.getString(PreferencesLocalLanguageSource.languageKey)).thenAnswer(
         (_) => Future.value(),
@@ -47,10 +54,8 @@ void main() {
         StateError("test error"),
       );
 
-      final repository = PreferencesLocalLanguageSource(preferences: preferences);
-
       expect(
-        () async => repository.getLanguage(),
+        () async => source.getLanguage(),
         throwsA(HasErrorCode(ErrorCode.source_local_language_readError)),
       );
     });
@@ -60,10 +65,8 @@ void main() {
         StateError("test error"),
       );
 
-      final repository = PreferencesLocalLanguageSource(preferences: preferences);
-
       expect(
-        () async => repository.updateLanguage("kr"),
+        () async => source.updateLanguage("kr"),
         throwsA(HasErrorCode(ErrorCode.source_local_language_writeError)),
       );
     });

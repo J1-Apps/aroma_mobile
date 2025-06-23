@@ -5,6 +5,7 @@ import "package:aroma_mobile/data/model/session_model.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/supabase_remote_auth_source.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:google_sign_in/google_sign_in.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
@@ -27,15 +28,18 @@ void main() {
   late SupabaseRemoteAuthSource source;
 
   setUp(() {
-    source = SupabaseRemoteAuthSource(
-      supabase: supabase,
-      googleSignIn: googleSignIn,
-    );
+    locator.registerSingleton<SupabaseClient>(supabase);
+    locator.registerSingleton<GoogleSignIn>(googleSignIn);
+
+    source = SupabaseRemoteAuthSource();
 
     when(() => supabase.auth).thenReturn(auth);
   });
 
   tearDown(() {
+    locator.unregister<SupabaseClient>();
+    locator.unregister<GoogleSignIn>();
+
     source.onDispose();
     reset(supabase);
     reset(googleSignIn);

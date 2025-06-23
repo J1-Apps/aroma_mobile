@@ -86,6 +86,8 @@ class MockRemoteTagSource extends Mock implements RemoteTagSource {}
 
 // Mock Repositories
 
+class MockThemeRepository extends Mock implements J1ThemeRepository {}
+
 class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockLanguageRepository extends Mock implements LanguageRepository {}

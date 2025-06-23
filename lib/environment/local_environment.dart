@@ -12,6 +12,9 @@ import "package:aroma_mobile/environment/aroma_environment.dart";
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
+// This is a configuration file that doesn't need to be tested.
+// coverage:ignore-file
+
 class LocalEnvironment extends AromaEnvironment {
   @override
   FirebaseOptions? get firebaseOptions => null;

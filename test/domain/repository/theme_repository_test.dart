@@ -28,6 +28,18 @@ void main() {
       reset(localSource);
     });
 
+    test("initializes with default values", () {
+      when(localSource.getColorScheme).thenAnswer((_) => Future.value(AromaColorScheme.light.scheme));
+      when(localSource.getTextTheme).thenAnswer((_) => Future.value(AromaTextTheme.initial));
+      when(localSource.getPageTransition).thenAnswer((_) => Future.value(AromaTheme.pageTransition));
+
+      final repository = ThemeRepository();
+
+      expect(repository.getColorStream(), emitsInOrder([AromaColorScheme.light.scheme]));
+      expect(repository.getTextStream(), emitsInOrder([AromaTextTheme.initial]));
+      expect(repository.getTransitionStream(), emitsInOrder([AromaTheme.pageTransition]));
+    });
+
     test("gets and updates color scheme, handling errors", () async {
       when(localSource.getColorScheme).thenThrow(const ErrorModel(ErrorCode.source_local_theme_colorReadError));
 

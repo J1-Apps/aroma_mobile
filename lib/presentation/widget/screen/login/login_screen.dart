@@ -173,6 +173,7 @@ class _LoginTerms extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: JDimens.spacing_xxl),
       child: RichText(
+        key: const Key("login_terms"),
         textAlign: TextAlign.center,
         text: TextSpan(
           children: [
@@ -201,9 +202,6 @@ class _LoginTerms extends StatelessWidget {
   }
 }
 
-// Ignore coverage for these functions as it's difficult to test tapping on a rich text span.
-// coverage:ignore-start
-
 void _viewTermsOfUse(BuildContext context) {
   // TODO: Implement terms of use
   context.showJToastWithText(text: "Terms of use", hasClose: true);
@@ -213,5 +211,3 @@ void _viewPrivacyPolicy(BuildContext context) {
   // TODO: Implement privacy policy
   context.showJToastWithText(text: "Privacy policy", hasClose: true);
 }
-
-// coverage:ignore-end

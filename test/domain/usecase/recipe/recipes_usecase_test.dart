@@ -5,8 +5,7 @@ import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/repository/recipe_repository.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:j1_core_base/j1_environment/j1_environment.dart";
-import "package:j1_core_base/j1_result/j1_result.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 
 import "../../../test_util/testing_mocks.dart";

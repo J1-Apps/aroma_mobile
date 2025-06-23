@@ -21,11 +21,21 @@ import "package:aroma_mobile/domain/usecase/language/update_language_usecase.dar
 import "package:aroma_mobile/domain/usecase/recipe/delete_recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
+import "package:google_sign_in/google_sign_in.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:j1_core_firebase/j1_core_firebase.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+
+// This is a configuration file that doesn't need to be tested.
+// coverage:ignore-file
 
 abstract class AromaEnvironment extends J1EnvironmentFirebase {
-  // coverage:ignore-start
+  // Dependencies
+
+  SharedPreferencesAsync get sharedPreferencesAsync => SharedPreferencesAsync();
+  SupabaseClient get supabaseClient => Supabase.instance.client;
+  GoogleSignIn get googleSignIn => GoogleSignIn();
 
   // Source
 
@@ -59,11 +69,15 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
   RecipesUsecase get recipesUsecase => RecipesUsecaseImpl();
   DeleteRecipesUsecase get deleteRecipesUsecase => DeleteRecipesUsecaseImpl();
 
-  // coverage:ignore-end
-
   @override
   Future<void> configure() async {
     await super.configure();
+
+    // Dependencies
+
+    locator.registerSingleton<SharedPreferencesAsync>(sharedPreferencesAsync);
+    locator.registerSingleton<SupabaseClient>(supabaseClient);
+    locator.registerSingleton<GoogleSignIn>(googleSignIn);
 
     // Source
 

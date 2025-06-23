@@ -15,6 +15,9 @@ import "package:google_sign_in/google_sign_in.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
+// This is a configuration file that doesn't need to be tested.
+// coverage:ignore-file
+
 // TODO: Update this class to use the production environment
 class ProdEnvironment extends AromaEnvironment {
   @override

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:j1_core_base/j1_ui/j1_ui.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 class AromaTag extends StatelessWidget {
   final String text;
