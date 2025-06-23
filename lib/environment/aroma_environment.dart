@@ -33,9 +33,9 @@ import "package:supabase_flutter/supabase_flutter.dart";
 abstract class AromaEnvironment extends J1EnvironmentFirebase {
   // Dependencies
 
-  SharedPreferencesAsync get sharedPreferencesAsync => SharedPreferencesAsync();
-  SupabaseClient get supabaseClient => Supabase.instance.client;
-  GoogleSignIn get googleSignIn => GoogleSignIn();
+  SharedPreferencesAsync? get sharedPreferencesAsync;
+  SupabaseClient? get supabaseClient;
+  GoogleSignIn? get googleSignIn;
 
   // Source
 
@@ -75,9 +75,17 @@ abstract class AromaEnvironment extends J1EnvironmentFirebase {
 
     // Dependencies
 
-    locator.registerSingleton<SharedPreferencesAsync>(sharedPreferencesAsync);
-    locator.registerSingleton<SupabaseClient>(supabaseClient);
-    locator.registerSingleton<GoogleSignIn>(googleSignIn);
+    if (sharedPreferencesAsync != null) {
+      locator.registerSingleton<SharedPreferencesAsync>(sharedPreferencesAsync!);
+    }
+
+    if (supabaseClient != null) {
+      locator.registerSingleton<SupabaseClient>(supabaseClient!);
+    }
+
+    if (googleSignIn != null) {
+      locator.registerSingleton<GoogleSignIn>(googleSignIn!);
+    }
 
     // Source
 

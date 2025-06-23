@@ -13,6 +13,7 @@ import "package:aroma_mobile/environment/env.dart";
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
 import "package:google_sign_in/google_sign_in.dart";
 import "package:j1_core_base/j1_core_base.dart";
+import "package:shared_preferences/shared_preferences.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
 // This is a configuration file that doesn't need to be tested.
@@ -20,6 +21,15 @@ import "package:supabase_flutter/supabase_flutter.dart";
 
 // TODO: Update this class to use the test environment
 class TestEnvironment extends AromaEnvironment {
+  @override
+  SharedPreferencesAsync? get sharedPreferencesAsync => SharedPreferencesAsync();
+
+  @override
+  SupabaseClient? get supabaseClient => Supabase.instance.client;
+
+  @override
+  GoogleSignIn? get googleSignIn => GoogleSignIn();
+
   @override
   FirebaseOptions? get firebaseOptions => null;
 

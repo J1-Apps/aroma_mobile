@@ -29,9 +29,11 @@ import "package:aroma_mobile/presentation/bloc/settings/settings_bloc.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:google_sign_in/google_sign_in.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
 import "package:shared_preferences/shared_preferences.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
 
 // Custom Matchers
 
@@ -55,6 +57,22 @@ abstract class _MockCallback<T> {
 }
 
 class MockCallback<T> extends Mock implements _MockCallback<T> {}
+
+// Mock Dependencies
+
+class MockSupabaseClient extends Mock implements SupabaseClient {}
+
+class MockAuthClient extends Mock implements GoTrueClient {}
+
+class MockQueryBuilder extends Mock implements SupabaseQueryBuilder {}
+
+class MockFilterBuilder extends Mock implements PostgrestFilterBuilder<PostgrestList> {}
+
+class MockGoogleSignIn extends Mock implements GoogleSignIn {}
+
+class MockGoogleSignInAuthentication extends Mock implements GoogleSignInAuthentication {}
+
+class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
 
 // Mock Routing
 

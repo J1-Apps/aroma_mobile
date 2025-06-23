@@ -53,6 +53,7 @@ dev_dependencies:
   dart_mappable_builder: ^4.5.0
   envied_generator: ^1.1.1
   mocktail_image_network: ^1.2.0
+  mock_supabase_http_client: ^0.0.3+2
 
 flutter:
   uses-material-design: true

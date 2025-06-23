@@ -11,16 +11,6 @@ import "package:supabase_flutter/supabase_flutter.dart";
 
 import "../../../test_util/testing_mocks.dart";
 
-class MockSupabaseClient extends Mock implements SupabaseClient {}
-
-class MockAuthClient extends Mock implements GoTrueClient {}
-
-class MockGoogleSignIn extends Mock implements GoogleSignIn {}
-
-class MockGoogleSignInAuthentication extends Mock implements GoogleSignInAuthentication {}
-
-class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
-
 void main() {
   final supabase = MockSupabaseClient();
   final googleSignIn = MockGoogleSignIn();
