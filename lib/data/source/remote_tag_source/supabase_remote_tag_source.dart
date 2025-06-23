@@ -1,10 +1,21 @@
 import "package:aroma_mobile/data/model/tag_model.dart";
 import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
 
-// TODO: Implement this class.
+const _tagsTable = "tags";
+const _nameColumn = "name";
+
+// TODO: Order returned tags by most used/popular.
 class SupabaseRemoteTagSource extends RemoteTagSource {
+  final SupabaseClient _supabase;
+
+  SupabaseRemoteTagSource({
+    SupabaseClient? supabase,
+  }) : _supabase = supabase ?? Supabase.instance.client;
+
   @override
   Future<List<TagModel>> getTags(String query, int limit) async {
-    return [];
+    final response = await _supabase.from(_tagsTable).select().ilike(_nameColumn, "%$query%").limit(limit);
+    return response.map(TagModelMapper.fromMap).toList();
   }
 }
