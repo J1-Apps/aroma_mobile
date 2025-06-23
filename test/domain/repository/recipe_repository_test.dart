@@ -7,7 +7,6 @@ import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/recipe_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/repository/recipe_repository.dart";
-import "package:aroma_mobile/util/none.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";

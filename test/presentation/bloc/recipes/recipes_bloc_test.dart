@@ -11,7 +11,6 @@ import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
-import "package:aroma_mobile/util/none.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";

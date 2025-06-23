@@ -1,5 +1,4 @@
 import "package:aroma_mobile/domain/repository/recipe_repository.dart";
-import "package:aroma_mobile/util/none.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
 abstract class DeleteRecipesUsecase {
