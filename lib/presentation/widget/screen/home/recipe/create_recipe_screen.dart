@@ -4,8 +4,8 @@ import "package:aroma_mobile/presentation/widget/common/aroma_settings_button.da
 import "package:flutter/material.dart";
 import "package:j1_core_base/j1_core_base.dart";
 
-class CreateScreen extends StatelessWidget {
-  const CreateScreen({super.key});
+class CreateRecipeScreen extends StatelessWidget {
+  const CreateRecipeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

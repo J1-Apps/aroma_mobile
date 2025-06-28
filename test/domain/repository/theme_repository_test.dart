@@ -14,18 +14,30 @@ void main() {
     final localSource = MockLocalThemeSource();
 
     setUpAll(() {
-      locator.registerSingleton<LocalThemeSource>(localSource);
       registerFallbackValue(AromaColorScheme.light.scheme);
       registerFallbackValue(AromaTextTheme.initial);
       registerFallbackValue(AromaTheme.pageTransition);
     });
 
+    setUp(() {
+      locator.registerSingleton<LocalThemeSource>(localSource);
+    });
+
     tearDown(() {
+      locator.unregister<LocalThemeSource>();
       reset(localSource);
     });
 
-    tearDownAll(() async {
-      await locator.reset();
+    test("initializes with default values", () {
+      when(localSource.getColorScheme).thenAnswer((_) => Future.value(AromaColorScheme.light.scheme));
+      when(localSource.getTextTheme).thenAnswer((_) => Future.value(AromaTextTheme.initial));
+      when(localSource.getPageTransition).thenAnswer((_) => Future.value(AromaTheme.pageTransition));
+
+      final repository = ThemeRepository();
+
+      expect(repository.getColorStream(), emitsInOrder([AromaColorScheme.light.scheme]));
+      expect(repository.getTextStream(), emitsInOrder([AromaTextTheme.initial]));
+      expect(repository.getTransitionStream(), emitsInOrder([AromaTheme.pageTransition]));
     });
 
     test("gets and updates color scheme, handling errors", () async {

@@ -70,6 +70,8 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       RecipesStatusMapper.ensureInitialized();
       SortEntityMapper.ensureInitialized();
       FilterEntityMapper.ensureInitialized();
+      RecipeCardDetailsMapper.ensureInitialized();
+      ErrorCodeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -85,6 +87,14 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
   static const Field<RecipesState, SortEntity> _f$sort = Field('sort', _$sort);
   static FilterEntity _$filter(RecipesState v) => v.filter;
   static const Field<RecipesState, FilterEntity> _f$filter = Field('filter', _$filter);
+  static List<RecipeCardDetails> _$recipes(RecipesState v) => v.recipes;
+  static const Field<RecipesState, List<RecipeCardDetails>> _f$recipes = Field('recipes', _$recipes);
+  static Set<String> _$selectedIds(RecipesState v) => v.selectedIds;
+  static const Field<RecipesState, Set<String>> _f$selectedIds = Field('selectedIds', _$selectedIds);
+  static bool _$isDeleting(RecipesState v) => v.isDeleting;
+  static const Field<RecipesState, bool> _f$isDeleting = Field('isDeleting', _$isDeleting);
+  static ErrorCode? _$error(RecipesState v) => v.error;
+  static const Field<RecipesState, ErrorCode> _f$error = Field('error', _$error);
 
   @override
   final MappableFields<RecipesState> fields = const {
@@ -92,6 +102,10 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
     #searchQuery: _f$searchQuery,
     #sort: _f$sort,
     #filter: _f$filter,
+    #recipes: _f$recipes,
+    #selectedIds: _f$selectedIds,
+    #isDeleting: _f$isDeleting,
+    #error: _f$error,
   };
 
   static RecipesState _instantiate(DecodingData data) {
@@ -100,6 +114,10 @@ class RecipesStateMapper extends ClassMapperBase<RecipesState> {
       searchQuery: data.dec(_f$searchQuery),
       sort: data.dec(_f$sort),
       filter: data.dec(_f$filter),
+      recipes: data.dec(_f$recipes),
+      selectedIds: data.dec(_f$selectedIds),
+      isDeleting: data.dec(_f$isDeleting),
+      error: data.dec(_f$error),
     );
   }
 
@@ -149,7 +167,17 @@ extension RecipesStateValueCopy<$R, $Out> on ObjectCopyWith<$R, RecipesState, $O
 
 abstract class RecipesStateCopyWith<$R, $In extends RecipesState, $Out> implements ClassCopyWith<$R, $In, $Out> {
   FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter;
-  $R call({RecipesStatus? status, String? searchQuery, SortEntity? sort, FilterEntity? filter});
+  ListCopyWith<$R, RecipeCardDetails, RecipeCardDetailsCopyWith<$R, RecipeCardDetails, RecipeCardDetails>> get recipes;
+  $R call({
+    RecipesStatus? status,
+    String? searchQuery,
+    SortEntity? sort,
+    FilterEntity? filter,
+    List<RecipeCardDetails>? recipes,
+    Set<String>? selectedIds,
+    bool? isDeleting,
+    ErrorCode? error,
+  });
   RecipesStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -163,12 +191,28 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
   FilterEntityCopyWith<$R, FilterEntity, FilterEntity> get filter =>
       $value.filter.copyWith.$chain((v) => call(filter: v));
   @override
-  $R call({RecipesStatus? status, String? searchQuery, SortEntity? sort, FilterEntity? filter}) => $apply(
+  ListCopyWith<$R, RecipeCardDetails, RecipeCardDetailsCopyWith<$R, RecipeCardDetails, RecipeCardDetails>>
+  get recipes => ListCopyWith($value.recipes, (v, t) => v.copyWith.$chain(t), (v) => call(recipes: v));
+  @override
+  $R call({
+    RecipesStatus? status,
+    String? searchQuery,
+    SortEntity? sort,
+    FilterEntity? filter,
+    List<RecipeCardDetails>? recipes,
+    Set<String>? selectedIds,
+    bool? isDeleting,
+    Object? error = $none,
+  }) => $apply(
     FieldCopyWithData({
       if (status != null) #status: status,
       if (searchQuery != null) #searchQuery: searchQuery,
       if (sort != null) #sort: sort,
       if (filter != null) #filter: filter,
+      if (recipes != null) #recipes: recipes,
+      if (selectedIds != null) #selectedIds: selectedIds,
+      if (isDeleting != null) #isDeleting: isDeleting,
+      if (error != $none) #error: error,
     }),
   );
   @override
@@ -177,6 +221,10 @@ class _RecipesStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, RecipesS
     searchQuery: data.get(#searchQuery, or: $value.searchQuery),
     sort: data.get(#sort, or: $value.sort),
     filter: data.get(#filter, or: $value.filter),
+    recipes: data.get(#recipes, or: $value.recipes),
+    selectedIds: data.get(#selectedIds, or: $value.selectedIds),
+    isDeleting: data.get(#isDeleting, or: $value.isDeleting),
+    error: data.get(#error, or: $value.error),
   );
 
   @override

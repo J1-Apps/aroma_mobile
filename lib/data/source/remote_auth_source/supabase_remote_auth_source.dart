@@ -2,19 +2,18 @@ import "package:aroma_mobile/data/model/error_model.dart";
 import "package:google_sign_in/google_sign_in.dart";
 import "package:aroma_mobile/data/model/session_model.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:j1_core_base/j1_core_base.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 
 class SupabaseRemoteAuthSource implements RemoteAuthSource {
   final SupabaseClient _supabase;
   final GoogleSignIn _googleSignIn;
 
-  // coverage:ignore-start
   SupabaseRemoteAuthSource({
     SupabaseClient? supabase,
     GoogleSignIn? googleSignIn,
-  }) : _supabase = supabase ?? Supabase.instance.client,
-       _googleSignIn = googleSignIn ?? GoogleSignIn();
-  // coverage:ignore-end
+  }) : _supabase = supabase ?? locator<SupabaseClient>(),
+       _googleSignIn = googleSignIn ?? locator<GoogleSignIn>();
 
   @override
   Stream<SessionModel> get sessionStream => _supabase.auth.onAuthStateChange.map(

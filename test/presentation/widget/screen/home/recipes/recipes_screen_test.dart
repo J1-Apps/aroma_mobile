@@ -1,5 +1,6 @@
 import "dart:async";
 
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
@@ -57,6 +58,40 @@ void main() {
       await tester.pumpAndSettle();
 
       verify(() => router.push<EmptyRouteConfig>(any(), AromaRoute.settings, const EmptyRouteConfig())).called(1);
+    });
+
+    testWidgets("handles error state", (tester) async {
+      when(() => bloc.state).thenReturn(RecipesState.initial().copyWith(status: RecipesStatus.success));
+
+      await tester.pumpWidget(
+        TestWrapper(
+          globalBloc: bloc,
+          child: const RecipesScreen(),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SnackBar), findsNothing);
+
+      stream.add(
+        RecipesState.initial().copyWith(
+          status: RecipesStatus.success,
+          error: ErrorCode.common_unknown,
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 10));
+
+      expect(find.byType(SnackBar), findsNothing);
+
+      stream.add(
+        RecipesState.initial().copyWith(
+          status: RecipesStatus.success,
+          error: ErrorCode.repository_recipe_deleteRecipesFailed,
+        ),
+      );
+      await tester.pump(const Duration(milliseconds: 10));
+
+      expect(find.byType(SnackBar), findsOneWidget);
     });
 
     testWidgets("handles pull to refresh", (tester) async {

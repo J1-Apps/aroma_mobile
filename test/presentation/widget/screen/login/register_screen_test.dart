@@ -86,7 +86,7 @@ void main() {
 
       expect(find.byType(SnackBar), findsNothing);
 
-      stream.add(const RegisterState(error: ErrorCode.source_remote_auth_emailSignUpFailed));
+      stream.add(const RegisterState(error: ErrorCode.repository_auth_createUserWithEmailAndPasswordFailed));
       await tester.pump(const Duration(milliseconds: 10));
 
       expect(find.byType(SnackBar), findsOneWidget);

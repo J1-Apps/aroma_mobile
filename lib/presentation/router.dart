@@ -11,7 +11,8 @@ import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/feed/feed_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/home_navigation.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/profile/profile_screen.dart";
-import "package:aroma_mobile/presentation/widget/screen/home/recipe/create_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipe/create_recipe_screen.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipe/view_recipe_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_screen.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/auth_listener.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/login_screen.dart";
@@ -39,6 +40,8 @@ const _loginPath = "/login";
 const _signInPath = "signin";
 const _signUpPath = "signup";
 const _resetPasswordPath = "reset-password";
+const _emailQuery = "email";
+const _passwordQuery = "password";
 
 const _settingsPath = "/settings";
 const _themePath = "theme";
@@ -47,6 +50,7 @@ const _feedPath = "/feed";
 
 const _recipesPath = "/recipes";
 const _createPath = "create";
+const _recipeIdPath = "recipeId";
 
 const _profilePath = "/profile";
 
@@ -154,7 +158,13 @@ final routeConfig = GoRouter(
                   routes: [
                     GoRoute(
                       path: AromaRoute.create.relativePath,
-                      builder: (_, _) => const CreateScreen(),
+                      builder: (_, _) => const CreateRecipeScreen(),
+                    ),
+                    GoRoute(
+                      path: AromaRoute.view.relativePath,
+                      builder: (_, state) => ViewRecipeScreen(
+                        recipeId: state.pathParameters[_recipeIdPath] ?? "default",
+                      ),
                     ),
                   ],
                 ),
@@ -238,6 +248,11 @@ abstract class AromaRoute {
     configParser: j1.EmptyRouteConfig.parser,
   );
 
+  static final view = j1.J1Route<RecipeRouteConfig>(
+    parts: [j1.PathSegment(_recipesPath), j1.PathParam(_recipeIdPath, "default")],
+    configParser: RecipeRouteConfig.parser,
+  );
+
   static final profile = j1.J1Route<j1.EmptyRouteConfig>(
     parts: [j1.PathSegment(_profilePath)],
     configParser: j1.EmptyRouteConfig.parser,
@@ -252,7 +267,7 @@ class EmailPasswordRouteConfig extends j1.RouteConfig {
   Map<String, Object> get pathParams => const {};
 
   @override
-  Map<String, Object?> get queryParams => {"email": email, "password": password};
+  Map<String, Object?> get queryParams => {_emailQuery: email, _passwordQuery: password};
 
   const EmailPasswordRouteConfig({this.email = "", this.password = ""});
 
@@ -261,8 +276,8 @@ class EmailPasswordRouteConfig extends j1.RouteConfig {
     required Map<String, String> queryParams,
   }) {
     return EmailPasswordRouteConfig(
-      email: queryParams["email"] ?? "",
-      password: queryParams["password"] ?? "",
+      email: queryParams[_emailQuery] ?? "",
+      password: queryParams[_passwordQuery] ?? "",
     );
   }
 }
@@ -274,7 +289,7 @@ class EmailRouteConfig extends j1.RouteConfig {
   Map<String, Object> get pathParams => const {};
 
   @override
-  Map<String, Object?> get queryParams => {"email": email};
+  Map<String, Object?> get queryParams => {_emailQuery: email};
 
   const EmailRouteConfig({this.email = ""});
 
@@ -282,6 +297,25 @@ class EmailRouteConfig extends j1.RouteConfig {
     required Map<String, String> pathParams,
     required Map<String, String> queryParams,
   }) {
-    return EmailRouteConfig(email: queryParams["email"] ?? "");
+    return EmailRouteConfig(email: queryParams[_emailQuery] ?? "");
+  }
+}
+
+class RecipeRouteConfig extends j1.RouteConfig {
+  final String recipeId;
+
+  const RecipeRouteConfig({required this.recipeId});
+
+  @override
+  Map<String, Object> get pathParams => {_recipeIdPath: recipeId};
+
+  @override
+  Map<String, Object?> get queryParams => const {};
+
+  static RecipeRouteConfig parser({
+    required Map<String, String> pathParams,
+    required Map<String, String> queryParams,
+  }) {
+    return RecipeRouteConfig(recipeId: pathParams[_recipeIdPath] ?? "");
   }
 }

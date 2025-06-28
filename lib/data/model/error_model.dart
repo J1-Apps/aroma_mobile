@@ -26,6 +26,21 @@ enum ErrorCode {
   common_unknown,
 
   // Repository error codes.
+  repository_auth_createUserWithEmailAndPasswordFailed,
+  repository_auth_signInWithEmailAndPasswordFailed,
+  repository_auth_signInWithGoogleFailed,
+  repository_auth_signOutFailed,
+  repository_auth_sendPasswordResetEmailFailed,
+  repository_auth_changePasswordFailed,
+  repository_auth_deleteAccountFailed,
+
+  repository_language_loadFailed,
+  repository_language_updateFailed,
+
+  repository_recipe_getRecipesFailed,
+  repository_recipe_deleteRecipesFailed,
+
+  repository_tag_getTagsFailed,
 
   // Source error codes.
   source_remote_auth_googleSignInFailed,
@@ -45,6 +60,11 @@ enum ErrorCode {
 
   source_local_language_readError,
   source_local_language_writeError,
+
+  source_remote_recipe_getRecipesFailed,
+  source_remote_recipe_deleteRecipesFailed,
+
+  source_remote_tag_getTagsFailed,
 }
 
 extension ExceptionExtension on Exception {

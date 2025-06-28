@@ -1,12 +1,25 @@
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
+import "package:aroma_mobile/domain/usecase/recipe/delete_recipes_usecase.dart";
+import "package:aroma_mobile/domain/usecase/recipe/recipes_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
+import "package:aroma_mobile/presentation/details/recipe_card_details.dart";
 import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:j1_core_base/j1_core_base.dart";
 
 class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
-  RecipesBloc() : super(RecipesState.initial()) {
+  final RecipesUsecase _recipesUsecase;
+  final DeleteRecipesUsecase _deleteRecipesUsecase;
+
+  RecipesBloc({
+    RecipesUsecase? recipesUsecase,
+    DeleteRecipesUsecase? deleteRecipesUsecase,
+  }) : _recipesUsecase = recipesUsecase ?? locator.get<RecipesUsecase>(),
+       _deleteRecipesUsecase = deleteRecipesUsecase ?? locator.get<DeleteRecipesUsecase>(),
+       super(RecipesState.initial()) {
     on<RecipesEventLoad>(_onLoad, transformer: restartable());
     on<RecipesEventSearch>(_onSearch);
     on<RecipesEventResetFilter>(_onResetFilter);
@@ -16,15 +29,32 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     on<RecipesEventUpdateServings>(_onUpdateServings);
     on<RecipesEventUpdateDifficulty>(_onUpdateDifficulty);
     on<RecipesEventUpdateTags>(_onUpdateTags);
+    on<RecipesEventToggleSelected>(_onToggleSelected);
+    on<RecipesEventDeleteSelected>(_onDeleteSelected);
+    on<RecipesEventResetSelected>(_onResetSelected);
   }
 
   Future<void> _onLoad(RecipesEventLoad event, Emitter<RecipesState> emit) async {
-    emit(state.copyWith(status: RecipesStatus.loading));
+    emit(state.copyWith(status: RecipesStatus.loading, error: null));
 
-    // TODO: Load recipes from use case.
-    await Future.delayed(const Duration(seconds: 1));
+    final result = await _recipesUsecase(state.searchQuery, state.sort, state.filter);
 
-    emit(state.copyWith(status: RecipesStatus.success));
+    switch (result) {
+      case Success():
+        if (result.value.isEmpty) {
+          emit(state.copyWith(status: RecipesStatus.empty, recipes: const [], selectedIds: const {}));
+        } else {
+          emit(
+            state.copyWith(
+              status: RecipesStatus.success,
+              recipes: result.value.map(RecipeCardDetails.fromEntity).toList(),
+              selectedIds: state.selectedIds.intersection(result.value.map((e) => e.id).toSet()),
+            ),
+          );
+        }
+      case Failure():
+        emit(state.copyWith(status: RecipesStatus.error, selectedIds: const {}));
+    }
   }
 
   Future<void> _onSearch(RecipesEventSearch event, Emitter<RecipesState> emit) async {
@@ -76,5 +106,45 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
 
   Future<void> _onUpdateTags(RecipesEventUpdateTags event, Emitter<RecipesState> emit) async {
     emit(state.copyWith(filter: state.filter.copyWith(tags: event.tags)));
+  }
+
+  Future<void> _onToggleSelected(RecipesEventToggleSelected event, Emitter<RecipesState> emit) async {
+    emit(
+      state.copyWith(
+        selectedIds: state.selectedIds.contains(event.recipeId)
+            ? state.selectedIds.difference({event.recipeId})
+            : state.selectedIds.union({event.recipeId}),
+      ),
+    );
+  }
+
+  Future<void> _onDeleteSelected(RecipesEventDeleteSelected event, Emitter<RecipesState> emit) async {
+    emit(state.copyWith(isDeleting: true, error: null));
+
+    final selectedIds = state.selectedIds.toList();
+    final result = await _deleteRecipesUsecase(selectedIds);
+
+    switch (result) {
+      case Success():
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            error: null,
+            selectedIds: const {},
+            recipes: state.recipes.where((e) => !selectedIds.contains(e.id)).toList(),
+          ),
+        );
+      case Failure():
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            error: result.error.errorCode,
+          ),
+        );
+    }
+  }
+
+  Future<void> _onResetSelected(RecipesEventResetSelected event, Emitter<RecipesState> emit) async {
+    emit(state.copyWith(selectedIds: const {}));
   }
 }

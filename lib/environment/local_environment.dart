@@ -4,11 +4,30 @@ import "package:aroma_mobile/data/source/local_theme_source/local_theme_source.d
 import "package:aroma_mobile/data/source/local_theme_source/memory_local_theme_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/memory_remote_auth_source.dart";
 import "package:aroma_mobile/data/source/remote_auth_source/remote_auth_source.dart";
+import "package:aroma_mobile/data/source/remote_recipe_source/memory_remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_recipe_source/remote_recipe_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/memory_remote_tag_source.dart";
+import "package:aroma_mobile/data/source/remote_tag_source/remote_tag_source.dart";
 import "package:aroma_mobile/environment/aroma_environment.dart";
 import "package:firebase_core_platform_interface/firebase_core_platform_interface.dart";
 import "package:j1_core_base/j1_core_base.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:google_sign_in/google_sign_in.dart";
+
+// This is a configuration file that doesn't need to be tested.
+// coverage:ignore-file
 
 class LocalEnvironment extends AromaEnvironment {
+  @override
+  SharedPreferencesAsync? get sharedPreferencesAsync => null;
+
+  @override
+  SupabaseClient? get supabaseClient => null;
+
+  @override
+  GoogleSignIn? get googleSignIn => null;
+
   @override
   FirebaseOptions? get firebaseOptions => null;
 
@@ -31,4 +50,10 @@ class LocalEnvironment extends AromaEnvironment {
 
   @override
   RemoteAuthSource get remoteAuthSource => MemoryRemoteAuthSource();
+
+  @override
+  RemoteRecipeSource get remoteRecipeSource => MemoryRemoteRecipeSource();
+
+  @override
+  RemoteTagSource get remoteTagSource => MemoryRemoteTagSource();
 }

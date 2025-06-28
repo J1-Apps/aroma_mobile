@@ -98,6 +98,18 @@ abstract class Strings {
   /// **'Aroma'**
   String get app_title;
 
+  /// No description provided for @common_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get common_confirm;
+
+  /// No description provided for @common_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get common_cancel;
+
   /// No description provided for @login_loginButton.
   ///
   /// In en, this message translates to:
@@ -559,6 +571,30 @@ abstract class Strings {
   /// In en, this message translates to:
   /// **'No results'**
   String get recipes_drawer_tagsEmpty;
+
+  /// No description provided for @recipes_delete_confirmText.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete these recipes? This action cannot be undone.'**
+  String get recipes_delete_confirmText;
+
+  /// No description provided for @recipes_deleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete recipes. Please try again.'**
+  String get recipes_deleteFailed;
+
+  /// No description provided for @recipe_card_hour.
+  ///
+  /// In en, this message translates to:
+  /// **'h'**
+  String get recipe_card_hour;
+
+  /// No description provided for @recipe_card_minute.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get recipe_card_minute;
 
   /// No description provided for @profile_title.
   ///

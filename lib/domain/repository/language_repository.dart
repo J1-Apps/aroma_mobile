@@ -33,7 +33,7 @@ class LanguageRepositoryImpl implements LanguageRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_local_language_readError,
+          ErrorCode.repository_language_loadFailed,
           message: e.toString(),
         ),
       );
@@ -50,7 +50,7 @@ class LanguageRepositoryImpl implements LanguageRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_local_language_writeError,
+          ErrorCode.repository_language_updateFailed,
           message: e.toString(),
         ),
       );

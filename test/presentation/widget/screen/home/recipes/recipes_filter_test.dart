@@ -4,7 +4,7 @@ import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
-import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
@@ -21,11 +21,11 @@ import "../../../../../test_util/testing_mocks.dart";
 void main() {
   group("Recipes Filter", () {
     final RecipesBloc bloc = MockRecipesBloc();
-    final TagUsecase tagUsecase = MockTagUsecase();
+    final TagsUsecase tagsUsecase = MockTagsUsecase();
     late StreamController<RecipesState> stream;
 
     setUp(() {
-      locator.registerSingleton<TagUsecase>(tagUsecase);
+      locator.registerSingleton<TagsUsecase>(tagsUsecase);
 
       stream = StreamController<RecipesState>.broadcast();
       when(bloc.close).thenAnswer((_) => Future.value());
@@ -33,7 +33,7 @@ void main() {
       when(() => bloc.state).thenReturn(RecipesState.initial());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
       when(
-        () => tagUsecase.call(
+        () => tagsUsecase.call(
           query: any(named: "query"),
           limit: any(named: "limit"),
         ),
@@ -43,10 +43,10 @@ void main() {
     });
 
     tearDown(() {
-      locator.unregister<TagUsecase>();
+      locator.unregister<TagsUsecase>();
 
       reset(bloc);
-      reset(tagUsecase);
+      reset(tagsUsecase);
       stream.close();
     });
 

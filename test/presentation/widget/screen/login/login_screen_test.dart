@@ -7,7 +7,9 @@ import "package:aroma_mobile/presentation/bloc/login/login_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/login_loading.dart";
 import "package:aroma_mobile/presentation/widget/screen/login/login_screen.dart";
+import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:j1_core_base/j1_core_base.dart";
 import "package:mocktail/mocktail.dart";
@@ -45,12 +47,7 @@ void main() {
     });
 
     testWidgets("handles loading state", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState(isLoading: true));
       await tester.pump(const Duration(milliseconds: 100));
 
@@ -58,12 +55,7 @@ void main() {
     });
 
     testWidgets("handles error state", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       await tester.pumpAndSettle();
 
       expect(find.byType(SnackBar), findsNothing);
@@ -73,19 +65,14 @@ void main() {
 
       expect(find.byType(SnackBar), findsNothing);
 
-      stream.add(const LoginState(error: ErrorCode.source_remote_auth_googleSignInFailed));
+      stream.add(const LoginState(error: ErrorCode.repository_auth_signInWithGoogleFailed));
       await tester.pump(const Duration(milliseconds: 10));
 
       expect(find.byType(SnackBar), findsOneWidget);
     });
 
     testWidgets("navigates to sign in screen", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -98,12 +85,7 @@ void main() {
     });
 
     testWidgets("navigates to register screen", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -116,12 +98,7 @@ void main() {
     });
 
     testWidgets("handles google sign in", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -132,12 +109,7 @@ void main() {
     });
 
     testWidgets("handles apple sign in", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -148,12 +120,7 @@ void main() {
     });
 
     testWidgets("handles facebook sign in", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -164,12 +131,7 @@ void main() {
     });
 
     testWidgets("handles github sign in", (tester) async {
-      await tester.pumpWidget(
-        TestWrapper(
-          globalBloc: bloc,
-          child: const LoginScreen(),
-        ),
-      );
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
       stream.add(const LoginState());
       await tester.pumpAndSettle();
 
@@ -178,5 +140,39 @@ void main() {
 
       expect(find.byType(SnackBar), findsOneWidget);
     });
+
+    testWidgets("handles terms of use", (tester) async {
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
+      final richText = find.byKey(const Key("login_terms"));
+      _fireOnTap(richText, "terms of use");
+      await tester.pump(const Duration(milliseconds: 10));
+
+      expect(find.byType(SnackBar), findsOneWidget);
+    });
+
+    testWidgets("handles privacy policy", (tester) async {
+      await tester.pumpWidget(TestWrapper(globalBloc: bloc, child: const LoginScreen()));
+      final richText = find.byKey(const Key("login_terms"));
+      _fireOnTap(richText, "privacy policy");
+      await tester.pump(const Duration(milliseconds: 10));
+
+      expect(find.byType(SnackBar), findsOneWidget);
+    });
+  });
+}
+
+void _fireOnTap(Finder finder, String text) {
+  final element = finder.evaluate().single;
+  final paragraph = element.renderObject! as RenderParagraph;
+
+  paragraph.text.visitChildren((span) {
+    final textSpan = span as TextSpan;
+
+    if (textSpan.text != text) {
+      return true;
+    }
+
+    (textSpan.recognizer! as TapGestureRecognizer).onTap!();
+    return false;
   });
 }

@@ -125,10 +125,10 @@ packages:
     dependency: transitive
     description:
       name: build
-      sha256: "7cf79af8eb6023bee797a77b067fb6e63ac5650f3789546e023958098feb776e"
+      sha256: "74273591bd8b7f82eeb1f191c1b65a6576535bbfd5ca3722778b07d5702d33cc"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.2"
+    version: "2.5.3"
   build_config:
     dependency: transitive
     description:
@@ -149,26 +149,26 @@ packages:
     dependency: transitive
     description:
       name: build_resolvers
-      sha256: "7a507e6026abe52074836d51a945bfad456daa7493eb7a6cac565e490e7d5b54"
+      sha256: badce70566085f2e87434531c4a6bc8e833672f755fc51146d612245947e91c9
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.2"
+    version: "2.5.3"
   build_runner:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "1ce1e5063b564f26c27bda54c82a3d38339df69ec58f90e0017f447de77e4839"
+      sha256: b9070a4127033777c0e63195f6f117ed16a351ed676f6313b095cf4f328c0b82
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.2"
+    version: "2.5.3"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
-      sha256: "564230f3fd9363df7870058fef11ec5502ee620aec3b1ee8106b943be5c63a76"
+      sha256: "1cdfece3eeb3f1263f7dbf5bcc0cba697bd0c22d2c866cb4b578c954dbb09bcf"
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.0"
+    version: "9.1.1"
   built_collection:
     dependency: transitive
     description:
@@ -642,7 +642,7 @@ packages:
     description:
       path: "packages/j1_core_base"
       ref: "v1.0.0"
-      resolved-ref: "491deb12665c67bb5e641d7be015da2e13c7ddfc"
+      resolved-ref: "0e2e1817c94b6591dcc0b370b1ae64f0eb83293e"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -651,7 +651,7 @@ packages:
     description:
       path: "packages/j1_core_firebase"
       ref: "v1.0.0"
-      resolved-ref: "491deb12665c67bb5e641d7be015da2e13c7ddfc"
+      resolved-ref: "0e2e1817c94b6591dcc0b370b1ae64f0eb83293e"
       url: "https://github.com/J1-Apps/j1_core.git"
     source: git
     version: "1.0.0"
@@ -759,6 +759,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  mock_supabase_http_client:
+    dependency: "direct dev"
+    description:
+      name: mock_supabase_http_client
+      sha256: "43b9681e43aa5bec7c801722f1b5e58b1a4b1448d346f29a47af0eb05abf4599"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3+2"
   mocktail:
     dependency: "direct dev"
     description:
@@ -767,6 +775,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mocktail_image_network:
+    dependency: "direct dev"
+    description:
+      name: mocktail_image_network
+      sha256: a1fccbba780343517cfc552e0af2b3834d8bdb8f9f55a746c4d495ed1a8d50d6
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   nested:
     dependency: transitive
     description:

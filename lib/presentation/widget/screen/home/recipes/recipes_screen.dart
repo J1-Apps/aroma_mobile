@@ -1,9 +1,10 @@
+import "package:aroma_mobile/data/model/error_model.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
 import "package:aroma_mobile/presentation/router.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
-import "package:aroma_mobile/presentation/widget/common/aroma_settings_button.dart";
+import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_app_bar.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_content.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_filter.dart";
 import "package:aroma_mobile/presentation/widget/screen/home/recipes/recipes_placeholder.dart";
@@ -20,18 +21,29 @@ class RecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strings = context.strings();
-
     return ScaffoldMessenger(
-      child: Scaffold(
-        appBar: JAppBar(
-          title: strings.app_title,
-          titleStyle: context.textTheme().headlineLarge,
-          trailingActions: [const AromaSettingsButton()],
+      child: BlocListener<RecipesBloc, RecipesState>(
+        listenWhen: (previous, current) => previous.error != current.error && current.error != null,
+        listener: (context, state) => _showErrorToast(context, state.error),
+        child: Scaffold(
+          appBar: const RecipesAppBar(),
+          body: const _RecipesList(),
         ),
-        body: const _RecipesList(),
       ),
     );
+  }
+}
+
+void _showErrorToast(BuildContext context, ErrorCode? error) {
+  final strings = context.strings();
+
+  final message = switch (error) {
+    ErrorCode.repository_recipe_deleteRecipesFailed => strings.recipes_deleteFailed,
+    _ => null,
+  };
+
+  if (message != null) {
+    context.showJToastWithText(text: message, hasClose: true);
   }
 }
 

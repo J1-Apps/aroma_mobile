@@ -3,6 +3,7 @@ import "package:aroma_mobile/presentation/bloc/settings/settings_event.dart";
 import "package:aroma_mobile/presentation/bloc/settings/settings_state.dart";
 import "package:aroma_mobile/presentation/util/extension/build_content_extensions.dart";
 import "package:aroma_mobile/presentation/util/localization/app_localizations.dart";
+import "package:aroma_mobile/util/string_extension.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:j1_core_base/j1_core_base.dart";
@@ -28,7 +29,7 @@ class SelectLanguageDrawerState extends State<SelectLanguageDrawer> {
   @override
   Widget build(BuildContext context) {
     final strings = context.strings();
-    final filteredOptions = query.isEmpty
+    final filteredOptions = query.isBlank
         ? supportedLocales
         : _filterQuery(
             supportedLocales,

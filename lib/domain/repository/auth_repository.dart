@@ -35,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_emailSignUpFailed,
+          ErrorCode.repository_auth_createUserWithEmailAndPasswordFailed,
           message: e.toString(),
         ),
       );
@@ -50,7 +50,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_emailSignInFailed,
+          ErrorCode.repository_auth_signInWithEmailAndPasswordFailed,
           message: e.toString(),
         ),
       );
@@ -65,7 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_googleSignInFailed,
+          ErrorCode.repository_auth_signInWithGoogleFailed,
           message: e.toString(),
         ),
       );
@@ -80,7 +80,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_signOutFailed,
+          ErrorCode.repository_auth_signOutFailed,
           message: e.toString(),
         ),
       );
@@ -95,7 +95,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_sendPasswordResetEmailFailed,
+          ErrorCode.repository_auth_sendPasswordResetEmailFailed,
           message: e.toString(),
         ),
       );
@@ -110,7 +110,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_changePasswordFailed,
+          ErrorCode.repository_auth_changePasswordFailed,
           message: e.toString(),
         ),
       );
@@ -125,7 +125,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e) {
       return Failure(
         ErrorModel(
-          ErrorCode.source_remote_auth_deleteAccountFailed,
+          ErrorCode.repository_auth_deleteAccountFailed,
           message: e.toString(),
         ),
       );

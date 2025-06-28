@@ -4,7 +4,7 @@ import "package:aroma_mobile/domain/entity/difficulty_entity.dart";
 import "package:aroma_mobile/domain/entity/filter_entity.dart";
 import "package:aroma_mobile/domain/entity/sort_entity.dart";
 import "package:aroma_mobile/domain/entity/tag_entity.dart";
-import "package:aroma_mobile/domain/usecase/tag/tag_usecase.dart";
+import "package:aroma_mobile/domain/usecase/tag/tags_usecase.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_bloc.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_event.dart";
 import "package:aroma_mobile/presentation/bloc/recipes/recipes_state.dart";
@@ -21,7 +21,7 @@ void main() {
   group("Filter Drawer", () {
     final router = MockRouter();
     final RecipesBloc bloc = MockRecipesBloc();
-    final TagUsecase tagUsecase = MockTagUsecase();
+    final TagsUsecase tagsUsecase = MockTagsUsecase();
     late StreamController<RecipesState> stream;
 
     setUpAll(() {
@@ -30,7 +30,7 @@ void main() {
 
     setUp(() {
       locator.registerSingleton<J1Router>(router);
-      locator.registerSingleton<TagUsecase>(tagUsecase);
+      locator.registerSingleton<TagsUsecase>(tagsUsecase);
 
       when(() => router.pop(any())).thenAnswer((_) => Future.value());
 
@@ -39,7 +39,7 @@ void main() {
       when(() => bloc.state).thenReturn(RecipesState.initial());
       when(() => bloc.stream).thenAnswer((_) => stream.stream);
       when(
-        () => tagUsecase.call(
+        () => tagsUsecase.call(
           query: any(named: "query"),
           limit: any(named: "limit"),
         ),
@@ -50,11 +50,11 @@ void main() {
 
     tearDown(() {
       locator.unregister<J1Router>();
-      locator.unregister<TagUsecase>();
+      locator.unregister<TagsUsecase>();
 
       reset(router);
       reset(bloc);
-      reset(tagUsecase);
+      reset(tagsUsecase);
       stream.close();
     });
 
@@ -128,7 +128,7 @@ void main() {
       await tester.pumpWidget(TestWrapper(child: FilterDrawer(bloc: bloc)));
 
       when(
-        () => tagUsecase.call(
+        () => tagsUsecase.call(
           query: any(named: "query"),
           limit: any(named: "limit"),
         ),
@@ -137,7 +137,7 @@ void main() {
       );
 
       when(
-        () => tagUsecase.call(
+        () => tagsUsecase.call(
           query: any(named: "query", that: equals("test2")),
           limit: any(named: "limit"),
         ),
